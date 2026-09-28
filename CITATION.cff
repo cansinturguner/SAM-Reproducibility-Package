@@ -3,8 +3,18 @@ message: "If you use this software, cite the associated SAM manuscript and the L
 title: "SAM ADS-B Security Assurance Model Reproducibility Package"
 type: software
 version: 1.0.0
-date-released: 2026-09-23
-license: "Research code; third-party dataset licensing remains governed by LocaRDS CC BY-SA 4.0."
+date-released: 2026-09-28
+license: MIT
+repository-code: "https://github.com/cansinturguner/SAM-Reproducibility-Package"
+url: "https://github.com/cansinturguner/SAM-Reproducibility-Package"
+authors:
+  - family-names: "Turguner"
+    given-names: "Cansin"
+    affiliation: "Istanbul University-Cerrahpasa"
+    orcid: "https://orcid.org/0000-0002-1946-5276"
+  - family-names: "Aydin"
+    given-names: "Muhammed Ali"
+    affiliation: "Istanbul University-Cerrahpasa"
 references:
   - type: article
     title: "LocaRDS: A Localization Reference Data Set"
@@ -23,4 +33,3 @@ references:
     title: "LocaRDS: A Localization Reference Data Set"
     doi: "10.5281/zenodo.4739276"
     year: 2021
-

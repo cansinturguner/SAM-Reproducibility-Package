@@ -2,6 +2,13 @@
 
 This package reproduces the Security Assurance Model experiments reported in the manuscript. It contains Phases 1-24 and the Phase 22B residual-tail audit. Phases 23 and 24 provide an independent CABBA application-layer comparison and a software-only PPM/D8PSK waveform-feasibility simulation.
 
+## Authors and repository
+
+- Cansin Turguner, Istanbul University-Cerrahpasa, ORCID: https://orcid.org/0000-0002-1946-5276
+- Muhammed Ali Aydin, Istanbul University-Cerrahpasa
+- Source repository: https://github.com/cansinturguner/SAM-Reproducibility-Package
+- Archived release DOI: pending Zenodo release
+
 ## Evidence boundary
 
 - LocaRDS subset 1 and subset 2 provide real decoded ADS-B observations, receiver metadata, and reception timestamps.
@@ -59,6 +66,10 @@ Recorded SHA-256 values:
 | subset 2 aircraft | `70156a0865e655f4fb470e5814fd153708ac9f97ef193b70ebf3f4a5d84e1893` |
 
 The subset archives and CSV files are not redistributed in this package.
+
+## License
+
+The original source code and package documentation are released under the MIT License; see `LICENSE`. The LocaRDS dataset is not redistributed and remains governed by its own CC BY-SA 4.0 terms.
 
 ## Setup
 
