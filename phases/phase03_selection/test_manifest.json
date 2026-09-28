@@ -1,0 +1,64 @@
+{
+  "dataset": "LocaRDS subset 1",
+  "source": "https://doi.org/10.5281/zenodo.4739276",
+  "phase2_report": "/workspace/scratch/861b26da885b/sam_phase3_selection/test_fixture/phase2.json",
+  "phase2_observation_sha256": "test-observations",
+  "selection_rules": [
+    "aircraft trusted flag equals TRUE",
+    "sensor good flag equals TRUE",
+    "sensor latitude, longitude and height are present",
+    "at least three distinct good sensors",
+    "no attack or anomaly label is created",
+    "raw timestamp and signal units are not inferred"
+  ],
+  "split": {
+    "unit": "aircraft identifier",
+    "method": "deterministic SHA-256 bucket",
+    "seed": 1103,
+    "development_percent_target": 30,
+    "development_aircraft": 0,
+    "test_aircraft": 1,
+    "aircraft_overlap": 0
+  },
+  "counts": {
+    "input_rows": 2,
+    "trusted_rows": 1,
+    "selected_ge3": 1,
+    "selected_ge4": 1,
+    "selected_test": 1,
+    "selected_ge4_test": 1
+  },
+  "output": {
+    "path": "/workspace/scratch/861b26da885b/sam_phase3_selection/test_output/trusted_good_ge3.csv.gz",
+    "size_bytes": 327,
+    "sha256": "78eacb9ef291add0256a2583f41b14c68dd3b59f95e4fd99c9959a45cab5276f",
+    "columns": [
+      "id",
+      "timeAtServer",
+      "aircraft",
+      "latitude",
+      "longitude",
+      "baroAltitude",
+      "geoAltitude",
+      "numMeasurements",
+      "numGoodReceivers",
+      "eligible_ge4",
+      "split",
+      "goodSensorIds",
+      "goodMeasurements",
+      "receiverMinBaselineM",
+      "receiverMaxBaselineM",
+      "receiverGeometryRank",
+      "receiverGeometryRatio",
+      "rawTimestampSpan",
+      "rawSignalMin",
+      "rawSignalMax"
+    ]
+  },
+  "geometry_fields": {
+    "receiverMinBaselineM": "minimum three-dimensional ECEF distance between selected sensors",
+    "receiverMaxBaselineM": "maximum three-dimensional ECEF distance between selected sensors",
+    "receiverGeometryRank": "rank of centered receiver ECEF coordinate matrix",
+    "receiverGeometryRatio": "smallest/largest singular-value ratio; descriptive only, no threshold applied"
+  }
+}

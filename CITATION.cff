@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, cite the associated SAM manuscript and the LocaRDS dataset."
+title: "SAM ADS-B Security Assurance Model Reproducibility Package"
+type: software
+version: 1.0.0
+date-released: 2026-09-23
+license: "Research code; third-party dataset licensing remains governed by LocaRDS CC BY-SA 4.0."
+references:
+  - type: article
+    title: "LocaRDS: A Localization Reference Data Set"
+    authors:
+      - family-names: "Schäfer"
+        given-names: "Matthias"
+      - family-names: "Strohmeier"
+        given-names: "Martin"
+      - family-names: "Leonardi"
+        given-names: "Mauro"
+      - family-names: "Lenders"
+        given-names: "Vincent"
+    doi: "10.3390/s21165516"
+    year: 2021
+  - type: dataset
+    title: "LocaRDS: A Localization Reference Data Set"
+    doi: "10.5281/zenodo.4739276"
+    year: 2021
+

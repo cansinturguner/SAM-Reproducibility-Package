@@ -1,0 +1,22 @@
+{
+  "random_seeds": [1103, 2207, 3301, 4409, 5519],
+  "data_splits": {
+    "development": "Used only for policy and threshold calibration",
+    "test": "Locked before final evaluation"
+  },
+  "forbidden_claims": [
+    "attack detection",
+    "anomaly detection",
+    "maliciousness classification",
+    "unique or first without a systematic literature check"
+  ],
+  "required_reporting": [
+    "dataset version and checksum",
+    "filter and transformation log",
+    "configuration ID A0-A7",
+    "run seed",
+    "hardware and software versions",
+    "95 percent confidence intervals",
+    "failures and missing outputs"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "files": {
+    "sensors": {"size_bytes": 155, "sha256": "test"},
+    "aircraft": {"size_bytes": 32, "sha256": "test"},
+    "observations": {"size_bytes": 250, "sha256": "test-observations"}
+  }
+}

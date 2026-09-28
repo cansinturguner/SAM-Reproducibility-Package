@@ -1,0 +1,51 @@
+{
+  "target_journal": "Computer Networks",
+  "computer": {
+    "model": "MacBook Air 2024 M3",
+    "memory_gb": 16,
+    "architecture": "Apple Silicon arm64"
+  },
+  "sources": [
+    {
+      "id": "opensky_state_vectors",
+      "title": "OpenSky Weekly 24 Hours of State Vector Data",
+      "authoritative_url": "https://opensky-network.org/data/scientific",
+      "purpose": ["legacy baseline", "traffic density", "controlled packet loss", "workload"],
+      "limitations": ["no receiver geometry", "no per-receiver arrival timestamps", "no IQ samples", "no authentication packets"]
+    },
+    {
+      "id": "locards_1_0",
+      "title": "LocaRDS: A Localization Reference Data Set",
+      "version": "1.0",
+      "doi": "10.5281/zenodo.4739276",
+      "purpose": ["direct TDoA", "receiver geometry", "physical corroboration", "A3 and A7 evaluation"],
+      "initial_selection": "subset_1.zip",
+      "limitations": ["process in chunks", "freeze sensor and flight selection before testing"]
+    },
+    {
+      "id": "opensky_raw_sample",
+      "title": "OpenSky Raw Data Sample",
+      "authoritative_url": "https://opensky-network.org/data/scientific",
+      "purpose": ["Mode S ingest", "parity and decoding", "physical metadata inspection"],
+      "limitations": ["receiver locations removed", "schema must be inspected", "do not assume IQ waveform availability"]
+    },
+    {
+      "id": "controlled_1090es_waveforms",
+      "title": "Controlled 1090ES overlap waveform corpus",
+      "purpose": ["minimum-dispersion recovery", "relative delay", "relative power", "SNR", "frame recovery"],
+      "generation_policy": "Generate from documented Mode S frames with frozen seeds and retain clean component frames as ground truth."
+    },
+    {
+      "id": "sam_authentication_trace",
+      "title": "Locally generated CABBA/TESLA experiment trace",
+      "purpose": ["authentication completion", "authentication delay", "security overhead", "packet loss"],
+      "generation_policy": "Generate with published protocol parameters or explicitly labelled experimental parameters; record every parameter and seed."
+    },
+    {
+      "id": "sam_trust_trace",
+      "title": "Locally generated trust-service event trace",
+      "purpose": ["cache use", "bundle expiry", "revocation propagation", "service partition"],
+      "generation_policy": "Generate from a documented event schedule; no fabricated performance results."
+    }
+  ]
+}

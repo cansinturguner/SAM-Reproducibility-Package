@@ -1,0 +1,66 @@
+{
+  "dataset": "LocaRDS subset 1",
+  "source": "https://doi.org/10.5281/zenodo.4739276",
+  "files": {
+    "sensors": {
+      "path": "/workspace/scratch/861b26da885b/sam_phase2_locards/test_fixture/set_1_sensors.csv",
+      "size_bytes": 156,
+      "sha256": "ad1ec10976edf2911ca0aa600f4879e618f851224f5cddf83806f78fb3a08bdc"
+    },
+    "aircraft": {
+      "path": "/workspace/scratch/861b26da885b/sam_phase2_locards/test_fixture/set_1_aircraft.csv",
+      "size_bytes": 24,
+      "sha256": "0bdfef26bb0d891a8026a6c4fa95fbebce3a6f99e46c7a23560cf725262aa549"
+    },
+    "observations": {
+      "path": "/workspace/scratch/861b26da885b/sam_phase2_locards/test_fixture/set_1.csv",
+      "size_bytes": 174,
+      "sha256": "c556c7620347f16d8f38cd205410695e60324f0ac5d93da7568df4d6d61760a7"
+    }
+  },
+  "sensor_table": {
+    "rows": 4,
+    "unique_serials": 4,
+    "good_true": 3,
+    "good_false": 1,
+    "good_unknown": 0
+  },
+  "aircraft_table": {
+    "rows": 1,
+    "unique_aircraft": 1,
+    "trusted_true": 1,
+    "trusted_false": 0,
+    "trusted_unknown": 0
+  },
+  "observation_table": {
+    "rows": 1,
+    "missing_position": 0,
+    "trusted_aircraft_rows": 1,
+    "measurements": 4,
+    "rows_known_receivers_ge_3": 1,
+    "rows_known_receivers_ge_4": 1,
+    "rows_good_receivers_ge_3": 1,
+    "unique_aircraft_seen": 1,
+    "unique_sensors_seen": 4,
+    "time_min": 0.0,
+    "time_max": 0.0,
+    "declared_measurement_histogram": {
+      "4": 1
+    },
+    "parsed_measurement_histogram": {
+      "4": 1
+    },
+    "known_receiver_histogram": {
+      "4": 1
+    },
+    "good_receiver_histogram": {
+      "3": 1
+    },
+    "parse_errors": {}
+  },
+  "interpretation": {
+    "ge_3": "Candidate pool for direct-TDoA feasibility analysis; geometry and synchronization checks are still required.",
+    "ge_4": "Candidate pool for direct-TDoA and MLAT comparison; geometry and synchronization checks are still required.",
+    "security_label": "No attack or anomaly label is created."
+  }
+}
