@@ -1,0 +1,15 @@
+PHASE 30 INSTALLATION AND EXECUTION
+
+Extract this ZIP into the root of the existing SAM_Reproducibility_Package.
+Activate the existing environment and run:
+
+source .venv/bin/activate
+bash scripts/run_phase30.sh
+
+Send the printed JSON summary and the final validation line.
+
+Output:
+reports/sam_phase30_reference_independent_receiver_guard.json
+
+Required existing material: Phase 27 threshold_core.py, the Phase 25A decision
+model, LocaRDS subset-1 selected data, sensors, and receiver calibration.

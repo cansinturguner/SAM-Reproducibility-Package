@@ -1,0 +1,6 @@
+serial,latitude,longitude,height,type,good
+101,40.0,29.0,10.0,fixture,TRUE
+102,40.35,29.0,140.0,fixture,TRUE
+103,40.0,29.45,260.0,fixture,TRUE
+104,40.4,29.5,25.0,fixture,TRUE
+105,40.18,29.24,520.0,fixture,TRUE

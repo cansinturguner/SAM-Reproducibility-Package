@@ -1,0 +1,157 @@
+{
+  "schema": "sam.phase27b.threshold-aware-trust-outage.v1",
+  "scope": "threshold-aware physical decision + deterministic HMAC + signed TCP trust refresh + cache + fusion",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "repetitions": 5,
+    "physical_threshold_ns": 306.64062122826,
+    "cache_ttl_seconds": 900.0,
+    "retry_interval_seconds": 60.0,
+    "outage_rule": "service unavailable for requests at or after 1800 s of dataset time",
+    "fusion_policy": "physical conflict remains CONFLICTING even when trust becomes stale"
+  },
+  "inputs": {
+    "sha256": {
+      "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+    },
+    "decision_model_sha256": "2d5b18c15d093b0b2665722b7b918a8b64a6526fc2dcd1be93ddad5819eb73f2"
+  },
+  "scenarios": [
+    {
+      "name": "online_0ms",
+      "added_delay_ms": 0,
+      "outage_at_seconds": null,
+      "counts": {
+        "eligible_rows": 82986,
+        "hmac_verified": 82986,
+        "PHYSICALLY_CONSISTENT": 77309,
+        "PHYSICALLY_CONFLICTING": 1049,
+        "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628,
+        "trust_valid": 82986,
+        "trust_stale_or_absent": 0,
+        "VERIFIED": 77309,
+        "CONFLICTING": 1049,
+        "INSUFFICIENT_EVIDENCE": 4628,
+        "refresh_attempts": 4,
+        "refresh_successes": 4,
+        "refresh_failures": 0
+      },
+      "wall_seconds": {
+        "n": 5,
+        "mean": 3.801348116600002,
+        "median": 3.784388874999877,
+        "minimum": 3.756549625000389,
+        "maximum": 3.8582517499999085,
+        "sample_stdev": 0.04312811592513977
+      }
+    },
+    {
+      "name": "online_50ms",
+      "added_delay_ms": 50,
+      "outage_at_seconds": null,
+      "counts": {
+        "eligible_rows": 82986,
+        "hmac_verified": 82986,
+        "PHYSICALLY_CONSISTENT": 77309,
+        "PHYSICALLY_CONFLICTING": 1049,
+        "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628,
+        "trust_valid": 82986,
+        "trust_stale_or_absent": 0,
+        "VERIFIED": 77309,
+        "CONFLICTING": 1049,
+        "INSUFFICIENT_EVIDENCE": 4628,
+        "refresh_attempts": 4,
+        "refresh_successes": 4,
+        "refresh_failures": 0
+      },
+      "wall_seconds": {
+        "n": 5,
+        "mean": 3.9881701916001475,
+        "median": 3.996679542000038,
+        "minimum": 3.9464760410000963,
+        "maximum": 4.032324083000276,
+        "sample_stdev": 0.03246300269741441
+      }
+    },
+    {
+      "name": "online_250ms",
+      "added_delay_ms": 250,
+      "outage_at_seconds": null,
+      "counts": {
+        "eligible_rows": 82986,
+        "hmac_verified": 82986,
+        "PHYSICALLY_CONSISTENT": 77309,
+        "PHYSICALLY_CONFLICTING": 1049,
+        "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628,
+        "trust_valid": 82986,
+        "trust_stale_or_absent": 0,
+        "VERIFIED": 77309,
+        "CONFLICTING": 1049,
+        "INSUFFICIENT_EVIDENCE": 4628,
+        "refresh_attempts": 4,
+        "refresh_successes": 4,
+        "refresh_failures": 0
+      },
+      "wall_seconds": {
+        "n": 5,
+        "mean": 4.836118416600039,
+        "median": 4.826876999999968,
+        "minimum": 4.81512524999971,
+        "maximum": 4.866612332999921,
+        "sample_stdev": 0.023988928000962938
+      }
+    },
+    {
+      "name": "outage_at_1800s",
+      "added_delay_ms": 50,
+      "outage_at_seconds": 1800.0,
+      "counts": {
+        "eligible_rows": 82986,
+        "hmac_verified": 82986,
+        "PHYSICALLY_CONSISTENT": 77309,
+        "PHYSICALLY_CONFLICTING": 1049,
+        "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628,
+        "trust_valid": 46337,
+        "trust_stale_or_absent": 36649,
+        "VERIFIED": 43192,
+        "CONFLICTING": 1049,
+        "INSUFFICIENT_EVIDENCE": 38745,
+        "refresh_attempts": 32,
+        "refresh_successes": 2,
+        "refresh_failures": 30
+      },
+      "wall_seconds": {
+        "n": 5,
+        "mean": 3.914919741600079,
+        "median": 3.895942500000274,
+        "minimum": 3.8665691249998417,
+        "maximum": 3.981745250000131,
+        "sample_stdev": 0.05351086407943359
+      }
+    }
+  ],
+  "correctness": {
+    "all_online_hmac_verified": true,
+    "frozen_eligible_count": true,
+    "frozen_physical_state_counts": true,
+    "online_full_policy_counts": true,
+    "outage_preserves_physical_conflict": true,
+    "outage_creates_insufficient_evidence": true,
+    "outage_retry_backoff_active": true
+  },
+  "interpretation_limits": [
+    "Trust delay is controlled over loopback and is not operational WAN latency.",
+    "The outage is a scheduled availability condition and not an attack label.",
+    "No new revocation is injected after the final successful refresh.",
+    "The threshold is a prototype operating point and the authenticator is synthetic."
+  ]
+}

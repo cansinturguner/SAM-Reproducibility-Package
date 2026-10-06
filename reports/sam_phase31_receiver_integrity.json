@@ -1,0 +1,172 @@
+{
+  "schema": "sam.phase31.reference-independent-receiver-integrity.v1",
+  "scope": "development-frozen receiver-integrity guard, subset-1 test, subset-2 transfer, and controlled single-receiver corruption",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "numpy": "2.5.3"
+  },
+  "inputs": {
+    "sha256": {
+      "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654",
+      "subset2_observations": "5ff68c7e402caa183678c03f4d23ba45b63bc96fa1177f8ce7e4fb530c45dd58",
+      "subset2_sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "subset2_aircraft": "70156a0865e655f4fb470e5814fd153708ac9f97ef193b70ebf3f4a5d84e1893",
+      "decision_model": "3793f4d03f1492a329ad51c891b8cf0bf47ac81e17c6941fdddbe4006b1f34fb"
+    },
+    "dataset_doi": "10.5281/zenodo.4739276"
+  },
+  "method": {
+    "schema": "sam.phase31.receiver-integrity-model.v1",
+    "seed": 1103,
+    "score": "maximum across receivers of median absolute calibrated pair residual incident on that receiver",
+    "reference_independent": true,
+    "threshold_ns": 1654.782585144043,
+    "threshold_quantile": 0.99,
+    "threshold_source": "LocaRDS subset-1 development-validation aircraft only; higher empirical quantile",
+    "test_used_for_selection": false,
+    "dataset_doi": "10.5281/zenodo.4739276"
+  },
+  "development_validation": {
+    "originally_eligible_rows": 13430,
+    "physical_available_rows": 13240,
+    "physical_availability_fraction": 0.9858525688756515,
+    "reference_rule": {
+      "available_rows": 13240,
+      "PHYSICALLY_CONSISTENT": 13107,
+      "PHYSICALLY_CONFLICTING": 133,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.010045317220543807
+    },
+    "receiver_integrity_guard": {
+      "available_rows": 13240,
+      "PHYSICALLY_CONSISTENT": 13108,
+      "PHYSICALLY_CONFLICTING": 132,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.009969788519637462
+    },
+    "combined_rule": {
+      "available_rows": 13240,
+      "PHYSICALLY_CONSISTENT": 13057,
+      "PHYSICALLY_CONFLICTING": 183,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.013821752265861027
+    },
+    "PHYSICAL_EVIDENCE_UNAVAILABLE": 190
+  },
+  "subset1_frozen_test": {
+    "originally_eligible_rows": 82986,
+    "physical_available_rows": 78358,
+    "physical_availability_fraction": 0.9442315571301183,
+    "reference_rule": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 77309,
+      "PHYSICALLY_CONFLICTING": 1049,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.01338727379463488
+    },
+    "receiver_integrity_guard": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 78002,
+      "PHYSICALLY_CONFLICTING": 356,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.00454325021057199
+    },
+    "combined_rule": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 77170,
+      "PHYSICALLY_CONFLICTING": 1188,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.015161183286964955
+    },
+    "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628
+  },
+  "subset2_transfer": {
+    "originally_eligible_rows": 107314,
+    "physical_available_rows": 98024,
+    "physical_availability_fraction": 0.91343161190525,
+    "reference_rule": {
+      "available_rows": 98024,
+      "PHYSICALLY_CONSISTENT": 96362,
+      "PHYSICALLY_CONFLICTING": 1662,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.01695503142087652
+    },
+    "receiver_integrity_guard": {
+      "available_rows": 98024,
+      "PHYSICALLY_CONSISTENT": 96614,
+      "PHYSICALLY_CONFLICTING": 1410,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.014384232432873583
+    },
+    "combined_rule": {
+      "available_rows": 98024,
+      "PHYSICALLY_CONSISTENT": 95997,
+      "PHYSICALLY_CONFLICTING": 2027,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.02067860932016649
+    },
+    "PHYSICAL_EVIDENCE_UNAVAILABLE": 9290
+  },
+  "single_receiver_timestamp_corruption": {
+    "100": {
+      "trials": 766344,
+      "result_conflict_fraction": 0.004859436493271951,
+      "consistent_to_conflicting_fraction": 6.556345230914479e-06,
+      "target_ranked_highest_fraction": 0.4428115833098452
+    },
+    "250": {
+      "trials": 766344,
+      "result_conflict_fraction": 0.004841167935026568,
+      "consistent_to_conflicting_fraction": 1.1801421415646063e-05,
+      "target_ranked_highest_fraction": 0.8650840875638095
+    },
+    "500": {
+      "trials": 766344,
+      "result_conflict_fraction": 0.004852912008184314,
+      "consistent_to_conflicting_fraction": 2.7536649969840813e-05,
+      "target_ranked_highest_fraction": 0.9785109559153592
+    },
+    "750": {
+      "trials": 766344,
+      "result_conflict_fraction": 0.004961218460639087,
+      "consistent_to_conflicting_fraction": 0.00013899451889538695,
+      "target_ranked_highest_fraction": 0.9909975154760786
+    },
+    "1000": {
+      "trials": 766344,
+      "result_conflict_fraction": 0.005528848663263496,
+      "consistent_to_conflicting_fraction": 0.0007120190920773124,
+      "target_ranked_highest_fraction": 0.9948025951791885
+    },
+    "2000": {
+      "trials": 766344,
+      "result_conflict_fraction": 0.9964846074347813,
+      "consistent_to_conflicting_fraction": 0.9965539849466314,
+      "target_ranked_highest_fraction": 0.9962823483970645
+    },
+    "5000": {
+      "trials": 766344,
+      "result_conflict_fraction": 0.9999986951029824,
+      "consistent_to_conflicting_fraction": 1.0,
+      "target_ranked_highest_fraction": 0.9968812961281096
+    },
+    "10000": {
+      "trials": 766344,
+      "result_conflict_fraction": 0.9999986951029824,
+      "consistent_to_conflicting_fraction": 1.0,
+      "target_ranked_highest_fraction": 0.9969152234505653
+    }
+  },
+  "artifacts": {
+    "model": "data/processed/locards_subset_1/phase31_receiver_integrity_model.json",
+    "development_events": "reports/sam_phase31_development_events.csv.gz",
+    "subset1_events": "reports/sam_phase31_subset1_events.csv.gz",
+    "subset2_events": "reports/sam_phase31_subset2_events.csv.gz"
+  },
+  "runtime": {
+    "wall_seconds": 330.1200504999997
+  },
+  "interpretation_limits": [
+    "The guard is reference-independent but still depends on the frozen receiver clock model and LocaRDS receiver network.",
+    "Conflict fractions on trusted-aircraft data are empirical benign-reference rates, not population false-positive rates.",
+    "Timestamp shifts are controlled sensitivity conditions, not operational attack-detection rates.",
+    "Subset 2 is a cross-partition transfer test using the same published sensor infrastructure, not an independent receiver network.",
+    "The guard does not identify malicious intent; it exposes receiver-level timing inconsistency."
+  ]
+}

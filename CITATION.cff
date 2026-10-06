@@ -1,12 +1,12 @@
 cff-version: 1.2.0
-message: "If you use this software, cite the associated SAM manuscript and the LocaRDS dataset."
+message: "If you use this software, please cite the SAM manuscript, this software package, and the LocaRDS dataset."
 title: "SAM ADS-B Security Assurance Model Reproducibility Package"
 type: software
-version: 1.0.0
-date-released: 2026-09-28
+version: 1.1.0
+date-released: 2026-10-06
 license: MIT
 repository-code: "https://github.com/cansinturguner/SAM-Reproducibility-Package"
-url: "https://github.com/cansinturguner/SAM-Reproducibility-Package"
+url: "https://doi.org/10.5281/zenodo.23023229"
 authors:
   - family-names: "Turguner"
     given-names: "Cansin"
@@ -15,7 +15,23 @@ authors:
   - family-names: "Aydin"
     given-names: "Muhammed Ali"
     affiliation: "Istanbul University-Cerrahpasa"
+keywords:
+  - ADS-B security
+  - Mode S
+  - broadcast authentication
+  - direct TDoA
+  - evidence fusion
+  - trust management
+  - reproducibility
 references:
+  - type: article
+    title: "A Layered Security Assurance Model for ADS-B Using Cryptographic, Physical, and Trust Evidence"
+    authors:
+      - family-names: "Turguner"
+        given-names: "Cansin"
+      - family-names: "Aydin"
+        given-names: "Muhammed Ali"
+    year: 2026
   - type: article
     title: "LocaRDS: A Localization Reference Data Set"
     authors:
@@ -31,5 +47,14 @@ references:
     year: 2021
   - type: dataset
     title: "LocaRDS: A Localization Reference Data Set"
+    authors:
+      - family-names: "Schäfer"
+        given-names: "Matthias"
+      - family-names: "Strohmeier"
+        given-names: "Martin"
+      - family-names: "Leonardi"
+        given-names: "Mauro"
+      - family-names: "Lenders"
+        given-names: "Vincent"
     doi: "10.5281/zenodo.4739276"
     year: 2021

@@ -1,0 +1,120 @@
+{
+  "schema": "sam.phase25a.physical-decision-validation.v1",
+  "scope": {
+    "implemented": "leakage-controlled direct-TDoA physical decision calibration and subset-1 benign-reference evaluation",
+    "not_implemented": [
+      "operational or certification threshold",
+      "real attack ground truth",
+      "RF waveform experiment"
+    ]
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "logical_cpu_count": 8
+  },
+  "inputs": {
+    "paths": {
+      "selected": "data/processed/locards_subset_1/trusted_good_ge3.csv.gz",
+      "sensors": "data/raw/locards/subset_1/set_1_sensors.csv",
+      "calibration": "data/processed/locards_subset_1/receiver_clock_calibration.json"
+    },
+    "sha256": {
+      "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+    }
+  },
+  "decision_model": {
+    "schema": "sam.phase25a.physical-decision-model.v1",
+    "score": "median absolute calibrated direct-TDoA reference-pair residual per observation",
+    "score_units": "nanoseconds",
+    "decision_rule": "PHYSICALLY_CONSISTENT iff score <= threshold; otherwise PHYSICALLY_CONFLICTING",
+    "threshold_ns": 306.64062122826,
+    "threshold_quantile_method": "numpy higher empirical quantile",
+    "target_benign_consistency": 0.99,
+    "selection_partition": "Phase 3 development aircraft assigned to Phase 5B validation group only",
+    "seed": 1103,
+    "calibration_percent": 70,
+    "minimum_modeled_receivers": 4,
+    "required_geometry_rank": 3,
+    "input_sha256": {
+      "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+    },
+    "test_partition_used_for_threshold_selection": false,
+    "subset2_used_for_threshold_selection": false
+  },
+  "aircraft_partitions": {
+    "development_calibration_aircraft": 43,
+    "development_validation_aircraft": 24,
+    "test_aircraft": 139,
+    "overlap": 0
+  },
+  "development_validation": {
+    "original_ge4_rows": 13430,
+    "physically_available_rows": 13240,
+    "score_summary": {
+      "n": 13240,
+      "q50_ns": 71.7847357796054,
+      "q90_ns": 148.25670037419187,
+      "q95_ns": 184.1009378244663,
+      "q99_ns": 306.1217044001104,
+      "maximum_ns": 1000000227.4145612
+    },
+    "states": {
+      "PHYSICALLY_CONSISTENT": 13108,
+      "PHYSICALLY_CONFLICTING": 132
+    },
+    "empirical_consistent_fraction_among_available": 0.9900302114803625
+  },
+  "subset1_frozen_test": {
+    "original_ge4_rows": 82986,
+    "physically_available_rows": 78358,
+    "physical_availability_fraction": 0.9442315571301183,
+    "score_summary": {
+      "n": 78358,
+      "q50_ns": 64.21407209194149,
+      "q90_ns": 147.21767145266062,
+      "q95_ns": 187.84744060484078,
+      "q99_ns": 349.7280458337675,
+      "maximum_ns": 2999999955.587231
+    },
+    "states": {
+      "PHYSICALLY_CONSISTENT": 77309,
+      "PHYSICALLY_CONFLICTING": 1049,
+      "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628
+    },
+    "unavailable_reasons": {
+      "fewer_than_4_modeled_receivers": 4628
+    },
+    "empirical_benign_reference_conflict_fraction_among_available": 0.01338727379463488,
+    "aircraft_cluster_conflict_fraction_ci95": {
+      "method": "aircraft-cluster bootstrap with replacement; row-weighted fraction",
+      "estimate": 0.01338727379463488,
+      "ci95_low": 0.008600600486579903,
+      "ci95_high": 0.019665816598798895,
+      "replicates": 2000,
+      "seed": 1103,
+      "aircraft": 107
+    },
+    "full_policy_assurance_with_valid_crypto_and_trust": {
+      "VERIFIED": 77309,
+      "CONFLICTING": 1049,
+      "INSUFFICIENT_EVIDENCE": 4628
+    }
+  },
+  "runtime": {
+    "wall_seconds": 5.896351333001803
+  },
+  "interpretation_limits": [
+    "Trusted-aircraft metadata is used as a benign reference, not as attack-free ground truth.",
+    "The empirical conflict fraction is not a certified operational false-alarm probability.",
+    "The threshold is a reproducible prototype operating point selected without subset-1 test or subset-2 data."
+  ]
+}

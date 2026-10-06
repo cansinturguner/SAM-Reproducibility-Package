@@ -1,40 +1,40 @@
 # SAM reproducibility package
 
-This package reproduces the Security Assurance Model experiments reported in the manuscript. It contains Phases 1-24 and the Phase 22B residual-tail audit. Phases 23 and 24 provide an independent CABBA application-layer comparison and a software-only PPM/D8PSK waveform-feasibility simulation.
+This repository reproduces the software experiments reported for the Security Assurance Model (SAM). Version 1.1.0 extends the original Phases 1–24 package through Phase 32. The added experiments introduce a development-selected physical-consistency threshold, controlled attack sensitivity, formal assurance-logic verification, threshold-aware integration and outage behavior, receiver-corruption safeguards, operating-point sensitivity, receiver-integrity analysis, and track-level persistence.
 
 ## Authors and repository
 
 - Cansin Turguner, Istanbul University-Cerrahpasa, ORCID: https://orcid.org/0000-0002-1946-5276
 - Muhammed Ali Aydin, Istanbul University-Cerrahpasa
 - Source repository: https://github.com/cansinturguner/SAM-Reproducibility-Package
-- Archived release DOI: pending Zenodo release
+- Archived software concept DOI: https://doi.org/10.5281/zenodo.23023229
+
+The concept DOI resolves to the most recent Zenodo release. Release-specific DOIs remain available for immutable version citation.
 
 ## Evidence boundary
 
-- LocaRDS subset 1 and subset 2 provide real decoded ADS-B observations, receiver metadata, and reception timestamps.
-- Cryptographic authenticators are deterministic synthetic surrogates bound to real observations because LocaRDS does not contain SAM security packets.
-- Protocol, packet-loss, trust-state, and outage cases are controlled experiments.
+- LocaRDS subsets 1 and 2 provide real decoded ADS-B observations, receiver metadata, and reception timestamps.
+- The two LocaRDS subsets share the same published sensor-metadata source. Their comparison is therefore cross-partition transfer validation, not validation on an independent sensor network.
+- Cryptographic authenticators are deterministic synthetic surrogates bound to real observations because LocaRDS does not contain transmitted SAM security packets.
+- Protocol, packet-loss, trust-state, service-outage, position-bias, receiver-corruption, and track-persistence cases are controlled software experiments.
+- The physical-decision threshold is selected only from development data and then applied without retuning to the subset-1 test and subset-2 transfer partitions.
+- Phase 25C audits a separately published labeled injection dataset. The detected fields do not support direct-TDoA evaluation, so that dataset is not automatically integrated into the SAM physical branch and is not redistributed here.
 - Phase 24 implements a bounded complex-baseband PPM/D8PSK and RS(54,34) simulation. It does not implement GNU Radio, SDR transmission, raw-IQ capture, commercial-receiver testing, or operational RF compatibility.
 - The package does not implement an operational PKI, ledger consensus, certified avionics hardware, or an attack/anomaly classifier.
-- Reported precision, recall, F1, false-positive, or false-negative values do not exist because no attack-labeled dataset or classifier is used.
+- The reported conflict and sensitivity fractions are empirical results under the stated reference and controlled perturbation models. They are not operational attack prevalence estimates.
 
 ## Recorded environment
 
 - Hardware: 2024 MacBook Air, Apple M3, 16 GB unified memory
-- Operating systems recorded by the reports: Darwin 25.5.0 for the original Phase 1-20 and Phase 22/22B runs; Darwin 27.0.0 for Phase 21, the matched Phase 14 repeat, Phase 23, and Phase 24; arm64 in both environments
+- Operating systems: Darwin 25.5.0 and Darwin 27.0.0, arm64, as recorded by the individual reports
 - Python: 3.12.14
-- NumPy: 2.5.3 for Phases 7 and 14-22
+- NumPy: 2.5.3 for the later integrated and decision experiments
 - cryptography: 45.0.7 for the cryptographic phases
-- SciPy: 1.18.1 and reedsolo: 1.7.0 in the recorded Phase 24 run
+- SciPy: 1.18.1 and reedsolo: 1.7.0 for the recorded Phase 24 run
 - Logical CPUs: 8
 - Experiment seed: 1103 unless a phase README states otherwise
 
-Phase 22 does not consume `trusted_good_ge3.csv.gz`; it reads the original
-subset-2 CSV files and applies the frozen subset-1 calibration and Phase 5D
-reference report. The dynamically propagated selected-file SHA-256 used by
-Phases 4-7, 14, 17, 20, and 21 is therefore not an input to Phase 22.
-
-Use Python 3.11 or 3.12. The paper measurements were produced with Python 3.12.14. Install `requirements.txt` in a clean virtual environment. Packages whose exact runtime versions were recorded are pinned; other dependencies retain the tested compatibility ranges from Phase 1 because their exact Mac environment versions were not preserved in the supplied reports.
+Use Python 3.11 or 3.12. The manuscript measurements were produced with Python 3.12.14. Install `requirements.txt` in a clean virtual environment. Individual phase READMEs record additional dependencies and execution boundaries.
 
 ## Dataset
 
@@ -43,7 +43,7 @@ Download LocaRDS from:
 - Dataset DOI: https://doi.org/10.5281/zenodo.4739276
 - Dataset paper: https://doi.org/10.3390/s21165516
 
-Required files:
+Place the released files at:
 
 ```text
 data/raw/locards/subset_1/set_1.csv
@@ -65,11 +65,20 @@ Recorded SHA-256 values:
 | subset 2 sensors | `998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b` |
 | subset 2 aircraft | `70156a0865e655f4fb470e5814fd153708ac9f97ef193b70ebf3f4a5d84e1893` |
 
-The subset archives and CSV files are not redistributed in this package.
+The LocaRDS archives and CSV files are not redistributed. Phase 31 event tables are generated locally from LocaRDS and are likewise not included. Phase 32 consumes those locally generated event tables.
+
+Phase 25C expects the independently obtained labeled dataset files at:
+
+```text
+data/external/Dataset.csv
+data/external/Receiver messages.csv
+```
+
+These third-party files are not redistributed. Phase 25C is a metadata and suitability audit; it does not evaluate the SAM direct-TDoA branch on that dataset.
 
 ## License
 
-The original source code and package documentation are released under the MIT License; see `LICENSE`. The LocaRDS dataset is not redistributed and remains governed by its own CC BY-SA 4.0 terms.
+The SAM source code and package documentation are released under the MIT License; see `LICENSE`. LocaRDS and any separately obtained third-party datasets remain governed by their original licenses.
 
 ## Setup
 
@@ -81,19 +90,29 @@ python -m pip install -r requirements.txt
 python phases/phase01_environment/scripts/verify_environment.py
 ```
 
-Run all implemented phases from the package root:
+The original workflow through Phase 24 remains available as:
 
 ```bash
 bash scripts/run_all.sh
 ```
 
-The script checks that required dataset files exist, creates `reports/` and processed-data directories, and stops on the first error. Each phase directory also contains its original README and source-decision notes. Report validators are invoked whenever the phase includes one.
-
-Phases 23 and 24 do not require LocaRDS. They can also be run independently:
+Phases 23 and 24 do not require LocaRDS and can be run independently:
 
 ```bash
 bash scripts/run_phases23_24.sh
 ```
+
+The added experiments should be run in numerical order. Root launchers are supplied for Phases 26–30:
+
+```bash
+bash scripts/run_phase26.sh
+bash scripts/run_phase27.sh
+bash scripts/run_phase28.sh
+bash scripts/run_phase29.sh
+bash scripts/run_phase30.sh
+```
+
+Phases 25A–25C, 31, and 32 provide phase-specific instructions in their own README files. Run Phase 31 before Phase 32 because the latter evaluates persistence over the locally generated Phase 31 event tables. Each phase also provides a validator or self-test where applicable.
 
 ## Phase map
 
@@ -112,9 +131,9 @@ bash scripts/run_phases23_24.sh
 | phase08_crypto | HMAC and ECDSA primitive verification |
 | phase09_tesla | Delayed disclosure and loss workload |
 | phase10_identity_trust | Signed identity/trust records and cache states |
-| phase11_fusion | Evidence-fusion truth table and partial A0-A7 |
+| phase11_fusion | Evidence-fusion truth table and partial A0–A7 evaluation |
 | phase12_ablation | Receiver gating and TESLA-recovery ablations |
-| phase13_consolidation | Phase 5D-12 consolidation |
+| phase13_consolidation | Phase 5D–12 consolidation |
 | phase14_integrated | Co-executed observation-level SAM path |
 | phase15_trust_network | TCP signed trust lookup and cache benchmark |
 | phase16_overhead | Logical security-byte accounting |
@@ -124,11 +143,21 @@ bash scripts/run_phases23_24.sh
 | phase19b_boundary | Functional-boundary and bootstrap comparison |
 | phase20_scalability | Concurrent independent replay scaling |
 | phase21_component_latency | Integrated cryptographic, direct-TDoA, fusion, and total-kernel latency profile |
-| phase22_external | Frozen subset-1 configuration on subset 2 |
+| phase22_external | Frozen subset-1 configuration applied to subset 2 without retuning |
 | phase22b_tail | Raw subset-2 residual-tail audit |
 | phase23_cabba_comparison | Independent CABBA application-layer reproduction and same-workload SAM comparison |
 | phase24_rf_waveform_feasibility | PPM/D8PSK complex-baseband AWGN and RS(54,34) decoding feasibility |
+| phase25a_physical_decision | Development-selected physical threshold and benign-reference conflict measurement |
+| phase25b_attack_sensitivity | Controlled position-bias and fixed-ground-spoofer sensitivity |
+| phase25c_injection_dataset_audit | Published labeled-dataset metadata and direct-TDoA suitability audit |
+| phase26_formal_assurance_logic | Exhaustive finite-state policy and transition verification |
+| phase27_threshold_aware_integration | Threshold-aware integrated and trust-outage replay |
+| phase28_receiver_corruption | Single-receiver and reference-receiver corruption sensitivity |
+| phase29_threshold_operating_point | Threshold operating-point sensitivity |
+| phase30_reference_independent_guard | Reference-independent receiver-integrity guard |
+| phase31_receiver_integrity | Receiver-integrity event characterization across development and transfer partitions |
+| phase32_track_persistence | Track-level persistence evaluation using Phase 31 events |
 
 ## Reproducibility limits
 
-The package reproduces the Python reference implementation. Runtime values vary with hardware, operating system, package build, background load, and storage. The package does not establish real-time or certified airborne performance. External validation uses a second released LocaRDS partition but the same published sensor-metadata source. Phase 23 does not use the CABBA authors' SDR code, and Phase 24 assumes perfect synchronization over complex AWGN. Neither phase establishes RTCA conformance or commercial-receiver compatibility.
+The package reproduces a Python reference implementation. Runtime values vary with hardware, operating system, package build, background load, and storage. The results do not establish real-time or certified airborne performance. The subset-2 experiment is a cross-partition transfer test within the same published receiver infrastructure, not independent-field validation. Controlled perturbations are synthetic and do not provide operational RF attack ground truth. LocaRDS does not contain SAM authenticators co-captured with the original broadcasts. Phase 23 does not use the CABBA authors' SDR code, and Phase 24 assumes perfect synchronization over complex AWGN. The package therefore does not establish RTCA conformance, commercial-receiver compatibility, or deployment readiness.

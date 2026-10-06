@@ -1,0 +1,150 @@
+{
+  "schema": "sam.phase25c.injection-dataset-audit.v2",
+  "source": {
+    "title": "ADS-B Message Injection Attacks Dataset",
+    "doi": "10.17632/6fhw732ccz.1",
+    "version": 1,
+    "license": "CC BY 4.0",
+    "published_description": {
+      "rows": 22316,
+      "features": 17,
+      "labels": {
+        "0": "legitimate",
+        "1": "path modification",
+        "2": "ghost injection",
+        "3": "velocity drift"
+      }
+    }
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14"
+  },
+  "files": {
+    "dataset": {
+      "path": "/Users/cansinturguner/Downloads/SAM_Reproducibility_Package/data/external/mendeley_adsb_injection/Dataset.csv",
+      "sha256": "bb6e1419103283cd7cea508433fe6bbaf9c66b6b155854a6ff08529392df21c3",
+      "bytes": 3581622,
+      "delimiter": ",",
+      "rows": 22316,
+      "columns": [
+        "time",
+        "icao24",
+        "lat",
+        "lon",
+        "velocity",
+        "heading",
+        "vertrate",
+        "callsign",
+        "onground",
+        "spi",
+        "squawk",
+        "baroaltitude",
+        "geoaltitude",
+        "lastposupdate",
+        "lastcontact",
+        "rss",
+        "doppler",
+        "label"
+      ],
+      "column_count": 18,
+      "label_column": "label",
+      "label_counts": {
+        "0": 11158,
+        "1": 2790,
+        "2": 5579,
+        "3": 2789
+      },
+      "missing_counts": {
+        "squawk": 3718,
+        "callsign": 248,
+        "velocity": 3218,
+        "heading": 3218,
+        "vertrate": 3218,
+        "baroaltitude": 3441,
+        "geoaltitude": 5371,
+        "doppler": 3593,
+        "lat": 1141,
+        "lon": 1141,
+        "rss": 1141
+      },
+      "exact_duplicate_rows": 0
+    },
+    "receiver_messages": {
+      "path": "/Users/cansinturguner/Downloads/SAM_Reproducibility_Package/data/external/mendeley_adsb_injection/Receiver messages.csv",
+      "sha256": "96ecefdad7e8b06a39976270274921f256092ccc201582c487a7dd246daff977",
+      "bytes": 37053,
+      "delimiter": ",",
+      "rows": 270,
+      "columns": [
+        "time",
+        "icao24",
+        "lat",
+        "lon",
+        "velocity",
+        "heading",
+        "vertrate",
+        "callsign",
+        "onground",
+        "spi",
+        "squawk",
+        "baroaltitude",
+        "geoaltitude",
+        "lastposupdate",
+        "lastcontact"
+      ],
+      "column_count": 15,
+      "label_column": null,
+      "label_counts": {},
+      "missing_counts": {},
+      "exact_duplicate_rows": 0
+    }
+  },
+  "published_metadata_checks": {
+    "row_count_matches_22316": true,
+    "observed_label_set_matches_0_1_2_3": true,
+    "observed_total_column_count": 18,
+    "observed_predictor_feature_count": 17,
+    "predictor_feature_count_matches_17": true,
+    "total_columns_match_17_features_plus_label": true,
+    "label_mapping": {
+      "0": {
+        "published_meaning": "legitimate",
+        "observed_rows": 11158
+      },
+      "1": {
+        "published_meaning": "path modification",
+        "observed_rows": 2790
+      },
+      "2": {
+        "published_meaning": "ghost injection",
+        "observed_rows": 5579
+      },
+      "3": {
+        "published_meaning": "velocity drift",
+        "observed_rows": 2789
+      }
+    }
+  },
+  "direct_tdoa_field_audit": {
+    "receiver_identifier_candidates": [],
+    "reception_timestamp_candidates": [],
+    "receiver_latitude_candidates": [],
+    "receiver_longitude_candidates": [],
+    "shared_message_identifier_candidates": [],
+    "direct_tdoa_minimum_fields_detected": false
+  },
+  "suitability": {
+    "labeled_message_or_injection_evaluation": "potentially suitable",
+    "sam_direct_tdoa_physical_branch": "not suitable from the detected columns",
+    "automatic_integration_performed": false
+  },
+  "interpretation_limits": [
+    "This phase audits the downloaded files; it does not infer absent fields from the dataset title or article.",
+    "Published labels support evaluation only for the attack-generation process represented by this dataset.",
+    "A labeled message dataset is not automatically suitable for multi-receiver direct-TDoA evaluation.",
+    "The dataset is not redistributed by this reproducibility package."
+  ]
+}

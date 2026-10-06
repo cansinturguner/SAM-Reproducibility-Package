@@ -1,0 +1,1206 @@
+{
+  "schema": "sam.phase28.single-receiver-corruption.v1",
+  "scope": "controlled timestamp corruption of one receiver at a time under the frozen Phase 25A physical decision",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "physical_threshold_ns": 306.64062122826,
+    "timestamp_offset_magnitudes_ns": [
+      100,
+      250,
+      500,
+      750,
+      1000,
+      2000,
+      5000,
+      10000
+    ],
+    "directions": [
+      "negative",
+      "positive"
+    ],
+    "decision_reference_rule": "first receiver after deterministic sensor-id sorting within each observation",
+    "single_nonreference_rule": "every available nonreference receiver is corrupted once per signed offset",
+    "calibration_reference_sensor": "134",
+    "unchanged_values": [
+      "reported aircraft position",
+      "all other receiver timestamps",
+      "receiver clock calibration",
+      "receiver membership and geometry rule",
+      "physical threshold"
+    ]
+  },
+  "inputs": {
+    "sha256": {
+      "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+    },
+    "decision_model_sha256": "2d5b18c15d093b0b2665722b7b918a8b64a6526fc2dcd1be93ddad5819eb73f2"
+  },
+  "baseline": {
+    "eligible_rows": 82986,
+    "PHYSICALLY_CONSISTENT": 77309,
+    "PHYSICALLY_CONFLICTING": 1049,
+    "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628,
+    "available_rows": 78358,
+    "reference_pair_trials": 304814
+  },
+  "unavailable_reasons": {
+    "fewer_than_4_modeled_receivers": 4628
+  },
+  "calibration_reference_coverage": {
+    "rows_containing_calibration_reference": 16129,
+    "as_decision_reference": 12699,
+    "as_nonreference": 3430
+  },
+  "signed_offset_results": [
+    {
+      "timestamp_offset_ns": -10000,
+      "propagation_distance_equivalent_m": 2997.9245800000003,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 0,
+        "result_conflicting": 78358,
+        "consistent_to_conflicting": 77309,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 1.0,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.0
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 297804,
+        "result_conflicting": 7010,
+        "consistent_to_conflicting": 3203,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.02299763134239241,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.0,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1441,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3381,
+        "result_conflicting": 12748,
+        "consistent_to_conflicting": 12555,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.7903775807551615,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.0
+      }
+    },
+    {
+      "timestamp_offset_ns": -5000,
+      "propagation_distance_equivalent_m": 1498.9622900000002,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 1,
+        "result_conflicting": 78357,
+        "consistent_to_conflicting": 77309,
+        "conflicting_to_consistent": 1,
+        "result_conflict_fraction_all_trials": 0.9999872380612063,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.0009532888465204957
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 297804,
+        "result_conflicting": 7010,
+        "consistent_to_conflicting": 3203,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.02299763134239241,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.0,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1441,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3381,
+        "result_conflicting": 12748,
+        "consistent_to_conflicting": 12555,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.7903775807551615,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.0
+      }
+    },
+    {
+      "timestamp_offset_ns": -2000,
+      "propagation_distance_equivalent_m": 599.5849160000001,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 6,
+        "result_conflicting": 78352,
+        "consistent_to_conflicting": 77309,
+        "conflicting_to_consistent": 6,
+        "result_conflict_fraction_all_trials": 0.9999234283672376,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.005719733079122974
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 297804,
+        "result_conflicting": 7010,
+        "consistent_to_conflicting": 3203,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.02299763134239241,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.0,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1441,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3381,
+        "result_conflicting": 12748,
+        "consistent_to_conflicting": 12555,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.7903775807551615,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.0
+      }
+    },
+    {
+      "timestamp_offset_ns": -1000,
+      "propagation_distance_equivalent_m": 299.79245800000007,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 71,
+        "result_conflicting": 78287,
+        "consistent_to_conflicting": 77309,
+        "conflicting_to_consistent": 71,
+        "result_conflict_fraction_all_trials": 0.9990939023456443,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.06768350810295519
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 297842,
+        "result_conflicting": 6972,
+        "consistent_to_conflicting": 3203,
+        "conflicting_to_consistent": 38,
+        "result_conflict_fraction_all_trials": 0.022872965152519242,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.00998161281849225,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1441,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3382,
+        "result_conflicting": 12747,
+        "consistent_to_conflicting": 12555,
+        "conflicting_to_consistent": 1,
+        "result_conflict_fraction_all_trials": 0.7903155806311613,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.0051813471502590676
+      }
+    },
+    {
+      "timestamp_offset_ns": -750,
+      "propagation_distance_equivalent_m": 224.8443435,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 224,
+        "result_conflicting": 78134,
+        "consistent_to_conflicting": 77309,
+        "conflicting_to_consistent": 224,
+        "result_conflict_fraction_all_trials": 0.9971413257102019,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.21353670162059105
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 297935,
+        "result_conflicting": 6879,
+        "consistent_to_conflicting": 3189,
+        "conflicting_to_consistent": 117,
+        "result_conflict_fraction_all_trials": 0.022567861056250697,
+        "consistent_to_conflicting_fraction": 0.010594438003102918,
+        "conflicting_to_consistent_fraction": 0.030732860520094562,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1441,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3401,
+        "result_conflicting": 12728,
+        "consistent_to_conflicting": 12554,
+        "conflicting_to_consistent": 19,
+        "result_conflict_fraction_all_trials": 0.7891375782751565,
+        "consistent_to_conflicting_fraction": 0.7877761044176707,
+        "conflicting_to_consistent_fraction": 0.09844559585492228
+      }
+    },
+    {
+      "timestamp_offset_ns": -500,
+      "propagation_distance_equivalent_m": 149.89622900000003,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 1799,
+        "result_conflicting": 76559,
+        "consistent_to_conflicting": 76047,
+        "conflicting_to_consistent": 537,
+        "result_conflict_fraction_all_trials": 0.977041272110059,
+        "consistent_to_conflicting_fraction": 0.9836758980196355,
+        "conflicting_to_consistent_fraction": 0.5119161105815062
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 298785,
+        "result_conflicting": 6029,
+        "consistent_to_conflicting": 2539,
+        "conflicting_to_consistent": 317,
+        "result_conflict_fraction_all_trials": 0.019779275230140347,
+        "consistent_to_conflicting_fraction": 0.008435019783593073,
+        "conflicting_to_consistent_fraction": 0.08326766482794852,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1320,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.017074338046023103,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3661,
+        "result_conflicting": 12468,
+        "consistent_to_conflicting": 12353,
+        "conflicting_to_consistent": 78,
+        "result_conflict_fraction_all_trials": 0.7730175460350921,
+        "consistent_to_conflicting_fraction": 0.7751631526104418,
+        "conflicting_to_consistent_fraction": 0.40414507772020725
+      }
+    },
+    {
+      "timestamp_offset_ns": -250,
+      "propagation_distance_equivalent_m": 74.94811450000002,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 60106,
+        "result_conflicting": 18252,
+        "consistent_to_conflicting": 17639,
+        "conflicting_to_consistent": 436,
+        "result_conflict_fraction_all_trials": 0.23293090686337067,
+        "consistent_to_conflicting_fraction": 0.22816230969227386,
+        "conflicting_to_consistent_fraction": 0.4156339370829361
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 300225,
+        "result_conflicting": 4589,
+        "consistent_to_conflicting": 1064,
+        "conflicting_to_consistent": 282,
+        "result_conflict_fraction_all_trials": 0.015055082771788698,
+        "consistent_to_conflicting_fraction": 0.0035348015162438083,
+        "conflicting_to_consistent_fraction": 0.07407407407407407,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 655,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.008472493500109948,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 14936,
+        "result_conflicting": 1193,
+        "consistent_to_conflicting": 1081,
+        "conflicting_to_consistent": 81,
+        "result_conflict_fraction_all_trials": 0.07396614793229586,
+        "consistent_to_conflicting_fraction": 0.06783383534136546,
+        "conflicting_to_consistent_fraction": 0.41968911917098445
+      }
+    },
+    {
+      "timestamp_offset_ns": -100,
+      "propagation_distance_equivalent_m": 29.9792458,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 76741,
+        "result_conflicting": 1617,
+        "consistent_to_conflicting": 874,
+        "conflicting_to_consistent": 306,
+        "result_conflict_fraction_all_trials": 0.02063605502948008,
+        "consistent_to_conflicting_fraction": 0.011305281403200146,
+        "conflicting_to_consistent_fraction": 0.2917063870352717
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 300762,
+        "result_conflicting": 4052,
+        "consistent_to_conflicting": 422,
+        "conflicting_to_consistent": 177,
+        "result_conflict_fraction_all_trials": 0.013293352667528395,
+        "consistent_to_conflicting_fraction": 0.001401960751743315,
+        "conflicting_to_consistent_fraction": 0.046493301812450746,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 310,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.004009882419899365,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 15964,
+        "result_conflicting": 165,
+        "consistent_to_conflicting": 26,
+        "conflicting_to_consistent": 54,
+        "result_conflict_fraction_all_trials": 0.01023002046004092,
+        "consistent_to_conflicting_fraction": 0.0016315261044176706,
+        "conflicting_to_consistent_fraction": 0.27979274611398963
+      }
+    },
+    {
+      "timestamp_offset_ns": 100,
+      "propagation_distance_equivalent_m": 29.9792458,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 76450,
+        "result_conflicting": 1908,
+        "consistent_to_conflicting": 983,
+        "conflicting_to_consistent": 124,
+        "result_conflict_fraction_all_trials": 0.024349779218458868,
+        "consistent_to_conflicting_fraction": 0.012715207802455082,
+        "conflicting_to_consistent_fraction": 0.11820781696854146
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 301116,
+        "result_conflicting": 3698,
+        "consistent_to_conflicting": 345,
+        "conflicting_to_consistent": 454,
+        "result_conflict_fraction_all_trials": 0.012131988688183614,
+        "consistent_to_conflicting_fraction": 0.0011461527472783025,
+        "conflicting_to_consistent_fraction": 0.11925400577882847,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 257,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.003324321877142377,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 15792,
+        "result_conflicting": 337,
+        "consistent_to_conflicting": 153,
+        "conflicting_to_consistent": 9,
+        "result_conflict_fraction_all_trials": 0.020894041788083576,
+        "consistent_to_conflicting_fraction": 0.009600903614457831,
+        "conflicting_to_consistent_fraction": 0.046632124352331605
+      }
+    },
+    {
+      "timestamp_offset_ns": 250,
+      "propagation_distance_equivalent_m": 74.94811450000002,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 58842,
+        "result_conflicting": 19516,
+        "consistent_to_conflicting": 18636,
+        "conflicting_to_consistent": 169,
+        "result_conflict_fraction_all_trials": 0.24906199749866,
+        "consistent_to_conflicting_fraction": 0.24105860895885342,
+        "conflicting_to_consistent_fraction": 0.16110581506196378
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 300646,
+        "result_conflicting": 4168,
+        "consistent_to_conflicting": 1103,
+        "conflicting_to_consistent": 742,
+        "result_conflict_fraction_all_trials": 0.013673912615562278,
+        "consistent_to_conflicting_fraction": 0.003664366609414399,
+        "conflicting_to_consistent_fraction": 0.19490412398213816,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 672,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.008692390277975397,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 11102,
+        "result_conflicting": 5027,
+        "consistent_to_conflicting": 4843,
+        "conflicting_to_consistent": 9,
+        "result_conflict_fraction_all_trials": 0.31167462334924667,
+        "consistent_to_conflicting_fraction": 0.3039031124497992,
+        "conflicting_to_consistent_fraction": 0.046632124352331605
+      }
+    },
+    {
+      "timestamp_offset_ns": 500,
+      "propagation_distance_equivalent_m": 149.89622900000003,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 1364,
+        "result_conflicting": 76994,
+        "consistent_to_conflicting": 76129,
+        "conflicting_to_consistent": 184,
+        "result_conflict_fraction_all_trials": 0.9825927154853366,
+        "consistent_to_conflicting_fraction": 0.9847365765952217,
+        "conflicting_to_consistent_fraction": 0.1754051477597712
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 299227,
+        "result_conflicting": 5587,
+        "consistent_to_conflicting": 2570,
+        "conflicting_to_consistent": 790,
+        "result_conflict_fraction_all_trials": 0.018329210600562966,
+        "consistent_to_conflicting_fraction": 0.00853800742175431,
+        "conflicting_to_consistent_fraction": 0.20751247701602313,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1322,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.017100208255183744,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3421,
+        "result_conflicting": 12708,
+        "consistent_to_conflicting": 12524,
+        "conflicting_to_consistent": 9,
+        "result_conflict_fraction_all_trials": 0.7878975757951516,
+        "consistent_to_conflicting_fraction": 0.7858935742971888,
+        "conflicting_to_consistent_fraction": 0.046632124352331605
+      }
+    },
+    {
+      "timestamp_offset_ns": 750,
+      "propagation_distance_equivalent_m": 224.8443435,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 60,
+        "result_conflicting": 78298,
+        "consistent_to_conflicting": 77309,
+        "conflicting_to_consistent": 60,
+        "result_conflict_fraction_all_trials": 0.9992342836723755,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.057197330791229746
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 298161,
+        "result_conflicting": 6653,
+        "consistent_to_conflicting": 3193,
+        "conflicting_to_consistent": 347,
+        "result_conflict_fraction_all_trials": 0.021826425295426062,
+        "consistent_to_conflicting_fraction": 0.010607726730607593,
+        "conflicting_to_consistent_fraction": 0.09114788547412661,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1441,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3386,
+        "result_conflicting": 12743,
+        "consistent_to_conflicting": 12555,
+        "conflicting_to_consistent": 5,
+        "result_conflict_fraction_all_trials": 0.7900675801351603,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.025906735751295335
+      }
+    },
+    {
+      "timestamp_offset_ns": 1000,
+      "propagation_distance_equivalent_m": 299.79245800000007,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 20,
+        "result_conflicting": 78338,
+        "consistent_to_conflicting": 77309,
+        "conflicting_to_consistent": 20,
+        "result_conflict_fraction_all_trials": 0.9997447612241251,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.019065776930409915
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 297856,
+        "result_conflicting": 6958,
+        "consistent_to_conflicting": 3203,
+        "conflicting_to_consistent": 52,
+        "result_conflict_fraction_all_trials": 0.0228270355036186,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.013659049120042028,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1441,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3385,
+        "result_conflicting": 12744,
+        "consistent_to_conflicting": 12555,
+        "conflicting_to_consistent": 4,
+        "result_conflict_fraction_all_trials": 0.7901295802591605,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.02072538860103627
+      }
+    },
+    {
+      "timestamp_offset_ns": 2000,
+      "propagation_distance_equivalent_m": 599.5849160000001,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 0,
+        "result_conflicting": 78358,
+        "consistent_to_conflicting": 77309,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 1.0,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.0
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 297804,
+        "result_conflicting": 7010,
+        "consistent_to_conflicting": 3203,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.02299763134239241,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.0,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1441,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3381,
+        "result_conflicting": 12748,
+        "consistent_to_conflicting": 12555,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.7903775807551615,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.0
+      }
+    },
+    {
+      "timestamp_offset_ns": 5000,
+      "propagation_distance_equivalent_m": 1498.9622900000002,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 0,
+        "result_conflicting": 78358,
+        "consistent_to_conflicting": 77309,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 1.0,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.0
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 297804,
+        "result_conflicting": 7010,
+        "consistent_to_conflicting": 3203,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.02299763134239241,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.0,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1441,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3381,
+        "result_conflicting": 12748,
+        "consistent_to_conflicting": 12555,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.7903775807551615,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.0
+      }
+    },
+    {
+      "timestamp_offset_ns": 10000,
+      "propagation_distance_equivalent_m": 2997.9245800000003,
+      "decision_reference_corruption": {
+        "trials": 78358,
+        "baseline_consistent_trials": 77309,
+        "baseline_conflicting_trials": 1049,
+        "result_consistent": 0,
+        "result_conflicting": 78358,
+        "consistent_to_conflicting": 77309,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 1.0,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.0
+      },
+      "single_nonreference_corruption": {
+        "trials": 304814,
+        "baseline_consistent_trials": 301007,
+        "baseline_conflicting_trials": 3807,
+        "result_consistent": 297804,
+        "result_conflicting": 7010,
+        "consistent_to_conflicting": 3203,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.02299763134239241,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.0,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 77309,
+          "any_target_conflicting": 1441,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 16129,
+        "baseline_consistent_trials": 15936,
+        "baseline_conflicting_trials": 193,
+        "result_consistent": 3381,
+        "result_conflicting": 12748,
+        "consistent_to_conflicting": 12555,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.7903775807551615,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.0
+      }
+    }
+  ],
+  "absolute_magnitude_summary": [
+    {
+      "absolute_timestamp_offset_ns": 100,
+      "propagation_distance_equivalent_m": 29.9792458,
+      "decision_reference_corruption": {
+        "trials": 156716,
+        "baseline_consistent_trials": 154618,
+        "baseline_conflicting_trials": 2098,
+        "result_consistent": 153191,
+        "result_conflicting": 3525,
+        "consistent_to_conflicting": 1857,
+        "conflicting_to_consistent": 430,
+        "result_conflict_fraction_all_trials": 0.022492917123969475,
+        "consistent_to_conflicting_fraction": 0.012010244602827614,
+        "conflicting_to_consistent_fraction": 0.2049571020019066
+      },
+      "single_nonreference_corruption": {
+        "trials": 609628,
+        "baseline_consistent_trials": 602014,
+        "baseline_conflicting_trials": 7614,
+        "result_consistent": 601878,
+        "result_conflicting": 7750,
+        "consistent_to_conflicting": 767,
+        "conflicting_to_consistent": 631,
+        "result_conflict_fraction_all_trials": 0.012712670677856005,
+        "consistent_to_conflicting_fraction": 0.0012740567495108086,
+        "conflicting_to_consistent_fraction": 0.08287365379563962,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 154618,
+          "any_target_conflicting": 567,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.0036671021485208707,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 32258,
+        "baseline_consistent_trials": 31872,
+        "baseline_conflicting_trials": 386,
+        "result_consistent": 31756,
+        "result_conflicting": 502,
+        "consistent_to_conflicting": 179,
+        "conflicting_to_consistent": 63,
+        "result_conflict_fraction_all_trials": 0.015562031124062249,
+        "consistent_to_conflicting_fraction": 0.005616214859437751,
+        "conflicting_to_consistent_fraction": 0.16321243523316062
+      }
+    },
+    {
+      "absolute_timestamp_offset_ns": 250,
+      "propagation_distance_equivalent_m": 74.94811450000002,
+      "decision_reference_corruption": {
+        "trials": 156716,
+        "baseline_consistent_trials": 154618,
+        "baseline_conflicting_trials": 2098,
+        "result_consistent": 118948,
+        "result_conflicting": 37768,
+        "consistent_to_conflicting": 36275,
+        "conflicting_to_consistent": 605,
+        "result_conflict_fraction_all_trials": 0.24099645218101534,
+        "consistent_to_conflicting_fraction": 0.23461045932556365,
+        "conflicting_to_consistent_fraction": 0.28836987607244996
+      },
+      "single_nonreference_corruption": {
+        "trials": 609628,
+        "baseline_consistent_trials": 602014,
+        "baseline_conflicting_trials": 7614,
+        "result_consistent": 600871,
+        "result_conflicting": 8757,
+        "consistent_to_conflicting": 2167,
+        "conflicting_to_consistent": 1024,
+        "result_conflict_fraction_all_trials": 0.014364497693675487,
+        "consistent_to_conflicting_fraction": 0.0035995840628291038,
+        "conflicting_to_consistent_fraction": 0.13448909902810613,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 154618,
+          "any_target_conflicting": 1327,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.008582441889042672,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 32258,
+        "baseline_consistent_trials": 31872,
+        "baseline_conflicting_trials": 386,
+        "result_consistent": 26038,
+        "result_conflicting": 6220,
+        "consistent_to_conflicting": 5924,
+        "conflicting_to_consistent": 90,
+        "result_conflict_fraction_all_trials": 0.19282038564077128,
+        "consistent_to_conflicting_fraction": 0.18586847389558234,
+        "conflicting_to_consistent_fraction": 0.23316062176165803
+      }
+    },
+    {
+      "absolute_timestamp_offset_ns": 500,
+      "propagation_distance_equivalent_m": 149.89622900000003,
+      "decision_reference_corruption": {
+        "trials": 156716,
+        "baseline_consistent_trials": 154618,
+        "baseline_conflicting_trials": 2098,
+        "result_consistent": 3163,
+        "result_conflicting": 153553,
+        "consistent_to_conflicting": 152176,
+        "conflicting_to_consistent": 721,
+        "result_conflict_fraction_all_trials": 0.9798169937976977,
+        "consistent_to_conflicting_fraction": 0.9842062373074286,
+        "conflicting_to_consistent_fraction": 0.3436606291706387
+      },
+      "single_nonreference_corruption": {
+        "trials": 609628,
+        "baseline_consistent_trials": 602014,
+        "baseline_conflicting_trials": 7614,
+        "result_consistent": 598012,
+        "result_conflicting": 11616,
+        "consistent_to_conflicting": 5109,
+        "conflicting_to_consistent": 1107,
+        "result_conflict_fraction_all_trials": 0.019054242915351658,
+        "consistent_to_conflicting_fraction": 0.008486513602673692,
+        "conflicting_to_consistent_fraction": 0.1453900709219858,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 154618,
+          "any_target_conflicting": 2642,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.017087273150603422,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 32258,
+        "baseline_consistent_trials": 31872,
+        "baseline_conflicting_trials": 386,
+        "result_consistent": 7082,
+        "result_conflicting": 25176,
+        "consistent_to_conflicting": 24877,
+        "conflicting_to_consistent": 87,
+        "result_conflict_fraction_all_trials": 0.7804575609151219,
+        "consistent_to_conflicting_fraction": 0.7805283634538153,
+        "conflicting_to_consistent_fraction": 0.22538860103626943
+      }
+    },
+    {
+      "absolute_timestamp_offset_ns": 750,
+      "propagation_distance_equivalent_m": 224.8443435,
+      "decision_reference_corruption": {
+        "trials": 156716,
+        "baseline_consistent_trials": 154618,
+        "baseline_conflicting_trials": 2098,
+        "result_consistent": 284,
+        "result_conflicting": 156432,
+        "consistent_to_conflicting": 154618,
+        "conflicting_to_consistent": 284,
+        "result_conflict_fraction_all_trials": 0.9981878046912886,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.13536701620591038
+      },
+      "single_nonreference_corruption": {
+        "trials": 609628,
+        "baseline_consistent_trials": 602014,
+        "baseline_conflicting_trials": 7614,
+        "result_consistent": 596096,
+        "result_conflicting": 13532,
+        "consistent_to_conflicting": 6382,
+        "conflicting_to_consistent": 464,
+        "result_conflict_fraction_all_trials": 0.02219714317583838,
+        "consistent_to_conflicting_fraction": 0.010601082366855256,
+        "conflicting_to_consistent_fraction": 0.06094037299711059,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 154618,
+          "any_target_conflicting": 2882,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 32258,
+        "baseline_consistent_trials": 31872,
+        "baseline_conflicting_trials": 386,
+        "result_consistent": 6787,
+        "result_conflicting": 25471,
+        "consistent_to_conflicting": 25109,
+        "conflicting_to_consistent": 24,
+        "result_conflict_fraction_all_trials": 0.7896025792051584,
+        "consistent_to_conflicting_fraction": 0.7878074799196787,
+        "conflicting_to_consistent_fraction": 0.06217616580310881
+      }
+    },
+    {
+      "absolute_timestamp_offset_ns": 1000,
+      "propagation_distance_equivalent_m": 299.79245800000007,
+      "decision_reference_corruption": {
+        "trials": 156716,
+        "baseline_consistent_trials": 154618,
+        "baseline_conflicting_trials": 2098,
+        "result_consistent": 91,
+        "result_conflicting": 156625,
+        "consistent_to_conflicting": 154618,
+        "conflicting_to_consistent": 91,
+        "result_conflict_fraction_all_trials": 0.9994193317848847,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.043374642516682556
+      },
+      "single_nonreference_corruption": {
+        "trials": 609628,
+        "baseline_consistent_trials": 602014,
+        "baseline_conflicting_trials": 7614,
+        "result_consistent": 595698,
+        "result_conflicting": 13930,
+        "consistent_to_conflicting": 6406,
+        "conflicting_to_consistent": 90,
+        "result_conflict_fraction_all_trials": 0.02285000032806892,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.01182033096926714,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 154618,
+          "any_target_conflicting": 2882,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 32258,
+        "baseline_consistent_trials": 31872,
+        "baseline_conflicting_trials": 386,
+        "result_consistent": 6767,
+        "result_conflicting": 25491,
+        "consistent_to_conflicting": 25110,
+        "conflicting_to_consistent": 5,
+        "result_conflict_fraction_all_trials": 0.7902225804451609,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.012953367875647668
+      }
+    },
+    {
+      "absolute_timestamp_offset_ns": 2000,
+      "propagation_distance_equivalent_m": 599.5849160000001,
+      "decision_reference_corruption": {
+        "trials": 156716,
+        "baseline_consistent_trials": 154618,
+        "baseline_conflicting_trials": 2098,
+        "result_consistent": 6,
+        "result_conflicting": 156710,
+        "consistent_to_conflicting": 154618,
+        "conflicting_to_consistent": 6,
+        "result_conflict_fraction_all_trials": 0.9999617141836188,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.002859866539561487
+      },
+      "single_nonreference_corruption": {
+        "trials": 609628,
+        "baseline_consistent_trials": 602014,
+        "baseline_conflicting_trials": 7614,
+        "result_consistent": 595608,
+        "result_conflicting": 14020,
+        "consistent_to_conflicting": 6406,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.02299763134239241,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.0,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 154618,
+          "any_target_conflicting": 2882,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 32258,
+        "baseline_consistent_trials": 31872,
+        "baseline_conflicting_trials": 386,
+        "result_consistent": 6762,
+        "result_conflicting": 25496,
+        "consistent_to_conflicting": 25110,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.7903775807551615,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.0
+      }
+    },
+    {
+      "absolute_timestamp_offset_ns": 5000,
+      "propagation_distance_equivalent_m": 1498.9622900000002,
+      "decision_reference_corruption": {
+        "trials": 156716,
+        "baseline_consistent_trials": 154618,
+        "baseline_conflicting_trials": 2098,
+        "result_consistent": 1,
+        "result_conflicting": 156715,
+        "consistent_to_conflicting": 154618,
+        "conflicting_to_consistent": 1,
+        "result_conflict_fraction_all_trials": 0.9999936190306031,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.00047664442326024784
+      },
+      "single_nonreference_corruption": {
+        "trials": 609628,
+        "baseline_consistent_trials": 602014,
+        "baseline_conflicting_trials": 7614,
+        "result_consistent": 595608,
+        "result_conflicting": 14020,
+        "consistent_to_conflicting": 6406,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.02299763134239241,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.0,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 154618,
+          "any_target_conflicting": 2882,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 32258,
+        "baseline_consistent_trials": 31872,
+        "baseline_conflicting_trials": 386,
+        "result_consistent": 6762,
+        "result_conflicting": 25496,
+        "consistent_to_conflicting": 25110,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.7903775807551615,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.0
+      }
+    },
+    {
+      "absolute_timestamp_offset_ns": 10000,
+      "propagation_distance_equivalent_m": 2997.9245800000003,
+      "decision_reference_corruption": {
+        "trials": 156716,
+        "baseline_consistent_trials": 154618,
+        "baseline_conflicting_trials": 2098,
+        "result_consistent": 0,
+        "result_conflicting": 156716,
+        "consistent_to_conflicting": 154618,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 1.0,
+        "consistent_to_conflicting_fraction": 1.0,
+        "conflicting_to_consistent_fraction": 0.0
+      },
+      "single_nonreference_corruption": {
+        "trials": 609628,
+        "baseline_consistent_trials": 602014,
+        "baseline_conflicting_trials": 7614,
+        "result_consistent": 595608,
+        "result_conflicting": 14020,
+        "consistent_to_conflicting": 6406,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.02299763134239241,
+        "consistent_to_conflicting_fraction": 0.010640948549369283,
+        "conflicting_to_consistent_fraction": 0.0,
+        "observation_level": {
+          "baseline_consistent_observation_trials": 154618,
+          "any_target_conflicting": 2882,
+          "all_targets_conflicting": 0,
+          "any_target_conflicting_fraction": 0.018639485700241886,
+          "all_targets_conflicting_fraction": 0.0
+        }
+      },
+      "calibration_reference_corruption": {
+        "trials": 32258,
+        "baseline_consistent_trials": 31872,
+        "baseline_conflicting_trials": 386,
+        "result_consistent": 6762,
+        "result_conflicting": 25496,
+        "consistent_to_conflicting": 25110,
+        "conflicting_to_consistent": 0,
+        "result_conflict_fraction_all_trials": 0.7903775807551615,
+        "consistent_to_conflicting_fraction": 0.7878388554216867,
+        "conflicting_to_consistent_fraction": 0.0
+      }
+    }
+  ],
+  "runtime": {
+    "wall_seconds": 42.21447329200009
+  },
+  "interpretation_limits": [
+    "Timestamp offsets are deterministic sensitivity conditions and not measured receiver-compromise traces.",
+    "The nonreference result is trial-weighted across every possible single nonreference target in each available observation.",
+    "The decision reference is observation-specific; the calibration reference is the globally anchored receiver in the clock model.",
+    "Conflict fractions are not operational attack-detection probabilities.",
+    "No correlated multi-receiver compromise, RF manipulation, or receiver removal is modeled."
+  ]
+}

@@ -1,0 +1,33 @@
+PHASE 28 INSTALLATION AND RUN
+
+Prerequisite: Phase 27 must already be installed because Phase 28 reuses the
+validated threshold-aware physical-decision core and frozen decision model.
+
+1. Extract this ZIP.
+
+2. Copy both folders below into the root of the existing
+   SAM_Reproducibility_Package. Merge them with the existing folders:
+
+   phases/phase28_receiver_corruption
+   scripts/run_phase28.sh
+
+3. Open Terminal in the SAM_Reproducibility_Package root:
+
+   cd ~/Downloads/SAM_Reproducibility_Package
+
+4. Activate the existing environment:
+
+   source .venv/bin/activate
+
+5. Run:
+
+   bash scripts/run_phase28.sh
+
+6. Send this report back for interpretation:
+
+   reports/sam_phase28_receiver_corruption.json
+
+Expected final line:
+
+   SAM Phase 28 receiver-corruption validation passed.
+

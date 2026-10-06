@@ -1,0 +1,993 @@
+{
+  "schema": "sam.phase30.reference-independent-receiver-guard.v1",
+  "scope": "development-calibrated candidate guard for single-receiver timestamp corruption",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "numpy": "2.5.3"
+  },
+  "inputs": {
+    "sha256": {
+      "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+    }
+  },
+  "method": {
+    "current_score": "median absolute residual against first sorted receiver",
+    "candidate_receiver_score": "median absolute pair residual incident on each receiver",
+    "candidate_observation_score": "maximum receiver score",
+    "candidate_reference_independent": true,
+    "guard_threshold_quantile": 0.99,
+    "guard_threshold_selected_on": "development-validation aircraft only",
+    "test_used_for_threshold_selection": false,
+    "controlled_corruption": "one receiver shifted by both signs"
+  },
+  "counts": {
+    "development_validation_original_ge4": 13430,
+    "development_validation_available": 13240,
+    "subset1_test_original_ge4": 82986,
+    "subset1_test_available": 78358,
+    "subset1_test_unavailable": 4628
+  },
+  "unavailable_reasons": {
+    "fewer_than_4_modeled_receivers": 4628
+  },
+  "baseline_benign_reference": {
+    "current_reference_rule": {
+      "consistent_rows": 77309,
+      "conflicting_rows": 1049,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.01338727379463488,
+      "threshold_ns": 306.64062122826,
+      "aircraft_cluster_ci95": {
+        "method": "aircraft-cluster bootstrap with replacement; row-weighted conflict fraction",
+        "estimate": 0.01338727379463488,
+        "ci95_low": 0.008600600486579903,
+        "ci95_high": 0.019665816598798895,
+        "replicates": 2000,
+        "seed": 1103,
+        "aircraft": 107
+      }
+    },
+    "reference_independent_guard": {
+      "consistent_rows": 78002,
+      "conflicting_rows": 356,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.00454325021057199,
+      "threshold_ns": 1654.782585144043,
+      "threshold_source": "development-validation q99, higher order statistic",
+      "aircraft_cluster_ci95": {
+        "method": "aircraft-cluster bootstrap with replacement; row-weighted conflict fraction",
+        "estimate": 0.00454325021057199,
+        "ci95_low": 0.0036484891912362933,
+        "ci95_high": 0.005422973869669143,
+        "replicates": 2000,
+        "seed": 1103,
+        "aircraft": 107
+      }
+    },
+    "combined_rule": {
+      "consistent_rows": 77170,
+      "conflicting_rows": 1188,
+      "empirical_benign_reference_conflict_fraction_among_available": 0.015161183286964955,
+      "condition": "current conflict OR guard conflict"
+    }
+  },
+  "timestamp_corruption": {
+    "100": {
+      "all_receivers": {
+        "current_reference_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 756632,
+          "baseline_conflicting_trials": 9712,
+          "result_conflicting": 11275,
+          "consistent_to_conflicting": 2624,
+          "conflicting_to_consistent": 1061,
+          "result_conflict_fraction_all_trials": 0.014712713872621172,
+          "consistent_to_conflicting_fraction": 0.003468000296048806,
+          "conflicting_to_consistent_fraction": 0.10924629324546953
+        },
+        "reference_independent_guard": {
+          "trials": 766344,
+          "baseline_consistent_trials": 762620,
+          "baseline_conflicting_trials": 3724,
+          "result_conflicting": 3724,
+          "consistent_to_conflicting": 5,
+          "conflicting_to_consistent": 5,
+          "result_conflict_fraction_all_trials": 0.004859436493271951,
+          "consistent_to_conflicting_fraction": 6.556345230914479e-06,
+          "conflicting_to_consistent_fraction": 0.0013426423200859291
+        },
+        "combined_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 755096,
+          "baseline_conflicting_trials": 11248,
+          "result_conflicting": 12802,
+          "consistent_to_conflicting": 2617,
+          "conflicting_to_consistent": 1063,
+          "result_conflict_fraction_all_trials": 0.016705291618385475,
+          "consistent_to_conflicting_fraction": 0.003465784483032621,
+          "conflicting_to_consistent_fraction": 0.09450568990042674
+        },
+        "target_ranked_highest_fraction_all_trials": 0.4428115833098452,
+        "target_ranked_highest_given_guard_conflict": 0.1914607948442535
+      },
+      "decision_reference": {
+        "current_reference_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154618,
+          "baseline_conflicting_trials": 2098,
+          "result_conflicting": 3525,
+          "consistent_to_conflicting": 1857,
+          "conflicting_to_consistent": 430,
+          "result_conflict_fraction_all_trials": 0.022492917123969475,
+          "consistent_to_conflicting_fraction": 0.012010244602827614,
+          "conflicting_to_consistent_fraction": 0.2049571020019066
+        },
+        "reference_independent_guard": {
+          "trials": 156716,
+          "baseline_consistent_trials": 156004,
+          "baseline_conflicting_trials": 712,
+          "result_conflicting": 714,
+          "consistent_to_conflicting": 3,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.0045560121493657315,
+          "consistent_to_conflicting_fraction": 1.923027614676547e-05,
+          "conflicting_to_consistent_fraction": 0.0014044943820224719
+        },
+        "combined_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154340,
+          "baseline_conflicting_trials": 2376,
+          "result_conflicting": 3798,
+          "consistent_to_conflicting": 1852,
+          "conflicting_to_consistent": 430,
+          "result_conflict_fraction_all_trials": 0.024234921769315194,
+          "consistent_to_conflicting_fraction": 0.011999481663859012,
+          "conflicting_to_consistent_fraction": 0.18097643097643099
+        },
+        "target_ranked_highest_fraction_all_trials": 0.45368692411751194,
+        "target_ranked_highest_given_guard_conflict": 0.4789915966386555
+      },
+      "nonreference": {
+        "current_reference_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 602014,
+          "baseline_conflicting_trials": 7614,
+          "result_conflicting": 7750,
+          "consistent_to_conflicting": 767,
+          "conflicting_to_consistent": 631,
+          "result_conflict_fraction_all_trials": 0.012712670677856005,
+          "consistent_to_conflicting_fraction": 0.0012740567495108086,
+          "conflicting_to_consistent_fraction": 0.08287365379563962
+        },
+        "reference_independent_guard": {
+          "trials": 609628,
+          "baseline_consistent_trials": 606616,
+          "baseline_conflicting_trials": 3012,
+          "result_conflicting": 3010,
+          "consistent_to_conflicting": 2,
+          "conflicting_to_consistent": 4,
+          "result_conflict_fraction_all_trials": 0.004937437256818913,
+          "consistent_to_conflicting_fraction": 3.2969786487662705e-06,
+          "conflicting_to_consistent_fraction": 0.0013280212483399733
+        },
+        "combined_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 600756,
+          "baseline_conflicting_trials": 8872,
+          "result_conflicting": 9004,
+          "consistent_to_conflicting": 765,
+          "conflicting_to_consistent": 633,
+          "result_conflict_fraction_all_trials": 0.014769662810763286,
+          "consistent_to_conflicting_fraction": 0.0012733955216427302,
+          "conflicting_to_consistent_fraction": 0.07134806131650136
+        },
+        "target_ranked_highest_fraction_all_trials": 0.4400158785357628,
+        "target_ranked_highest_given_guard_conflict": 0.12325581395348838
+      }
+    },
+    "250": {
+      "all_receivers": {
+        "current_reference_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 756632,
+          "baseline_conflicting_trials": 9712,
+          "result_conflicting": 46525,
+          "consistent_to_conflicting": 38442,
+          "conflicting_to_consistent": 1629,
+          "result_conflict_fraction_all_trials": 0.060710333740461205,
+          "consistent_to_conflicting_fraction": 0.05080673299569672,
+          "conflicting_to_consistent_fraction": 0.16773064250411862
+        },
+        "reference_independent_guard": {
+          "trials": 766344,
+          "baseline_consistent_trials": 762620,
+          "baseline_conflicting_trials": 3724,
+          "result_conflicting": 3710,
+          "consistent_to_conflicting": 9,
+          "conflicting_to_consistent": 23,
+          "result_conflict_fraction_all_trials": 0.004841167935026568,
+          "consistent_to_conflicting_fraction": 1.1801421415646063e-05,
+          "conflicting_to_consistent_fraction": 0.006176154672395274
+        },
+        "combined_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 755096,
+          "baseline_conflicting_trials": 11248,
+          "result_conflicting": 47916,
+          "consistent_to_conflicting": 38308,
+          "conflicting_to_consistent": 1640,
+          "result_conflict_fraction_all_trials": 0.06252544549184179,
+          "consistent_to_conflicting_fraction": 0.050732622077192834,
+          "conflicting_to_consistent_fraction": 0.14580369843527738
+        },
+        "target_ranked_highest_fraction_all_trials": 0.8650840875638095,
+        "target_ranked_highest_given_guard_conflict": 0.1889487870619946
+      },
+      "decision_reference": {
+        "current_reference_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154618,
+          "baseline_conflicting_trials": 2098,
+          "result_conflicting": 37768,
+          "consistent_to_conflicting": 36275,
+          "conflicting_to_consistent": 605,
+          "result_conflict_fraction_all_trials": 0.24099645218101534,
+          "consistent_to_conflicting_fraction": 0.23461045932556365,
+          "conflicting_to_consistent_fraction": 0.28836987607244996
+        },
+        "reference_independent_guard": {
+          "trials": 156716,
+          "baseline_consistent_trials": 156004,
+          "baseline_conflicting_trials": 712,
+          "result_conflicting": 713,
+          "consistent_to_conflicting": 5,
+          "conflicting_to_consistent": 4,
+          "result_conflict_fraction_all_trials": 0.004549631179968861,
+          "consistent_to_conflicting_fraction": 3.2050460244609113e-05,
+          "conflicting_to_consistent_fraction": 0.0056179775280898875
+        },
+        "combined_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154340,
+          "baseline_conflicting_trials": 2376,
+          "result_conflicting": 37963,
+          "consistent_to_conflicting": 36190,
+          "conflicting_to_consistent": 603,
+          "result_conflict_fraction_all_trials": 0.24224074121340514,
+          "consistent_to_conflicting_fraction": 0.2344823117791888,
+          "conflicting_to_consistent_fraction": 0.2537878787878788
+        },
+        "target_ranked_highest_fraction_all_trials": 0.8687115546593839,
+        "target_ranked_highest_given_guard_conflict": 0.47685834502103785
+      },
+      "nonreference": {
+        "current_reference_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 602014,
+          "baseline_conflicting_trials": 7614,
+          "result_conflicting": 8757,
+          "consistent_to_conflicting": 2167,
+          "conflicting_to_consistent": 1024,
+          "result_conflict_fraction_all_trials": 0.014364497693675487,
+          "consistent_to_conflicting_fraction": 0.0035995840628291038,
+          "conflicting_to_consistent_fraction": 0.13448909902810613
+        },
+        "reference_independent_guard": {
+          "trials": 609628,
+          "baseline_consistent_trials": 606616,
+          "baseline_conflicting_trials": 3012,
+          "result_conflicting": 2997,
+          "consistent_to_conflicting": 4,
+          "conflicting_to_consistent": 19,
+          "result_conflict_fraction_all_trials": 0.0049161127769721865,
+          "consistent_to_conflicting_fraction": 6.593957297532541e-06,
+          "conflicting_to_consistent_fraction": 0.0063081009296148734
+        },
+        "combined_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 600756,
+          "baseline_conflicting_trials": 8872,
+          "result_conflicting": 9953,
+          "consistent_to_conflicting": 2118,
+          "conflicting_to_consistent": 1037,
+          "result_conflict_fraction_all_trials": 0.0163263498395743,
+          "consistent_to_conflicting_fraction": 0.003525557797175559,
+          "conflicting_to_consistent_fraction": 0.11688458070333634
+        },
+        "target_ranked_highest_fraction_all_trials": 0.8641515809641289,
+        "target_ranked_highest_given_guard_conflict": 0.12045378712045379
+      }
+    },
+    "500": {
+      "all_receivers": {
+        "current_reference_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 756632,
+          "baseline_conflicting_trials": 9712,
+          "result_conflicting": 165169,
+          "consistent_to_conflicting": 157285,
+          "conflicting_to_consistent": 1828,
+          "result_conflict_fraction_all_trials": 0.2155285354879793,
+          "consistent_to_conflicting_fraction": 0.20787516256251387,
+          "conflicting_to_consistent_fraction": 0.18822075782537068
+        },
+        "reference_independent_guard": {
+          "trials": 766344,
+          "baseline_consistent_trials": 762620,
+          "baseline_conflicting_trials": 3724,
+          "result_conflicting": 3719,
+          "consistent_to_conflicting": 21,
+          "conflicting_to_consistent": 26,
+          "result_conflict_fraction_all_trials": 0.004852912008184314,
+          "consistent_to_conflicting_fraction": 2.7536649969840813e-05,
+          "conflicting_to_consistent_fraction": 0.006981740064446832
+        },
+        "combined_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 755096,
+          "baseline_conflicting_trials": 11248,
+          "result_conflicting": 166150,
+          "consistent_to_conflicting": 156742,
+          "conflicting_to_consistent": 1840,
+          "result_conflict_fraction_all_trials": 0.21680863946217366,
+          "consistent_to_conflicting_fraction": 0.20757890387447425,
+          "conflicting_to_consistent_fraction": 0.16358463726884778
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9785109559153592,
+        "target_ranked_highest_given_guard_conflict": 0.1919870933046518
+      },
+      "decision_reference": {
+        "current_reference_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154618,
+          "baseline_conflicting_trials": 2098,
+          "result_conflicting": 153553,
+          "consistent_to_conflicting": 152176,
+          "conflicting_to_consistent": 721,
+          "result_conflict_fraction_all_trials": 0.9798169937976977,
+          "consistent_to_conflicting_fraction": 0.9842062373074286,
+          "conflicting_to_consistent_fraction": 0.3436606291706387
+        },
+        "reference_independent_guard": {
+          "trials": 156716,
+          "baseline_consistent_trials": 156004,
+          "baseline_conflicting_trials": 712,
+          "result_conflicting": 717,
+          "consistent_to_conflicting": 10,
+          "conflicting_to_consistent": 5,
+          "result_conflict_fraction_all_trials": 0.004575155057556344,
+          "consistent_to_conflicting_fraction": 6.410092048921823e-05,
+          "conflicting_to_consistent_fraction": 0.007022471910112359
+        },
+        "combined_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154340,
+          "baseline_conflicting_trials": 2376,
+          "result_conflicting": 153555,
+          "consistent_to_conflicting": 151898,
+          "conflicting_to_consistent": 719,
+          "result_conflict_fraction_all_trials": 0.9798297557364914,
+          "consistent_to_conflicting_fraction": 0.9841777892963587,
+          "conflicting_to_consistent_fraction": 0.3026094276094276
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9813420454835499,
+        "target_ranked_highest_given_guard_conflict": 0.4825662482566248
+      },
+      "nonreference": {
+        "current_reference_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 602014,
+          "baseline_conflicting_trials": 7614,
+          "result_conflicting": 11616,
+          "consistent_to_conflicting": 5109,
+          "conflicting_to_consistent": 1107,
+          "result_conflict_fraction_all_trials": 0.019054242915351658,
+          "consistent_to_conflicting_fraction": 0.008486513602673692,
+          "conflicting_to_consistent_fraction": 0.1453900709219858
+        },
+        "reference_independent_guard": {
+          "trials": 609628,
+          "baseline_consistent_trials": 606616,
+          "baseline_conflicting_trials": 3012,
+          "result_conflicting": 3002,
+          "consistent_to_conflicting": 11,
+          "conflicting_to_consistent": 21,
+          "result_conflict_fraction_all_trials": 0.004924314499990158,
+          "consistent_to_conflicting_fraction": 1.8133382568214488e-05,
+          "conflicting_to_consistent_fraction": 0.0069721115537848604
+        },
+        "combined_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 600756,
+          "baseline_conflicting_trials": 8872,
+          "result_conflicting": 12595,
+          "consistent_to_conflicting": 4844,
+          "conflicting_to_consistent": 1121,
+          "result_conflict_fraction_all_trials": 0.0206601402822705,
+          "consistent_to_conflicting_fraction": 0.008063173734427954,
+          "conflicting_to_consistent_fraction": 0.12635256988277727
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9777831726889185,
+        "target_ranked_highest_given_guard_conflict": 0.12258494337108594
+      }
+    },
+    "750": {
+      "all_receivers": {
+        "current_reference_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 756632,
+          "baseline_conflicting_trials": 9712,
+          "result_conflicting": 169964,
+          "consistent_to_conflicting": 161000,
+          "conflicting_to_consistent": 748,
+          "result_conflict_fraction_all_trials": 0.22178551668702307,
+          "consistent_to_conflicting_fraction": 0.21278507914018968,
+          "conflicting_to_consistent_fraction": 0.07701812191103789
+        },
+        "reference_independent_guard": {
+          "trials": 766344,
+          "baseline_consistent_trials": 762620,
+          "baseline_conflicting_trials": 3724,
+          "result_conflicting": 3802,
+          "consistent_to_conflicting": 106,
+          "conflicting_to_consistent": 28,
+          "result_conflict_fraction_all_trials": 0.004961218460639087,
+          "consistent_to_conflicting_fraction": 0.00013899451889538695,
+          "conflicting_to_consistent_fraction": 0.007518796992481203
+        },
+        "combined_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 755096,
+          "baseline_conflicting_trials": 11248,
+          "result_conflicting": 170858,
+          "consistent_to_conflicting": 160374,
+          "conflicting_to_consistent": 764,
+          "result_conflict_fraction_all_trials": 0.22295209462069254,
+          "consistent_to_conflicting_fraction": 0.2123888883002956,
+          "conflicting_to_consistent_fraction": 0.06792318634423898
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9909975154760786,
+        "target_ranked_highest_given_guard_conflict": 0.2096265123619148
+      },
+      "decision_reference": {
+        "current_reference_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154618,
+          "baseline_conflicting_trials": 2098,
+          "result_conflicting": 156432,
+          "consistent_to_conflicting": 154618,
+          "conflicting_to_consistent": 284,
+          "result_conflict_fraction_all_trials": 0.9981878046912886,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.13536701620591038
+        },
+        "reference_independent_guard": {
+          "trials": 156716,
+          "baseline_consistent_trials": 156004,
+          "baseline_conflicting_trials": 712,
+          "result_conflicting": 739,
+          "consistent_to_conflicting": 33,
+          "conflicting_to_consistent": 6,
+          "result_conflict_fraction_all_trials": 0.004715536384287501,
+          "consistent_to_conflicting_fraction": 0.00021153303761442015,
+          "conflicting_to_consistent_fraction": 0.008426966292134831
+        },
+        "combined_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154340,
+          "baseline_conflicting_trials": 2376,
+          "result_conflicting": 156432,
+          "consistent_to_conflicting": 154340,
+          "conflicting_to_consistent": 284,
+          "result_conflict_fraction_all_trials": 0.9981878046912886,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.11952861952861953
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9929554097858546,
+        "target_ranked_highest_given_guard_conflict": 0.4979702300405954
+      },
+      "nonreference": {
+        "current_reference_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 602014,
+          "baseline_conflicting_trials": 7614,
+          "result_conflicting": 13532,
+          "consistent_to_conflicting": 6382,
+          "conflicting_to_consistent": 464,
+          "result_conflict_fraction_all_trials": 0.02219714317583838,
+          "consistent_to_conflicting_fraction": 0.010601082366855256,
+          "conflicting_to_consistent_fraction": 0.06094037299711059
+        },
+        "reference_independent_guard": {
+          "trials": 609628,
+          "baseline_consistent_trials": 606616,
+          "baseline_conflicting_trials": 3012,
+          "result_conflicting": 3063,
+          "consistent_to_conflicting": 73,
+          "conflicting_to_consistent": 22,
+          "result_conflict_fraction_all_trials": 0.005024375520809411,
+          "consistent_to_conflicting_fraction": 0.00012033972067996888,
+          "conflicting_to_consistent_fraction": 0.0073041168658698535
+        },
+        "combined_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 600756,
+          "baseline_conflicting_trials": 8872,
+          "result_conflicting": 14426,
+          "consistent_to_conflicting": 6034,
+          "conflicting_to_consistent": 480,
+          "result_conflict_fraction_all_trials": 0.023663611251451704,
+          "consistent_to_conflicting_fraction": 0.010044011212538867,
+          "conflicting_to_consistent_fraction": 0.05410279531109107
+        },
+        "target_ranked_highest_fraction_all_trials": 0.990494203022171,
+        "target_ranked_highest_given_guard_conflict": 0.14005876591576885
+      }
+    },
+    "1000": {
+      "all_receivers": {
+        "current_reference_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 756632,
+          "baseline_conflicting_trials": 9712,
+          "result_conflicting": 170555,
+          "consistent_to_conflicting": 161024,
+          "conflicting_to_consistent": 181,
+          "result_conflict_fraction_all_trials": 0.22255671082438175,
+          "consistent_to_conflicting_fraction": 0.21281679865509256,
+          "conflicting_to_consistent_fraction": 0.01863673805601318
+        },
+        "reference_independent_guard": {
+          "trials": 766344,
+          "baseline_consistent_trials": 762620,
+          "baseline_conflicting_trials": 3724,
+          "result_conflicting": 4237,
+          "consistent_to_conflicting": 543,
+          "conflicting_to_consistent": 30,
+          "result_conflict_fraction_all_trials": 0.005528848663263496,
+          "consistent_to_conflicting_fraction": 0.0007120190920773124,
+          "conflicting_to_consistent_fraction": 0.008055853920515575
+        },
+        "combined_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 755096,
+          "baseline_conflicting_trials": 11248,
+          "result_conflicting": 171673,
+          "consistent_to_conflicting": 160627,
+          "conflicting_to_consistent": 202,
+          "result_conflict_fraction_all_trials": 0.22401558568997734,
+          "consistent_to_conflicting_fraction": 0.21272394503480352,
+          "conflicting_to_consistent_fraction": 0.017958748221906115
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9948025951791885,
+        "target_ranked_highest_given_guard_conflict": 0.29053575643143736
+      },
+      "decision_reference": {
+        "current_reference_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154618,
+          "baseline_conflicting_trials": 2098,
+          "result_conflicting": 156625,
+          "consistent_to_conflicting": 154618,
+          "conflicting_to_consistent": 91,
+          "result_conflict_fraction_all_trials": 0.9994193317848847,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.043374642516682556
+        },
+        "reference_independent_guard": {
+          "trials": 156716,
+          "baseline_consistent_trials": 156004,
+          "baseline_conflicting_trials": 712,
+          "result_conflicting": 844,
+          "consistent_to_conflicting": 138,
+          "conflicting_to_consistent": 6,
+          "result_conflict_fraction_all_trials": 0.005385538170958932,
+          "consistent_to_conflicting_fraction": 0.0008845927027512115,
+          "conflicting_to_consistent_fraction": 0.008426966292134831
+        },
+        "combined_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154340,
+          "baseline_conflicting_trials": 2376,
+          "result_conflicting": 156625,
+          "consistent_to_conflicting": 154340,
+          "conflicting_to_consistent": 91,
+          "result_conflict_fraction_all_trials": 0.9994193317848847,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0382996632996633
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9964011332601649,
+        "target_ranked_highest_given_guard_conflict": 0.5604265402843602
+      },
+      "nonreference": {
+        "current_reference_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 602014,
+          "baseline_conflicting_trials": 7614,
+          "result_conflicting": 13930,
+          "consistent_to_conflicting": 6406,
+          "conflicting_to_consistent": 90,
+          "result_conflict_fraction_all_trials": 0.02285000032806892,
+          "consistent_to_conflicting_fraction": 0.010640948549369283,
+          "conflicting_to_consistent_fraction": 0.01182033096926714
+        },
+        "reference_independent_guard": {
+          "trials": 609628,
+          "baseline_consistent_trials": 606616,
+          "baseline_conflicting_trials": 3012,
+          "result_conflicting": 3393,
+          "consistent_to_conflicting": 405,
+          "conflicting_to_consistent": 24,
+          "result_conflict_fraction_all_trials": 0.005565689239995539,
+          "consistent_to_conflicting_fraction": 0.0006676381763751698,
+          "conflicting_to_consistent_fraction": 0.00796812749003984
+        },
+        "combined_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 600756,
+          "baseline_conflicting_trials": 8872,
+          "result_conflicting": 15048,
+          "consistent_to_conflicting": 6287,
+          "conflicting_to_consistent": 111,
+          "result_conflict_fraction_all_trials": 0.024683905594887375,
+          "consistent_to_conflicting_fraction": 0.010465147247801104,
+          "conflicting_to_consistent_fraction": 0.01251127141568981
+        },
+        "target_ranked_highest_fraction_all_trials": 0.994391661800311,
+        "target_ranked_highest_given_guard_conflict": 0.2234011199528441
+      }
+    },
+    "2000": {
+      "all_receivers": {
+        "current_reference_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 756632,
+          "baseline_conflicting_trials": 9712,
+          "result_conflicting": 170730,
+          "consistent_to_conflicting": 161024,
+          "conflicting_to_consistent": 6,
+          "result_conflict_fraction_all_trials": 0.22278506780244903,
+          "consistent_to_conflicting_fraction": 0.21281679865509256,
+          "conflicting_to_consistent_fraction": 0.0006177924217462932
+        },
+        "reference_independent_guard": {
+          "trials": 766344,
+          "baseline_consistent_trials": 762620,
+          "baseline_conflicting_trials": 3724,
+          "result_conflicting": 763650,
+          "consistent_to_conflicting": 759992,
+          "conflicting_to_consistent": 66,
+          "result_conflict_fraction_all_trials": 0.9964846074347813,
+          "consistent_to_conflicting_fraction": 0.9965539849466314,
+          "conflicting_to_consistent_fraction": 0.017722878625134265
+        },
+        "combined_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 755096,
+          "baseline_conflicting_trials": 11248,
+          "result_conflicting": 764831,
+          "consistent_to_conflicting": 753642,
+          "conflicting_to_consistent": 59,
+          "result_conflict_fraction_all_trials": 0.998025690812481,
+          "consistent_to_conflicting_fraction": 0.9980744170277687,
+          "conflicting_to_consistent_fraction": 0.005245376955903272
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9962823483970645,
+        "target_ranked_highest_given_guard_conflict": 0.9963058992994173
+      },
+      "decision_reference": {
+        "current_reference_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154618,
+          "baseline_conflicting_trials": 2098,
+          "result_conflicting": 156710,
+          "consistent_to_conflicting": 154618,
+          "conflicting_to_consistent": 6,
+          "result_conflict_fraction_all_trials": 0.9999617141836188,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.002859866539561487
+        },
+        "reference_independent_guard": {
+          "trials": 156716,
+          "baseline_consistent_trials": 156004,
+          "baseline_conflicting_trials": 712,
+          "result_conflicting": 156146,
+          "consistent_to_conflicting": 155447,
+          "conflicting_to_consistent": 13,
+          "result_conflict_fraction_all_trials": 0.9963628474437837,
+          "consistent_to_conflicting_fraction": 0.9964295787287506,
+          "conflicting_to_consistent_fraction": 0.018258426966292134
+        },
+        "combined_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154340,
+          "baseline_conflicting_trials": 2376,
+          "result_conflicting": 156710,
+          "consistent_to_conflicting": 154340,
+          "conflicting_to_consistent": 6,
+          "result_conflict_fraction_all_trials": 0.9999617141836188,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0025252525252525255
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9977985655580796,
+        "target_ranked_highest_given_guard_conflict": 0.9978417634777708
+      },
+      "nonreference": {
+        "current_reference_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 602014,
+          "baseline_conflicting_trials": 7614,
+          "result_conflicting": 14020,
+          "consistent_to_conflicting": 6406,
+          "conflicting_to_consistent": 0,
+          "result_conflict_fraction_all_trials": 0.02299763134239241,
+          "consistent_to_conflicting_fraction": 0.010640948549369283,
+          "conflicting_to_consistent_fraction": 0.0
+        },
+        "reference_independent_guard": {
+          "trials": 609628,
+          "baseline_consistent_trials": 606616,
+          "baseline_conflicting_trials": 3012,
+          "result_conflicting": 607504,
+          "consistent_to_conflicting": 604545,
+          "conflicting_to_consistent": 53,
+          "result_conflict_fraction_all_trials": 0.9965159080619657,
+          "consistent_to_conflicting_fraction": 0.9965859786092025,
+          "conflicting_to_consistent_fraction": 0.01759628154050465
+        },
+        "combined_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 600756,
+          "baseline_conflicting_trials": 8872,
+          "result_conflicting": 608121,
+          "consistent_to_conflicting": 599302,
+          "conflicting_to_consistent": 53,
+          "result_conflict_fraction_all_trials": 0.9975280006823833,
+          "consistent_to_conflicting_fraction": 0.9975797162242241,
+          "conflicting_to_consistent_fraction": 0.0059738503155996395
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9958925771125998,
+        "target_ranked_highest_given_guard_conflict": 0.995911138033659
+      }
+    },
+    "5000": {
+      "all_receivers": {
+        "current_reference_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 756632,
+          "baseline_conflicting_trials": 9712,
+          "result_conflicting": 170735,
+          "consistent_to_conflicting": 161024,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.22279159228753667,
+          "consistent_to_conflicting_fraction": 0.21281679865509256,
+          "conflicting_to_consistent_fraction": 0.00010296540362438221
+        },
+        "reference_independent_guard": {
+          "trials": 766344,
+          "baseline_consistent_trials": 762620,
+          "baseline_conflicting_trials": 3724,
+          "result_conflicting": 766343,
+          "consistent_to_conflicting": 762620,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.9999986951029824,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0002685284640171858
+        },
+        "combined_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 755096,
+          "baseline_conflicting_trials": 11248,
+          "result_conflicting": 766343,
+          "consistent_to_conflicting": 755096,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.9999986951029824,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 8.890469416785207e-05
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9968812961281096,
+        "target_ranked_highest_given_guard_conflict": 0.9968825969572371
+      },
+      "decision_reference": {
+        "current_reference_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154618,
+          "baseline_conflicting_trials": 2098,
+          "result_conflicting": 156715,
+          "consistent_to_conflicting": 154618,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.9999936190306031,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.00047664442326024784
+        },
+        "reference_independent_guard": {
+          "trials": 156716,
+          "baseline_consistent_trials": 156004,
+          "baseline_conflicting_trials": 712,
+          "result_conflicting": 156715,
+          "consistent_to_conflicting": 156004,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.9999936190306031,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0014044943820224719
+        },
+        "combined_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154340,
+          "baseline_conflicting_trials": 2376,
+          "result_conflicting": 156715,
+          "consistent_to_conflicting": 154340,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.9999936190306031,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.00042087542087542086
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9983026621404324,
+        "target_ranked_highest_given_guard_conflict": 0.9983090323198163
+      },
+      "nonreference": {
+        "current_reference_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 602014,
+          "baseline_conflicting_trials": 7614,
+          "result_conflicting": 14020,
+          "consistent_to_conflicting": 6406,
+          "conflicting_to_consistent": 0,
+          "result_conflict_fraction_all_trials": 0.02299763134239241,
+          "consistent_to_conflicting_fraction": 0.010640948549369283,
+          "conflicting_to_consistent_fraction": 0.0
+        },
+        "reference_independent_guard": {
+          "trials": 609628,
+          "baseline_consistent_trials": 606616,
+          "baseline_conflicting_trials": 3012,
+          "result_conflicting": 609628,
+          "consistent_to_conflicting": 606616,
+          "conflicting_to_consistent": 0,
+          "result_conflict_fraction_all_trials": 1.0,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0
+        },
+        "combined_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 600756,
+          "baseline_conflicting_trials": 8872,
+          "result_conflicting": 609628,
+          "consistent_to_conflicting": 600756,
+          "conflicting_to_consistent": 0,
+          "result_conflict_fraction_all_trials": 1.0,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9965159080619657,
+        "target_ranked_highest_given_guard_conflict": 0.9965159080619657
+      }
+    },
+    "10000": {
+      "all_receivers": {
+        "current_reference_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 756632,
+          "baseline_conflicting_trials": 9712,
+          "result_conflicting": 170736,
+          "consistent_to_conflicting": 161024,
+          "conflicting_to_consistent": 0,
+          "result_conflict_fraction_all_trials": 0.2227928971845542,
+          "consistent_to_conflicting_fraction": 0.21281679865509256,
+          "conflicting_to_consistent_fraction": 0.0
+        },
+        "reference_independent_guard": {
+          "trials": 766344,
+          "baseline_consistent_trials": 762620,
+          "baseline_conflicting_trials": 3724,
+          "result_conflicting": 766343,
+          "consistent_to_conflicting": 762620,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.9999986951029824,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0002685284640171858
+        },
+        "combined_rule": {
+          "trials": 766344,
+          "baseline_consistent_trials": 755096,
+          "baseline_conflicting_trials": 11248,
+          "result_conflicting": 766343,
+          "consistent_to_conflicting": 755096,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.9999986951029824,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 8.890469416785207e-05
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9969152234505653,
+        "target_ranked_highest_given_guard_conflict": 0.9969152194252443
+      },
+      "decision_reference": {
+        "current_reference_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154618,
+          "baseline_conflicting_trials": 2098,
+          "result_conflicting": 156716,
+          "consistent_to_conflicting": 154618,
+          "conflicting_to_consistent": 0,
+          "result_conflict_fraction_all_trials": 1.0,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0
+        },
+        "reference_independent_guard": {
+          "trials": 156716,
+          "baseline_consistent_trials": 156004,
+          "baseline_conflicting_trials": 712,
+          "result_conflicting": 156716,
+          "consistent_to_conflicting": 156004,
+          "conflicting_to_consistent": 0,
+          "result_conflict_fraction_all_trials": 1.0,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0
+        },
+        "combined_rule": {
+          "trials": 156716,
+          "baseline_consistent_trials": 154340,
+          "baseline_conflicting_trials": 2376,
+          "result_conflicting": 156716,
+          "consistent_to_conflicting": 154340,
+          "conflicting_to_consistent": 0,
+          "result_conflict_fraction_all_trials": 1.0,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0
+        },
+        "target_ranked_highest_fraction_all_trials": 0.998321805048623,
+        "target_ranked_highest_given_guard_conflict": 0.998321805048623
+      },
+      "nonreference": {
+        "current_reference_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 602014,
+          "baseline_conflicting_trials": 7614,
+          "result_conflicting": 14020,
+          "consistent_to_conflicting": 6406,
+          "conflicting_to_consistent": 0,
+          "result_conflict_fraction_all_trials": 0.02299763134239241,
+          "consistent_to_conflicting_fraction": 0.010640948549369283,
+          "conflicting_to_consistent_fraction": 0.0
+        },
+        "reference_independent_guard": {
+          "trials": 609628,
+          "baseline_consistent_trials": 606616,
+          "baseline_conflicting_trials": 3012,
+          "result_conflicting": 609627,
+          "consistent_to_conflicting": 606616,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.9999983596553964,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.00033200531208499334
+        },
+        "combined_rule": {
+          "trials": 609628,
+          "baseline_consistent_trials": 600756,
+          "baseline_conflicting_trials": 8872,
+          "result_conflicting": 609627,
+          "consistent_to_conflicting": 600756,
+          "conflicting_to_consistent": 1,
+          "result_conflict_fraction_all_trials": 0.9999983596553964,
+          "consistent_to_conflicting_fraction": 1.0,
+          "conflicting_to_consistent_fraction": 0.0001127141568981064
+        },
+        "target_ranked_highest_fraction_all_trials": 0.9965536359878483,
+        "target_ranked_highest_given_guard_conflict": 0.9965536303346144
+      }
+    }
+  },
+  "runtime": {
+    "wall_seconds": 329.3015585840003
+  },
+  "interpretation_limits": [
+    "The candidate guard is evaluated, not automatically adopted into the frozen SAM policy.",
+    "The benign result is an empirical benign-reference conflict fraction, not a population false-positive rate.",
+    "Controlled timestamp shifts are sensitivity conditions, not real-world attack-detection rates.",
+    "Target ranking is not proof of receiver compromise.",
+    "The experiment uses the same LocaRDS subset-1 sensor network and frozen clock model."
+  ]
+}

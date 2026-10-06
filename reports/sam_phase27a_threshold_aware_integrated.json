@@ -1,0 +1,301 @@
+{
+  "schema": "sam.phase27a.threshold-aware-integrated.v1",
+  "scope": "fresh-process integrated replay with the frozen Phase 25A physical decision inside the SAM fusion path",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "warmups": 1,
+    "measured_fresh_process_repetitions": 30,
+    "physical_score": "median absolute calibrated direct-TDoA reference-pair residual per observation",
+    "physical_threshold_ns": 306.64062122826,
+    "fusion_policy": "conflict dominates; VERIFIED requires valid crypto, valid trust, and PHYSICALLY_CONSISTENT"
+  },
+  "inputs": {
+    "sha256": {
+      "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+    },
+    "decision_model_sha256": "2d5b18c15d093b0b2665722b7b918a8b64a6526fc2dcd1be93ddad5819eb73f2"
+  },
+  "counts": {
+    "rows_read": 270934,
+    "test_rows": 180183,
+    "eligible_rows": 82986,
+    "hmac_verified": 82986,
+    "PHYSICALLY_CONSISTENT": 77309,
+    "PHYSICALLY_CONFLICTING": 1049,
+    "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628,
+    "VERIFIED": 77309,
+    "CONFLICTING": 1049,
+    "INSUFFICIENT_EVIDENCE": 4628
+  },
+  "unavailable_reasons": {
+    "fewer_than_4_modeled_receivers": 4628
+  },
+  "score_summary_ns": {
+    "n": 78358,
+    "q50": 64.21407209194149,
+    "q90": 147.21767145266062,
+    "q95": 187.84744060484078,
+    "q99": 349.7280458337675,
+    "maximum": 2999999955.587231
+  },
+  "component_variants": {
+    "A0_legacy": {
+      "LEGACY_UNASSURED": 82986
+    },
+    "A1_full": {
+      "VERIFIED": 77309,
+      "CONFLICTING": 1049,
+      "INSUFFICIENT_EVIDENCE": 4628
+    },
+    "A2_crypto_absent": {
+      "CONFLICTING": 1049,
+      "INSUFFICIENT_EVIDENCE": 81937
+    },
+    "A3_physical_absent": {
+      "INSUFFICIENT_EVIDENCE": 82986
+    },
+    "A6_trust": {
+      "valid_cache": {
+        "VERIFIED": 77309,
+        "CONFLICTING": 1049,
+        "INSUFFICIENT_EVIDENCE": 4628
+      },
+      "cold_or_expired_cache": {
+        "CONFLICTING": 1049,
+        "INSUFFICIENT_EVIDENCE": 81937
+      },
+      "revoked_record": {
+        "CONFLICTING": 82986
+      }
+    },
+    "A7_single_source": {
+      "crypto_only": {
+        "VERIFIED": 82986
+      },
+      "physical_only": {
+        "VERIFIED": 77309,
+        "CONFLICTING": 1049,
+        "INSUFFICIENT_EVIDENCE": 4628
+      }
+    }
+  },
+  "timing_summaries": {
+    "wall_seconds": {
+      "n": 30,
+      "mean": 3.8792706527999976,
+      "median": 3.8819665204999865,
+      "minimum": 3.841968457999883,
+      "maximum": 3.9490063749999536,
+      "sample_stdev": 0.02605283636049485,
+      "values": [
+        3.9095780419997936,
+        3.9490063749999536,
+        3.881548332999955,
+        3.8898925000000872,
+        3.9070910420000473,
+        3.898825875000057,
+        3.911067749999802,
+        3.9188863340000353,
+        3.8459657079999943,
+        3.882384708000018,
+        3.8453116669998053,
+        3.8484442080000463,
+        3.9047397500000898,
+        3.882597250000117,
+        3.8829798750000464,
+        3.8623006669999995,
+        3.85127462499986,
+        3.841968457999883,
+        3.853622249999944,
+        3.8640077919999385,
+        3.868613249999953,
+        3.85624795800004,
+        3.9015624999999545,
+        3.8868971250001323,
+        3.890970459000073,
+        3.8884674160001396,
+        3.855519417000096,
+        3.8535852499999237,
+        3.87778666600002,
+        3.866976334000128
+      ]
+    },
+    "cpu_seconds": {
+      "n": 30,
+      "mean": 3.879262433333333,
+      "median": 3.8819555,
+      "minimum": 3.8419689999999997,
+      "maximum": 3.9489950000000005,
+      "sample_stdev": 0.026045136757882194,
+      "values": [
+        3.909452,
+        3.9489950000000005,
+        3.881526,
+        3.889846,
+        3.907084,
+        3.898826,
+        3.91106,
+        3.918886,
+        3.8459659999999998,
+        3.882385,
+        3.845312,
+        3.8484439999999998,
+        3.9047400000000003,
+        3.882598,
+        3.882979,
+        3.862301,
+        3.851274,
+        3.8419689999999997,
+        3.853623,
+        3.864008,
+        3.868613,
+        3.856248,
+        3.9015619999999998,
+        3.88687,
+        3.890971,
+        3.8884679999999996,
+        3.855517,
+        3.853586,
+        3.877787,
+        3.8669770000000003
+      ]
+    },
+    "microseconds_per_eligible_row": {
+      "n": 30,
+      "mean": 46.74608551803916,
+      "median": 46.778571331308726,
+      "minimum": 46.29658566505052,
+      "maximum": 47.586416684741444,
+      "sample_stdev": 0.31394254886962686,
+      "values": [
+        47.111296387339955,
+        47.586416684741444,
+        46.77353207769931,
+        46.87408117031893,
+        47.081327476924386,
+        46.98173035210827,
+        47.12924770442969,
+        47.22346340346607,
+        46.34475342828904,
+        46.78361058491815,
+        46.33687208685568,
+        46.374619911792905,
+        47.05299387848661,
+        46.7861717639134,
+        46.79078248138296,
+        46.54159336514592,
+        46.408727074444606,
+        46.29658566505052,
+        46.43701648470759,
+        46.56216460607739,
+        46.61766141276785,
+        46.46865685778373,
+        47.01470730002596,
+        46.83798622659403,
+        46.8870708191752,
+        46.856908586992255,
+        46.45987777456554,
+        46.43657062636979,
+        46.72820314269901,
+        46.5979362061086
+      ]
+    },
+    "eligible_rows_per_second": {
+      "n": 30,
+      "mean": 21393.095038723077,
+      "median": 21377.309805430647,
+      "minimum": 21014.400109698727,
+      "maximum": 21599.86499295787,
+      "sample_stdev": 143.17900807198086,
+      "values": [
+        21226.331616480973,
+        21014.400109698727,
+        21379.612690758928,
+        21333.7515111274,
+        21239.84291840799,
+        21284.869512157627,
+        21218.246602862913,
+        21175.914003939888,
+        21577.415479129417,
+        21375.00692010237,
+        21581.085536493705,
+        21563.51905206027,
+        21252.632777894632,
+        21373.836804731032,
+        21371.730647972778,
+        21486.157385167655,
+        21547.671376460985,
+        21599.86499295787,
+        21534.544544422122,
+        21476.664765483816,
+        21451.09749598283,
+        21519.881735778967,
+        21269.939927913743,
+        21350.192024955428,
+        21327.841183694385,
+        21341.57011539608,
+        21523.948144079062,
+        21534.751307240873,
+        21400.352094562484,
+        21460.17788377736
+      ]
+    }
+  },
+  "peak_rss_mib": {
+    "n": 30,
+    "mean": 45.1734375,
+    "median": 45.1015625,
+    "minimum": 44.953125,
+    "maximum": 45.515625,
+    "sample_stdev": 0.16542817273382343,
+    "values": [
+      45.515625,
+      45.390625,
+      45.46875,
+      45.078125,
+      45.453125,
+      45.109375,
+      45.0625,
+      45.484375,
+      45.046875,
+      45.0625,
+      45.09375,
+      45.15625,
+      45.140625,
+      44.953125,
+      45.09375,
+      45.078125,
+      45.109375,
+      45.140625,
+      45.046875,
+      45.0625,
+      45.078125,
+      45.046875,
+      45.171875,
+      45.125,
+      45.0625,
+      45.078125,
+      45.078125,
+      45.4375,
+      45.125,
+      45.453125
+    ]
+  },
+  "interpretation_limits": [
+    "The authenticator is deterministic and synthetic but bound to each real LocaRDS observation.",
+    "The threshold is a reproducible prototype operating point, not a certified operational threshold.",
+    "Timing excludes TESLA disclosure waiting, RF processing, and online trust refresh.",
+    "Benign-reference conflicts are policy outcomes and not proof of attacks."
+  ]
+}

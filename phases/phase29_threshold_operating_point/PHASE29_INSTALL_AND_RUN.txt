@@ -1,0 +1,19 @@
+1. ZIP içeriğini SAM_Reproducibility_Package kök dizinine çıkarın.
+   "phases" ve "scripts" klasörleri mevcut klasörlerle birleşmelidir.
+
+2. Terminal:
+
+cd ~/Downloads/SAM_Reproducibility_Package
+source .venv/bin/activate
+bash scripts/run_phase29.sh
+
+3. Başarılı çalışmada son satır şu olmalıdır:
+
+SAM Phase 29 threshold operating-point validation passed.
+
+4. Analiz için şu iki dosyayı yükleyin:
+
+reports/sam_phase29_threshold_operating_point.json
+reports/sam_phase29_threshold_operating_point.csv
+
+Not: Phase 27 klasörü ve Phase 25A/25B çıktıları paket içinde bulunmalıdır.

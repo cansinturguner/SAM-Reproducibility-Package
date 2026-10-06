@@ -1,0 +1,30 @@
+{
+  "selected_model": "bias_only",
+  "receiver_parameters": [
+    {
+      "sensor": "101",
+      "bias_ns_at_time_center": 40.0,
+      "drift_ns_per_hour": 0.0
+    },
+    {
+      "sensor": "102",
+      "bias_ns_at_time_center": -25.0,
+      "drift_ns_per_hour": 0.0
+    },
+    {
+      "sensor": "103",
+      "bias_ns_at_time_center": 80.0,
+      "drift_ns_per_hour": 0.0
+    },
+    {
+      "sensor": "104",
+      "bias_ns_at_time_center": -60.0,
+      "drift_ns_per_hour": 0.0
+    },
+    {
+      "sensor": "105",
+      "bias_ns_at_time_center": 15.0,
+      "drift_ns_per_hour": 0.0
+    }
+  ]
+}

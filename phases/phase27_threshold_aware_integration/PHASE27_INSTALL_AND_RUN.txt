@@ -1,0 +1,31 @@
+PHASE 27 INSTALLATION AND RUN
+
+1. Extract this ZIP.
+
+2. Copy both folders below into the root of your existing
+   SAM_Reproducibility_Package. Allow the new files to merge with the existing
+   `phases` and `scripts` folders.
+
+   phases/phase27_threshold_aware_integration
+   scripts/run_phase27.sh
+
+3. Open Terminal in the SAM_Reproducibility_Package root.
+
+4. Activate the same virtual environment used for the earlier phases:
+
+   source .venv/bin/activate
+
+5. Run:
+
+   bash scripts/run_phase27.sh
+
+6. When complete, send these two files back for interpretation and manuscript
+   update:
+
+   reports/sam_phase27a_threshold_aware_integrated.json
+   reports/sam_phase27b_threshold_aware_outage.json
+
+Expected final line:
+
+   SAM Phase 27 threshold-aware integrated/outage validation passed.
+

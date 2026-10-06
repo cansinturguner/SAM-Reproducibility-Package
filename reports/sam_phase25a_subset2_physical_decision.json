@@ -1,0 +1,57 @@
+{
+  "schema": "sam.phase25a.subset2-transfer.v1",
+  "scope": "frozen Phase 25A physical decision applied to LocaRDS subset 2 without retuning",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "numpy": "2.5.3"
+  },
+  "inputs": {
+    "sha256": {
+      "observations": "5ff68c7e402caa183678c03f4d23ba45b63bc96fa1177f8ce7e4fb530c45dd58",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "aircraft": "70156a0865e655f4fb470e5814fd153708ac9f97ef193b70ebf3f4a5d84e1893",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654",
+      "decision_model": "3793f4d03f1492a329ad51c891b8cf0bf47ac81e17c6941fdddbe4006b1f34fb"
+    },
+    "dataset_doi": "10.5281/zenodo.4739276"
+  },
+  "threshold_ns": 306.64062122826,
+  "counts": {
+    "rows_read": 6535444,
+    "trusted_rows": 894967,
+    "trusted_good_ge4_rows": 107314,
+    "PHYSICALLY_CONSISTENT": 96362,
+    "PHYSICAL_EVIDENCE_UNAVAILABLE": 9290,
+    "PHYSICALLY_CONFLICTING": 1662
+  },
+  "unavailable_reasons": {
+    "fewer_than_4_modeled_receivers": 9290
+  },
+  "physical_availability_fraction": 0.91343161190525,
+  "empirical_benign_reference_conflict_fraction_among_available": 0.01695503142087652,
+  "aircraft_cluster_conflict_fraction_ci95": {
+    "method": "aircraft-cluster bootstrap with replacement; row-weighted fraction",
+    "estimate": 0.01695503142087652,
+    "ci95_low": 0.013505851844760181,
+    "ci95_high": 0.020783105476411143,
+    "replicates": 2000,
+    "seed": 1103,
+    "aircraft": 139
+  },
+  "full_policy_assurance_with_valid_crypto_and_trust": {
+    "VERIFIED": 96362,
+    "CONFLICTING": 1662,
+    "INSUFFICIENT_EVIDENCE": 9290
+  },
+  "runtime": {
+    "wall_seconds": 17.667477207993215
+  },
+  "interpretation_limits": [
+    "This is cross-partition transfer validation, not validation on an independent sensor network.",
+    "Subset 2 did not update the threshold, receiver clock model, or geometry rule.",
+    "Trusted-aircraft metadata is a benign reference filter and not attack-free ground truth."
+  ]
+}

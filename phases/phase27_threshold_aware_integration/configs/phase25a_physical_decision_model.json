@@ -1,0 +1,22 @@
+{
+  "schema": "sam.phase25a.physical-decision-model.v1",
+  "score": "median absolute calibrated direct-TDoA reference-pair residual per observation",
+  "score_units": "nanoseconds",
+  "decision_rule": "PHYSICALLY_CONSISTENT iff score <= threshold; otherwise PHYSICALLY_CONFLICTING",
+  "threshold_ns": 306.64062122826,
+  "threshold_quantile_method": "numpy higher empirical quantile",
+  "target_benign_consistency": 0.99,
+  "selection_partition": "Phase 3 development aircraft assigned to Phase 5B validation group only",
+  "seed": 1103,
+  "calibration_percent": 70,
+  "minimum_modeled_receivers": 4,
+  "required_geometry_rank": 3,
+  "input_sha256": {
+    "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+    "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+    "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+  },
+  "test_partition_used_for_threshold_selection": false,
+  "subset2_used_for_threshold_selection": false
+}
+

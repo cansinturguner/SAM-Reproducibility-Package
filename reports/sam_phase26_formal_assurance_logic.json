@@ -1,0 +1,169 @@
+{
+  "schema": "sam.phase26.formal-assurance-logic.v1",
+  "scope": "exhaustive finite-state verification of SAM assurance composition",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14"
+  },
+  "state_domains": {
+    "cryptographic": [
+      "VERIFIED",
+      "CONFLICTING",
+      "PENDING",
+      "ABSENT"
+    ],
+    "trust": [
+      "VALID",
+      "REVOKED",
+      "STALE",
+      "ABSENT"
+    ],
+    "physical": [
+      "CONSISTENT",
+      "CONFLICTING",
+      "UNAVAILABLE"
+    ],
+    "secured_policy_combinations": 48,
+    "legacy_cases": 1
+  },
+  "decision_distribution": {
+    "CONFLICTING": 30,
+    "INSUFFICIENT_EVIDENCE": 17,
+    "VERIFIED": 1
+  },
+  "properties": {
+    "state_space_complete": true,
+    "implementation_matches_specification": true,
+    "decision_totality": true,
+    "verified_iff_all_required_support": true,
+    "conflict_dominance": true,
+    "absence_pending_or_stale_without_conflict_is_insufficient": true,
+    "revocation_dominance": true,
+    "secured_policy_never_returns_legacy": true,
+    "legacy_isolation": true
+  },
+  "transition_checks": [
+    {
+      "name": "tesla_disclosure_valid",
+      "before": "INSUFFICIENT_EVIDENCE",
+      "after": "VERIFIED",
+      "expected": [
+        "INSUFFICIENT_EVIDENCE",
+        "VERIFIED"
+      ],
+      "passed": true
+    },
+    {
+      "name": "tesla_disclosure_invalid",
+      "before": "INSUFFICIENT_EVIDENCE",
+      "after": "CONFLICTING",
+      "expected": [
+        "INSUFFICIENT_EVIDENCE",
+        "CONFLICTING"
+      ],
+      "passed": true
+    },
+    {
+      "name": "cache_expiry",
+      "before": "VERIFIED",
+      "after": "INSUFFICIENT_EVIDENCE",
+      "expected": [
+        "VERIFIED",
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "passed": true
+    },
+    {
+      "name": "credential_revocation",
+      "before": "VERIFIED",
+      "after": "CONFLICTING",
+      "expected": [
+        "VERIFIED",
+        "CONFLICTING"
+      ],
+      "passed": true
+    },
+    {
+      "name": "physical_evidence_arrives_consistent",
+      "before": "INSUFFICIENT_EVIDENCE",
+      "after": "VERIFIED",
+      "expected": [
+        "INSUFFICIENT_EVIDENCE",
+        "VERIFIED"
+      ],
+      "passed": true
+    },
+    {
+      "name": "physical_evidence_arrives_conflicting",
+      "before": "INSUFFICIENT_EVIDENCE",
+      "after": "CONFLICTING",
+      "expected": [
+        "INSUFFICIENT_EVIDENCE",
+        "CONFLICTING"
+      ],
+      "passed": true
+    }
+  ],
+  "mutation_checks": [
+    {
+      "mutant": "drops_physical_requirement",
+      "killed": true,
+      "differing_cases": 1,
+      "first_counterexample": {
+        "crypto": "VERIFIED",
+        "trust": "VALID",
+        "physical": "UNAVAILABLE",
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "mutant": "VERIFIED"
+      }
+    },
+    {
+      "mutant": "loses_crypto_conflict_dominance",
+      "killed": true,
+      "differing_cases": 12,
+      "first_counterexample": {
+        "crypto": "CONFLICTING",
+        "trust": "VALID",
+        "physical": "CONSISTENT",
+        "expected": "CONFLICTING",
+        "mutant": "INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "mutant": "treats_revocation_as_missing",
+      "killed": true,
+      "differing_cases": 6,
+      "first_counterexample": {
+        "crypto": "VERIFIED",
+        "trust": "REVOKED",
+        "physical": "CONSISTENT",
+        "expected": "CONFLICTING",
+        "mutant": "INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "mutant": "accepts_pending_authentication",
+      "killed": true,
+      "differing_cases": 1,
+      "first_counterexample": {
+        "crypto": "PENDING",
+        "trust": "VALID",
+        "physical": "CONSISTENT",
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "mutant": "VERIFIED"
+      }
+    }
+  ],
+  "artifacts": {
+    "truth_table_csv": "reports/sam_phase26_formal_assurance_truth_table.csv",
+    "truth_table_sha256": "d1cadf219f8ee9e06fbcb874aa1f9a15442d621ca355cefbccaf85e3ad119ff7"
+  },
+  "overall_pass": true,
+  "interpretation_limits": [
+    "This is exhaustive verification of the stated finite policy model, not proof of sensor, cryptographic primitive, or implementation security.",
+    "The experiment verifies assurance-state composition and transition semantics; it does not estimate attack prevalence or detection accuracy.",
+    "Operational correctness still depends on the evidence-producing branches and stated trust assumptions."
+  ]
+}

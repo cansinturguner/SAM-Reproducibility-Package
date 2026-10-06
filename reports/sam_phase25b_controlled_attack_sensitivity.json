@@ -1,0 +1,141 @@
+{
+  "schema": "sam.phase25b.controlled-attack-sensitivity.v1",
+  "scope": {
+    "implemented": "independent SAM adaptation of published position-bias and fixed-ground-spoofer threat models",
+    "not_implemented": [
+      "Leonardi-Sirbu EKF or T1/T2 reproduction",
+      "real attack capture",
+      "RF transmission",
+      "operational detection certification"
+    ]
+  },
+  "methodological_source": {
+    "citation": "M. Leonardi and G. Sirbu, Sensors 21(15), 4992, 2021",
+    "doi": "10.3390/s21154992",
+    "relationship": "attack-scenario adaptation only; detector and results are not reproduced"
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "logical_cpu_count": 8
+  },
+  "inputs": {
+    "sha256": {
+      "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654",
+      "decision_model": "3793f4d03f1492a329ad51c891b8cf0bf47ac81e17c6941fdddbe4006b1f34fb"
+    }
+  },
+  "configuration": {
+    "seed": 1103,
+    "threshold_ns": 306.64062122826,
+    "score": "median absolute calibrated direct-TDoA reference-pair residual per observation",
+    "position_bias_m": [
+      0.0,
+      100.0,
+      250.0,
+      400.0,
+      500.0,
+      750.0,
+      1000.0,
+      2000.0,
+      5000.0,
+      10000.0
+    ],
+    "bias_direction": "deterministic SHA-256-derived bearing per row and distance",
+    "fixed_ground_spoofer": {
+      "latitude_deg": 48.757894483589844,
+      "longitude_deg": 8.536577272001962,
+      "height_m": 0.0,
+      "definition": "geodetic projection of frozen modeled-receiver ECEF centroid"
+    }
+  },
+  "counts": {
+    "physically_available_subset1_test_rows": 78358,
+    "unavailable_reasons": {
+      "fewer_than_4_modeled_receivers": 4628
+    }
+  },
+  "position_bias_sensitivity": {
+    "0.0": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 77309,
+      "PHYSICALLY_CONFLICTING": 1049,
+      "conflict_sensitivity": 0.01338727379463488
+    },
+    "100.0": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 60832,
+      "PHYSICALLY_CONFLICTING": 17526,
+      "conflict_sensitivity": 0.22366573929911432
+    },
+    "250.0": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 31177,
+      "PHYSICALLY_CONFLICTING": 47181,
+      "conflict_sensitivity": 0.6021210342275198
+    },
+    "400.0": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 19473,
+      "PHYSICALLY_CONFLICTING": 58885,
+      "conflict_sensitivity": 0.7514867658694709
+    },
+    "500.0": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 15486,
+      "PHYSICALLY_CONFLICTING": 62872,
+      "conflict_sensitivity": 0.8023686158401184
+    },
+    "750.0": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 9691,
+      "PHYSICALLY_CONFLICTING": 68667,
+      "conflict_sensitivity": 0.8763240511498507
+    },
+    "1000.0": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 7076,
+      "PHYSICALLY_CONFLICTING": 71282,
+      "conflict_sensitivity": 0.9096965210954848
+    },
+    "2000.0": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 2836,
+      "PHYSICALLY_CONFLICTING": 75522,
+      "conflict_sensitivity": 0.9638071415809489
+    },
+    "5000.0": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 905,
+      "PHYSICALLY_CONFLICTING": 77453,
+      "conflict_sensitivity": 0.9884504453916639
+    },
+    "10000.0": {
+      "available_rows": 78358,
+      "PHYSICALLY_CONSISTENT": 337,
+      "PHYSICALLY_CONFLICTING": 78021,
+      "conflict_sensitivity": 0.9956992266265091
+    }
+  },
+  "fixed_ground_spoofer_fake_track": {
+    "available_rows": 78358,
+    "PHYSICALLY_CONSISTENT": 32,
+    "PHYSICALLY_CONFLICTING": 78326,
+    "conflict_sensitivity": 0.9995916179586003
+  },
+  "runtime": {
+    "wall_seconds": 14.008449166998616
+  },
+  "interpretation_limits": [
+    "The zero-bias row is the empirical benign-reference conflict fraction under the frozen threshold.",
+    "Nonzero position offsets are controlled synthetic perturbations and not captured attacks.",
+    "Conflict sensitivity is not labeled real-world attack-detection accuracy.",
+    "The fixed-ground-spoofer experiment synthesizes arrival-time differences while preserving each row's nominal residual vector; it is not an RF waveform simulation."
+  ]
+}
