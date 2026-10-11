@@ -1,18 +1,18 @@
 # SAM reproducibility package
 
-This repository reproduces the software experiments reported for the Security Assurance Model (SAM). Development version 1.1.2 extends the original Phases 1–24 package through Phase 32, adds a documented cross-platform rerun check, and amends Phase 27B with an offset trust-service outage and explicit post-outage cache accounting. The added experiments introduce a development-selected physical-consistency threshold, controlled attack sensitivity, formal assurance-logic verification, threshold-aware integration and outage behavior, receiver-corruption safeguards, operating-point sensitivity, receiver-integrity analysis, and track-level persistence.
+This repository reproduces the software experiments reported for the Security Assurance Model (SAM). Version 1.1.2 extends the original Phases 1–24 package through Phase 32, adds a documented cross-platform rerun check, and amends Phase 27B with an offset trust-service outage and explicit post-outage cache accounting. The added experiments introduce a development-selected physical-consistency threshold, controlled attack sensitivity, formal assurance-logic verification, threshold-aware integration and outage behavior, receiver-corruption safeguards, operating-point sensitivity, receiver-integrity analysis, and track-level persistence.
 
 ## Authors and repository
 
 - Cansin Turguner, Istanbul University-Cerrahpasa, ORCID: https://orcid.org/0000-0002-1946-5276
 - Muhammed Ali Aydin, Istanbul University-Cerrahpasa
 - Source repository: https://github.com/cansinturguner/SAM-Reproducibility-Package
-- Most recent archived software version DOI (v1.1.1): https://doi.org/10.5281/zenodo.23285009
+- Archived software version DOI (v1.1.2): https://doi.org/10.5281/zenodo.23285009
 - Archived software concept DOI: https://doi.org/10.5281/zenodo.23023229
 
 The concept DOI resolves to the most recent Zenodo release. Release-specific DOIs remain available for immutable version citation.
 
-The GitHub `main` branch may contain a later development version than the most recent Zenodo archive. A new release-specific DOI will be added to `CITATION.cff` when version 1.1.2 is archived.
+The GitHub `main` branch may contain a later development version than the most recent Zenodo archive. Cite the release-specific DOI above when referring to version 1.1.2, and use the concept DOI for the latest archived version.
 
 ## Evidence boundary
 
