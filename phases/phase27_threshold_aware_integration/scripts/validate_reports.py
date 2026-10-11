@@ -19,7 +19,7 @@ outage = json.loads(Path(sys.argv[2]).read_text(encoding="utf-8"))
 
 if integrated.get("schema") != "sam.phase27a.threshold-aware-integrated.v1":
     fail("integrated schema")
-if outage.get("schema") != "sam.phase27b.threshold-aware-trust-outage.v1":
+if outage.get("schema") != "sam.phase27b.threshold-aware-trust-outage.v2":
     fail("outage schema")
 
 counts = integrated["counts"]
@@ -45,7 +45,7 @@ if not math.isclose(
 if integrated["configuration"]["measured_fresh_process_repetitions"] < 5:
     fail("integrated repetitions")
 
-if len(outage["scenarios"]) != 4:
+if len(outage["scenarios"]) != 5:
     fail("outage scenario count")
 if not all(outage["correctness"].values()):
     fail("outage correctness flags")
@@ -66,6 +66,42 @@ for scenario in outage["scenarios"]:
         != 82_986
     ):
         fail(f"{scenario['name']} final-state total")
+    if scenario["outage_at_seconds"] is not None:
+        if (
+            scenario_counts["pre_outage_rows"]
+            + scenario_counts["post_outage_rows"]
+            != 82_986
+        ):
+            fail(f"{scenario['name']} outage partition total")
+        if (
+            scenario_counts["post_outage_trust_valid"]
+            + scenario_counts["post_outage_trust_stale_or_absent"]
+            != scenario_counts["post_outage_rows"]
+        ):
+            fail(f"{scenario['name']} post-outage trust total")
+        if (
+            scenario_counts["post_outage_VERIFIED"]
+            + scenario_counts["post_outage_CONFLICTING"]
+            + scenario_counts["post_outage_INSUFFICIENT_EVIDENCE"]
+            != scenario_counts["post_outage_rows"]
+        ):
+            fail(f"{scenario['name']} post-outage state total")
+
+offset = next(
+    scenario for scenario in outage["scenarios"]
+    if scenario["name"] == "outage_offset_2250s"
+)
+if offset["counts"]["post_outage_trust_valid"] <= 0:
+    fail("offset outage has no post-outage valid-cache rows")
+if (
+    offset["post_outage_cache_observation"][
+        "observed_valid_cache_span_after_outage_seconds"
+    ]
+    <= 0
+):
+    fail("offset outage has no observed cache-grace span")
+if offset["counts"]["post_outage_trust_stale_or_absent"] <= 0:
+    fail("offset outage never reaches stale trust")
 
 print("SAM Phase 27 threshold-aware integrated/outage validation passed.")
 

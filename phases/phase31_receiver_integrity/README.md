@@ -5,3 +5,5 @@ This phase freezes a receiver-integrity guard on LocaRDS subset-1 development-va
 The threshold is the higher empirical q99 selected only on development-validation aircraft. The frozen guard is then evaluated on the aircraft-disjoint subset-1 test, transferred unchanged to subset 2, and stressed with signed single-receiver timestamp shifts.
 
 The output event files are inputs to Phase 32. Trusted-aircraft metadata is treated as a benign reference filter, not attack-free ground truth. Subset 2 shares the published LocaRDS sensor infrastructure with subset 1.
+
+The compact frozen model is redistributed at `reports/sam_phase31_receiver_integrity_model.json`. It contains the score definition, development-selected threshold, quantile, seed, and leakage-control metadata. The much larger Phase 31 event tables remain local derived artifacts and are regenerated from LocaRDS when Phase 31 is executed.

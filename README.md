@@ -1,15 +1,18 @@
 # SAM reproducibility package
 
-This repository reproduces the software experiments reported for the Security Assurance Model (SAM). Version 1.1.0 extends the original Phases 1–24 package through Phase 32. The added experiments introduce a development-selected physical-consistency threshold, controlled attack sensitivity, formal assurance-logic verification, threshold-aware integration and outage behavior, receiver-corruption safeguards, operating-point sensitivity, receiver-integrity analysis, and track-level persistence.
+This repository reproduces the software experiments reported for the Security Assurance Model (SAM). Development version 1.1.2 extends the original Phases 1–24 package through Phase 32, adds a documented cross-platform rerun check, and amends Phase 27B with an offset trust-service outage and explicit post-outage cache accounting. The added experiments introduce a development-selected physical-consistency threshold, controlled attack sensitivity, formal assurance-logic verification, threshold-aware integration and outage behavior, receiver-corruption safeguards, operating-point sensitivity, receiver-integrity analysis, and track-level persistence.
 
 ## Authors and repository
 
 - Cansin Turguner, Istanbul University-Cerrahpasa, ORCID: https://orcid.org/0000-0002-1946-5276
 - Muhammed Ali Aydin, Istanbul University-Cerrahpasa
 - Source repository: https://github.com/cansinturguner/SAM-Reproducibility-Package
+- Most recent archived software version DOI (v1.1.1): https://doi.org/10.5281/zenodo.23285009
 - Archived software concept DOI: https://doi.org/10.5281/zenodo.23023229
 
 The concept DOI resolves to the most recent Zenodo release. Release-specific DOIs remain available for immutable version citation.
+
+The GitHub `main` branch may contain a later development version than the most recent Zenodo archive. A new release-specific DOI will be added to `CITATION.cff` when version 1.1.2 is archived.
 
 ## Evidence boundary
 
@@ -34,7 +37,9 @@ The concept DOI resolves to the most recent Zenodo release. Release-specific DOI
 - Logical CPUs: 8
 - Experiment seed: 1103 unless a phase README states otherwise
 
-Use Python 3.11 or 3.12. The manuscript measurements were produced with Python 3.12.14. Install `requirements.txt` in a clean virtual environment. Individual phase READMEs record additional dependencies and execution boundaries.
+An independent cross-platform rerun executed the pre-amendment Phases 1–32 workflows without source changes under WSL2/Linux on x86-64 hardware with Python 3.13.10, NumPy 2.5.3, and 32 logical processors. It reproduced the deterministic thresholds, assurance counts, controlled-perturbation outcomes, the earlier boundary-aligned outage result, finite-state checks, and persistence selection. The later Phase 27B v2 offset-outage scenario and explicit post-outage accounting were rerun only in the primary Mac environment. Absolute timing values changed, as expected for a different runtime and processor architecture. The compact machine-readable summary is provided in `reports/sam_cross_platform_validation_wsl2_python313.json`; the large rerun workspace, LocaRDS-derived intermediate tables, and duplicated platform-specific reports are not redistributed.
+
+Use Python 3.12 for the reference environment. The manuscript measurements were produced with Python 3.12.14; the independent cross-platform check completed with Python 3.13.10. Install `requirements.txt` in a clean virtual environment. Individual phase READMEs record additional dependencies and execution boundaries.
 
 ## Dataset
 
@@ -65,7 +70,7 @@ Recorded SHA-256 values:
 | subset 2 sensors | `998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b` |
 | subset 2 aircraft | `70156a0865e655f4fb470e5814fd153708ac9f97ef193b70ebf3f4a5d84e1893` |
 
-The LocaRDS archives and CSV files are not redistributed. Phase 31 event tables are generated locally from LocaRDS and are likewise not included. Phase 32 consumes those locally generated event tables.
+The LocaRDS archives and CSV files are not redistributed. Phase 31 event tables are generated locally from LocaRDS and are likewise not included. Phase 32 consumes those locally generated event tables. Small files under phase-specific `test_fixture` or `test_output` directories are synthetic unit-test fixtures, not extracts from the LocaRDS release.
 
 Phase 25C expects the independently obtained labeled dataset files at:
 
@@ -151,13 +156,15 @@ Phases 25A–25C, 31, and 32 provide phase-specific instructions in their own RE
 | phase25b_attack_sensitivity | Controlled position-bias and fixed-ground-spoofer sensitivity |
 | phase25c_injection_dataset_audit | Published labeled-dataset metadata and direct-TDoA suitability audit |
 | phase26_formal_assurance_logic | Exhaustive finite-state policy and transition verification |
-| phase27_threshold_aware_integration | Threshold-aware integrated and trust-outage replay |
+| phase27_threshold_aware_integration | Threshold-aware integrated replay plus aligned and offset trust-outage scenarios with explicit post-outage cache accounting |
 | phase28_receiver_corruption | Single-receiver and reference-receiver corruption sensitivity |
 | phase29_threshold_operating_point | Threshold operating-point sensitivity |
 | phase30_reference_independent_guard | Reference-independent receiver-integrity guard |
 | phase31_receiver_integrity | Receiver-integrity event characterization across development and transfer partitions |
 | phase32_track_persistence | Track-level persistence evaluation using Phase 31 events |
 
+The frozen Phase 31 receiver-integrity model is included as `reports/sam_phase31_receiver_integrity_model.json`. The larger Phase 31 event tables are intentionally regenerated locally and are not redistributed.
+
 ## Reproducibility limits
 
-The package reproduces a Python reference implementation. Runtime values vary with hardware, operating system, package build, background load, and storage. The results do not establish real-time or certified airborne performance. The subset-2 experiment is a cross-partition transfer test within the same published receiver infrastructure, not independent-field validation. Controlled perturbations are synthetic and do not provide operational RF attack ground truth. LocaRDS does not contain SAM authenticators co-captured with the original broadcasts. Phase 23 does not use the CABBA authors' SDR code, and Phase 24 assumes perfect synchronization over complex AWGN. The package therefore does not establish RTCA conformance, commercial-receiver compatibility, or deployment readiness.
+The package reproduces a Python reference implementation. Runtime values vary with hardware, operating system, package build, background load, and storage. The cross-platform rerun confirms deterministic computational reproducibility but does not make timing portable across platforms. The results do not establish real-time or certified airborne performance. The subset-2 experiment is a cross-partition transfer test within the same published receiver infrastructure, not independent-field validation. Controlled perturbations are synthetic and do not provide operational RF attack ground truth. LocaRDS does not contain SAM authenticators co-captured with the original broadcasts. Phase 23 does not use the CABBA authors' SDR code, and Phase 24 assumes perfect synchronization over complex AWGN. The package therefore does not establish RTCA conformance, commercial-receiver compatibility, or deployment readiness.

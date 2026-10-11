@@ -98,9 +98,20 @@ def run_once(args, delay_ms: int, outage_at: float | None) -> dict:
         "refresh_attempts": 0,
         "refresh_successes": 0,
         "refresh_failures": 0,
+        "pre_outage_rows": 0,
+        "post_outage_rows": 0,
+        "post_outage_trust_valid": 0,
+        "post_outage_trust_stale_or_absent": 0,
+        "post_outage_VERIFIED": 0,
+        "post_outage_CONFLICTING": 0,
+        "post_outage_INSUFFICIENT_EVIDENCE": 0,
     }
     cache_time = None
     next_retry_time = -math.inf
+    successful_refresh_times = []
+    failed_refresh_times = []
+    post_outage_valid_times = []
+    first_post_outage_stale_time = None
     start = time.perf_counter()
     try:
         with gzip.open(args.selected, "rt", newline="", encoding="utf-8") as zipped:
@@ -109,6 +120,8 @@ def run_once(args, delay_ms: int, outage_at: float | None) -> dict:
                     continue
                 counts["eligible_rows"] += 1
                 sim_time = float(row.get("timeAtServer") or 0.0)
+                after_outage = outage_at is not None and sim_time >= outage_at
+                counts["post_outage_rows" if after_outage else "pre_outage_rows"] += 1
                 cache_valid = (
                     cache_time is not None
                     and sim_time - cache_time <= args.cache_ttl_seconds
@@ -119,9 +132,11 @@ def run_once(args, delay_ms: int, outage_at: float | None) -> dict:
                         cache_time = sim_time
                         next_retry_time = -math.inf
                         counts["refresh_successes"] += 1
+                        successful_refresh_times.append(sim_time)
                     else:
                         next_retry_time = sim_time + args.retry_interval_seconds
                         counts["refresh_failures"] += 1
+                        failed_refresh_times.append(sim_time)
 
                 trust = (
                     "VALID"
@@ -130,6 +145,14 @@ def run_once(args, delay_ms: int, outage_at: float | None) -> dict:
                     else "STALE"
                 )
                 counts["trust_valid" if trust == "VALID" else "trust_stale_or_absent"] += 1
+                if after_outage:
+                    if trust == "VALID":
+                        counts["post_outage_trust_valid"] += 1
+                        post_outage_valid_times.append(sim_time)
+                    else:
+                        counts["post_outage_trust_stale_or_absent"] += 1
+                        if first_post_outage_stale_time is None:
+                            first_post_outage_stale_time = sim_time
                 crypto = core.verify_hmac(row, root_key)
                 if crypto == "VERIFIED":
                     counts["hmac_verified"] += 1
@@ -139,6 +162,8 @@ def run_once(args, delay_ms: int, outage_at: float | None) -> dict:
                 counts[physical] += 1
                 final_state = core.fuse(crypto, trust, physical)
                 counts[final_state] += 1
+                if after_outage:
+                    counts[f"post_outage_{final_state}"] += 1
         wall_seconds = time.perf_counter() - start
     finally:
         handle.close()
@@ -148,6 +173,31 @@ def run_once(args, delay_ms: int, outage_at: float | None) -> dict:
         thread.join()
     return {
         "counts": counts,
+        "refresh_timeline": {
+            "successful_refresh_times": successful_refresh_times,
+            "failed_refresh_times": failed_refresh_times,
+            "last_successful_refresh_time": successful_refresh_times[-1]
+            if successful_refresh_times
+            else None,
+            "first_failed_refresh_time": failed_refresh_times[0]
+            if failed_refresh_times
+            else None,
+        },
+        "post_outage_cache_observation": {
+            "valid_cache_rows_after_outage": len(post_outage_valid_times),
+            "first_valid_cache_time_after_outage": post_outage_valid_times[0]
+            if post_outage_valid_times
+            else None,
+            "last_valid_cache_time_after_outage": post_outage_valid_times[-1]
+            if post_outage_valid_times
+            else None,
+            "observed_valid_cache_span_after_outage_seconds": (
+                post_outage_valid_times[-1] - outage_at
+                if post_outage_valid_times and outage_at is not None
+                else 0.0
+            ),
+            "first_stale_time_after_outage": first_post_outage_stale_time,
+        },
         "wall_seconds": wall_seconds,
         "threshold_ns": threshold_ns,
         "input_hashes": input_hashes,
@@ -185,7 +235,8 @@ def main() -> None:
         ("online_0ms", 0, None),
         ("online_50ms", 50, None),
         ("online_250ms", 250, None),
-        ("outage_at_1800s", 50, 1800.0),
+        ("outage_aligned_1800s", 50, 1800.0),
+        ("outage_offset_2250s", 50, 2250.0),
     ]
     output = []
     first_run = None
@@ -202,12 +253,16 @@ def main() -> None:
                 "added_delay_ms": delay_ms,
                 "outage_at_seconds": outage_at,
                 "counts": baseline_counts,
+                "refresh_timeline": runs[0]["refresh_timeline"],
+                "post_outage_cache_observation": runs[0][
+                    "post_outage_cache_observation"
+                ],
                 "wall_seconds": summarize([run["wall_seconds"] for run in runs]),
             }
         )
 
     report = {
-        "schema": "sam.phase27b.threshold-aware-trust-outage.v1",
+        "schema": "sam.phase27b.threshold-aware-trust-outage.v2",
         "scope": "threshold-aware physical decision + deterministic HMAC + signed TCP trust refresh + cache + fusion",
         "platform": {
             "system": platform.system(),
@@ -222,7 +277,10 @@ def main() -> None:
             "physical_threshold_ns": first_run["threshold_ns"],
             "cache_ttl_seconds": args.cache_ttl_seconds,
             "retry_interval_seconds": args.retry_interval_seconds,
-            "outage_rule": "service unavailable for requests at or after 1800 s of dataset time",
+            "outage_rules": [
+                "boundary-aligned service loss at 1800 s",
+                "offset service loss at 2250 s, after the approximately 1800-s refresh",
+            ],
             "fusion_policy": "physical conflict remains CONFLICTING even when trust becomes stale",
         },
         "inputs": {
@@ -249,13 +307,42 @@ def main() -> None:
                 and scenario["counts"]["INSUFFICIENT_EVIDENCE"] == 4_628
                 for scenario in output[:3]
             ),
-            "outage_preserves_physical_conflict": output[3]["counts"]["CONFLICTING"] == 1_049,
-            "outage_creates_insufficient_evidence": output[3]["counts"]["INSUFFICIENT_EVIDENCE"] > 4_628,
-            "outage_retry_backoff_active": 0 < output[3]["counts"]["refresh_failures"] < 100,
+            "outages_preserve_physical_conflict": all(
+                scenario["counts"]["CONFLICTING"] == 1_049
+                for scenario in output[3:]
+            ),
+            "outages_create_insufficient_evidence": all(
+                scenario["counts"]["INSUFFICIENT_EVIDENCE"] > 4_628
+                for scenario in output[3:]
+            ),
+            "outage_retry_backoff_active": all(
+                0 < scenario["counts"]["refresh_failures"] < 100
+                for scenario in output[3:]
+            ),
+            "aligned_outage_reports_post_outage_partition": (
+                output[3]["counts"]["post_outage_trust_valid"]
+                + output[3]["counts"]["post_outage_trust_stale_or_absent"]
+                == output[3]["counts"]["post_outage_rows"]
+            ),
+            "offset_outage_demonstrates_nonzero_cached_operation": (
+                output[4]["counts"]["post_outage_trust_valid"] > 0
+                and output[4]["post_outage_cache_observation"][
+                    "observed_valid_cache_span_after_outage_seconds"
+                ]
+                > 0
+            ),
+            "offset_outage_eventually_degrades_after_expiry": (
+                output[4]["counts"]["post_outage_trust_stale_or_absent"] > 0
+                and output[4]["post_outage_cache_observation"][
+                    "first_stale_time_after_outage"
+                ]
+                is not None
+            ),
         },
         "interpretation_limits": [
             "Trust delay is controlled over loopback and is not operational WAN latency.",
             "The outage is a scheduled availability condition and not an attack label.",
+            "Post-outage cache-valid and stale rows are counted separately; pre-outage rows are not used as evidence of offline continuity.",
             "No new revocation is injected after the final successful refresh.",
             "The threshold is a prototype operating point and the authenticator is synthetic.",
         ],

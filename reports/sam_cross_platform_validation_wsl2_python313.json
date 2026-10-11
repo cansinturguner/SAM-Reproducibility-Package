@@ -1,0 +1,69 @@
+{
+  "schema": "sam.cross-platform-validation.v1",
+  "scope": "independent rerun of Phases 1-32 without source changes on a second software and processor platform",
+  "recorded_at": "2026-10-08T16:14:08.986376+03:00",
+  "platform": {
+    "system": "Linux",
+    "environment": "WSL2 Ubuntu",
+    "release": "6.18.40.1-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "python": "3.13.10",
+    "numpy": "2.5.3",
+    "logical_cpu_count": 32
+  },
+  "execution": {
+    "phases_01_24_passed": true,
+    "phase_25c_passed": true,
+    "phases_25_32_passed": true,
+    "python_source_files_checked": 86,
+    "python_sources_match_reference": true,
+    "json_report_count": 40
+  },
+  "deterministic_checks": {
+    "physical_threshold_ns": 306.64062122826,
+    "receiver_integrity_threshold_ns": 1654.782585144043,
+    "selected_track_policy": "two_of_three_h3",
+    "threshold_aware_integrated_counts": {
+      "eligible_rows": 82986,
+      "hmac_verified": 82986,
+      "PHYSICALLY_CONSISTENT": 77309,
+      "PHYSICALLY_CONFLICTING": 1049,
+      "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628,
+      "VERIFIED": 77309,
+      "CONFLICTING": 1049,
+      "INSUFFICIENT_EVIDENCE": 4628
+    },
+    "integrated_counts_match_reference": true
+  },
+  "platform_specific_timing_microseconds": {
+    "threshold_aware_integrated_median_per_eligible_observation": {
+      "primary_mac_reference": 46.778571331308726,
+      "wsl2_rerun": 70.79468327187749
+    },
+    "component_kernel_median_per_observation": {
+      "wsl2_rerun": 32.05
+    },
+    "scheduled_receiver_compute_per_message": {
+      "primary_mac_reference": {
+        "CABBA_scenario_4": 2.061,
+        "SAM": 1.854
+      },
+      "wsl2_rerun": {
+        "CABBA_scenario_4": 1.85999775,
+        "SAM": 1.9042646
+      }
+    }
+  },
+  "provenance": {
+    "rerun_archive_sha256": "af48c562a8a06e3ac8e52e9621344622899e05de991df4181527797b911377f4",
+    "reference_git_tag": "v1.1.0",
+    "reference_git_commit": "5372554866ca967a3cfb7c437894f1c6054ec906"
+  },
+  "interpretation_limits": [
+    "The rerun checks computational reproducibility across software and processor environments; it is not validation on an independent sensor network.",
+    "Deterministic states and counts are compared directly, whereas timing values are retained as platform-specific measurements.",
+    "The complete rerun workspace is not redistributed because it contains LocaRDS-derived intermediate tables and duplicated platform-specific reports.",
+    "The rerun does not add operational RF attack ground truth, co-captured SAM authenticators, or certified-hardware evidence."
+  ],
+  "overall_pass": true
+}

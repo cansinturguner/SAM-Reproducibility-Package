@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+
+# Third-party and locally derived datasets are not redistributed.
+data/raw/
+data/external/
+data/processed/
+
+# Phase 31 event tables are regenerated locally from LocaRDS.
+reports/sam_phase31_*_events.csv.gz

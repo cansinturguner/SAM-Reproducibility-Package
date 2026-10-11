@@ -1,5 +1,5 @@
 {
-  "schema": "sam.phase27b.threshold-aware-trust-outage.v1",
+  "schema": "sam.phase27b.threshold-aware-trust-outage.v2",
   "scope": "threshold-aware physical decision + deterministic HMAC + signed TCP trust refresh + cache + fusion",
   "platform": {
     "system": "Darwin",
@@ -14,7 +14,10 @@
     "physical_threshold_ns": 306.64062122826,
     "cache_ttl_seconds": 900.0,
     "retry_interval_seconds": 60.0,
-    "outage_rule": "service unavailable for requests at or after 1800 s of dataset time",
+    "outage_rules": [
+      "boundary-aligned service loss at 1800 s",
+      "offset service loss at 2250 s, after the approximately 1800-s refresh"
+    ],
     "fusion_policy": "physical conflict remains CONFLICTING even when trust becomes stale"
   },
   "inputs": {
@@ -43,15 +46,40 @@
         "INSUFFICIENT_EVIDENCE": 4628,
         "refresh_attempts": 4,
         "refresh_successes": 4,
-        "refresh_failures": 0
+        "refresh_failures": 0,
+        "pre_outage_rows": 82986,
+        "post_outage_rows": 0,
+        "post_outage_trust_valid": 0,
+        "post_outage_trust_stale_or_absent": 0,
+        "post_outage_VERIFIED": 0,
+        "post_outage_CONFLICTING": 0,
+        "post_outage_INSUFFICIENT_EVIDENCE": 0
+      },
+      "refresh_timeline": {
+        "successful_refresh_times": [
+          0.0820000171661377,
+          900.118999958038,
+          1800.257999897,
+          2700.26799988747
+        ],
+        "failed_refresh_times": [],
+        "last_successful_refresh_time": 2700.26799988747,
+        "first_failed_refresh_time": null
+      },
+      "post_outage_cache_observation": {
+        "valid_cache_rows_after_outage": 0,
+        "first_valid_cache_time_after_outage": null,
+        "last_valid_cache_time_after_outage": null,
+        "observed_valid_cache_span_after_outage_seconds": 0.0,
+        "first_stale_time_after_outage": null
       },
       "wall_seconds": {
         "n": 5,
-        "mean": 3.801348116600002,
-        "median": 3.784388874999877,
-        "minimum": 3.756549625000389,
-        "maximum": 3.8582517499999085,
-        "sample_stdev": 0.04312811592513977
+        "mean": 3.781471450001118,
+        "median": 3.8003465000001597,
+        "minimum": 3.6810016249983164,
+        "maximum": 3.8189636670031177,
+        "sample_stdev": 0.056822287298754284
       }
     },
     {
@@ -71,15 +99,40 @@
         "INSUFFICIENT_EVIDENCE": 4628,
         "refresh_attempts": 4,
         "refresh_successes": 4,
-        "refresh_failures": 0
+        "refresh_failures": 0,
+        "pre_outage_rows": 82986,
+        "post_outage_rows": 0,
+        "post_outage_trust_valid": 0,
+        "post_outage_trust_stale_or_absent": 0,
+        "post_outage_VERIFIED": 0,
+        "post_outage_CONFLICTING": 0,
+        "post_outage_INSUFFICIENT_EVIDENCE": 0
+      },
+      "refresh_timeline": {
+        "successful_refresh_times": [
+          0.0820000171661377,
+          900.118999958038,
+          1800.257999897,
+          2700.26799988747
+        ],
+        "failed_refresh_times": [],
+        "last_successful_refresh_time": 2700.26799988747,
+        "first_failed_refresh_time": null
+      },
+      "post_outage_cache_observation": {
+        "valid_cache_rows_after_outage": 0,
+        "first_valid_cache_time_after_outage": null,
+        "last_valid_cache_time_after_outage": null,
+        "observed_valid_cache_span_after_outage_seconds": 0.0,
+        "first_stale_time_after_outage": null
       },
       "wall_seconds": {
         "n": 5,
-        "mean": 3.9881701916001475,
-        "median": 3.996679542000038,
-        "minimum": 3.9464760410000963,
-        "maximum": 4.032324083000276,
-        "sample_stdev": 0.03246300269741441
+        "mean": 4.017048841601354,
+        "median": 4.027541916002519,
+        "minimum": 3.955130916998314,
+        "maximum": 4.058879166001134,
+        "sample_stdev": 0.038884926158304974
       }
     },
     {
@@ -99,19 +152,44 @@
         "INSUFFICIENT_EVIDENCE": 4628,
         "refresh_attempts": 4,
         "refresh_successes": 4,
-        "refresh_failures": 0
+        "refresh_failures": 0,
+        "pre_outage_rows": 82986,
+        "post_outage_rows": 0,
+        "post_outage_trust_valid": 0,
+        "post_outage_trust_stale_or_absent": 0,
+        "post_outage_VERIFIED": 0,
+        "post_outage_CONFLICTING": 0,
+        "post_outage_INSUFFICIENT_EVIDENCE": 0
+      },
+      "refresh_timeline": {
+        "successful_refresh_times": [
+          0.0820000171661377,
+          900.118999958038,
+          1800.257999897,
+          2700.26799988747
+        ],
+        "failed_refresh_times": [],
+        "last_successful_refresh_time": 2700.26799988747,
+        "first_failed_refresh_time": null
+      },
+      "post_outage_cache_observation": {
+        "valid_cache_rows_after_outage": 0,
+        "first_valid_cache_time_after_outage": null,
+        "last_valid_cache_time_after_outage": null,
+        "observed_valid_cache_span_after_outage_seconds": 0.0,
+        "first_stale_time_after_outage": null
       },
       "wall_seconds": {
         "n": 5,
-        "mean": 4.836118416600039,
-        "median": 4.826876999999968,
-        "minimum": 4.81512524999971,
-        "maximum": 4.866612332999921,
-        "sample_stdev": 0.023988928000962938
+        "mean": 4.811145824800041,
+        "median": 4.8079845840002235,
+        "minimum": 4.791407832999539,
+        "maximum": 4.82911991599758,
+        "sample_stdev": 0.016756196529395275
       }
     },
     {
-      "name": "outage_at_1800s",
+      "name": "outage_aligned_1800s",
       "added_delay_ms": 50,
       "outage_at_seconds": 1800.0,
       "counts": {
@@ -127,15 +205,137 @@
         "INSUFFICIENT_EVIDENCE": 38745,
         "refresh_attempts": 32,
         "refresh_successes": 2,
-        "refresh_failures": 30
+        "refresh_failures": 30,
+        "pre_outage_rows": 46334,
+        "post_outage_rows": 36652,
+        "post_outage_trust_valid": 3,
+        "post_outage_trust_stale_or_absent": 36649,
+        "post_outage_VERIFIED": 3,
+        "post_outage_CONFLICTING": 569,
+        "post_outage_INSUFFICIENT_EVIDENCE": 36080
+      },
+      "refresh_timeline": {
+        "successful_refresh_times": [
+          0.0820000171661377,
+          900.118999958038
+        ],
+        "failed_refresh_times": [
+          1800.257999897,
+          1860.25900006294,
+          1920.31399989128,
+          1980.36100006104,
+          2040.39499998093,
+          2100.40100002289,
+          2160.45700001717,
+          2220.47300004959,
+          2280.58100008965,
+          2340.62800002098,
+          2400.72000002861,
+          2460.82999992371,
+          2520.87199997902,
+          2580.87700009346,
+          2640.89499998093,
+          2700.92499995232,
+          2760.95199990273,
+          2820.95700001717,
+          2881.0150001049,
+          2941.04800009728,
+          3001.10199999809,
+          3061.18400001526,
+          3121.35800004005,
+          3181.40899991989,
+          3241.42199993134,
+          3301.56900000572,
+          3361.61299991608,
+          3421.65300011635,
+          3481.74699997902,
+          3541.75999999046
+        ],
+        "last_successful_refresh_time": 900.118999958038,
+        "first_failed_refresh_time": 1800.257999897
+      },
+      "post_outage_cache_observation": {
+        "valid_cache_rows_after_outage": 3,
+        "first_valid_cache_time_after_outage": 1800.01300001144,
+        "last_valid_cache_time_after_outage": 1800.117000103,
+        "observed_valid_cache_span_after_outage_seconds": 0.1170001030000094,
+        "first_stale_time_after_outage": 1800.257999897
       },
       "wall_seconds": {
         "n": 5,
-        "mean": 3.914919741600079,
-        "median": 3.895942500000274,
-        "minimum": 3.8665691249998417,
-        "maximum": 3.981745250000131,
-        "sample_stdev": 0.05351086407943359
+        "mean": 3.8759504084002403,
+        "median": 3.893886833000579,
+        "minimum": 3.84268874999907,
+        "maximum": 3.897591625001951,
+        "sample_stdev": 0.02710529529697027
+      }
+    },
+    {
+      "name": "outage_offset_2250s",
+      "added_delay_ms": 50,
+      "outage_at_seconds": 2250.0,
+      "counts": {
+        "eligible_rows": 82986,
+        "hmac_verified": 82986,
+        "PHYSICALLY_CONSISTENT": 77309,
+        "PHYSICALLY_CONFLICTING": 1049,
+        "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628,
+        "trust_valid": 69257,
+        "trust_stale_or_absent": 13729,
+        "VERIFIED": 64015,
+        "CONFLICTING": 1049,
+        "INSUFFICIENT_EVIDENCE": 17922,
+        "refresh_attempts": 18,
+        "refresh_successes": 3,
+        "refresh_failures": 15,
+        "pre_outage_rows": 59705,
+        "post_outage_rows": 23281,
+        "post_outage_trust_valid": 9552,
+        "post_outage_trust_stale_or_absent": 13729,
+        "post_outage_VERIFIED": 9098,
+        "post_outage_CONFLICTING": 317,
+        "post_outage_INSUFFICIENT_EVIDENCE": 13866
+      },
+      "refresh_timeline": {
+        "successful_refresh_times": [
+          0.0820000171661377,
+          900.118999958038,
+          1800.257999897
+        ],
+        "failed_refresh_times": [
+          2700.26799988747,
+          2760.28699994087,
+          2820.29999995232,
+          2880.34100008011,
+          2940.382999897,
+          3000.46000003815,
+          3060.54999995232,
+          3120.56500005722,
+          3180.68400001526,
+          3240.73099994659,
+          3300.96000003815,
+          3361.05200004578,
+          3421.20900011063,
+          3481.26999998093,
+          3541.42100000382
+        ],
+        "last_successful_refresh_time": 1800.257999897,
+        "first_failed_refresh_time": 2700.26799988747
+      },
+      "post_outage_cache_observation": {
+        "valid_cache_rows_after_outage": 9552,
+        "first_valid_cache_time_after_outage": 2250.03999996185,
+        "last_valid_cache_time_after_outage": 2700.22399997711,
+        "observed_valid_cache_span_after_outage_seconds": 450.22399997711,
+        "first_stale_time_after_outage": 2700.26799988747
+      },
+      "wall_seconds": {
+        "n": 5,
+        "mean": 4.011470566799835,
+        "median": 4.018702875000599,
+        "minimum": 3.984133041998575,
+        "maximum": 4.034032291998301,
+        "sample_stdev": 0.02026837168192127
       }
     }
   ],
@@ -144,13 +344,17 @@
     "frozen_eligible_count": true,
     "frozen_physical_state_counts": true,
     "online_full_policy_counts": true,
-    "outage_preserves_physical_conflict": true,
-    "outage_creates_insufficient_evidence": true,
-    "outage_retry_backoff_active": true
+    "outages_preserve_physical_conflict": true,
+    "outages_create_insufficient_evidence": true,
+    "outage_retry_backoff_active": true,
+    "aligned_outage_reports_post_outage_partition": true,
+    "offset_outage_demonstrates_nonzero_cached_operation": true,
+    "offset_outage_eventually_degrades_after_expiry": true
   },
   "interpretation_limits": [
     "Trust delay is controlled over loopback and is not operational WAN latency.",
     "The outage is a scheduled availability condition and not an attack label.",
+    "Post-outage cache-valid and stale rows are counted separately; pre-outage rows are not used as evidence of offline continuity.",
     "No new revocation is injected after the final successful refresh.",
     "The threshold is a prototype operating point and the authenticator is synthetic."
   ]

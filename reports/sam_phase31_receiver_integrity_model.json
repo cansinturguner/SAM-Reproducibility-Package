@@ -1,0 +1,11 @@
+{
+  "schema": "sam.phase31.receiver-integrity-model.v1",
+  "seed": 1103,
+  "score": "maximum across receivers of median absolute calibrated pair residual incident on that receiver",
+  "reference_independent": true,
+  "threshold_ns": 1654.782585144043,
+  "threshold_quantile": 0.99,
+  "threshold_source": "LocaRDS subset-1 development-validation aircraft only; higher empirical quantile",
+  "test_used_for_selection": false,
+  "dataset_doi": "10.5281/zenodo.4739276"
+}

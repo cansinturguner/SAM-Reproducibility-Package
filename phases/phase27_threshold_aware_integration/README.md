@@ -42,13 +42,18 @@ reports/sam_phase27b_threshold_aware_outage.json
 ```
 
 Phase 27A uses one warm-up and 30 measured fresh-process repetitions. Phase 27B
-uses five repetitions of each online-delay and scheduled-outage scenario.
+uses five repetitions of each online-delay and scheduled-outage scenario. It
+retains the boundary-aligned outage at 1,800 s and adds an offset outage at
+2,250 s, after the approximately 1,800-s refresh. The report counts pre-outage
+and post-outage trust states separately, so pre-outage valid rows cannot be
+misinterpreted as offline cache continuity.
 
 ## Interpretation boundary
 
 The experiment uses real LocaRDS observations with a deterministic synthetic
 authenticator. It evaluates software composition, physical decision semantics,
-cache expiry, and scheduled service loss. It does not estimate operational
+cache expiry, scheduled service loss, and the observed post-outage cache-grace
+interval in the offset scenario. It does not estimate operational
 attack prevalence, RF performance, production PKI behavior, or certified
 airborne execution.
 
