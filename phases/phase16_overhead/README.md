@@ -4,11 +4,11 @@ This phase measures the logical communication cost of the implemented SAM
 cryptographic protocol elements. It does not claim a DO-260C or ED-102B RF
 mapping and does not estimate 1090 MHz channel occupancy.
 
-Run from the `sam_phase1` project directory with the existing virtual
+Run from the package root with the existing virtual
 environment active:
 
 ```bash
-python ~/Downloads/sam_phase16_communication_overhead/scripts/evaluate_overhead.py \
+python phases/phase16_overhead/scripts/evaluate_overhead.py \
   --report reports/sam_phase16_communication_overhead.json \
   --seed 1103 \
   --duration-seconds 3600 \
@@ -20,7 +20,7 @@ python ~/Downloads/sam_phase16_communication_overhead/scripts/evaluate_overhead.
 Validate the report:
 
 ```bash
-python ~/Downloads/sam_phase16_communication_overhead/scripts/validate_report.py \
+python phases/phase16_overhead/scripts/validate_report.py \
   reports/sam_phase16_communication_overhead.json
 ```
 

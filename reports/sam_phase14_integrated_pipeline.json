@@ -1,0 +1,293 @@
+{
+  "schema": "sam.phase14.integrated-message-pipeline.v1",
+  "scope": {
+    "implemented": "per-observation physical + synthetic post-disclosure HMAC + cached trust + deterministic fusion software pipeline",
+    "not_implemented": [
+      "authenticator captured from original LocaRDS RF payload",
+      "TESLA disclosure scheduling inside the timed path",
+      "raw-IQ recovery",
+      "trust-service networking or ledger consensus",
+      "certified airborne hardware",
+      "attack/anomaly classifier"
+    ]
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "warmups": 1,
+    "measured_fresh_process_repetitions": 30,
+    "message_surrogate_bytes": 14,
+    "hmac": "HMAC-SHA3-256",
+    "transmitted_tag_bytes": 16,
+    "trust_record": "ECDSA P-256/SHA-256 verified once then cached",
+    "fusion_policy": "VERIFIED requires crypto + trust + physical; conflict dominates"
+  },
+  "inputs": {
+    "selected_sha256": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+    "sensors_sha256": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+    "calibration_sha256": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+  },
+  "counts": {
+    "rows_read": 270934,
+    "test_rows": 180183,
+    "test_original_ge4_rows": 82986,
+    "physical_supported_rows": 78358,
+    "hmac_verified_rows": 82986,
+    "A1_VERIFIED": 78358,
+    "A1_INSUFFICIENT_EVIDENCE": 4628,
+    "A1_CONFLICTING": 0
+  },
+  "assurance_states": {
+    "VERIFIED": 78358,
+    "INSUFFICIENT_EVIDENCE": 4628,
+    "CONFLICTING": 0
+  },
+  "component_variants": {
+    "A0": {
+      "LEGACY_UNASSURED": 82986
+    },
+    "A2_no_crypto": {
+      "INSUFFICIENT_EVIDENCE": 82986
+    },
+    "A3_no_physical": {
+      "INSUFFICIENT_EVIDENCE": 82986
+    },
+    "A6_trust_modes": {
+      "valid_cache": {
+        "VERIFIED": 78358,
+        "INSUFFICIENT_EVIDENCE": 4628
+      },
+      "cold_or_expired_cache": {
+        "INSUFFICIENT_EVIDENCE": 82986
+      },
+      "revoked_record": {
+        "CONFLICTING": 82986
+      }
+    },
+    "A7_single_source": {
+      "crypto_only_VERIFIED": 82986,
+      "physical_only_VERIFIED": 78358,
+      "physical_only_INSUFFICIENT_EVIDENCE": 4628
+    }
+  },
+  "validation": {
+    "absolute_q50_ns": 64.98799972087727,
+    "absolute_q95_ns": 227.07981870131601
+  },
+  "summaries": {
+    "wall_seconds": {
+      "n": 30,
+      "mean": 3.2620039917668087,
+      "median": 3.262386250502459,
+      "minimum": 3.2301934589995653,
+      "maximum": 3.290778374997899,
+      "sample_stdev": 0.014296595683180058,
+      "values": [
+        3.253651416998764,
+        3.2872562499978812,
+        3.2647313749985187,
+        3.290778374997899,
+        3.268843832996936,
+        3.2611237920027634,
+        3.2596748329997354,
+        3.2533685419984977,
+        3.272793542000727,
+        3.243071458000486,
+        3.246773540999129,
+        3.2656480420009757,
+        3.282379000000219,
+        3.2814040830016893,
+        3.2521147090010345,
+        3.2673418750018755,
+        3.241509874998883,
+        3.264948000000004,
+        3.2572866670016083,
+        3.264440792001551,
+        3.2301934589995653,
+        3.2595168750012817,
+        3.2636487090021546,
+        3.271441083001264,
+        3.2767058749996067,
+        3.245721416999004,
+        3.248776333999558,
+        3.2760800830001244,
+        3.2479748750010913,
+        3.260921042001428
+      ]
+    },
+    "cpu_seconds": {
+      "n": 30,
+      "mean": 3.2618201666666664,
+      "median": 3.2622400000000003,
+      "minimum": 3.230156,
+      "maximum": 3.290737,
+      "sample_stdev": 0.01428284053435748,
+      "values": [
+        3.253543,
+        3.287221,
+        3.2646830000000002,
+        3.290737,
+        3.268788,
+        3.257781,
+        3.259633,
+        3.253332,
+        3.272767,
+        3.243005,
+        3.246724,
+        3.265605,
+        3.2818680000000002,
+        3.281128,
+        3.2520499999999997,
+        3.267181,
+        3.2414799999999997,
+        3.264914,
+        3.2572449999999997,
+        3.264377,
+        3.230156,
+        3.2594819999999998,
+        3.263614,
+        3.271398,
+        3.2766669999999998,
+        3.2456750000000003,
+        3.248748,
+        3.276013,
+        3.2479240000000003,
+        3.260866
+      ]
+    },
+    "microseconds_per_original_ge4_row": {
+      "n": 30,
+      "mean": 39.3078831582051,
+      "median": 39.31248946210758,
+      "minimum": 38.92455907019937,
+      "maximum": 39.65462096013664,
+      "sample_stdev": 0.1722771995659515,
+      "values": [
+        39.207232750087535,
+        39.61217856021354,
+        39.3407487407336,
+        39.65462096013664,
+        39.390304786312576,
+        39.29727655270484,
+        39.279816270211064,
+        39.20382404259149,
+        39.43789966983258,
+        39.079741860078634,
+        39.12435279443677,
+        39.351794784674226,
+        39.55340659870603,
+        39.54165862918672,
+        39.18871507243432,
+        39.37220585402207,
+        39.06092443302344,
+        39.343359120815606,
+        39.251038331786184,
+        39.3372471501404,
+        38.92455907019937,
+        39.27791284073557,
+        39.32770237151031,
+        39.42160223412701,
+        39.485044164071134,
+        39.11167446315046,
+        39.148486901399735,
+        39.47750322946189,
+        39.138829139868065,
+        39.29483336950122
+      ]
+    },
+    "original_ge4_rows_per_second": {
+      "n": 30,
+      "mean": 25440.661960251375,
+      "median": 25437.212535541395,
+      "minimum": 25217.741987882422,
+      "maximum": 25690.72133088335,
+      "sample_stdev": 111.49680908460323,
+      "values": [
+        25505.498089450535,
+        25244.761493739188,
+        25418.93664989134,
+        25217.741987882422,
+        25386.957664452548,
+        25447.05607419937,
+        25458.367552456646,
+        25507.715750218355,
+        25356.31989461484,
+        25588.705359938314,
+        25559.528236903992,
+        25411.801557510036,
+        25282.27240059556,
+        25289.78385499171,
+        25517.55009450179,
+        25398.627745360245,
+        25601.03260522339,
+        25417.250136908733,
+        25477.03302896276,
+        25421.199307192266,
+        25690.72133088335,
+        25459.60127909059,
+        25427.368996883426,
+        25366.80254802802,
+        25326.044865107084,
+        25567.813542275268,
+        25543.77139833329,
+        25330.882608951426,
+        25550.074490638453,
+        25448.638262356206
+      ]
+    }
+  },
+  "peak_rss_mib": {
+    "n": 30,
+    "mean": 59.50416666666667,
+    "median": 59.46875,
+    "minimum": 59.25,
+    "maximum": 59.90625,
+    "sample_stdev": 0.16702771597043065,
+    "values": [
+      59.421875,
+      59.6875,
+      59.34375,
+      59.90625,
+      59.59375,
+      59.265625,
+      59.453125,
+      59.71875,
+      59.71875,
+      59.5,
+      59.34375,
+      59.65625,
+      59.65625,
+      59.421875,
+      59.6875,
+      59.28125,
+      59.4375,
+      59.40625,
+      59.46875,
+      59.421875,
+      59.46875,
+      59.484375,
+      59.65625,
+      59.71875,
+      59.265625,
+      59.5,
+      59.25,
+      59.359375,
+      59.40625,
+      59.625
+    ]
+  },
+  "interpretation_limits": [
+    "This is the first co-executed SAM software path, but the authenticator is deterministically synthesized and bound to each real LocaRDS observation.",
+    "Timing is an offline Python/Mac measurement and excludes TESLA disclosure delay, RF processing, network transport, and ledger operations.",
+    "Assurance-state counts are policy outcomes on valid synthetic authenticators and benign LocaRDS observations, not detection-accuracy results.",
+    "No precision, recall, F1, false-positive or false-negative result is produced."
+  ]
+}

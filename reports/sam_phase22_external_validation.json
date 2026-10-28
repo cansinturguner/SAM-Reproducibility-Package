@@ -1,0 +1,185 @@
+{
+  "schema": "sam.phase22.external-validation.v1",
+  "scope": {
+    "implemented": "frozen subset-1 SAM physical, cryptographic, cached-trust and fusion policy applied to LocaRDS subset 2",
+    "not_implemented": [
+      "subset-2 recalibration or threshold selection",
+      "authenticator captured from RF",
+      "RF waveform processing",
+      "certified airborne hardware"
+    ]
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "clock_model": "frozen subset-1 bias_only",
+    "minimum_modeled_receivers": 4,
+    "receiver_geometry_rank": 3,
+    "geometry_ratio_minimum": null,
+    "minimum_baseline_m": null,
+    "bootstrap_replicates": 2000,
+    "trust_mode": "valid cached trust",
+    "fusion_policy": "VERIFIED requires crypto + trust + physical; conflict dominates"
+  },
+  "inputs": {
+    "paths": {
+      "observations": "data/raw/locards/subset_2/set_2.csv",
+      "sensors": "data/raw/locards/subset_2/set_2_sensors.csv",
+      "aircraft": "data/raw/locards/subset_2/set_2_aircraft.csv",
+      "calibration": "data/processed/locards_subset_1/receiver_clock_calibration.json",
+      "primary": "reports/locards_subset_1_frozen_test.json"
+    },
+    "sha256": {
+      "observations": "5ff68c7e402caa183678c03f4d23ba45b63bc96fa1177f8ce7e4fb530c45dd58",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "aircraft": "70156a0865e655f4fb470e5814fd153708ac9f97ef193b70ebf3f4a5d84e1893",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654",
+      "primary": "5569abf2df82f5d80918aa99e8dee7f032e5e86353e18004bba5ce774c42f94c"
+    },
+    "dataset_doi": "10.5281/zenodo.4739276"
+  },
+  "metadata": {
+    "aircraft_table_rows": 2888,
+    "trusted_aircraft_identifiers": 190,
+    "sensor_table_rows": 716,
+    "good_sensors": 45,
+    "frozen_modeled_good_sensors": 30
+  },
+  "counts": {
+    "rows_read": 6535444,
+    "trusted_aircraft_rows": 894967,
+    "trusted_good_ge3_rows": 251265,
+    "external_eligible_good_ge4_rows": 107314,
+    "physical_supported_rows": 98024,
+    "fewer_than_4_modeled_receivers": 9290,
+    "geometry_rank_below_3": 0,
+    "hmac_verified_rows": 107314,
+    "VERIFIED": 98024,
+    "INSUFFICIENT_EVIDENCE": 9290,
+    "CONFLICTING": 0
+  },
+  "availability": {
+    "denominator": "trusted subset-2 rows with at least four released-good receivers",
+    "numerator": "rows supported by at least four frozen-modeled receivers and rank-three geometry",
+    "fraction": 0.91343161190525
+  },
+  "pair_residuals": {
+    "n": 376221,
+    "signed_median_ns": -9.041078223788645,
+    "absolute_q50_ns": 67.12807150522713,
+    "absolute_q90_ns": 181.300402054796,
+    "absolute_q95_ns": 233.96879993448965,
+    "absolute_q99_ns": 288187.44808582764,
+    "within_500ns_fraction": 0.985596232001935,
+    "within_1000ns_fraction": 0.9885599155815332
+  },
+  "aircraft_clustered_confidence_intervals": {
+    "method": "aircraft-cluster bootstrap with replacement",
+    "replicates": 2000,
+    "seed": 1103,
+    "availability_weighted_by_rows": {
+      "ci95_low": 0.8749034753956051,
+      "ci95_high": 0.9447977166029063,
+      "estimate": 0.91343161190525
+    },
+    "median_of_aircraft_level_median_absolute_residual_ns": {
+      "ci95_low": 66.75395937691792,
+      "ci95_high": 74.93604849051917,
+      "estimate": 70.84961770172231
+    }
+  },
+  "by_modeled_receiver_count": {
+    "4": {
+      "n": 143973,
+      "signed_median_ns": -14.881587349053007,
+      "absolute_q50_ns": 66.61915380042046,
+      "absolute_q90_ns": 182.25481049319498,
+      "absolute_q95_ns": 237.3607773575466,
+      "absolute_q99_ns": 999999892.3749892,
+      "within_500ns_fraction": 0.9845318219388357,
+      "within_1000ns_fraction": 0.9867544609058643
+    },
+    "5": {
+      "n": 112300,
+      "signed_median_ns": -11.447640892816707,
+      "absolute_q50_ns": 66.43335152679356,
+      "absolute_q90_ns": 179.40665458742015,
+      "absolute_q95_ns": 231.7902674733628,
+      "absolute_q99_ns": 999999802.44147,
+      "within_500ns_fraction": 0.9849777382012467,
+      "within_1000ns_fraction": 0.9879073909171862
+    },
+    "6": {
+      "n": 71945,
+      "signed_median_ns": -6.385703967040172,
+      "absolute_q50_ns": 67.2662383299903,
+      "absolute_q90_ns": 179.73335367840482,
+      "absolute_q95_ns": 229.56992063708608,
+      "absolute_q99_ns": 911.8256173200401,
+      "within_500ns_fraction": 0.9872541524775871,
+      "within_1000ns_fraction": 0.9903120439224408
+    },
+    "7": {
+      "n": 33414,
+      "signed_median_ns": 4.113279392695404,
+      "absolute_q50_ns": 68.23134767558076,
+      "absolute_q90_ns": 182.1153652132955,
+      "absolute_q95_ns": 235.74384081189186,
+      "absolute_q99_ns": 792.1804781536549,
+      "within_500ns_fraction": 0.9862931705273239,
+      "within_1000ns_fraction": 0.9911414377207158
+    },
+    "8+": {
+      "n": 14589,
+      "signed_median_ns": 29.13870633437182,
+      "absolute_q50_ns": 75.63176192788524,
+      "absolute_q90_ns": 189.146561049606,
+      "absolute_q95_ns": 235.82472347842986,
+      "absolute_q99_ns": 440.06468260641327,
+      "within_500ns_fraction": 0.9910891767770238,
+      "within_1000ns_fraction": 0.9968469394749468
+    }
+  },
+  "primary_subset1_comparison": {
+    "subset1": {
+      "availability": 0.9442315571301183,
+      "pair_residual_absolute_q50_ns": 64.98799972087727,
+      "pair_residual_absolute_q95_ns": 227.07981870131601,
+      "usable_rows": 78358,
+      "eligible_rows": 82986
+    },
+    "subset2": {
+      "availability": 0.91343161190525,
+      "pair_residual_absolute_q50_ns": 67.12807150522713,
+      "pair_residual_absolute_q95_ns": 233.96879993448965,
+      "usable_rows": 98024,
+      "eligible_rows": 107314
+    },
+    "subset2_minus_subset1": {
+      "availability": -0.030799945224868286,
+      "pair_residual_absolute_q50_ns": 2.140071784349857,
+      "pair_residual_absolute_q95_ns": 6.888981233173638
+    }
+  },
+  "runtime": {
+    "wall_seconds": 17.46161729200321,
+    "rows_read_per_second": 374274.8389631123,
+    "eligible_rows_per_second": 6145.707937897936,
+    "peak_rss_mib": 75.65625
+  },
+  "interpretation_limits": [
+    "Subset 2 is an independent released LocaRDS data partition, but it uses the same published sensor metadata table as subset 1.",
+    "No subset-2 observation was used to update the frozen subset-1 clock parameters or decision rules.",
+    "Cryptographic authenticators are deterministic synthetic surrogates bound to real subset-2 observations.",
+    "Availability measures evidence support and is not an attack-detection rate.",
+    "Results characterize the recorded Python/Mac prototype and not certified avionics hardware."
+  ]
+}

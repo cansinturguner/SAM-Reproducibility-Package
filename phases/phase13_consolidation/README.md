@@ -7,14 +7,14 @@ not join the LocaRDS and cryptographic observations at message level.
 Run from the existing SAM project root:
 
 ```bash
-cd ~/Downloads/sam_phase1
+cd SAM_Reproducibility_Package
 source .venv/bin/activate
 ```
 
 Generate the report:
 
 ```bash
-python ~/Downloads/sam_phase13_final_consolidation/scripts/consolidate_results.py \
+python phases/phase13_consolidation/scripts/consolidate_results.py \
   --phase5d reports/locards_subset_1_frozen_test.json \
   --phase6 reports/locards_subset_1_receiver_loss.json \
   --phase7 reports/locards_subset_1_phase7_benchmark.json \
@@ -29,7 +29,7 @@ python ~/Downloads/sam_phase13_final_consolidation/scripts/consolidate_results.p
 Validate it:
 
 ```bash
-python ~/Downloads/sam_phase13_final_consolidation/scripts/validate_report.py \
+python phases/phase13_consolidation/scripts/validate_report.py \
   reports/sam_phase13_final_consolidation.json
 ```
 

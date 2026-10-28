@@ -1,0 +1,268 @@
+{
+  "phase": "SAM Phase 7 frozen physical-verification benchmark",
+  "scope": "End-to-end file hashing, input loading, test filtering, geometry checking, clock correction, and pair-residual computation; excludes bootstrap, attack detection, cryptography, ledger operations, and Phase 6 simulation.",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "logical_cpu_count": 8
+  },
+  "controls": {
+    "warmups": 1,
+    "measured_repetitions": 5,
+    "fresh_subprocess_per_repetition": true,
+    "blas_thread_environment": 1,
+    "peak_memory_metric": "maximum resident set size of each fresh worker process"
+  },
+  "inputs": {
+    "selected_sha256": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+    "sensors_sha256": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+    "calibration_sha256": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+  },
+  "counts": {
+    "rows_read": 270934,
+    "test_rows": 180183,
+    "test_original_ge4_rows": 82986,
+    "usable_test_rows": 78358,
+    "pair_residuals": 304814
+  },
+  "validation": {
+    "absolute_q50_ns": 64.98799972087727,
+    "absolute_q95_ns": 227.07981870131601
+  },
+  "summaries": {
+    "wall_seconds": {
+      "mean": 2.594841075199656,
+      "median": 2.5986710830002266,
+      "minimum": 2.5756789170009142,
+      "maximum": 2.6090670000012324,
+      "sample_stdev": 0.013538448514678154,
+      "values": [
+        2.6090670000012324,
+        2.5867827919973934,
+        2.5756789170009142,
+        2.5986710830002266,
+        2.6040055839985143
+      ]
+    },
+    "cpu_seconds": {
+      "mean": 2.594805,
+      "median": 2.598641,
+      "minimum": 2.575649,
+      "maximum": 2.609023,
+      "sample_stdev": 0.013529039415272698,
+      "values": [
+        2.609023,
+        2.586762,
+        2.575649,
+        2.598641,
+        2.6039499999999998
+      ]
+    },
+    "rows_read_per_second": {
+      "mean": 104414.838739019,
+      "median": 104258.67350907694,
+      "minimum": 103843.25124646934,
+      "maximum": 105189.35346004691,
+      "sample_stdev": 545.8949035755921,
+      "values": [
+        103843.25124646934,
+        104737.82369288044,
+        105189.35346004691,
+        104258.67350907694,
+        104045.09178662137
+      ]
+    },
+    "usable_rows_per_second": {
+      "mean": 30198.26944537065,
+      "median": 30153.1042203055,
+      "minimum": 30032.95814172767,
+      "maximum": 30422.270214968798,
+      "sample_stdev": 157.88063828968083,
+      "values": [
+        30032.95814172767,
+        30291.681328023526,
+        30422.270214968798,
+        30153.1042203055,
+        30091.33332182774
+      ]
+    },
+    "pair_residuals_per_second": {
+      "mean": 117471.79997857536,
+      "median": 117296.10645764568,
+      "minimum": 116828.73609602821,
+      "maximum": 118343.16691729624,
+      "sample_stdev": 614.1584634578563,
+      "values": [
+        116828.73609602821,
+        117835.17384721614,
+        118343.16691729624,
+        117296.10645764568,
+        117055.81657469053
+      ]
+    },
+    "wall_microseconds_per_usable_row": {
+      "mean": 33.11520298118451,
+      "median": 33.16408130631495,
+      "minimum": 32.87065669109617,
+      "maximum": 33.296753362786596,
+      "sample_stdev": 0.172776851306544,
+      "values": [
+        33.296753362786596,
+        33.0123636641746,
+        32.87065669109617,
+        33.16408130631495,
+        33.232159881550245
+      ]
+    },
+    "peak_rss_mib": {
+      "mean": 52.10625,
+      "median": 52.09375,
+      "minimum": 51.96875,
+      "maximum": 52.25,
+      "sample_stdev": 0.12616643273866468,
+      "values": [
+        52.0,
+        51.96875,
+        52.25,
+        52.21875,
+        52.09375
+      ]
+    }
+  },
+  "repetitions": [
+    {
+      "counts": {
+        "rows_read": 270934,
+        "test_rows": 180183,
+        "test_original_ge4_rows": 82986,
+        "usable_test_rows": 78358,
+        "pair_residuals": 304814
+      },
+      "validation": {
+        "absolute_q50_ns": 64.98799972087727,
+        "absolute_q95_ns": 227.07981870131601
+      },
+      "timing": {
+        "wall_seconds": 2.6090670000012324,
+        "cpu_seconds": 2.609023,
+        "rows_read_per_second": 103843.25124646934,
+        "test_rows_per_second": 69060.31926352021,
+        "usable_rows_per_second": 30032.95814172767,
+        "pair_residuals_per_second": 116828.73609602821,
+        "wall_microseconds_per_usable_row": 33.296753362786596
+      },
+      "memory": {
+        "peak_rss_mib": 52.0
+      }
+    },
+    {
+      "counts": {
+        "rows_read": 270934,
+        "test_rows": 180183,
+        "test_original_ge4_rows": 82986,
+        "usable_test_rows": 78358,
+        "pair_residuals": 304814
+      },
+      "validation": {
+        "absolute_q50_ns": 64.98799972087727,
+        "absolute_q95_ns": 227.07981870131601
+      },
+      "timing": {
+        "wall_seconds": 2.5867827919973934,
+        "cpu_seconds": 2.586762,
+        "rows_read_per_second": 104737.82369288044,
+        "test_rows_per_second": 69655.24919889816,
+        "usable_rows_per_second": 30291.681328023526,
+        "pair_residuals_per_second": 117835.17384721614,
+        "wall_microseconds_per_usable_row": 33.0123636641746
+      },
+      "memory": {
+        "peak_rss_mib": 51.96875
+      }
+    },
+    {
+      "counts": {
+        "rows_read": 270934,
+        "test_rows": 180183,
+        "test_original_ge4_rows": 82986,
+        "usable_test_rows": 78358,
+        "pair_residuals": 304814
+      },
+      "validation": {
+        "absolute_q50_ns": 64.98799972087727,
+        "absolute_q95_ns": 227.07981870131601
+      },
+      "timing": {
+        "wall_seconds": 2.5756789170009142,
+        "cpu_seconds": 2.575649,
+        "rows_read_per_second": 105189.35346004691,
+        "test_rows_per_second": 69955.53630955005,
+        "usable_rows_per_second": 30422.270214968798,
+        "pair_residuals_per_second": 118343.16691729624,
+        "wall_microseconds_per_usable_row": 32.87065669109617
+      },
+      "memory": {
+        "peak_rss_mib": 52.25
+      }
+    },
+    {
+      "counts": {
+        "rows_read": 270934,
+        "test_rows": 180183,
+        "test_original_ge4_rows": 82986,
+        "usable_test_rows": 78358,
+        "pair_residuals": 304814
+      },
+      "validation": {
+        "absolute_q50_ns": 64.98799972087727,
+        "absolute_q95_ns": 227.07981870131601
+      },
+      "timing": {
+        "wall_seconds": 2.5986710830002266,
+        "cpu_seconds": 2.598641,
+        "rows_read_per_second": 104258.67350907694,
+        "test_rows_per_second": 69336.59329905442,
+        "usable_rows_per_second": 30153.1042203055,
+        "pair_residuals_per_second": 117296.10645764568,
+        "wall_microseconds_per_usable_row": 33.16408130631495
+      },
+      "memory": {
+        "peak_rss_mib": 52.21875
+      }
+    },
+    {
+      "counts": {
+        "rows_read": 270934,
+        "test_rows": 180183,
+        "test_original_ge4_rows": 82986,
+        "usable_test_rows": 78358,
+        "pair_residuals": 304814
+      },
+      "validation": {
+        "absolute_q50_ns": 64.98799972087727,
+        "absolute_q95_ns": 227.07981870131601
+      },
+      "timing": {
+        "wall_seconds": 2.6040055839985143,
+        "cpu_seconds": 2.6039499999999998,
+        "rows_read_per_second": 104045.09178662137,
+        "test_rows_per_second": 69194.55208053916,
+        "usable_rows_per_second": 30091.33332182774,
+        "pair_residuals_per_second": 117055.81657469053,
+        "wall_microseconds_per_usable_row": 33.232159881550245
+      },
+      "memory": {
+        "peak_rss_mib": 52.09375
+      }
+    }
+  ],
+  "interpretation_limits": [
+    "Values characterize this Python implementation and machine, not certified avionics hardware.",
+    "Peak RSS includes the Python interpreter, NumPy, input buffers, and retained residual array.",
+    "Throughput is an offline end-to-end processing measurement and is not authentication delay."
+  ]
+}

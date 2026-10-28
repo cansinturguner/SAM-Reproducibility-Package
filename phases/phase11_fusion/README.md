@@ -7,14 +7,14 @@ reports.
 Run from the existing project root:
 
 ```bash
-cd ~/Downloads/sam_phase1
+cd SAM_Reproducibility_Package
 source .venv/bin/activate
 ```
 
 Run Phase 11:
 
 ```bash
-python ~/Downloads/sam_phase11_evidence_fusion/scripts/run_fusion_experiment.py \
+python phases/phase11_fusion/scripts/run_fusion_experiment.py \
   --phase5d reports/locards_subset_1_frozen_test.json \
   --phase8 reports/sam_phase8_crypto.json \
   --phase9 reports/sam_phase9_tesla.json \
@@ -27,7 +27,7 @@ python ~/Downloads/sam_phase11_evidence_fusion/scripts/run_fusion_experiment.py 
 Validate:
 
 ```bash
-python ~/Downloads/sam_phase11_evidence_fusion/scripts/validate_report.py \
+python phases/phase11_fusion/scripts/validate_report.py \
   reports/sam_phase11_evidence_fusion.json
 ```
 

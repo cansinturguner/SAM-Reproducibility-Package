@@ -1,0 +1,161 @@
+{
+  "phase": "SAM Phase 5D frozen physical-corroboration test",
+  "frozen_configuration": {
+    "timestamp_unit": "nanosecond",
+    "clock_model": "bias_only",
+    "minimum_modeled_receivers": 4,
+    "receiver_geometry_rank": 3,
+    "geometry_ratio_minimum": null,
+    "minimum_baseline_m": null,
+    "configuration_source": "Phase 5B calibration and Phase 5C G0+B0 selection"
+  },
+  "inputs": {
+    "selected_path": "data/processed/locards_subset_1/trusted_good_ge3.csv.gz",
+    "selected_sha256": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+    "sensors_path": "data/raw/locards/subset_1/set_1_sensors.csv",
+    "calibration_path": "data/processed/locards_subset_1/receiver_clock_calibration.json",
+    "calibration_sha256": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654",
+    "modeled_receivers_with_coordinates": 30
+  },
+  "counts": {
+    "rows_read": 270934,
+    "test_rows": 180183,
+    "test_original_ge4_rows": 82986,
+    "usable_test_rows": 78358,
+    "usable_pair_residuals": 304814,
+    "fewer_than_4_modeled_receivers": 4628,
+    "unique_test_aircraft": 139
+  },
+  "availability": {
+    "denominator": "Phase 3 test rows originally eligible_ge4",
+    "numerator": "rows satisfying the frozen modeled-receiver and rank rule",
+    "fraction": 0.9442315571301183
+  },
+  "pair_residuals": {
+    "n": 304814,
+    "signed_median_ns": 0.06952082375937607,
+    "absolute_q50_ns": 64.98799972087727,
+    "absolute_q90_ns": 176.17025668699645,
+    "absolute_q95_ns": 227.07981870131601,
+    "absolute_q99_ns": 445.09668400380747,
+    "raw_rmse_ns": 47955141.88691153,
+    "trimmed_99pct_rmse_ns": 105.54760191318364,
+    "within_500ns_fraction": 0.9915686287375252,
+    "within_1000ns_fraction": 0.9964109260073356,
+    "over_10us_fraction": 0.0028509189210469336,
+    "over_100us_fraction": 0.0026540775686156146,
+    "over_1ms_fraction": 0.0022407107285098453
+  },
+  "row_residuals": {
+    "metric": "within-row median absolute calibrated pair residual (ns)",
+    "n": 78358,
+    "q05": 17.478869433846558,
+    "q50": 64.21407209194149,
+    "q95": 187.84744060484078,
+    "mean": 1904802.7277187088
+  },
+  "aircraft_clustered_confidence_intervals": {
+    "method": "aircraft-cluster bootstrap with replacement",
+    "replicates": 2000,
+    "seed": 1103,
+    "availability_weighted_by_rows": {
+      "estimate": 0.944500781778588,
+      "ci95_low": 0.9090331968939175,
+      "ci95_high": 0.9696874879220435
+    },
+    "median_of_aircraft_level_median_absolute_residual_ns": {
+      "estimate": 67.62112195507507,
+      "ci95_low": 64.4805567979347,
+      "ci95_high": 72.52753600111464
+    },
+    "median_of_aircraft_level_q95_absolute_residual_ns": {
+      "estimate": 211.58814589758842,
+      "ci95_low": 198.92570846811867,
+      "ci95_high": 229.52781310039856
+    }
+  },
+  "by_receiver_count": {
+    "4": {
+      "n": 110244,
+      "signed_median_ns": -11.57232333671709,
+      "absolute_q50_ns": 66.05413576697174,
+      "absolute_q90_ns": 177.8666067969475,
+      "absolute_q95_ns": 229.7280909052872,
+      "absolute_q99_ns": 427.0288369215689,
+      "raw_rmse_ns": 43122056.1761249,
+      "trimmed_99pct_rmse_ns": 106.68906070621655,
+      "within_500ns_fraction": 0.9924531040238017,
+      "within_1000ns_fraction": 0.9969612858749682,
+      "over_10us_fraction": 0.002285838685098509,
+      "over_100us_fraction": 0.0020227858205435216,
+      "over_1ms_fraction": 0.0017778745328543956
+    },
+    "5": {
+      "n": 90856,
+      "signed_median_ns": -1.8117104666744126,
+      "absolute_q50_ns": 64.69899801810243,
+      "absolute_q90_ns": 172.0871965840779,
+      "absolute_q95_ns": 220.49879505133867,
+      "absolute_q99_ns": 432.115387903561,
+      "raw_rmse_ns": 51374060.866113424,
+      "trimmed_99pct_rmse_ns": 103.4827198050989,
+      "within_500ns_fraction": 0.9918552434621819,
+      "within_1000ns_fraction": 0.9963678788412433,
+      "over_10us_fraction": 0.0027956326494672887,
+      "over_100us_fraction": 0.0027295940829444396,
+      "over_1ms_fraction": 0.00235537553931496
+    },
+    "6": {
+      "n": 60265,
+      "signed_median_ns": 8.354715716501232,
+      "absolute_q50_ns": 63.9517675396346,
+      "absolute_q90_ns": 173.03576244106515,
+      "absolute_q95_ns": 221.96139758273472,
+      "absolute_q99_ns": 479.5334226531167,
+      "raw_rmse_ns": 54937296.217871085,
+      "trimmed_99pct_rmse_ns": 104.05694081248005,
+      "within_500ns_fraction": 0.9905251804529992,
+      "within_1000ns_fraction": 0.995453414087779,
+      "over_10us_fraction": 0.003965817638762134,
+      "over_100us_fraction": 0.0037501037086202604,
+      "over_1ms_fraction": 0.003152742055919688
+    },
+    "7": {
+      "n": 29700,
+      "signed_median_ns": 15.088957210304216,
+      "absolute_q50_ns": 62.20238725899253,
+      "absolute_q90_ns": 179.8285752155062,
+      "absolute_q95_ns": 235.14859800702823,
+      "absolute_q99_ns": 506.1366989829516,
+      "raw_rmse_ns": 44570528.87388281,
+      "trimmed_99pct_rmse_ns": 107.01004734373791,
+      "within_500ns_fraction": 0.98989898989899,
+      "within_1000ns_fraction": 0.9964646464646465,
+      "over_10us_fraction": 0.003063973063973064,
+      "over_100us_fraction": 0.0026936026936026937,
+      "over_1ms_fraction": 0.0019865319865319865
+    },
+    "8+": {
+      "n": 13749,
+      "signed_median_ns": 32.460523783258395,
+      "absolute_q50_ns": 69.19544838325237,
+      "absolute_q90_ns": 192.92911190352172,
+      "absolute_q95_ns": 247.87872222602576,
+      "absolute_q99_ns": 444.2191583488342,
+      "raw_rmse_ns": 33356071.323704373,
+      "trimmed_99pct_rmse_ns": 113.74525136340269,
+      "within_500ns_fraction": 0.9907629645792422,
+      "within_1000ns_fraction": 0.9963633718815914,
+      "over_10us_fraction": 0.0024001745581496837,
+      "over_100us_fraction": 0.0023274419957815115,
+      "over_1ms_fraction": 0.0017455814968361336
+    }
+  },
+  "interpretation_limits": [
+    "This is a frozen one-time test evaluation; no threshold is tuned here.",
+    "Large residuals are reported as measurement-quality outcomes, not attack labels.",
+    "Raw RMSE is retained but is highly sensitive to rare extreme timestamps.",
+    "The 99%-trimmed RMSE is explicitly labeled and does not replace the raw RMSE."
+  ],
+  "security_label": "No attack or anomaly label is created."
+}

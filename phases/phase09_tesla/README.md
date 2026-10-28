@@ -8,7 +8,7 @@ Phase 1–8 results.
 Run from the existing SAM project root:
 
 ```bash
-cd ~/Downloads/sam_phase1
+cd SAM_Reproducibility_Package
 source .venv/bin/activate
 python --version
 ```
@@ -18,7 +18,7 @@ Python must be 3.11 or 3.12. No additional package is required.
 Run Phase 9:
 
 ```bash
-python ~/Downloads/sam_phase9_tesla_delayed_auth/scripts/run_tesla_experiment.py \
+python phases/phase09_tesla/scripts/run_tesla_experiment.py \
   --report reports/sam_phase9_tesla.json \
   --seed 1103 \
   --duration-seconds 600 \
@@ -31,7 +31,7 @@ python ~/Downloads/sam_phase9_tesla_delayed_auth/scripts/run_tesla_experiment.py
 Validate the report:
 
 ```bash
-python ~/Downloads/sam_phase9_tesla_delayed_auth/scripts/validate_report.py \
+python phases/phase09_tesla/scripts/validate_report.py \
   reports/sam_phase9_tesla.json
 ```
 

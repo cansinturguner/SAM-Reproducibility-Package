@@ -1,0 +1,348 @@
+{
+  "schema": "sam.phase21.component-latency.v1",
+  "scope": {
+    "implemented": "message-granularity component and total kernel latency on the frozen integrated SAM path",
+    "not_implemented": [
+      "input decompression or CSV loading inside the timed kernel",
+      "TESLA disclosure wait",
+      "online trust refresh or network transport",
+      "RF processing or certified airborne hardware"
+    ]
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "warmup_rows": 1000,
+    "measured_repetitions": 5,
+    "eligible_rows_per_repetition": 82986,
+    "timing_clock": "time.perf_counter_ns",
+    "trust_mode": "valid cached trust"
+  },
+  "input_counts": {
+    "rows_read": 270934,
+    "test_rows": 180183,
+    "test_original_ge4_rows": 82986
+  },
+  "frozen_validation": {
+    "counts": {
+      "crypto_verified": 82986,
+      "physical_supported": 78358,
+      "VERIFIED": 78358,
+      "INSUFFICIENT_EVIDENCE": 4628,
+      "CONFLICTING": 0
+    },
+    "pair_residual_absolute_q50_ns": 64.98799972087727,
+    "pair_residual_absolute_q95_ns": 227.07981870131601
+  },
+  "pooled_latency_microseconds": {
+    "crypto": {
+      "n": 414930,
+      "mean": 6.6391764707300025,
+      "median": 6.584,
+      "q90": 6.875,
+      "q95": 6.959,
+      "q99": 7.834,
+      "minimum": 5.708,
+      "maximum": 84.542
+    },
+    "physical_direct_tdoa": {
+      "n": 414930,
+      "mean": 20.267393991757647,
+      "median": 20.792,
+      "q90": 23.958,
+      "q95": 25.25,
+      "q99": 28.208,
+      "minimum": 1.958,
+      "maximum": 102.333
+    },
+    "fusion": {
+      "n": 414930,
+      "mean": 0.1133927963752922,
+      "median": 0.125,
+      "q90": 0.125,
+      "q95": 0.166,
+      "q99": 0.167,
+      "minimum": 0.041,
+      "maximum": 31.125
+    },
+    "total_kernel": {
+      "n": 414930,
+      "mean": 27.223465852071435,
+      "median": 27.708,
+      "q90": 31.125,
+      "q95": 32.291,
+      "q99": 35.375,
+      "minimum": 7.959,
+      "maximum": 135.25
+    },
+    "total_when_physical_supported": {
+      "n": 391790,
+      "mean": 28.273959493606267,
+      "median": 27.917,
+      "q90": 31.292,
+      "q95": 32.375,
+      "q99": 35.5,
+      "minimum": 24.083,
+      "maximum": 135.25
+    },
+    "total_when_physical_insufficient": {
+      "n": 23140,
+      "mean": 9.43725566119274,
+      "median": 9.375,
+      "q90": 9.75,
+      "q95": 9.95805,
+      "q99": 11.375,
+      "minimum": 7.959,
+      "maximum": 28.375
+    }
+  },
+  "mean_component_share_of_timed_component_sum": {
+    "crypto_fraction": 0.245713749020449,
+    "physical_direct_tdoa_fraction": 0.7500896206847967,
+    "fusion_fraction": 0.004196630294754296,
+    "note": "Shares use component means; timer and surrounding-loop overhead remain in total_kernel only."
+  },
+  "per_repetition": [
+    {
+      "repetition": 1,
+      "wall_seconds": 2.3430435419995774,
+      "kernel_observations_per_second": 35418.03577802011,
+      "total_latency_microseconds": {
+        "n": 82986,
+        "mean": 27.426469982888676,
+        "median": 28.125,
+        "q90": 31.25,
+        "q95": 32.375,
+        "q99": 35.833,
+        "minimum": 8.625,
+        "maximum": 57.583
+      },
+      "crypto_latency_microseconds": {
+        "n": 82986,
+        "mean": 6.66291861277806,
+        "median": 6.583,
+        "q90": 6.875,
+        "q95": 7.209,
+        "q99": 8.083,
+        "minimum": 5.875,
+        "maximum": 17.417
+      },
+      "physical_latency_microseconds": {
+        "n": 82986,
+        "mean": 20.44069427373292,
+        "median": 21.291,
+        "q90": 23.875,
+        "q95": 25.375,
+        "q99": 28.792,
+        "minimum": 2.083,
+        "maximum": 50.583
+      },
+      "fusion_latency_microseconds": {
+        "n": 82986,
+        "mean": 0.11607618152459451,
+        "median": 0.125,
+        "q90": 0.125,
+        "q95": 0.166,
+        "q99": 0.167,
+        "minimum": 0.041,
+        "maximum": 3.458
+      }
+    },
+    {
+      "repetition": 2,
+      "wall_seconds": 2.3347181669996644,
+      "kernel_observations_per_second": 35544.33300471762,
+      "total_latency_microseconds": {
+        "n": 82986,
+        "mean": 27.37680955823874,
+        "median": 27.667,
+        "q90": 31.5,
+        "q95": 32.584,
+        "q99": 35.958,
+        "minimum": 7.959,
+        "maximum": 135.25
+      },
+      "crypto_latency_microseconds": {
+        "n": 82986,
+        "mean": 6.654822451979851,
+        "median": 6.625,
+        "q90": 6.875,
+        "q95": 7.0,
+        "q99": 8.041,
+        "minimum": 5.708,
+        "maximum": 84.542
+      },
+      "physical_latency_microseconds": {
+        "n": 82986,
+        "mean": 20.404858650856774,
+        "median": 20.625,
+        "q90": 24.25,
+        "q95": 25.458,
+        "q99": 28.583,
+        "minimum": 1.958,
+        "maximum": 96.041
+      },
+      "fusion_latency_microseconds": {
+        "n": 82986,
+        "mean": 0.1141697515243535,
+        "median": 0.125,
+        "q90": 0.125,
+        "q95": 0.166,
+        "q99": 0.167,
+        "minimum": 0.041,
+        "maximum": 31.125
+      }
+    },
+    {
+      "repetition": 3,
+      "wall_seconds": 2.3412792919998537,
+      "kernel_observations_per_second": 35444.72472103733,
+      "total_latency_microseconds": {
+        "n": 82986,
+        "mean": 27.476204203118595,
+        "median": 27.833,
+        "q90": 31.5,
+        "q95": 32.542,
+        "q99": 35.75,
+        "minimum": 8.125,
+        "maximum": 133.0
+      },
+      "crypto_latency_microseconds": {
+        "n": 82986,
+        "mean": 6.683970766153327,
+        "median": 6.625,
+        "q90": 6.916,
+        "q95": 7.0,
+        "q99": 7.916,
+        "minimum": 5.708,
+        "maximum": 60.834
+      },
+      "physical_latency_microseconds": {
+        "n": 82986,
+        "mean": 20.474469765984622,
+        "median": 20.7085,
+        "q90": 24.167,
+        "q95": 25.417,
+        "q99": 28.458,
+        "minimum": 2.041,
+        "maximum": 102.333
+      },
+      "fusion_latency_microseconds": {
+        "n": 82986,
+        "mean": 0.1142078904875521,
+        "median": 0.125,
+        "q90": 0.125,
+        "q95": 0.166,
+        "q99": 0.167,
+        "minimum": 0.041,
+        "maximum": 12.333
+      }
+    },
+    {
+      "repetition": 4,
+      "wall_seconds": 2.301610917000289,
+      "kernel_observations_per_second": 36055.61625861439,
+      "total_latency_microseconds": {
+        "n": 82986,
+        "mean": 27.004843154266982,
+        "median": 27.667,
+        "q90": 30.75,
+        "q95": 31.833,
+        "q99": 34.792,
+        "minimum": 8.25,
+        "maximum": 81.833
+      },
+      "crypto_latency_microseconds": {
+        "n": 82986,
+        "mean": 6.612690984021402,
+        "median": 6.583,
+        "q90": 6.833,
+        "q95": 6.917,
+        "q99": 7.292,
+        "minimum": 5.75,
+        "maximum": 21.875
+      },
+      "physical_latency_microseconds": {
+        "n": 82986,
+        "mean": 20.07771772347143,
+        "median": 20.875,
+        "q90": 23.542,
+        "q95": 24.833,
+        "q99": 27.667,
+        "minimum": 2.0,
+        "maximum": 66.417
+      },
+      "fusion_latency_microseconds": {
+        "n": 82986,
+        "mean": 0.11215600221724147,
+        "median": 0.125,
+        "q90": 0.125,
+        "q95": 0.125,
+        "q99": 0.167,
+        "minimum": 0.041,
+        "maximum": 14.75
+      }
+    },
+    {
+      "repetition": 5,
+      "wall_seconds": 2.2866857079998226,
+      "kernel_observations_per_second": 36290.95144543862,
+      "total_latency_microseconds": {
+        "n": 82986,
+        "mean": 26.833002361844166,
+        "median": 27.583,
+        "q90": 30.25,
+        "q95": 31.625,
+        "q99": 34.125,
+        "minimum": 8.583,
+        "maximum": 90.25
+      },
+      "crypto_latency_microseconds": {
+        "n": 82986,
+        "mean": 6.581479538717374,
+        "median": 6.542,
+        "q90": 6.792,
+        "q95": 6.875,
+        "q99": 7.167,
+        "minimum": 5.792,
+        "maximum": 28.25
+      },
+      "physical_latency_microseconds": {
+        "n": 82986,
+        "mean": 19.93922954474249,
+        "median": 20.792,
+        "q90": 23.208,
+        "q95": 24.708,
+        "q99": 26.75,
+        "minimum": 2.083,
+        "maximum": 61.125
+      },
+      "fusion_latency_microseconds": {
+        "n": 82986,
+        "mean": 0.11035415612271948,
+        "median": 0.125,
+        "q90": 0.125,
+        "q95": 0.125,
+        "q99": 0.167,
+        "minimum": 0.041,
+        "maximum": 7.458
+      }
+    }
+  ],
+  "peak_rss_mib": 277.296875,
+  "interpretation_limits": [
+    "Input loading is outside the timed kernel, so Phase 21 complements the Phase 14 end-to-end replay timing.",
+    "Timer calls add instrumentation overhead; total_kernel is the authoritative instrumented message interval.",
+    "Cached trust excludes CA/B2 verification and online refresh from the per-message path.",
+    "Tail values can include operating-system scheduling and Python runtime variation.",
+    "Results characterize this Python/Mac prototype and not certified avionics hardware."
+  ]
+}

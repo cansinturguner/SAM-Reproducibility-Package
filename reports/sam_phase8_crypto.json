@@ -1,0 +1,101 @@
+{
+  "schema": "sam.phase8.crypto-benchmark.v1",
+  "scope": {
+    "implemented": "message-layer cryptographic primitive benchmark",
+    "not_implemented": [
+      "Phase Overlay RF waveform or demodulation",
+      "DO-260C/ED-102B bit-level framing",
+      "TESLA delayed key-disclosure state machine",
+      "airborne certified hardware",
+      "complete SAM evidence fusion"
+    ],
+    "security_label": "No attack or anomaly dataset or classifier is used."
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "cryptography": "45.0.7",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "message_count": 10000,
+    "synthetic_message_bytes": 14,
+    "repetitions": 5,
+    "root_key_bits": 512,
+    "temporary_key_bits": 256,
+    "hmac_algorithm": "HMAC-SHA3-256",
+    "transmitted_hmac_tag_bits": 128,
+    "kdf": "benchmark-defined domain-separated HMAC-SHA3-256",
+    "ecdsa_curve": "NIST P-256/secp256r1",
+    "ecdsa_hash": "SHA-256",
+    "ecdsa_wire_encoding": "fixed-width r||s"
+  },
+  "correctness": {
+    "valid_hmac_verified": true,
+    "modified_message_hmac_rejected": true,
+    "stale_counter_rejected_by_monotonic_rule": true,
+    "valid_ecdsa_verified": true,
+    "modified_message_ecdsa_rejected": true
+  },
+  "timing_microseconds_per_message": {
+    "hmac_generation": {
+      "n": 5,
+      "mean": 1.766955,
+      "median": 1.7712291,
+      "q05": 1.7489016800000001,
+      "q95": 1.7824974999999998,
+      "minimum": 1.746,
+      "maximum": 1.78515,
+      "sample_stdev": 0.014614429415991594
+    },
+    "hmac_verification": {
+      "n": 5,
+      "mean": 1.7925541800000002,
+      "median": 1.7849375,
+      "q05": 1.7816825600000001,
+      "q95": 1.8095341200000001,
+      "minimum": 1.7810458999999998,
+      "maximum": 1.8117041,
+      "sample_stdev": 0.013184928733102827
+    },
+    "ecdsa_generation": {
+      "n": 5,
+      "mean": 21.35969834,
+      "median": 21.3673459,
+      "q05": 21.283595,
+      "q95": 21.427404160000002,
+      "minimum": 21.2781625,
+      "maximum": 21.4297875,
+      "sample_stdev": 0.06700664879915319
+    },
+    "ecdsa_verification": {
+      "n": 5,
+      "mean": 46.74771418,
+      "median": 46.7685209,
+      "q05": 46.634981720000006,
+      "q95": 46.861515819999994,
+      "minimum": 46.6244959,
+      "maximum": 46.87965,
+      "sample_stdev": 0.0996702392267477
+    }
+  },
+  "communication_bytes_per_authenticator": {
+    "hmac_tag": 16,
+    "ecdsa_signature": 64,
+    "notes": [
+      "These are authenticator sizes only, not complete Phase Overlay frames.",
+      "Certificate, key-disclosure, FEC, counter, and scheduling overhead are excluded."
+    ]
+  },
+  "peak_rss_mib": 32.28125,
+  "interpretation_limits": [
+    "Results characterize this Python implementation and machine.",
+    "They are not measurements on certified airborne avionics.",
+    "Synthetic messages measure primitive cost, not RF decoding or end-to-end authentication delay.",
+    "Negative correctness checks are protocol unit tests, not anomaly detection metrics."
+  ]
+}

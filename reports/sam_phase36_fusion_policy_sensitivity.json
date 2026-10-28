@@ -1,0 +1,606 @@
+{
+  "schema": "sam.phase36.fusion-policy-sensitivity.v1",
+  "scope": "finite-state and optional Phase 34 replay comparison of two assurance policies",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14"
+  },
+  "policies": {
+    "strict_conflict_dominant": "any crypto conflict, revocation, or physical conflict yields CONFLICTING",
+    "corroborated_conflict": "revocation remains dominant; otherwise crypto and physical must both conflict"
+  },
+  "finite_state": {
+    "combinations": 48,
+    "strict_distribution": {
+      "CONFLICTING": 30,
+      "INSUFFICIENT_EVIDENCE": 17,
+      "VERIFIED": 1
+    },
+    "corroborated_distribution": {
+      "CONFLICTING": 15,
+      "INSUFFICIENT_EVIDENCE": 32,
+      "VERIFIED": 1
+    },
+    "different_cases": 15,
+    "rows": [
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "VALID",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "VERIFIED",
+        "corroborated_conflict": "VERIFIED",
+        "different": false
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "VALID",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "VALID",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "REVOKED",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "REVOKED",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "REVOKED",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "STALE",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "STALE",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "STALE",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "ABSENT",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "ABSENT",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "VERIFIED",
+        "trust": "ABSENT",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "VALID",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "VALID",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "VALID",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "REVOKED",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "REVOKED",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "REVOKED",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "STALE",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "STALE",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "STALE",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "ABSENT",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "ABSENT",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "CONFLICTING",
+        "trust": "ABSENT",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "VALID",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "VALID",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "VALID",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "REVOKED",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "REVOKED",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "REVOKED",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "STALE",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "STALE",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "STALE",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "ABSENT",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "ABSENT",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "PENDING",
+        "trust": "ABSENT",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "VALID",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "VALID",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "VALID",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "REVOKED",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "REVOKED",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "REVOKED",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "CONFLICTING",
+        "different": false
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "STALE",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "STALE",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "STALE",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "ABSENT",
+        "physical": "PHYSICALLY_CONSISTENT",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "ABSENT",
+        "physical": "PHYSICALLY_CONFLICTING",
+        "strict_conflict_dominant": "CONFLICTING",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": true
+      },
+      {
+        "cryptographic": "ABSENT",
+        "trust": "ABSENT",
+        "physical": "PHYSICAL_EVIDENCE_UNAVAILABLE",
+        "strict_conflict_dominant": "INSUFFICIENT_EVIDENCE",
+        "corroborated_conflict": "INSUFFICIENT_EVIDENCE",
+        "different": false
+      }
+    ]
+  },
+  "phase34_replay": {
+    "source_report": "reports/sam_phase34_joint_branch_replay.json",
+    "eligible_rows": 82986,
+    "scenarios": [
+      {
+        "name": "S0_all_valid_reference",
+        "strict_conflict_dominant": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED": 77309
+        },
+        "corroborated_conflict": {
+          "INSUFFICIENT_EVIDENCE": 5677,
+          "VERIFIED": 77309
+        },
+        "decision_transitions": {
+          "CONFLICTING->INSUFFICIENT_EVIDENCE": 1049,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED->VERIFIED": 77309
+        },
+        "changed_observations": 1049
+      },
+      {
+        "name": "S1_crypto_conflict_1pct",
+        "strict_conflict_dominant": {
+          "CONFLICTING": 1877,
+          "INSUFFICIENT_EVIDENCE": 4580,
+          "VERIFIED": 76529
+        },
+        "corroborated_conflict": {
+          "CONFLICTING": 8,
+          "INSUFFICIENT_EVIDENCE": 6449,
+          "VERIFIED": 76529
+        },
+        "decision_transitions": {
+          "CONFLICTING->CONFLICTING": 8,
+          "CONFLICTING->INSUFFICIENT_EVIDENCE": 1869,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 4580,
+          "VERIFIED->VERIFIED": 76529
+        },
+        "changed_observations": 1869
+      },
+      {
+        "name": "S2_crypto_pending_10pct",
+        "strict_conflict_dominant": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 12295,
+          "VERIFIED": 69642
+        },
+        "corroborated_conflict": {
+          "INSUFFICIENT_EVIDENCE": 13344,
+          "VERIFIED": 69642
+        },
+        "decision_transitions": {
+          "CONFLICTING->INSUFFICIENT_EVIDENCE": 1049,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 12295,
+          "VERIFIED->VERIFIED": 69642
+        },
+        "changed_observations": 1049
+      },
+      {
+        "name": "S3_trust_revoked_1pct",
+        "strict_conflict_dominant": {
+          "CONFLICTING": 1858,
+          "INSUFFICIENT_EVIDENCE": 4584,
+          "VERIFIED": 76544
+        },
+        "corroborated_conflict": {
+          "CONFLICTING": 817,
+          "INSUFFICIENT_EVIDENCE": 5625,
+          "VERIFIED": 76544
+        },
+        "decision_transitions": {
+          "CONFLICTING->CONFLICTING": 817,
+          "CONFLICTING->INSUFFICIENT_EVIDENCE": 1041,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 4584,
+          "VERIFIED->VERIFIED": 76544
+        },
+        "changed_observations": 1041
+      },
+      {
+        "name": "S4_trust_stale_10pct",
+        "strict_conflict_dominant": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 12375,
+          "VERIFIED": 69562
+        },
+        "corroborated_conflict": {
+          "INSUFFICIENT_EVIDENCE": 13424,
+          "VERIFIED": 69562
+        },
+        "decision_transitions": {
+          "CONFLICTING->INSUFFICIENT_EVIDENCE": 1049,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 12375,
+          "VERIFIED->VERIFIED": 69562
+        },
+        "changed_observations": 1049
+      },
+      {
+        "name": "S5_joint_controlled_interaction",
+        "strict_conflict_dominant": {
+          "CONFLICTING": 2659,
+          "INSUFFICIENT_EVIDENCE": 19109,
+          "VERIFIED": 61218
+        },
+        "corroborated_conflict": {
+          "CONFLICTING": 832,
+          "INSUFFICIENT_EVIDENCE": 20936,
+          "VERIFIED": 61218
+        },
+        "decision_transitions": {
+          "CONFLICTING->CONFLICTING": 832,
+          "CONFLICTING->INSUFFICIENT_EVIDENCE": 1827,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 19109,
+          "VERIFIED->VERIFIED": 61218
+        },
+        "changed_observations": 1827
+      }
+    ]
+  },
+  "illustrative_sequences": {
+    "isolated_physical_conflict": {
+      "states": [
+        [
+          "VERIFIED",
+          "VALID",
+          "PHYSICALLY_CONSISTENT"
+        ],
+        [
+          "VERIFIED",
+          "VALID",
+          "PHYSICALLY_CONFLICTING"
+        ],
+        [
+          "VERIFIED",
+          "VALID",
+          "PHYSICALLY_CONSISTENT"
+        ]
+      ],
+      "strict": [
+        "VERIFIED",
+        "CONFLICTING",
+        "VERIFIED"
+      ],
+      "corroborated": [
+        "VERIFIED",
+        "INSUFFICIENT_EVIDENCE",
+        "VERIFIED"
+      ]
+    },
+    "simultaneous_crypto_and_physical_conflict": {
+      "states": [
+        [
+          "CONFLICTING",
+          "VALID",
+          "PHYSICALLY_CONFLICTING"
+        ]
+      ],
+      "strict": [
+        "CONFLICTING"
+      ],
+      "corroborated": [
+        "CONFLICTING"
+      ]
+    },
+    "revocation_only": {
+      "states": [
+        [
+          "VERIFIED",
+          "REVOKED",
+          "PHYSICALLY_CONSISTENT"
+        ]
+      ],
+      "strict": [
+        "CONFLICTING"
+      ],
+      "corroborated": [
+        "CONFLICTING"
+      ]
+    }
+  },
+  "correctness": {
+    "state_space_complete": true,
+    "both_policies_verify_only_full_support": true,
+    "revocation_dominant_in_both": true,
+    "alternative_changes_at_least_one_case": true
+  },
+  "interpretation_limits": [
+    "The corroborated-conflict policy is a sensitivity comparator, not a deployment recommendation.",
+    "Reducing single-branch conflicts also delays or suppresses response to a genuine single-source compromise.",
+    "No cost function or operational safety authority is used to select between policies."
+  ]
+}

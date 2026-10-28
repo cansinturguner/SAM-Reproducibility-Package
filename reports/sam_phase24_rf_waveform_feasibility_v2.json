@@ -1,0 +1,332 @@
+{
+  "schema": "sam.phase24.rf-waveform-feasibility.v2",
+  "scope": {
+    "implemented": "software-only CABBA PPM/D8PSK complex-baseband feasibility over AWGN",
+    "gnu_radio_used": false,
+    "sdr_hardware_used": false,
+    "rf_transmission_performed": false,
+    "commercial_receiver_tested": false
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "reedsolo": "1.7.0",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "packets_per_ebno": 10000,
+    "highest_ebno_packets": 20000,
+    "ebno_db": [
+      8.0,
+      10.0,
+      12.0,
+      14.0,
+      15.0,
+      16.0,
+      18.0
+    ],
+    "modulation": "differential 8-PSK, hard-decision",
+    "channel": "complex AWGN, perfect timing/carrier",
+    "adsb_data_symbols": 112,
+    "overlay_bits": 336,
+    "reference_bits": 12,
+    "security_bits": 204,
+    "parity_bits": 120,
+    "rs_code": "RS(54,34) over GF(64)",
+    "rs_decoder": "reedsolo 1.7.0 bounded-distance decoder",
+    "rs_correction_radius_symbols": 10,
+    "gf64_primitive_polynomial": "x^6 + x + 1 (0x43)",
+    "gf64_generator_roots": "alpha^1 through alpha^20",
+    "samples_per_microsecond_waveform_smoke_test": 8
+  },
+  "implementation_choices_not_attributed_to_cabba_authors": [
+    "GF(64) primitive polynomial and generator-root convention",
+    "systematic RS symbol layout",
+    "binary-to-D8PSK increment mapping",
+    "differential phase initialization and hard-decision detector",
+    "perfect synchronization and complex AWGN model"
+  ],
+  "correctness": {
+    "gf64_field_cycle_has_63_nonzero_elements": true,
+    "rs_codeword_syndromes_zero": true,
+    "reedsolo_encoder_matches_internal_encoder": true,
+    "actual_decoder_corrects_deterministic_10_symbol_error_vector": true,
+    "noiseless_overlay_round_trip": true,
+    "ppm_waveform_structure": true
+  },
+  "waveform_smoke_test": {
+    "complex_sample_count": 896,
+    "duration_microseconds": 112.0,
+    "nonzero_samples": 448,
+    "export_path": null
+  },
+  "ebno_results": [
+    {
+      "ebno_db": 8.0,
+      "packets": 10000,
+      "overlay_bits_tested": 3240000,
+      "raw_overlay_bit_errors": 173157,
+      "raw_overlay_ber": 0.053443518518518515,
+      "raw_overlay_ber_ci95_exact": {
+        "low": 0.05319885906043739,
+        "high": 0.05368897646490018
+      },
+      "security_payload_bits_tested": 2040000,
+      "raw_security_payload_bit_errors": 109021,
+      "raw_security_payload_ber": 0.053441666666666665,
+      "rs_bounded_distance_recoverable_packets": 7371,
+      "rs_bounded_distance_recoverable_fraction": 0.7371,
+      "rs_bounded_distance_failure_fraction": 0.2629,
+      "actual_rs_decoder": {
+        "correct_payload_packets": 7371,
+        "correct_payload_fraction": 0.7371,
+        "corrected_nonzero_error_packets": 7370,
+        "declared_failure_packets": 2629,
+        "declared_failure_fraction": 0.2629,
+        "miscorrected_payload_packets": 0,
+        "miscorrection_fraction": 0.0
+      },
+      "symbol_error_histogram": {
+        "0": 1,
+        "1": 17,
+        "2": 73,
+        "3": 186,
+        "4": 392,
+        "5": 672,
+        "6": 991,
+        "7": 1258,
+        "8": 1302,
+        "9": 1305,
+        "10": 1174,
+        "11": 909,
+        "12": 655,
+        "13": 469,
+        "14": 309,
+        "15": 138,
+        "16": 81,
+        "17": 44,
+        "18": 11,
+        "19": 11,
+        "20": 1,
+        "21": 1
+      }
+    },
+    {
+      "ebno_db": 10.0,
+      "packets": 10000,
+      "overlay_bits_tested": 3240000,
+      "raw_overlay_bit_errors": 62997,
+      "raw_overlay_ber": 0.01944351851851852,
+      "raw_overlay_ber_ci95_exact": {
+        "low": 0.01929344517937658,
+        "high": 0.01959445159258905
+      },
+      "security_payload_bits_tested": 2040000,
+      "raw_security_payload_bit_errors": 39418,
+      "raw_security_payload_ber": 0.019322549019607844,
+      "rs_bounded_distance_recoverable_packets": 9990,
+      "rs_bounded_distance_recoverable_fraction": 0.999,
+      "rs_bounded_distance_failure_fraction": 0.0010000000000000009,
+      "actual_rs_decoder": {
+        "correct_payload_packets": 9990,
+        "correct_payload_fraction": 0.999,
+        "corrected_nonzero_error_packets": 9585,
+        "declared_failure_packets": 10,
+        "declared_failure_fraction": 0.001,
+        "miscorrected_payload_packets": 0,
+        "miscorrection_fraction": 0.0
+      },
+      "symbol_error_histogram": {
+        "0": 405,
+        "1": 1255,
+        "2": 2041,
+        "3": 2079,
+        "4": 1785,
+        "5": 1188,
+        "6": 665,
+        "7": 345,
+        "8": 144,
+        "9": 67,
+        "10": 16,
+        "11": 6,
+        "12": 3,
+        "13": 1
+      }
+    },
+    {
+      "ebno_db": 12.0,
+      "packets": 10000,
+      "overlay_bits_tested": 3240000,
+      "raw_overlay_bit_errors": 13844,
+      "raw_overlay_ber": 0.004272839506172839,
+      "raw_overlay_ber_ci95_exact": {
+        "low": 0.004202104676375321,
+        "high": 0.0043444625570582835
+      },
+      "security_payload_bits_tested": 2040000,
+      "raw_security_payload_bit_errors": 8717,
+      "raw_security_payload_ber": 0.004273039215686275,
+      "rs_bounded_distance_recoverable_packets": 10000,
+      "rs_bounded_distance_recoverable_fraction": 1.0,
+      "rs_bounded_distance_failure_fraction": 0.0,
+      "actual_rs_decoder": {
+        "correct_payload_packets": 10000,
+        "correct_payload_fraction": 1.0,
+        "corrected_nonzero_error_packets": 5142,
+        "declared_failure_packets": 0,
+        "declared_failure_fraction": 0.0,
+        "miscorrected_payload_packets": 0,
+        "miscorrection_fraction": 0.0
+      },
+      "symbol_error_histogram": {
+        "0": 4858,
+        "1": 3334,
+        "2": 1332,
+        "3": 369,
+        "4": 89,
+        "5": 15,
+        "6": 3
+      }
+    },
+    {
+      "ebno_db": 14.0,
+      "packets": 10000,
+      "overlay_bits_tested": 3240000,
+      "raw_overlay_bit_errors": 1308,
+      "raw_overlay_ber": 0.0004037037037037037,
+      "raw_overlay_ber_ci95_exact": {
+        "low": 0.00038212358492948495,
+        "high": 0.0004261847300162459
+      },
+      "security_payload_bits_tested": 2040000,
+      "raw_security_payload_bit_errors": 784,
+      "raw_security_payload_ber": 0.0003843137254901961,
+      "rs_bounded_distance_recoverable_packets": 10000,
+      "rs_bounded_distance_recoverable_fraction": 1.0,
+      "rs_bounded_distance_failure_fraction": 0.0,
+      "actual_rs_decoder": {
+        "correct_payload_packets": 10000,
+        "correct_payload_fraction": 1.0,
+        "corrected_nonzero_error_packets": 686,
+        "declared_failure_packets": 0,
+        "declared_failure_fraction": 0.0,
+        "miscorrected_payload_packets": 0,
+        "miscorrection_fraction": 0.0
+      },
+      "symbol_error_histogram": {
+        "0": 9314,
+        "1": 652,
+        "2": 34
+      }
+    },
+    {
+      "ebno_db": 15.0,
+      "packets": 10000,
+      "overlay_bits_tested": 3240000,
+      "raw_overlay_bit_errors": 282,
+      "raw_overlay_ber": 8.703703703703704e-05,
+      "raw_overlay_ber_ci95_exact": {
+        "low": 7.717436616048558e-05,
+        "high": 9.781070604422816e-05
+      },
+      "security_payload_bits_tested": 2040000,
+      "raw_security_payload_bit_errors": 172,
+      "raw_security_payload_ber": 8.431372549019608e-05,
+      "rs_bounded_distance_recoverable_packets": 10000,
+      "rs_bounded_distance_recoverable_fraction": 1.0,
+      "rs_bounded_distance_failure_fraction": 0.0,
+      "actual_rs_decoder": {
+        "correct_payload_packets": 10000,
+        "correct_payload_fraction": 1.0,
+        "corrected_nonzero_error_packets": 153,
+        "declared_failure_packets": 0,
+        "declared_failure_fraction": 0.0,
+        "miscorrected_payload_packets": 0,
+        "miscorrection_fraction": 0.0
+      },
+      "symbol_error_histogram": {
+        "0": 9847,
+        "1": 149,
+        "2": 4
+      }
+    },
+    {
+      "ebno_db": 16.0,
+      "packets": 10000,
+      "overlay_bits_tested": 3240000,
+      "raw_overlay_bit_errors": 37,
+      "raw_overlay_ber": 1.1419753086419753e-05,
+      "raw_overlay_ber_ci95_exact": {
+        "low": 8.040572396100249e-06,
+        "high": 1.5740591345788534e-05
+      },
+      "security_payload_bits_tested": 2040000,
+      "raw_security_payload_bit_errors": 25,
+      "raw_security_payload_ber": 1.2254901960784313e-05,
+      "rs_bounded_distance_recoverable_packets": 10000,
+      "rs_bounded_distance_recoverable_fraction": 1.0,
+      "rs_bounded_distance_failure_fraction": 0.0,
+      "actual_rs_decoder": {
+        "correct_payload_packets": 10000,
+        "correct_payload_fraction": 1.0,
+        "corrected_nonzero_error_packets": 18,
+        "declared_failure_packets": 0,
+        "declared_failure_fraction": 0.0,
+        "miscorrected_payload_packets": 0,
+        "miscorrection_fraction": 0.0
+      },
+      "symbol_error_histogram": {
+        "0": 9982,
+        "1": 18
+      }
+    },
+    {
+      "ebno_db": 18.0,
+      "packets": 20000,
+      "overlay_bits_tested": 6480000,
+      "raw_overlay_bit_errors": 0,
+      "raw_overlay_ber": 0.0,
+      "raw_overlay_ber_ci95_exact": {
+        "low": 0.0,
+        "high": 5.692713586615936e-07
+      },
+      "security_payload_bits_tested": 4080000,
+      "raw_security_payload_bit_errors": 0,
+      "raw_security_payload_ber": 0.0,
+      "rs_bounded_distance_recoverable_packets": 20000,
+      "rs_bounded_distance_recoverable_fraction": 1.0,
+      "rs_bounded_distance_failure_fraction": 0.0,
+      "actual_rs_decoder": {
+        "correct_payload_packets": 20000,
+        "correct_payload_fraction": 1.0,
+        "corrected_nonzero_error_packets": 0,
+        "declared_failure_packets": 0,
+        "declared_failure_fraction": 0.0,
+        "miscorrected_payload_packets": 0,
+        "miscorrection_fraction": 0.0
+      },
+      "symbol_error_histogram": {
+        "0": 20000
+      }
+    }
+  ],
+  "runtime": {
+    "wall_seconds_for_ber_sweep": 5.923384749999968,
+    "packets_per_second": 11817.567649982617,
+    "peak_rss_mib": 96.875
+  },
+  "interpretation_limits": [
+    "This is a complex-baseband software simulation, not an RF or GNU Radio experiment.",
+    "Perfect carrier and symbol timing are assumed; synchronization failures are outside scope.",
+    "The report distinguishes the theoretical <=10-symbol correction radius from actual reedsolo decoder success, declared failure, and miscorrection.",
+    "The GF(64), bit mapping, and differential conventions are explicit reproduction choices because a bit-exact authoritative specification was not available.",
+    "A zero observed BER is bounded by the reported finite-sample confidence interval and is not proof of zero error probability.",
+    "Results do not establish RTCA conformance, commercial-receiver compatibility, certified airborne performance, or safe operational RF behavior."
+  ]
+}

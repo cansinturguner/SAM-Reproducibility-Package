@@ -13,7 +13,7 @@ validated threshold-aware physical-decision core and frozen decision model.
 
 3. Open Terminal in the SAM_Reproducibility_Package root:
 
-   cd ~/Downloads/SAM_Reproducibility_Package
+   cd SAM_Reproducibility_Package
 
 4. Activate the existing environment:
 

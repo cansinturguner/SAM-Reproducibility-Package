@@ -1,0 +1,498 @@
+{
+  "schema": "sam.phase22b.residual-tail-audit.v1",
+  "scope": {
+    "implemented": "diagnostic audit of unmodified subset-2 calibrated residual tails",
+    "correction_applied": false
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "logical_cpu_count": 8
+  },
+  "inputs": {
+    "sha256": {
+      "observations": "5ff68c7e402caa183678c03f4d23ba45b63bc96fa1177f8ce7e4fb530c45dd58",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "aircraft": "70156a0865e655f4fb470e5814fd153708ac9f97ef193b70ebf3f4a5d84e1893",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+    }
+  },
+  "counts": {
+    "rows_read": 6535444,
+    "eligible_rows": 107314,
+    "supported_rows": 98024,
+    "pair_residuals": 376221
+  },
+  "tail_fractions": {
+    "within_500_ns": 0.985596232001935,
+    "within_1000_ns": 0.9885599155815332,
+    "within_10000_ns": 0.9895061679172614,
+    "within_100000_ns": 0.9897081768428663,
+    "within_1000000_ns": 0.9902716754248168,
+    "within_10000000_ns": 0.9903354677171131,
+    "within_100000000_ns": 0.9905746888132242,
+    "within_500000000_ns": 0.9908298579824093
+  },
+  "over_threshold_counts": {
+    "over_10us": 3948,
+    "over_100us": 3872,
+    "over_1ms": 3660,
+    "over_100ms": 3546,
+    "over_500ms": 3450
+  },
+  "maximum_absolute_residual_ns": 2000000131.5001018,
+  "near_nonzero_integer_second_within_10us": {
+    "count": 3441,
+    "fraction": 0.00914621990797962,
+    "integer_second_histogram": {
+      "-1": 3145,
+      "1": 293,
+      "-2": 3
+    }
+  },
+  "top_receiver_pairs_over_10us": [
+    [
+      "134->398",
+      667
+    ],
+    [
+      "134->550",
+      588
+    ],
+    [
+      "134->670",
+      475
+    ],
+    [
+      "134->414",
+      425
+    ],
+    [
+      "134->247",
+      370
+    ],
+    [
+      "134->460",
+      344
+    ],
+    [
+      "130->134",
+      216
+    ],
+    [
+      "134->663",
+      140
+    ],
+    [
+      "134->327",
+      44
+    ],
+    [
+      "10->598",
+      34
+    ],
+    [
+      "10->147",
+      33
+    ],
+    [
+      "130->414",
+      33
+    ],
+    [
+      "10->632",
+      32
+    ],
+    [
+      "10->141",
+      29
+    ],
+    [
+      "134->143",
+      29
+    ],
+    [
+      "10->474",
+      27
+    ],
+    [
+      "134->257",
+      27
+    ],
+    [
+      "10->134",
+      25
+    ],
+    [
+      "134->470",
+      20
+    ],
+    [
+      "10->14",
+      18
+    ]
+  ],
+  "top_receiver_pairs_near_integer_second": [
+    [
+      "134->398",
+      612
+    ],
+    [
+      "134->550",
+      565
+    ],
+    [
+      "134->670",
+      434
+    ],
+    [
+      "134->414",
+      424
+    ],
+    [
+      "134->460",
+      330
+    ],
+    [
+      "134->247",
+      330
+    ],
+    [
+      "130->134",
+      214
+    ],
+    [
+      "134->663",
+      132
+    ],
+    [
+      "134->327",
+      29
+    ],
+    [
+      "134->143",
+      28
+    ],
+    [
+      "134->257",
+      26
+    ],
+    [
+      "10->134",
+      25
+    ],
+    [
+      "130->414",
+      22
+    ],
+    [
+      "134->470",
+      20
+    ],
+    [
+      "10->141",
+      17
+    ],
+    [
+      "10->147",
+      17
+    ],
+    [
+      "134->147",
+      16
+    ],
+    [
+      "10->632",
+      15
+    ],
+    [
+      "10->474",
+      14
+    ],
+    [
+      "10->598",
+      14
+    ]
+  ],
+  "near_integer_second_samples": [
+    {
+      "id": "29622",
+      "timeAtServer": "16.8269999027252",
+      "aircraft": "430",
+      "pair": "134->414",
+      "residual_ns": -1000000032.1518064,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 32.151806354522705
+    },
+    {
+      "id": "29622",
+      "timeAtServer": "16.8269999027252",
+      "aircraft": "430",
+      "pair": "134->460",
+      "residual_ns": -1000000115.1311767,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 115.13117671012878
+    },
+    {
+      "id": "29622",
+      "timeAtServer": "16.8269999027252",
+      "aircraft": "430",
+      "pair": "134->550",
+      "residual_ns": -1000000051.4069982,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 51.40699815750122
+    },
+    {
+      "id": "29622",
+      "timeAtServer": "16.8269999027252",
+      "aircraft": "430",
+      "pair": "134->663",
+      "residual_ns": -1000000084.0456408,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 84.04564082622528
+    },
+    {
+      "id": "46653",
+      "timeAtServer": "26.4749999046326",
+      "aircraft": "1428",
+      "pair": "134->398",
+      "residual_ns": -1000000111.3892919,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 111.38929188251495
+    },
+    {
+      "id": "46653",
+      "timeAtServer": "26.4749999046326",
+      "aircraft": "1428",
+      "pair": "134->414",
+      "residual_ns": -999999922.4521053,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 77.54789471626282
+    },
+    {
+      "id": "46653",
+      "timeAtServer": "26.4749999046326",
+      "aircraft": "1428",
+      "pair": "134->670",
+      "residual_ns": -1000000143.1206933,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 143.1206933259964
+    },
+    {
+      "id": "170061",
+      "timeAtServer": "95.6829998493195",
+      "aircraft": "1839",
+      "pair": "10->130",
+      "residual_ns": -999999959.732704,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 40.26729595661163
+    },
+    {
+      "id": "170061",
+      "timeAtServer": "95.6829998493195",
+      "aircraft": "1839",
+      "pair": "10->414",
+      "residual_ns": -999999964.6999899,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 35.300010085105896
+    },
+    {
+      "id": "170061",
+      "timeAtServer": "95.6829998493195",
+      "aircraft": "1839",
+      "pair": "10->470",
+      "residual_ns": -999999833.2698569,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 166.73014307022095
+    },
+    {
+      "id": "170061",
+      "timeAtServer": "95.6829998493195",
+      "aircraft": "1839",
+      "pair": "10->550",
+      "residual_ns": -999999887.341139,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 112.65886104106903
+    },
+    {
+      "id": "170061",
+      "timeAtServer": "95.6829998493195",
+      "aircraft": "1839",
+      "pair": "10->663",
+      "residual_ns": -999999808.7842788,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 191.21572124958038
+    },
+    {
+      "id": "170061",
+      "timeAtServer": "95.6829998493195",
+      "aircraft": "1839",
+      "pair": "10->670",
+      "residual_ns": -999999860.3996621,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 139.60033786296844
+    },
+    {
+      "id": "170146",
+      "timeAtServer": "95.7189998626709",
+      "aircraft": "151",
+      "pair": "10->141",
+      "residual_ns": -1000000127.2998908,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 127.29989075660706
+    },
+    {
+      "id": "170146",
+      "timeAtServer": "95.7189998626709",
+      "aircraft": "151",
+      "pair": "10->147",
+      "residual_ns": -999999947.0230875,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 52.97691249847412
+    },
+    {
+      "id": "170146",
+      "timeAtServer": "95.7189998626709",
+      "aircraft": "151",
+      "pair": "10->474",
+      "residual_ns": -1000000060.9608648,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 60.960864782333374
+    },
+    {
+      "id": "170146",
+      "timeAtServer": "95.7189998626709",
+      "aircraft": "151",
+      "pair": "10->598",
+      "residual_ns": -1000000038.867641,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 38.86764097213745
+    },
+    {
+      "id": "170146",
+      "timeAtServer": "95.7189998626709",
+      "aircraft": "151",
+      "pair": "10->632",
+      "residual_ns": -999999881.7876962,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 118.21230375766754
+    },
+    {
+      "id": "170563",
+      "timeAtServer": "95.9519999027252",
+      "aircraft": "2298",
+      "pair": "10->121",
+      "residual_ns": -1000000125.8769224,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 125.8769223690033
+    },
+    {
+      "id": "170563",
+      "timeAtServer": "95.9519999027252",
+      "aircraft": "2298",
+      "pair": "10->14",
+      "residual_ns": -999999956.2343631,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 43.765636920928955
+    },
+    {
+      "id": "170563",
+      "timeAtServer": "95.9519999027252",
+      "aircraft": "2298",
+      "pair": "10->147",
+      "residual_ns": -1000000019.3611925,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 19.36119246482849
+    },
+    {
+      "id": "170563",
+      "timeAtServer": "95.9519999027252",
+      "aircraft": "2298",
+      "pair": "10->470",
+      "residual_ns": -1000000165.8178499,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 165.81784987449646
+    },
+    {
+      "id": "170563",
+      "timeAtServer": "95.9519999027252",
+      "aircraft": "2298",
+      "pair": "10->474",
+      "residual_ns": -999999986.763613,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 13.236387014389038
+    },
+    {
+      "id": "248496",
+      "timeAtServer": "139.55999994278",
+      "aircraft": "474",
+      "pair": "134->247",
+      "residual_ns": -1000000044.3703095,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 44.370309472084045
+    },
+    {
+      "id": "248496",
+      "timeAtServer": "139.55999994278",
+      "aircraft": "474",
+      "pair": "134->398",
+      "residual_ns": -999999844.4680339,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 155.53196609020233
+    },
+    {
+      "id": "248496",
+      "timeAtServer": "139.55999994278",
+      "aircraft": "474",
+      "pair": "134->670",
+      "residual_ns": -999999851.7105094,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 148.28949058055878
+    },
+    {
+      "id": "274313",
+      "timeAtServer": "154.148999929428",
+      "aircraft": "1839",
+      "pair": "130->134",
+      "residual_ns": 1000000041.6660838,
+      "nearest_integer_seconds": 1,
+      "distance_from_integer_second_ns": 41.66608381271362
+    },
+    {
+      "id": "316474",
+      "timeAtServer": "177.873999834061",
+      "aircraft": "790",
+      "pair": "10->134",
+      "residual_ns": 1000000001.5674912,
+      "nearest_integer_seconds": 1,
+      "distance_from_integer_second_ns": 1.5674911737442017
+    },
+    {
+      "id": "316917",
+      "timeAtServer": "178.113999843597",
+      "aircraft": "2109",
+      "pair": "10->134",
+      "residual_ns": 1000000273.8600287,
+      "nearest_integer_seconds": 1,
+      "distance_from_integer_second_ns": 273.8600287437439
+    },
+    {
+      "id": "392588",
+      "timeAtServer": "220.565999984741",
+      "aircraft": "474",
+      "pair": "134->247",
+      "residual_ns": -1000000039.2477528,
+      "nearest_integer_seconds": -1,
+      "distance_from_integer_second_ns": 39.24775278568268
+    }
+  ],
+  "runtime_wall_seconds": 16.000323333999404,
+  "interpretation_limits": [
+    "This audit does not modify, wrap, trim or remove residuals.",
+    "Near-integer-second classification is diagnostic and does not by itself establish timestamp rollover.",
+    "Receiver-pair concentration does not identify malicious behavior or assign sensor fault."
+  ]
+}

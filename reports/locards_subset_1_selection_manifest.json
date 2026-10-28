@@ -1,0 +1,66 @@
+{
+  "dataset": "LocaRDS subset 1",
+  "source": "https://doi.org/10.5281/zenodo.4739276",
+  "phase2_report": "reports/locards_subset_1_audit.json",
+  "phase2_observation_sha256": "6295f7f04afeecd997c329dc0b12712f81723a2fe4d1a7b8b8ea01727eef0ccf",
+  "selection_rules": [
+    "aircraft trusted flag equals TRUE",
+    "sensor good flag equals TRUE",
+    "sensor latitude, longitude and height are present",
+    "at least three distinct good sensors",
+    "no attack or anomaly label is created",
+    "raw timestamp and signal units are not inferred"
+  ],
+  "split": {
+    "unit": "aircraft identifier",
+    "method": "deterministic SHA-256 bucket",
+    "seed": 1103,
+    "development_percent_target": 30,
+    "development_aircraft": 67,
+    "test_aircraft": 139,
+    "aircraft_overlap": 0
+  },
+  "counts": {
+    "input_rows": 6457542,
+    "trusted_rows": 965395,
+    "selected_ge3": 270934,
+    "selected_ge4": 128248,
+    "selected_development": 90751,
+    "selected_ge4_development": 45262,
+    "selected_test": 180183,
+    "selected_ge4_test": 82986
+  },
+  "output": {
+    "path": "data/processed/locards_subset_1/trusted_good_ge3.csv.gz",
+    "size_bytes": 23538167,
+    "sha256": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+    "columns": [
+      "id",
+      "timeAtServer",
+      "aircraft",
+      "latitude",
+      "longitude",
+      "baroAltitude",
+      "geoAltitude",
+      "numMeasurements",
+      "numGoodReceivers",
+      "eligible_ge4",
+      "split",
+      "goodSensorIds",
+      "goodMeasurements",
+      "receiverMinBaselineM",
+      "receiverMaxBaselineM",
+      "receiverGeometryRank",
+      "receiverGeometryRatio",
+      "rawTimestampSpan",
+      "rawSignalMin",
+      "rawSignalMax"
+    ]
+  },
+  "geometry_fields": {
+    "receiverMinBaselineM": "minimum three-dimensional ECEF distance between selected sensors",
+    "receiverMaxBaselineM": "maximum three-dimensional ECEF distance between selected sensors",
+    "receiverGeometryRank": "rank of centered receiver ECEF coordinate matrix",
+    "receiverGeometryRatio": "smallest/largest singular-value ratio; descriptive only, no threshold applied"
+  }
+}

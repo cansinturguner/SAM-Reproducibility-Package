@@ -1,0 +1,150 @@
+{
+  "schema": "sam.phase17.integrated-trust-refresh.v2",
+  "scope": {
+    "implemented": "real LocaRDS physical path + deterministic HMAC + TCP signed trust refresh + cache + fusion",
+    "not_implemented": [
+      "authenticator captured from RF",
+      "TLS or X.509",
+      "global aviation PKI",
+      "ledger consensus",
+      "operational WAN",
+      "certified hardware",
+      "attack/anomaly classifier"
+    ]
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "repetitions": 5,
+    "cache_ttl_seconds": 900,
+    "retry_interval_seconds": 60.0,
+    "refresh_rule": "refresh when cache is unavailable or older than TTL; back off after failure",
+    "service_delay": "controlled application delay over loopback",
+    "timing_boundary": "ends before server shutdown and thread-join cleanup"
+  },
+  "scenarios": [
+    {
+      "name": "online_0ms",
+      "added_delay_ms": 0,
+      "outage_at_seconds": null,
+      "counts": {
+        "eligible_rows": 82986,
+        "physical_supported": 78358,
+        "hmac_verified": 82986,
+        "trust_verified": 82986,
+        "trust_insufficient": 0,
+        "VERIFIED": 78358,
+        "INSUFFICIENT_EVIDENCE": 4628,
+        "CONFLICTING": 0,
+        "refresh_attempts": 4,
+        "refresh_successes": 4,
+        "refresh_failures": 0
+      },
+      "wall_seconds": {
+        "n": 5,
+        "mean": 2.667474050000601,
+        "median": 2.678353582999989,
+        "minimum": 2.6367747920012334,
+        "maximum": 2.6811106669993023,
+        "sample_stdev": 0.018959873031849785
+      }
+    },
+    {
+      "name": "online_50ms",
+      "added_delay_ms": 50,
+      "outage_at_seconds": null,
+      "counts": {
+        "eligible_rows": 82986,
+        "physical_supported": 78358,
+        "hmac_verified": 82986,
+        "trust_verified": 82986,
+        "trust_insufficient": 0,
+        "VERIFIED": 78358,
+        "INSUFFICIENT_EVIDENCE": 4628,
+        "CONFLICTING": 0,
+        "refresh_attempts": 4,
+        "refresh_successes": 4,
+        "refresh_failures": 0
+      },
+      "wall_seconds": {
+        "n": 5,
+        "mean": 2.917288541801099,
+        "median": 2.915773917000479,
+        "minimum": 2.909812125002645,
+        "maximum": 2.9251327909987594,
+        "sample_stdev": 0.006319038757735798
+      }
+    },
+    {
+      "name": "online_250ms",
+      "added_delay_ms": 250,
+      "outage_at_seconds": null,
+      "counts": {
+        "eligible_rows": 82986,
+        "physical_supported": 78358,
+        "hmac_verified": 82986,
+        "trust_verified": 82986,
+        "trust_insufficient": 0,
+        "VERIFIED": 78358,
+        "INSUFFICIENT_EVIDENCE": 4628,
+        "CONFLICTING": 0,
+        "refresh_attempts": 4,
+        "refresh_successes": 4,
+        "refresh_failures": 0
+      },
+      "wall_seconds": {
+        "n": 5,
+        "mean": 3.8059957413999657,
+        "median": 3.8106720830000995,
+        "minimum": 3.785880040999473,
+        "maximum": 3.8172471660000156,
+        "sample_stdev": 0.01272389618248514
+      }
+    },
+    {
+      "name": "outage_at_1800s",
+      "added_delay_ms": 50,
+      "outage_at_seconds": 1800.0,
+      "counts": {
+        "eligible_rows": 82986,
+        "physical_supported": 78358,
+        "hmac_verified": 82986,
+        "trust_verified": 46337,
+        "trust_insufficient": 36649,
+        "VERIFIED": 43672,
+        "INSUFFICIENT_EVIDENCE": 39314,
+        "CONFLICTING": 0,
+        "refresh_attempts": 32,
+        "refresh_successes": 2,
+        "refresh_failures": 30
+      },
+      "wall_seconds": {
+        "n": 5,
+        "mean": 2.827739824800665,
+        "median": 2.8311458749994927,
+        "minimum": 2.799075333001383,
+        "maximum": 2.8498030830014613,
+        "sample_stdev": 0.018372084554430474
+      }
+    }
+  ],
+  "correctness": {
+    "all_online_hmac_verified": true,
+    "frozen_eligible_count": true,
+    "frozen_physical_count": true,
+    "outage_retry_backoff_active": true
+  },
+  "interpretation_limits": [
+    "Trust delay is controlled over loopback, not operational WAN latency.",
+    "Authenticator is deterministic and synthetic but bound to each real observation.",
+    "Outage is a scheduled availability stress case, not an attack label.",
+    "Wall time excludes server shutdown and thread-join cleanup.",
+    "No precision, recall, F1, false-positive or false-negative result is produced."
+  ]
+}

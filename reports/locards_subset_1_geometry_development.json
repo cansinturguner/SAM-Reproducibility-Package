@@ -1,0 +1,170 @@
+{
+  "phase": "SAM Phase 4 receiver-geometry profiling",
+  "selection_scope": "development partition only",
+  "input": {
+    "path": "data/processed/locards_subset_1/trusted_good_ge3.csv.gz",
+    "sha256": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec"
+  },
+  "counts": {
+    "all_input_rows_read": 270934,
+    "development_ge3_rows": 90751,
+    "development_ge4_rows": 45262,
+    "development_ge3_only_rows": 45489,
+    "geometry_rank_histogram": {
+      "2": 5508,
+      "3": 85243
+    },
+    "missing_or_nonfinite": {
+      "ratio": 0,
+      "min_baseline_m": 0,
+      "max_baseline_m": 0,
+      "rank": 0
+    }
+  },
+  "distributions": {
+    "ratio_ge3": {
+      "n": 90751,
+      "median": 6.179029513844564e-14,
+      "quantiles": {
+        "q00": 4.642679732811758e-19,
+        "q01": 2.389404457253513e-17,
+        "q05": 5.709528394003195e-16,
+        "q10": 9.26491871682352e-16,
+        "q25": 3.4495865195202144e-15,
+        "q50": 6.179029513844564e-14,
+        "q75": 0.0030831942443309977,
+        "q90": 0.00570544684486949,
+        "q95": 0.006459698218848711,
+        "q99": 0.009256454201154,
+        "q100": 0.01566082428911987
+      }
+    },
+    "ratio_ge4": {
+      "n": 45262,
+      "median": 0.0030831942443309977,
+      "quantiles": {
+        "q00": 2.3663696984799128e-07,
+        "q01": 5.3332491003750554e-05,
+        "q05": 0.00019965374796293092,
+        "q10": 0.00044347741965722234,
+        "q25": 0.0014900041832378902,
+        "q50": 0.0030831942443309977,
+        "q75": 0.005328947258062009,
+        "q90": 0.006459780317296625,
+        "q95": 0.007673374143785442,
+        "q99": 0.010704336391849372,
+        "q100": 0.01566082428911987
+      }
+    },
+    "min_baseline_m_ge3": {
+      "n": 90751,
+      "median": 56319.0567985555,
+      "quantiles": {
+        "q00": 22.462923647408147,
+        "q01": 22.462923647408147,
+        "q05": 22.462923647408147,
+        "q10": 22.462923647408147,
+        "q25": 18709.08004438082,
+        "q50": 56319.0567985555,
+        "q75": 105662.2449285816,
+        "q90": 140654.29639941078,
+        "q95": 154761.42464993702,
+        "q99": 194281.58540536123,
+        "q100": 292170.0449498163
+      }
+    },
+    "min_baseline_m_ge4": {
+      "n": 45262,
+      "median": 21544.04770223167,
+      "quantiles": {
+        "q00": 22.462923647408147,
+        "q01": 22.462923647408147,
+        "q05": 22.462923647408147,
+        "q10": 22.462923647408147,
+        "q25": 6406.204067611213,
+        "q50": 21544.04770223167,
+        "q75": 57902.13212367855,
+        "q90": 85564.6546351069,
+        "q95": 125001.96821098679,
+        "q99": 136043.89124139163,
+        "q100": 229082.3500718714
+      }
+    },
+    "max_baseline_m_ge3": {
+      "n": 90751,
+      "median": 199103.23490499827,
+      "quantiles": {
+        "q00": 18531.35694702044,
+        "q01": 41753.08202124612,
+        "q05": 88958.43634178607,
+        "q10": 99555.98146169126,
+        "q25": 148986.306460725,
+        "q50": 199103.23490499827,
+        "q75": 277071.3630951845,
+        "q90": 329347.45681182103,
+        "q95": 366104.46297403827,
+        "q99": 470329.5297322532,
+        "q100": 623595.1867456854
+      }
+    },
+    "max_baseline_m_ge4": {
+      "n": 45262,
+      "median": 244326.90684468028,
+      "quantiles": {
+        "q00": 41753.08202124612,
+        "q01": 46671.986583739264,
+        "q05": 99555.98146169126,
+        "q10": 105589.88882401273,
+        "q25": 148986.306460725,
+        "q50": 244326.90684468028,
+        "q75": 290451.48123183934,
+        "q90": 341890.93986857403,
+        "q95": 385952.1461718032,
+        "q99": 490003.8674671642,
+        "q100": 531367.8024632796
+      }
+    }
+  },
+  "candidate_retention": [
+    {
+      "ratio_min_candidate": 0.001,
+      "ge4_rows_retained": 37872,
+      "ge4_retention_fraction": 0.8367283814237109
+    },
+    {
+      "ratio_min_candidate": 0.002,
+      "ge4_rows_retained": 29737,
+      "ge4_retention_fraction": 0.656997039459149
+    },
+    {
+      "ratio_min_candidate": 0.005,
+      "ge4_rows_retained": 13786,
+      "ge4_retention_fraction": 0.3045822102425876
+    },
+    {
+      "ratio_min_candidate": 0.01,
+      "ge4_rows_retained": 623,
+      "ge4_retention_fraction": 0.013764305598515311
+    },
+    {
+      "ratio_min_candidate": 0.02,
+      "ge4_rows_retained": 0,
+      "ge4_retention_fraction": 0.0
+    },
+    {
+      "ratio_min_candidate": 0.05,
+      "ge4_rows_retained": 0,
+      "ge4_retention_fraction": 0.0
+    },
+    {
+      "ratio_min_candidate": 0.1,
+      "ge4_rows_retained": 0,
+      "ge4_retention_fraction": 0.0
+    }
+  ],
+  "interpretation": {
+    "geometry_ratio": "Descriptive centered-ECEF singular-value ratio from Phase 3; larger values indicate less degenerate receiver geometry. No final threshold is set here.",
+    "test_partition": "Not used to derive these statistics or choose a threshold.",
+    "security_label": "No attack or anomaly label is created."
+  }
+}

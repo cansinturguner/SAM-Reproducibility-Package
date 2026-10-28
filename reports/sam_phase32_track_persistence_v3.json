@@ -1,5 +1,5 @@
 {
-  "schema": "sam.phase32.track-persistence-nuisance.v2",
+  "schema": "sam.phase32.track-persistence-nuisance.v3",
   "scope": "development-selected temporal persistence and nuisance-alert analysis over Phase 31 physical decisions",
   "platform": {
     "system": "Darwin",
@@ -63,6 +63,18 @@
         "median": 3.0,
         "q95": 20,
         "maximum": 26
+      },
+      "time_to_alert_seconds": {
+        "n": 34,
+        "median": 0.5240000486379586,
+        "q95": 4.918999910353989,
+        "maximum": 5.950000047690082
+      },
+      "available_observations_to_alert": {
+        "n": 34,
+        "median": 2.0,
+        "q95": 3,
+        "maximum": 3
       }
     }
   },
@@ -88,6 +100,18 @@
           "median": 1.0,
           "q95": 3,
           "maximum": 7
+        },
+        "time_to_alert_seconds": {
+          "n": 132,
+          "median": 0.0,
+          "q95": 0.0,
+          "maximum": 0.0
+        },
+        "available_observations_to_alert": {
+          "n": 132,
+          "median": 1.0,
+          "q95": 1,
+          "maximum": 1
         }
       },
       "two_of_three_h3": {
@@ -110,6 +134,18 @@
           "median": 3.0,
           "q95": 20,
           "maximum": 26
+        },
+        "time_to_alert_seconds": {
+          "n": 34,
+          "median": 0.5240000486379586,
+          "q95": 4.918999910353989,
+          "maximum": 5.950000047690082
+        },
+        "available_observations_to_alert": {
+          "n": 34,
+          "median": 2.0,
+          "q95": 3,
+          "maximum": 3
         }
       },
       "three_of_five_h3": {
@@ -132,6 +168,18 @@
           "median": 3,
           "q95": 25,
           "maximum": 25
+        },
+        "time_to_alert_seconds": {
+          "n": 11,
+          "median": 2.0340001583099365,
+          "q95": 7.4839999675749596,
+          "maximum": 7.4839999675749596
+        },
+        "available_observations_to_alert": {
+          "n": 11,
+          "median": 4,
+          "q95": 5,
+          "maximum": 5
         }
       },
       "three_consecutive_h3": {
@@ -154,6 +202,18 @@
           "median": 3.0,
           "q95": 25,
           "maximum": 25
+        },
+        "time_to_alert_seconds": {
+          "n": 6,
+          "median": 1.3009999990445067,
+          "q95": 12.84899997711102,
+          "maximum": 12.84899997711102
+        },
+        "available_observations_to_alert": {
+          "n": 6,
+          "median": 3.0,
+          "q95": 3,
+          "maximum": 3
         }
       }
     },
@@ -178,6 +238,18 @@
           "median": 1.0,
           "q95": 2,
           "maximum": 24
+        },
+        "time_to_alert_seconds": {
+          "n": 912,
+          "median": 0.0,
+          "q95": 0.0,
+          "maximum": 0.0
+        },
+        "available_observations_to_alert": {
+          "n": 912,
+          "median": 1.0,
+          "q95": 1,
+          "maximum": 1
         }
       },
       "two_of_three_h3": {
@@ -200,6 +272,18 @@
           "median": 3,
           "q95": 12,
           "maximum": 56
+        },
+        "time_to_alert_seconds": {
+          "n": 177,
+          "median": 1.018000125890012,
+          "q95": 13.309000015260153,
+          "maximum": 35.44600009918031
+        },
+        "available_observations_to_alert": {
+          "n": 177,
+          "median": 2,
+          "q95": 3,
+          "maximum": 3
         }
       },
       "three_of_five_h3": {
@@ -222,6 +306,18 @@
           "median": 3.0,
           "q95": 15,
           "maximum": 55
+        },
+        "time_to_alert_seconds": {
+          "n": 78,
+          "median": 2.851500034329547,
+          "q95": 18.551999807360062,
+          "maximum": 22.395999908449994
+        },
+        "available_observations_to_alert": {
+          "n": 78,
+          "median": 4.0,
+          "q95": 5,
+          "maximum": 5
         }
       },
       "three_consecutive_h3": {
@@ -244,6 +340,18 @@
           "median": 4.0,
           "q95": 30,
           "maximum": 55
+        },
+        "time_to_alert_seconds": {
+          "n": 36,
+          "median": 1.9895001649850883,
+          "q95": 21.03299999237015,
+          "maximum": 22.395999908449994
+        },
+        "available_observations_to_alert": {
+          "n": 36,
+          "median": 3.0,
+          "q95": 3,
+          "maximum": 3
         }
       }
     },
@@ -268,6 +376,18 @@
           "median": 1.0,
           "q95": 2,
           "maximum": 25
+        },
+        "time_to_alert_seconds": {
+          "n": 1590,
+          "median": 0.0,
+          "q95": 0.0,
+          "maximum": 0.0
+        },
+        "available_observations_to_alert": {
+          "n": 1590,
+          "median": 1.0,
+          "q95": 1,
+          "maximum": 1
         }
       },
       "two_of_three_h3": {
@@ -290,6 +410,18 @@
           "median": 3,
           "q95": 10,
           "maximum": 36
+        },
+        "time_to_alert_seconds": {
+          "n": 295,
+          "median": 0.9010000228799981,
+          "q95": 6.1089999675800755,
+          "maximum": 34.089999914169994
+        },
+        "available_observations_to_alert": {
+          "n": 295,
+          "median": 2,
+          "q95": 3,
+          "maximum": 3
         }
       },
       "three_of_five_h3": {
@@ -312,6 +444,18 @@
           "median": 4.0,
           "q95": 13,
           "maximum": 35
+        },
+        "time_to_alert_seconds": {
+          "n": 98,
+          "median": 3.0279999971356233,
+          "q95": 19.151999950410072,
+          "maximum": 40.404999971390055
+        },
+        "available_observations_to_alert": {
+          "n": 98,
+          "median": 4.0,
+          "q95": 5,
+          "maximum": 5
         }
       },
       "three_consecutive_h3": {
@@ -334,6 +478,18 @@
           "median": 5,
           "q95": 15,
           "maximum": 35
+        },
+        "time_to_alert_seconds": {
+          "n": 53,
+          "median": 1.9590001106303134,
+          "q95": 16.261999845510218,
+          "maximum": 23.74000000953697
+        },
+        "available_observations_to_alert": {
+          "n": 53,
+          "median": 3,
+          "q95": 3,
+          "maximum": 3
         }
       }
     }
@@ -359,6 +515,18 @@
         "median": 3,
         "q95": 12,
         "maximum": 56
+      },
+      "time_to_alert_seconds": {
+        "n": 177,
+        "median": 1.018000125890012,
+        "q95": 13.309000015260153,
+        "maximum": 35.44600009918031
+      },
+      "available_observations_to_alert": {
+        "n": 177,
+        "median": 2,
+        "q95": 3,
+        "maximum": 3
       }
     },
     "subset2_transfer": {
@@ -381,11 +549,23 @@
         "median": 3,
         "q95": 10,
         "maximum": 36
+      },
+      "time_to_alert_seconds": {
+        "n": 295,
+        "median": 0.9010000228799981,
+        "q95": 6.1089999675800755,
+        "maximum": 34.089999914169994
+      },
+      "available_observations_to_alert": {
+        "n": 295,
+        "median": 2,
+        "q95": 3,
+        "maximum": 3
       }
     }
   },
   "runtime": {
-    "wall_seconds": 1.0883547909979825
+    "wall_seconds": 1.3749072079954203
   },
   "interpretation_limits": [
     "Alert episodes are empirical nuisance-alert indicators on trusted-aircraft data, not population false-alarm rates.",

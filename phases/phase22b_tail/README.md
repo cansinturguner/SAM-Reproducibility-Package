@@ -5,10 +5,10 @@ wrapping, trimming, or correcting any observation. It reports threshold
 fractions, receiver-pair concentrations, and residuals close to integer-second
 offsets.
 
-Run from the `sam_phase1` project directory:
+Run from the package root:
 
 ```bash
-python ~/Downloads/sam_phase22b_tail_audit/scripts/run_phase22b.py \
+python phases/phase22b_tail/scripts/run_phase22b.py \
   --observations data/raw/locards/subset_2/set_2.csv \
   --sensors data/raw/locards/subset_2/set_2_sensors.csv \
   --aircraft data/raw/locards/subset_2/set_2_aircraft.csv \
@@ -19,7 +19,7 @@ python ~/Downloads/sam_phase22b_tail_audit/scripts/run_phase22b.py \
 Validate:
 
 ```bash
-python ~/Downloads/sam_phase22b_tail_audit/scripts/validate_report.py \
+python phases/phase22b_tail/scripts/validate_report.py \
   reports/sam_phase22b_tail_audit.json
 ```
 

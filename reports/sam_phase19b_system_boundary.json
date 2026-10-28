@@ -1,0 +1,195 @@
+{
+  "schema": "sam.phase19b.system-boundary-comparison.v1",
+  "scope": {
+    "implemented": "cross-phase comparison with explicit authentication-only, integrated cached-path, protocol-delay and amortized trust-refresh boundaries",
+    "not_implemented": [
+      "complete CABBA reproduction",
+      "RF framing, FEC, BER or channel occupancy",
+      "operational WAN or ledger consensus",
+      "certified airborne hardware",
+      "attack or anomaly classification"
+    ]
+  },
+  "platform": {
+    "consolidation_system": "Darwin",
+    "consolidation_release": "27.0.0",
+    "consolidation_machine": "arm64",
+    "python": "3.12.14",
+    "measurement_platform_note": "All source measurements were produced on the recorded Mac ARM/Python 3.12 prototype."
+  },
+  "configuration": {
+    "seed": 1103,
+    "bootstrap_replicates": 10000,
+    "comparison_workload": "10,000-message authentication microbenchmark plus frozen 82,986-row LocaRDS integrated replay"
+  },
+  "inputs": {
+    "phase14": {
+      "path": "reports/sam_phase14_integrated_pipeline.json",
+      "sha256": "274737d7bc0002cbdd9e15b9032c2809ad3b66cab097c64acb6b661ab68efc59"
+    },
+    "phase17": {
+      "path": "reports/sam_phase17_integrated_trust_refresh_v2.json",
+      "sha256": "08f5d1edabf5c9599aaf43fce7f6ba3c1da52ddd10ec366be413bc6261a26428"
+    },
+    "phase19a": {
+      "path": "reports/sam_phase19a_authentication_baselines.json",
+      "sha256": "74236a0261a309e641a073cdd33294c3e0ba83fd8b63a2213080409c25e7de72"
+    }
+  },
+  "comparison": [
+    {
+      "method": "Legacy unauthenticated",
+      "timing_boundary": "authentication-only",
+      "median_microseconds_per_message": 0.0137042,
+      "bootstrap_ci95_microseconds": {
+        "estimate": 0.0137042,
+        "ci95_low": 0.013585400000000001,
+        "ci95_high": 0.013887499999999999,
+        "recorded_repetitions": 10
+      },
+      "protocol_delay_seconds": null,
+      "logical_security_bytes_per_message": 0.0,
+      "functional_coverage": {
+        "message_authentication": false,
+        "delayed_disclosure": false,
+        "physical_cross_sensor": false,
+        "cached_identity_trust": false,
+        "fusion": false
+      },
+      "source": "Phase 19A measured"
+    },
+    {
+      "method": "Pre-shared HMAC",
+      "timing_boundary": "authentication-only",
+      "median_microseconds_per_message": 1.6644292,
+      "bootstrap_ci95_microseconds": {
+        "estimate": 1.6644292,
+        "ci95_low": 1.6475333500000002,
+        "ci95_high": 1.6770667000000001,
+        "recorded_repetitions": 10
+      },
+      "protocol_delay_seconds": 0.0,
+      "logical_security_bytes_per_message": 16.0,
+      "functional_coverage": {
+        "message_authentication": true,
+        "delayed_disclosure": false,
+        "physical_cross_sensor": false,
+        "cached_identity_trust": false,
+        "fusion": false
+      },
+      "source": "Phase 19A measured"
+    },
+    {
+      "method": "ECDSA per message",
+      "timing_boundary": "authentication-only",
+      "median_microseconds_per_message": 46.39294795000001,
+      "bootstrap_ci95_microseconds": {
+        "estimate": 46.39294795000001,
+        "ci95_low": 45.9232583,
+        "ci95_high": 46.771875,
+        "recorded_repetitions": 10
+      },
+      "protocol_delay_seconds": 0.0,
+      "logical_security_bytes_per_message": 64.0,
+      "functional_coverage": {
+        "message_authentication": true,
+        "delayed_disclosure": false,
+        "physical_cross_sensor": false,
+        "cached_identity_trust": false,
+        "fusion": false
+      },
+      "source": "Phase 19A measured"
+    },
+    {
+      "method": "TESLA-style post-disclosure HMAC",
+      "timing_boundary": "authentication-only",
+      "median_microseconds_per_message": 1.6800354000000002,
+      "bootstrap_ci95_microseconds": {
+        "estimate": 1.6800354000000002,
+        "ci95_low": 1.6707667,
+        "ci95_high": 1.6843979500000001,
+        "recorded_repetitions": 10
+      },
+      "protocol_delay_seconds": 1.0,
+      "logical_security_bytes_per_message": 19.580645161290324,
+      "functional_coverage": {
+        "message_authentication": true,
+        "delayed_disclosure": true,
+        "physical_cross_sensor": false,
+        "cached_identity_trust": false,
+        "fusion": false
+      },
+      "source": "Phase 19A measured"
+    },
+    {
+      "method": "SAM cached integrated path",
+      "timing_boundary": "integrated cached path",
+      "median_microseconds_per_message": 39.31248946210758,
+      "bootstrap_ci95_microseconds": {
+        "estimate": 39.31248946210758,
+        "ci95_low": 39.22913554093686,
+        "ci95_high": 39.36200031934815,
+        "recorded_repetitions": 30
+      },
+      "protocol_delay_seconds": 1.0,
+      "logical_security_bytes_per_message": 19.795698924731184,
+      "functional_coverage": {
+        "message_authentication": true,
+        "delayed_disclosure": true,
+        "physical_cross_sensor": true,
+        "cached_identity_trust": true,
+        "fusion": true
+      },
+      "physical_support": {
+        "eligible_rows": 82986,
+        "supported_rows": 78358,
+        "availability": 0.9442315571301183
+      },
+      "source": "Phase 14 measured; includes file replay, physical/TDoA, HMAC, cached trust and fusion"
+    }
+  ],
+  "trust_refresh_amortization": [
+    {
+      "scenario": "online_0ms",
+      "successful_refreshes": 4,
+      "controlled_delay_ms_per_refresh": 0.0,
+      "derived_amortized_delay_microseconds_per_message": 0.0,
+      "sam_cached_median_plus_derived_delay_microseconds": 39.31248946210758,
+      "derivation": "refresh_successes * controlled_delay / eligible_rows"
+    },
+    {
+      "scenario": "online_50ms",
+      "successful_refreshes": 4,
+      "controlled_delay_ms_per_refresh": 50.0,
+      "derived_amortized_delay_microseconds_per_message": 2.4100450678427685,
+      "sam_cached_median_plus_derived_delay_microseconds": 41.722534529950345,
+      "derivation": "refresh_successes * controlled_delay / eligible_rows"
+    },
+    {
+      "scenario": "online_250ms",
+      "successful_refreshes": 4,
+      "controlled_delay_ms_per_refresh": 250.0,
+      "derived_amortized_delay_microseconds_per_message": 12.050225339213844,
+      "sam_cached_median_plus_derived_delay_microseconds": 51.362714801321424,
+      "derivation": "refresh_successes * controlled_delay / eligible_rows"
+    }
+  ],
+  "scheduled_outage_context": {
+    "service_outage_at_dataset_seconds": 1800.0,
+    "refresh_attempts": 32,
+    "refresh_successes": 2,
+    "refresh_failures": 30,
+    "VERIFIED": 43672,
+    "INSUFFICIENT_EVIDENCE": 39314,
+    "CONFLICTING": 0,
+    "note": "Outage behavior is reported as a controlled availability state transition, not folded into authentication compute cost."
+  },
+  "interpretation_limits": [
+    "Authentication-only rows and the SAM integrated row have different functional coverage; timings must be read with the coverage fields.",
+    "The Phase 14 SAM value includes direct-TDoA/physical processing but excludes TESLA schedule delay and online refresh.",
+    "The one-second TESLA delay is protocol latency and is not added to microsecond compute time.",
+    "Trust-refresh increments are derived amortized controlled delays, not operational-WAN measurements.",
+    "Bootstrap intervals quantify recorded prototype run-to-run variation and do not establish certified airborne performance.",
+    "Logical byte counts are not RF-channel occupancy."
+  ]
+}

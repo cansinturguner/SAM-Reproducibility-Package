@@ -1,0 +1,322 @@
+{
+  "schema": "sam.phase23.cabba-comparison.v1",
+  "scope": {
+    "implemented": "independent CABBA application-layer reproduction and same-workload SAM comparison",
+    "not_implemented": [
+      "CABBA authors' original custom SDR code",
+      "D8PSK waveform generation or demodulation",
+      "RS(54,34), RF framing, BER, Eb/N0 or receiver compatibility",
+      "operational X.509 or aviation PKI",
+      "SAM direct-TDoA in the authentication-only row",
+      "certified airborne hardware"
+    ],
+    "security_label": "controlled protocol conformance and performance workload; no attack/anomaly classifier"
+  },
+  "provenance": {
+    "primary_reference": "Ngamboe et al., CABBA, International Journal of Critical Infrastructure Protection 48 (2025) 100728",
+    "doi": "10.1016/j.ijcip.2024.100728",
+    "public_preprint": "arXiv:2312.09870",
+    "original_author_code_used": false,
+    "reproduction_statement": "Independent implementation from the published protocol description."
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "cryptography": "45.0.7",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "message_count": 10000,
+    "synthetic_message_bytes": 14,
+    "message_rate_per_second": 6.2,
+    "repetitions": 10,
+    "cabba_published_parameters": {
+      "tesla_interval_seconds": 5.0,
+      "interval_key_bits": 128,
+      "type_A_sequence_bits": 8,
+      "type_A_mac_bits": 196,
+      "ecdsa_signature_bits": 512,
+      "conceptual_public_key_bits": 256
+    },
+    "reproduction_choices": {
+      "hmac": "HMAC-SHA-256/196; digest is an explicit reproduction choice because the protocol description does not name one",
+      "signature": "ECDSA P-256/SHA-256 fixed-width r||s",
+      "software_public_key_encoding": "compressed SEC1 (33 bytes); not used as published wire-size evidence",
+      "key_chain": "domain-separated SHA-256 reverse chain"
+    },
+    "sam_comparator": "HMAC-SHA3-256/128 + valid cached trust + controlled physical state + deterministic fusion; direct-TDoA excluded"
+  },
+  "correctness": {
+    "cabba_all_valid_type_A_accepted": true,
+    "sam_all_valid_messages_accepted": true,
+    "modified_type_A_rejected": true,
+    "stale_sequence_rejected": true,
+    "invalid_B2_signature_rejected": true,
+    "invalid_C_certificate_signature_rejected": true,
+    "cabba_key_chain_link_valid": true,
+    "all_B2_benchmark_verifications_valid": true,
+    "all_C_benchmark_verifications_valid": true,
+    "cabba_scenario4_scheduled_receiver_valid": true,
+    "sam_scheduled_receiver_valid": true
+  },
+  "same_workload_timing_microseconds_per_message": {
+    "CABBA_type_A_post_disclosure_HMAC": {
+      "n": 10,
+      "mean": 1.1694229100000002,
+      "median": 1.1699104,
+      "q05": 1.163789405,
+      "q95": 1.1742987500000002,
+      "minimum": 1.1636,
+      "maximum": 1.1758625,
+      "sample_stdev": 0.004054899255482371,
+      "values": [
+        1.1758625,
+        1.1720208,
+        1.1723875000000001,
+        1.1694917,
+        1.1723458,
+        1.1651375,
+        1.1703291,
+        1.1690333000000002,
+        1.1636,
+        1.1640209
+      ]
+    },
+    "SAM_crypto_trust_fusion_stage": {
+      "n": 10,
+      "mean": 1.62418956,
+      "median": 1.61429995,
+      "q05": 1.609802255,
+      "q95": 1.6482162500000002,
+      "minimum": 1.6095791,
+      "maximum": 1.6497125000000001,
+      "sample_stdev": 0.01715580729232987,
+      "values": [
+        1.6463875000000001,
+        1.6453791000000002,
+        1.6497125000000001,
+        1.6115791,
+        1.6100750000000001,
+        1.6103667,
+        1.6104124999999998,
+        1.6095791,
+        1.6170208,
+        1.6313833
+      ]
+    }
+  },
+  "periodic_verification_microseconds_per_operation": {
+    "CABBA_type_B2_signed_interval_key": {
+      "n": 5,
+      "mean": 43.4966825,
+      "median": 43.4358375,
+      "q05": 43.20340916,
+      "q95": 43.93191084,
+      "minimum": 43.1963125,
+      "maximum": 44.0133625,
+      "sample_stdev": 0.3327989429042638,
+      "values": [
+        43.606104200000004,
+        43.4358375,
+        44.0133625,
+        43.2317958,
+        43.1963125
+      ]
+    },
+    "CABBA_type_C_CA_signed_aircraft_key": {
+      "n": 5,
+      "mean": 57.631547520000005,
+      "median": 57.482358399999995,
+      "q05": 57.303273340000004,
+      "q95": 58.05634998000001,
+      "minimum": 57.259675,
+      "maximum": 58.1145708,
+      "sample_stdev": 0.3370349878333219,
+      "values": [
+        57.259675,
+        57.4776667,
+        57.482358399999995,
+        57.8234667,
+        58.1145708
+      ]
+    }
+  },
+  "scheduled_receiver_compute_microseconds_per_message": {
+    "CABBA_scenario_4": {
+      "timing": {
+        "n": 10,
+        "mean": 2.05570956,
+        "median": 2.0605811999999997,
+        "q05": 2.0253445500000002,
+        "q95": 2.0729443749999996,
+        "minimum": 2.0211708,
+        "maximum": 2.073175,
+        "sample_stdev": 0.018082630793124162,
+        "values": [
+          2.0211708,
+          2.0304458,
+          2.045,
+          2.073175,
+          2.0561374999999997,
+          2.0583166,
+          2.0726625,
+          2.0663666,
+          2.070975,
+          2.0628458
+        ]
+      },
+      "type_A_messages": 10000,
+      "type_B1_key_chain_checks": 215,
+      "type_B2_signature_checks": 108,
+      "type_C_certificate_checks": 54,
+      "boundary": "Type A HMAC + B1 key-chain + B2 signature + C certificate verification; RF and disclosure wait excluded"
+    },
+    "SAM_frozen_crypto_trust_fusion_schedule": {
+      "timing": {
+        "n": 10,
+        "mean": 1.8483179,
+        "median": 1.85382285,
+        "q05": 1.812177485,
+        "q95": 1.8666929199999998,
+        "minimum": 1.785725,
+        "maximum": 1.8692167,
+        "sample_stdev": 0.02321642346912586,
+        "values": [
+          1.8692167,
+          1.8636083,
+          1.8462541000000001,
+          1.8591792,
+          1.8558042000000001,
+          1.8445083,
+          1.8532416,
+          1.8544041,
+          1.8512374999999999,
+          1.785725
+        ]
+      },
+      "messages": 10000,
+      "signed_interval_key_checks": 27,
+      "cached_aircraft_record_checks": 1,
+      "boundary": "HMAC + cached trust + controlled physical state + fusion + scheduled signature checks; direct-TDoA and disclosure wait excluded"
+    }
+  },
+  "protocol_latency_seconds": {
+    "CABBA_nominal_next_interval_disclosure": 5.0,
+    "SAM_frozen_phase19A_disclosure": 1.0,
+    "note": "Protocol schedule latency is separate from microsecond computation time."
+  },
+  "cabba_published_schedule_accounting": [
+    {
+      "name": "scenario_1",
+      "TB1_seconds": 5.0,
+      "TB2_seconds": 5.0,
+      "TC_seconds": 5.0,
+      "workload_duration_seconds": 1612.9032258064515,
+      "type_A_messages": 10000,
+      "type_B1_packets": 0,
+      "type_B2_packets": 323,
+      "type_C_packets": 323,
+      "additional_packet_fraction_vs_type_A": 0.0646,
+      "analytical_added_airtime_fraction_vs_legacy_A": 0.12597,
+      "published_airtime_microseconds": {
+        "A": 120.0,
+        "B1": 120.0,
+        "B2": 218.0,
+        "C": 250.0
+      }
+    },
+    {
+      "name": "scenario_2",
+      "TB1_seconds": 5.0,
+      "TB2_seconds": 10.0,
+      "TC_seconds": 15.0,
+      "workload_duration_seconds": 1612.9032258064515,
+      "type_A_messages": 10000,
+      "type_B1_packets": 161,
+      "type_B2_packets": 162,
+      "type_C_packets": 108,
+      "additional_packet_fraction_vs_type_A": 0.0431,
+      "analytical_added_airtime_fraction_vs_legacy_A": 0.06803,
+      "published_airtime_microseconds": {
+        "A": 120.0,
+        "B1": 120.0,
+        "B2": 218.0,
+        "C": 250.0
+      }
+    },
+    {
+      "name": "scenario_3",
+      "TB1_seconds": 5.0,
+      "TB2_seconds": 10.0,
+      "TC_seconds": 20.0,
+      "workload_duration_seconds": 1612.9032258064515,
+      "type_A_messages": 10000,
+      "type_B1_packets": 161,
+      "type_B2_packets": 162,
+      "type_C_packets": 81,
+      "additional_packet_fraction_vs_type_A": 0.0404,
+      "analytical_added_airtime_fraction_vs_legacy_A": 0.062405,
+      "published_airtime_microseconds": {
+        "A": 120.0,
+        "B1": 120.0,
+        "B2": 218.0,
+        "C": 250.0
+      }
+    },
+    {
+      "name": "scenario_4",
+      "TB1_seconds": 5.0,
+      "TB2_seconds": 15.0,
+      "TC_seconds": 30.0,
+      "workload_duration_seconds": 1612.9032258064515,
+      "type_A_messages": 10000,
+      "type_B1_packets": 215,
+      "type_B2_packets": 108,
+      "type_C_packets": 54,
+      "additional_packet_fraction_vs_type_A": 0.0377,
+      "analytical_added_airtime_fraction_vs_legacy_A": 0.05237,
+      "published_airtime_microseconds": {
+        "A": 120.0,
+        "B1": 120.0,
+        "B2": 218.0,
+        "C": 250.0
+      }
+    }
+  ],
+  "functional_coverage": {
+    "CABBA_reproduction": {
+      "message_integrity": true,
+      "data_origin_authentication": true,
+      "entity_authentication": true,
+      "delayed_disclosure": true,
+      "published_phase_overlay_design": true,
+      "phase_overlay_implemented_here": false,
+      "physical_cross_sensor_corroboration": false,
+      "multi_evidence_fusion": false
+    },
+    "SAM_comparator_row": {
+      "message_integrity": true,
+      "data_origin_authentication": true,
+      "entity_trust_cached": true,
+      "delayed_disclosure": true,
+      "phase_overlay_implemented": false,
+      "physical_cross_sensor_corroboration": false,
+      "multi_evidence_fusion": true,
+      "note": "The controlled physical state exercises fusion but excludes direct-TDoA computation; use Phase 14/21 for the integrated physical path."
+    }
+  },
+  "peak_rss_mib": 33.140625,
+  "interpretation_limits": [
+    "This is an independent application-layer reproduction, not the CABBA authors' original SDR implementation.",
+    "The comparison does not reproduce CABBA RF phase overlay, FEC, BER, or backward-compatibility receiver tests.",
+    "HMAC-SHA-256 is an explicit reproduction choice because the available CABBA protocol description does not name a digest.",
+    "Scenario 4 uses the explicit CABBA Table 3 values TB2=15 s and TC=30 s; nearby prose and later uncertainty tables contain conflicting TB2 values.",
+    "Published CABBA packet airtime is analytical accounting and is not measured RF occupancy on this Mac.",
+    "The SAM comparison row excludes direct-TDoA; Phase 14 and Phase 21 remain the integrated SAM timing evidence.",
+    "No precision, recall, F1, false-positive or false-negative result is produced."
+  ]
+}

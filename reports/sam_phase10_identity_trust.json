@@ -1,0 +1,158 @@
+{
+  "schema": "sam.phase10.identity-trust.v1",
+  "scope": {
+    "implemented": "CA-signed aircraft-key record, ECDSA-signed B2 keys, HMAC verification and deterministic trust degradation",
+    "not_implemented": [
+      "X.509 certificate parsing or global aviation PKI",
+      "permissioned blockchain consensus or ledger writes",
+      "Phase Overlay RF framing, FEC or BER",
+      "complete SAM evidence fusion",
+      "certified airborne hardware"
+    ],
+    "security_label": "No attack/anomaly dataset or classifier is used; negative cases are protocol unit tests."
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "cryptography": "45.0.7",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "iterations": 10000,
+    "repetitions": 5,
+    "cache_ttl_seconds": 900,
+    "signature_algorithm": "ECDSA P-256 with SHA-256",
+    "signature_encoding": "fixed-width r||s",
+    "aircraft_public_key_encoding": "compressed SEC1",
+    "hmac_algorithm": "HMAC-SHA3-256",
+    "hmac_tag_bits": 128,
+    "interval_key_bits": 128
+  },
+  "correctness": {
+    "ca_record_verified": true,
+    "all_b2_signatures_verified": true,
+    "all_message_hmacs_verified": true,
+    "modified_b2_key_rejected": true,
+    "modified_ca_record_rejected": true
+  },
+  "timing_microseconds_per_operation": {
+    "ca_record_verification": {
+      "n": 5,
+      "mean": 46.39375086,
+      "median": 46.3685459,
+      "q05": 46.30657918,
+      "q95": 46.518119979999994,
+      "minimum": 46.2965875,
+      "maximum": 46.5445083,
+      "sample_stdev": 0.09405604490668211
+    },
+    "b2_signature_generation": {
+      "n": 5,
+      "mean": 21.39293998,
+      "median": 21.4118791,
+      "q05": 21.313662540000003,
+      "q95": 21.47966918,
+      "minimum": 21.3111334,
+      "maximum": 21.4934792,
+      "sample_stdev": 0.07571976881341519
+    },
+    "b2_signature_verification": {
+      "n": 5,
+      "mean": 46.61816914,
+      "median": 46.654304100000004,
+      "q05": 46.42382328000001,
+      "q95": 46.791535,
+      "minimum": 46.3908166,
+      "maximum": 46.8226,
+      "sample_stdev": 0.15896693838316836
+    },
+    "message_hmac_verification": {
+      "n": 5,
+      "mean": 2.0948174600000002,
+      "median": 2.0927583,
+      "q05": 2.0923066,
+      "q95": 2.09986666,
+      "minimum": 2.0922416,
+      "maximum": 2.1009375,
+      "sample_stdev": 0.003673655056343824
+    }
+  },
+  "logical_communication_bytes_excluding_rf_framing_and_fec": {
+    "compressed_aircraft_public_key": 33,
+    "ca_signature": 64,
+    "compact_ca_record_total": 97,
+    "interval_key": 16,
+    "aircraft_signature_over_interval_key": 64,
+    "signed_b2_content_total": 80,
+    "message_hmac_tag": 16
+  },
+  "trust_service_scenarios": [
+    {
+      "name": "online_valid",
+      "service_available": true,
+      "cache_present": false,
+      "cache_age_seconds": 0,
+      "registry_revoked": false,
+      "ca_record_valid": true,
+      "b2_signature_valid": true,
+      "message_hmac_valid": true,
+      "assurance_state": "VERIFIED"
+    },
+    {
+      "name": "offline_valid_cache",
+      "service_available": false,
+      "cache_present": true,
+      "cache_age_seconds": 450,
+      "registry_revoked": false,
+      "ca_record_valid": true,
+      "b2_signature_valid": true,
+      "message_hmac_valid": true,
+      "assurance_state": "VERIFIED"
+    },
+    {
+      "name": "offline_cold_start",
+      "service_available": false,
+      "cache_present": false,
+      "cache_age_seconds": 0,
+      "registry_revoked": false,
+      "ca_record_valid": true,
+      "b2_signature_valid": true,
+      "message_hmac_valid": true,
+      "assurance_state": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "name": "offline_expired_cache",
+      "service_available": false,
+      "cache_present": true,
+      "cache_age_seconds": 901,
+      "registry_revoked": false,
+      "ca_record_valid": true,
+      "b2_signature_valid": true,
+      "message_hmac_valid": true,
+      "assurance_state": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "name": "online_revoked_record",
+      "service_available": true,
+      "cache_present": false,
+      "cache_age_seconds": 0,
+      "registry_revoked": true,
+      "ca_record_valid": true,
+      "b2_signature_valid": true,
+      "message_hmac_valid": true,
+      "assurance_state": "CONFLICTING"
+    }
+  ],
+  "peak_rss_mib": 34.15625,
+  "interpretation_limits": [
+    "Timing values characterize this Python implementation and machine, not certified avionics.",
+    "Online/offline service modes are deterministic local state tests and do not model network latency.",
+    "The CA record is a compact signed-key prototype, not an X.509 certificate.",
+    "Communication sizes exclude RF framing, Phase Overlay, FEC, repetition and scheduling.",
+    "CONFLICTING denotes disagreement between cryptographic validity and trust status, not anomaly detection."
+  ]
+}

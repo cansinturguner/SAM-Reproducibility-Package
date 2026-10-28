@@ -3,7 +3,7 @@
 
 2. Terminal:
 
-cd ~/Downloads/SAM_Reproducibility_Package
+cd SAM_Reproducibility_Package
 source .venv/bin/activate
 bash scripts/run_phase29.sh
 

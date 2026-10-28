@@ -1,12 +1,12 @@
 # SAM Phase 8 — Cryptographic Verification
 
-Run this phase from the existing `sam_phase1` project directory. Phase 1–7
+Run this phase from the package root. Phase 1–7
 files and results are not modified.
 
 ## 1. Activate the frozen environment
 
 ```bash
-cd ~/Downloads/sam_phase1
+cd SAM_Reproducibility_Package
 source .venv/bin/activate
 python --version
 ```
@@ -22,7 +22,7 @@ python -m pip install "cryptography>=42.0,<47.0"
 ## 3. Run Phase 8
 
 ```bash
-python ~/Downloads/sam_phase8_crypto_verification/scripts/run_crypto_verification.py \
+python phases/phase08_crypto/scripts/run_crypto_verification.py \
   --report reports/sam_phase8_crypto.json \
   --seed 1103 \
   --messages 10000 \
@@ -32,7 +32,7 @@ python ~/Downloads/sam_phase8_crypto_verification/scripts/run_crypto_verificatio
 ## 4. Validate the report
 
 ```bash
-python ~/Downloads/sam_phase8_crypto_verification/scripts/validate_report.py \
+python phases/phase08_crypto/scripts/validate_report.py \
   reports/sam_phase8_crypto.json
 ```
 

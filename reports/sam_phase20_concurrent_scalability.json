@@ -1,0 +1,276 @@
+{
+  "schema": "sam.phase20.concurrent-scalability.v1",
+  "scope": {
+    "implemented": "concurrent independent replay stress test of the frozen integrated SAM worker",
+    "not_implemented": [
+      "aircraft-count or RF-channel simulation",
+      "shared live receiver ingestion",
+      "operational WAN or ledger consensus",
+      "certified airborne hardware"
+    ]
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "concurrency_levels": [
+      1,
+      2,
+      4
+    ],
+    "warmups_per_level": 1,
+    "measured_repetitions_per_level": 5,
+    "native_threads_per_worker": 1,
+    "worker_implementation": "frozen Phase 14 integrated pipeline"
+  },
+  "frozen_validation": {
+    "per_worker_counts": {
+      "rows_read": 270934,
+      "test_rows": 180183,
+      "test_original_ge4_rows": 82986,
+      "physical_supported_rows": 78358,
+      "hmac_verified_rows": 82986,
+      "A1_VERIFIED": 78358,
+      "A1_INSUFFICIENT_EVIDENCE": 4628,
+      "A1_CONFLICTING": 0
+    },
+    "per_worker_assurance_states": {
+      "VERIFIED": 78358,
+      "INSUFFICIENT_EVIDENCE": 4628,
+      "CONFLICTING": 0
+    },
+    "pair_residual_absolute_q50_ns": 64.98799972087727,
+    "pair_residual_absolute_q95_ns": 227.07981870131601
+  },
+  "scenarios": [
+    {
+      "workers": 1,
+      "aggregate_throughput_observations_per_second": {
+        "n": 5,
+        "mean": 24708.182250697395,
+        "median": 24819.86176895763,
+        "minimum": 24511.027116974652,
+        "maximum": 24845.149126175453,
+        "sample_stdev": 174.3615189749193,
+        "values": [
+          24524.03886859434,
+          24845.149126175453,
+          24511.027116974652,
+          24840.834372784906,
+          24819.86176895763
+        ]
+      },
+      "batch_wall_seconds": {
+        "n": 5,
+        "mean": 3.358778633599286,
+        "median": 3.3435319169984723,
+        "minimum": 3.340128874999209,
+        "maximum": 3.385659833998943,
+        "sample_stdev": 0.023762551739684244,
+        "values": [
+          3.383863499999279,
+          3.340128874999209,
+          3.385659833998943,
+          3.340709042000526,
+          3.3435319169984723
+        ]
+      },
+      "median_worker_wall_seconds_per_batch": {
+        "n": 5,
+        "mean": 3.2638245663991254,
+        "median": 3.2499819999975443,
+        "minimum": 3.246415749999869,
+        "maximum": 3.291233749998355,
+        "sample_stdev": 0.021380438560021447,
+        "values": [
+          3.282703916000173,
+          3.246415749999869,
+          3.291233749998355,
+          3.2487874159996863,
+          3.2499819999975443
+        ]
+      },
+      "summed_worker_peak_rss_mib": {
+        "n": 5,
+        "mean": 59.4625,
+        "median": 59.40625,
+        "minimum": 59.296875,
+        "maximum": 59.84375,
+        "sample_stdev": 0.2255094059845398,
+        "values": [
+          59.296875,
+          59.296875,
+          59.84375,
+          59.46875,
+          59.40625
+        ]
+      },
+      "speedup_vs_single_worker_median": 1.0,
+      "parallel_efficiency": 1.0,
+      "per_worker_eligible_observations": 82986,
+      "per_worker_supported_observations": 78358,
+      "per_worker_assurance_states": {
+        "VERIFIED": 78358,
+        "INSUFFICIENT_EVIDENCE": 4628,
+        "CONFLICTING": 0
+      }
+    },
+    {
+      "workers": 2,
+      "aggregate_throughput_observations_per_second": {
+        "n": 5,
+        "mean": 48661.45291827457,
+        "median": 48596.7469284611,
+        "minimum": 48490.03355476967,
+        "maximum": 48827.59436307296,
+        "sample_stdev": 149.1003503884127,
+        "values": [
+          48490.03355476967,
+          48827.59436307296,
+          48808.917849813675,
+          48596.7469284611,
+          48583.971895255425
+        ]
+      },
+      "batch_wall_seconds": {
+        "n": 5,
+        "mean": 3.4107745666013214,
+        "median": 3.415290332999575,
+        "minimum": 3.3991435000025376,
+        "maximum": 3.4228064580020146,
+        "sample_stdev": 0.010445893264607249,
+        "values": [
+          3.4228064580020146,
+          3.3991435000025376,
+          3.400444167000387,
+          3.415290332999575,
+          3.4161883750020934
+        ]
+      },
+      "median_worker_wall_seconds_per_batch": {
+        "n": 5,
+        "mean": 3.3047043001006386,
+        "median": 3.3078265835010825,
+        "minimum": 3.2870803130008426,
+        "maximum": 3.3163678130003973,
+        "sample_stdev": 0.011017011863339574,
+        "values": [
+          3.3163678130003973,
+          3.2870803130008426,
+          3.3025822495001194,
+          3.3096645415007515,
+          3.3078265835010825
+        ]
+      },
+      "summed_worker_peak_rss_mib": {
+        "n": 5,
+        "mean": 118.996875,
+        "median": 119.015625,
+        "minimum": 118.703125,
+        "maximum": 119.34375,
+        "sample_stdev": 0.27319185394608675,
+        "values": [
+          118.703125,
+          119.34375,
+          119.171875,
+          118.75,
+          119.015625
+        ]
+      },
+      "speedup_vs_single_worker_median": 1.957978145923495,
+      "parallel_efficiency": 0.9789890729617475,
+      "per_worker_eligible_observations": 82986,
+      "per_worker_supported_observations": 78358,
+      "per_worker_assurance_states": {
+        "VERIFIED": 78358,
+        "INSUFFICIENT_EVIDENCE": 4628,
+        "CONFLICTING": 0
+      }
+    },
+    {
+      "workers": 4,
+      "aggregate_throughput_observations_per_second": {
+        "n": 5,
+        "mean": 90228.24428111645,
+        "median": 89707.10890008454,
+        "minimum": 88802.97208407822,
+        "maximum": 93430.77088137463,
+        "sample_stdev": 1899.0901960527165,
+        "values": [
+          93430.77088137463,
+          90334.38407731178,
+          89707.10890008454,
+          88802.97208407822,
+          88865.98546273312
+        ]
+      },
+      "batch_wall_seconds": {
+        "n": 5,
+        "mean": 3.6802144170003883,
+        "median": 3.70030874999793,
+        "minimum": 3.552833792000456,
+        "maximum": 3.737983000002714,
+        "sample_stdev": 0.07588836753696997,
+        "values": [
+          3.552833792000456,
+          3.6746140840004955,
+          3.70030874999793,
+          3.737983000002714,
+          3.7353324590003467
+        ]
+      },
+      "median_worker_wall_seconds_per_batch": {
+        "n": 5,
+        "mean": 3.5633743084992604,
+        "median": 3.5845495624998875,
+        "minimum": 3.438665833999039,
+        "maximum": 3.629567208497974,
+        "sample_stdev": 0.07855206760283587,
+        "values": [
+          3.438665833999039,
+          3.5396035419998952,
+          3.5845495624998875,
+          3.629567208497974,
+          3.624485395499505
+        ]
+      },
+      "summed_worker_peak_rss_mib": {
+        "n": 5,
+        "mean": 238.690625,
+        "median": 238.90625,
+        "minimum": 237.953125,
+        "maximum": 239.4375,
+        "sample_stdev": 0.6591639176354391,
+        "values": [
+          239.4375,
+          237.953125,
+          239.109375,
+          238.90625,
+          238.046875
+        ]
+      },
+      "speedup_vs_single_worker_median": 3.6143274984827607,
+      "parallel_efficiency": 0.9035818746206902,
+      "per_worker_eligible_observations": 82986,
+      "per_worker_supported_observations": 78358,
+      "per_worker_assurance_states": {
+        "VERIFIED": 78358,
+        "INSUFFICIENT_EVIDENCE": 4628,
+        "CONFLICTING": 0
+      }
+    }
+  ],
+  "interpretation_limits": [
+    "Each worker independently replays the same frozen LocaRDS test partition; workers do not share a live input stream.",
+    "Aggregate throughput is an offline processing-capacity measurement, not authentication delay or RF-channel capacity.",
+    "Speedup and efficiency characterize this Python/Mac multiprocessing implementation.",
+    "Summed worker peak RSS is a conservative sum of process peaks and not a direct whole-system memory trace.",
+    "Results do not establish certified airborne performance."
+  ]
+}

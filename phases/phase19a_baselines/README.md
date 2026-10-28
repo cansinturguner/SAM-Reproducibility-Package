@@ -13,10 +13,10 @@ Compared methods:
 - TESLA-style one-interval delayed HMAC verification;
 - SAM post-disclosure HMAC, valid trust-cache lookup, and fusion decision.
 
-Run from `sam_phase1` with the existing environment active:
+Run from the package root with the existing environment active:
 
 ```bash
-python ~/Downloads/sam_phase19a_authentication_baselines/scripts/run_phase19a.py \
+python phases/phase19a_baselines/scripts/run_phase19a.py \
   --report reports/sam_phase19a_authentication_baselines.json \
   --seed 1103 \
   --message-count 10000 \
@@ -27,7 +27,7 @@ python ~/Downloads/sam_phase19a_authentication_baselines/scripts/run_phase19a.py
 Validate:
 
 ```bash
-python ~/Downloads/sam_phase19a_authentication_baselines/scripts/validate_report.py \
+python phases/phase19a_baselines/scripts/validate_report.py \
   reports/sam_phase19a_authentication_baselines.json
 ```
 

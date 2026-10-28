@@ -1,0 +1,202 @@
+{
+  "schema": "sam.phase19a.authentication-baselines.v1",
+  "scope": {
+    "implemented": "same-workload authentication microbenchmark and logical authenticator-size comparison",
+    "not_implemented": [
+      "complete CABBA reproduction",
+      "direct TDoA cost in the SAM row",
+      "RF framing, FEC, BER or channel occupancy",
+      "certificate or trust-network traffic",
+      "certified hardware"
+    ]
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "message_count": 10000,
+    "synthetic_message_bytes": 14,
+    "repetitions": 10,
+    "message_rate_per_second": 6.2,
+    "tesla_interval_seconds": 1.0,
+    "b2_period_seconds": 60.0,
+    "hmac": "HMAC-SHA3-256/128",
+    "ecdsa": "P-256/SHA-256 fixed-width r||s"
+  },
+  "methods": [
+    {
+      "method": "Legacy unauthenticated",
+      "scope": "message handling only; no authentication claim",
+      "valid_messages_accepted": 10000,
+      "valid_acceptance_fraction": 1.0,
+      "modified_message_rejected": false,
+      "microseconds_per_message": {
+        "n": 10,
+        "mean": 0.013743759999999999,
+        "median": 0.0137042,
+        "q05": 0.013505610000000001,
+        "q95": 0.014080394999999999,
+        "minimum": 0.0134625,
+        "maximum": 0.0142041,
+        "sample_stdev": 0.00021632671381757517,
+        "values": [
+          0.0139292,
+          0.0136042,
+          0.013558299999999999,
+          0.0136959,
+          0.0134625,
+          0.013887499999999999,
+          0.0137125,
+          0.013612500000000001,
+          0.0142041,
+          0.013770899999999999
+        ]
+      },
+      "logical_security_bytes_per_message": 0.0,
+      "protocol_authentication_delay_seconds": null
+    },
+    {
+      "method": "Pre-shared HMAC",
+      "scope": "per-message HMAC; key-distribution traffic excluded",
+      "valid_messages_accepted": 10000,
+      "valid_acceptance_fraction": 1.0,
+      "modified_message_rejected": true,
+      "microseconds_per_message": {
+        "n": 10,
+        "mean": 1.66093167,
+        "median": 1.6644292,
+        "q05": 1.624240625,
+        "q95": 1.68516061,
+        "minimum": 1.617575,
+        "maximum": 1.6912375,
+        "sample_stdev": 0.02181368729226115,
+        "values": [
+          1.6912375,
+          1.6770667000000001,
+          1.6692958,
+          1.6777333,
+          1.6661792,
+          1.6626792000000001,
+          1.6561875,
+          1.617575,
+          1.6589749999999999,
+          1.6323875
+        ]
+      },
+      "logical_security_bytes_per_message": 16.0,
+      "protocol_authentication_delay_seconds": 0.0
+    },
+    {
+      "method": "ECDSA per message",
+      "scope": "per-message P-256 signature; certificate traffic excluded",
+      "valid_messages_accepted": 10000,
+      "valid_acceptance_fraction": 1.0,
+      "modified_message_rejected": true,
+      "microseconds_per_message": {
+        "n": 10,
+        "mean": 46.38879833,
+        "median": 46.39294795000001,
+        "q05": 45.88772894,
+        "q95": 46.927963995,
+        "minimum": 45.884970800000005,
+        "maximum": 46.9380084,
+        "sample_stdev": 0.4042292851876923,
+        "values": [
+          46.9156875,
+          46.9380084,
+          45.884970800000005,
+          46.3453917,
+          46.44050420000001,
+          46.771875,
+          45.8911,
+          45.9232583,
+          46.2842166,
+          46.4929708
+        ]
+      },
+      "logical_security_bytes_per_message": 64.0,
+      "protocol_authentication_delay_seconds": 0.0
+    },
+    {
+      "method": "TESLA-style post-disclosure HMAC",
+      "scope": "post-disclosure verification; B1 key amortized",
+      "valid_messages_accepted": 10000,
+      "valid_acceptance_fraction": 1.0,
+      "modified_message_rejected": true,
+      "microseconds_per_message": {
+        "n": 10,
+        "mean": 1.67890043,
+        "median": 1.6800354000000002,
+        "q05": 1.669241685,
+        "q95": 1.68802773,
+        "minimum": 1.6685292,
+        "maximum": 1.6892709,
+        "sample_stdev": 0.007127143621403413,
+        "values": [
+          1.6892709,
+          1.6865083,
+          1.682875,
+          1.6833667,
+          1.6795250000000002,
+          1.6805458000000002,
+          1.6775042,
+          1.6707667,
+          1.6701124999999999,
+          1.6685292
+        ]
+      },
+      "logical_security_bytes_per_message": 19.580645161290324,
+      "protocol_authentication_delay_seconds": 1.0
+    },
+    {
+      "method": "SAM crypto-trust-fusion stage",
+      "scope": "post-disclosure HMAC + valid cached trust + controlled physical state + fusion; TDoA excluded",
+      "valid_messages_accepted": 10000,
+      "valid_acceptance_fraction": 1.0,
+      "modified_message_rejected": true,
+      "microseconds_per_message": {
+        "n": 10,
+        "mean": 1.73229958,
+        "median": 1.7353604,
+        "q05": 1.708455815,
+        "q95": 1.74497791,
+        "minimum": 1.6996958,
+        "maximum": 1.7457916,
+        "sample_stdev": 0.01369691509856632,
+        "values": [
+          1.7439834,
+          1.7457916,
+          1.7355042,
+          1.7352166,
+          1.7405709,
+          1.7340791,
+          1.7303542,
+          1.6996958,
+          1.7191625,
+          1.7386375
+        ]
+      },
+      "logical_security_bytes_per_message": 19.795698924731184,
+      "protocol_authentication_delay_seconds": 1.0
+    }
+  ],
+  "correctness": {
+    "all_claiming_methods_accept_all_valid": true,
+    "all_authentication_methods_reject_modified": true,
+    "legacy_has_no_modified_message_rejection": true
+  },
+  "peak_rss_mib": 30.8125,
+  "interpretation_limits": [
+    "This is a cryptographic message-processing microbenchmark, not a complete system comparison.",
+    "TESLA timing is measured after key disclosure; the one-second schedule delay is reported separately.",
+    "The SAM row excludes direct-TDoA computation and online trust refresh.",
+    "Logical byte counts are not RF-channel occupancy.",
+    "Legacy acceptance of a modified message reflects absence of authentication, not a detection metric."
+  ]
+}

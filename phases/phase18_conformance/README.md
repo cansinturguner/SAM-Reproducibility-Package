@@ -5,10 +5,10 @@ assurance state for valid, modified, replayed, missing, expired, revoked, and
 conflicting protocol evidence. These are controlled protocol test vectors, not
 an attack/anomaly dataset and not a classifier evaluation.
 
-Run from the `sam_phase1` directory with the existing virtual environment:
+Run from the package root with the existing virtual environment:
 
 ```bash
-python ~/Downloads/sam_phase18_protocol_conformance/scripts/run_phase18.py \
+python phases/phase18_conformance/scripts/run_phase18.py \
   --report reports/sam_phase18_protocol_conformance.json \
   --seed 1103 \
   --iterations 10000 \
@@ -18,7 +18,7 @@ python ~/Downloads/sam_phase18_protocol_conformance/scripts/run_phase18.py \
 Validate:
 
 ```bash
-python ~/Downloads/sam_phase18_protocol_conformance/scripts/validate_report.py \
+python phases/phase18_conformance/scripts/validate_report.py \
   reports/sam_phase18_protocol_conformance.json
 ```
 

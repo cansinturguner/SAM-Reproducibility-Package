@@ -7,7 +7,7 @@ This phase measures how the already frozen physical/cross-sensor verification ru
 Keep the Python 3.12 virtual environment active, unzip this package, and run:
 
 ```bash
-python ~/Downloads/sam_phase6_receiver_loss/scripts/evaluate_receiver_loss.py \
+python phases/phase06_receiver_loss/scripts/evaluate_receiver_loss.py \
   --selected data/processed/locards_subset_1/trusted_good_ge3.csv.gz \
   --sensors data/raw/locards/subset_1/set_1_sensors.csv \
   --calibration data/processed/locards_subset_1/receiver_clock_calibration.json \

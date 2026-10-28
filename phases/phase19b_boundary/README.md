@@ -7,10 +7,10 @@ keeping unlike timing boundaries explicit.
 
 ## Run
 
-From the `sam_phase1` project directory:
+From the package root:
 
 ```bash
-python ~/Downloads/sam_phase19b_system_boundary/scripts/run_phase19b.py \
+python phases/phase19b_boundary/scripts/run_phase19b.py \
   --phase14 reports/sam_phase14_integrated_pipeline.json \
   --phase17 reports/sam_phase17_integrated_trust_refresh_v2.json \
   --phase19a reports/sam_phase19a_authentication_baselines.json \
@@ -22,7 +22,7 @@ python ~/Downloads/sam_phase19b_system_boundary/scripts/run_phase19b.py \
 Validate:
 
 ```bash
-python ~/Downloads/sam_phase19b_system_boundary/scripts/validate_report.py \
+python phases/phase19b_boundary/scripts/validate_report.py \
   reports/sam_phase19b_system_boundary.json
 ```
 

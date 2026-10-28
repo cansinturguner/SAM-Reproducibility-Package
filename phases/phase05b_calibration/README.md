@@ -42,7 +42,7 @@ python -c "import numpy; print(numpy.__version__)"
 ## Run
 
 ```bash
-python ~/Downloads/sam_phase5b_clock_calibration/scripts/calibrate_receiver_clocks.py \
+python phases/phase05b_calibration/scripts/calibrate_receiver_clocks.py \
   --selected data/processed/locards_subset_1/trusted_good_ge3.csv.gz \
   --sensors data/raw/locards/subset_1/set_1_sensors.csv \
   --report reports/locards_subset_1_clock_calibration.json \

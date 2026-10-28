@@ -1,0 +1,247 @@
+{
+  "schema": "sam.phase37.denominator-audit.v1",
+  "scope": "denominator transparency, conflict-tail attribution, and baseline-adjusted position-bias sensitivity",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "numpy": "2.5.3"
+  },
+  "configuration": {
+    "seed": 1103,
+    "threshold_ns": 306.64062122826,
+    "bootstrap_replicates": 2000,
+    "integer_second_tolerance_ns": 10000.0,
+    "position_bias_m": [
+      0.0,
+      100.0,
+      250.0,
+      400.0,
+      500.0,
+      750.0,
+      1000.0,
+      2000.0,
+      5000.0,
+      10000.0
+    ]
+  },
+  "inputs": {
+    "sha256": {
+      "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+      "subset1_sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "subset2_observations": "5ff68c7e402caa183678c03f4d23ba45b63bc96fa1177f8ce7e4fb530c45dd58",
+      "subset2_sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "subset2_aircraft": "70156a0865e655f4fb470e5814fd153708ac9f97ef193b70ebf3f4a5d84e1893",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654",
+      "decision_model": "2d5b18c15d093b0b2665722b7b918a8b64a6526fc2dcd1be93ddad5819eb73f2"
+    }
+  },
+  "availability_denominators": {
+    "subset1": {
+      "complete_test_partition_rows": 180183,
+      "originally_eligible_rows": 82986,
+      "physical_available_rows": 78358,
+      "conditional_availability_among_originally_eligible": 0.9442315571301183,
+      "end_to_end_yield_from_complete_test_partition": 0.4348800941265269
+    },
+    "subset2": {
+      "trusted_rows": 894967,
+      "trusted_good_ge4_rows": 107314,
+      "physical_available_rows": 98024,
+      "conditional_availability_among_trusted_good_ge4": 0.91343161190525,
+      "end_to_end_yield_from_trusted_rows": 0.10952806081118074
+    }
+  },
+  "benign_reference_conflict_attribution": {
+    "subset1": {
+      "conflicting_rows": 1049,
+      "contains_receiver_134": 193,
+      "decision_reference_is_134": 158,
+      "largest_absolute_reference_pair_involves_134": 160,
+      "near_nonzero_integer_second_pair_residual": 146,
+      "contains_134_and_near_integer_second": 58,
+      "neither_contains_134_nor_near_integer_second": 768,
+      "fractions_among_conflicts": {
+        "contains_receiver_134": 0.18398474737845566,
+        "near_nonzero_integer_second": 0.13918017159199236,
+        "both": 0.055290753098188754,
+        "neither": 0.7321258341277407
+      }
+    },
+    "subset2": {
+      "conflicting_rows": 1662,
+      "contains_receiver_134": 954,
+      "decision_reference_is_134": 930,
+      "largest_absolute_reference_pair_involves_134": 931,
+      "near_nonzero_integer_second_pair_residual": 877,
+      "contains_134_and_near_integer_second": 829,
+      "neither_contains_134_nor_near_integer_second": 660,
+      "fractions_among_conflicts": {
+        "contains_receiver_134": 0.5740072202166066,
+        "near_nonzero_integer_second": 0.5276774969915764,
+        "both": 0.49879663056558365,
+        "neither": 0.3971119133574007
+      }
+    }
+  },
+  "position_bias_sensitivity": {
+    "0.0": {
+      "available_rows": 78358,
+      "conflicting_rows": 1049,
+      "raw_conflict_fraction": 0.01338727379463488,
+      "benign_baseline_conflict_fraction": 0.01338727379463488,
+      "baseline_adjusted_gain": 0.0,
+      "conflict_fraction_ci95": [
+        0.008600600486579903,
+        0.019665816598798895
+      ],
+      "baseline_adjusted_gain_ci95": null
+    },
+    "100.0": {
+      "available_rows": 78358,
+      "conflicting_rows": 17526,
+      "raw_conflict_fraction": 0.22366573929911432,
+      "benign_baseline_conflict_fraction": 0.01338727379463488,
+      "baseline_adjusted_gain": 0.21027846550447943,
+      "conflict_fraction_ci95": [
+        0.20497741897329805,
+        0.24325098676768386
+      ],
+      "baseline_adjusted_gain_ci95": [
+        0.1902135602451668,
+        0.2312721483669362
+      ]
+    },
+    "250.0": {
+      "available_rows": 78358,
+      "conflicting_rows": 47181,
+      "raw_conflict_fraction": 0.6021210342275198,
+      "benign_baseline_conflict_fraction": 0.01338727379463488,
+      "baseline_adjusted_gain": 0.588733760432885,
+      "conflict_fraction_ci95": [
+        0.5702237737889505,
+        0.6339648238452575
+      ],
+      "baseline_adjusted_gain_ci95": [
+        0.5550193732110752,
+        0.6221252769168825
+      ]
+    },
+    "400.0": {
+      "available_rows": 78358,
+      "conflicting_rows": 58885,
+      "raw_conflict_fraction": 0.7514867658694709,
+      "benign_baseline_conflict_fraction": 0.01338727379463488,
+      "baseline_adjusted_gain": 0.738099492074836,
+      "conflict_fraction_ci95": [
+        0.7253435599746446,
+        0.7761432557898928
+      ],
+      "baseline_adjusted_gain_ci95": [
+        0.709992033218153,
+        0.7647786539831278
+      ]
+    },
+    "500.0": {
+      "available_rows": 78358,
+      "conflicting_rows": 62872,
+      "raw_conflict_fraction": 0.8023686158401184,
+      "benign_baseline_conflict_fraction": 0.01338727379463488,
+      "baseline_adjusted_gain": 0.7889813420454835,
+      "conflict_fraction_ci95": [
+        0.779078274790961,
+        0.824349726345458
+      ],
+      "baseline_adjusted_gain_ci95": [
+        0.7634934313148345,
+        0.8128328835522319
+      ]
+    },
+    "750.0": {
+      "available_rows": 78358,
+      "conflicting_rows": 68667,
+      "raw_conflict_fraction": 0.8763240511498507,
+      "benign_baseline_conflict_fraction": 0.01338727379463488,
+      "baseline_adjusted_gain": 0.8629367773552158,
+      "conflict_fraction_ci95": [
+        0.8583240477871681,
+        0.8933203329958548
+      ],
+      "baseline_adjusted_gain_ci95": [
+        0.8429146656573544,
+        0.8817740122579414
+      ]
+    },
+    "1000.0": {
+      "available_rows": 78358,
+      "conflicting_rows": 71282,
+      "raw_conflict_fraction": 0.9096965210954848,
+      "benign_baseline_conflict_fraction": 0.01338727379463488,
+      "baseline_adjusted_gain": 0.8963092473008499,
+      "conflict_fraction_ci95": [
+        0.8944915251143005,
+        0.9238000933142804
+      ],
+      "baseline_adjusted_gain_ci95": [
+        0.8786359410145876,
+        0.9123153455868452
+      ]
+    },
+    "2000.0": {
+      "available_rows": 78358,
+      "conflicting_rows": 75522,
+      "raw_conflict_fraction": 0.9638071415809489,
+      "benign_baseline_conflict_fraction": 0.01338727379463488,
+      "baseline_adjusted_gain": 0.950419867786314,
+      "conflict_fraction_ci95": [
+        0.9560411892622799,
+        0.9705515684924932
+      ],
+      "baseline_adjusted_gain_ci95": [
+        0.9389733226004299,
+        0.9599683276704486
+      ]
+    },
+    "5000.0": {
+      "available_rows": 78358,
+      "conflicting_rows": 77453,
+      "raw_conflict_fraction": 0.9884504453916639,
+      "benign_baseline_conflict_fraction": 0.01338727379463488,
+      "baseline_adjusted_gain": 0.975063171597029,
+      "conflict_fraction_ci95": [
+        0.9852937492933045,
+        0.9911744241412234
+      ],
+      "baseline_adjusted_gain_ci95": [
+        0.9671862776083769,
+        0.98121789959213
+      ]
+    },
+    "10000.0": {
+      "available_rows": 78358,
+      "conflicting_rows": 78021,
+      "raw_conflict_fraction": 0.9956992266265091,
+      "benign_baseline_conflict_fraction": 0.01338727379463488,
+      "baseline_adjusted_gain": 0.9823119528318742,
+      "conflict_fraction_ci95": [
+        0.9944090185770832,
+        0.9967666969473309
+      ],
+      "baseline_adjusted_gain_ci95": [
+        0.9756711028377095,
+        0.9873588865584817
+      ]
+    }
+  },
+  "runtime": {
+    "wall_seconds": 33.60690495900053
+  },
+  "interpretation_limits": [
+    "Conflict attribution categories overlap and do not establish the cause of a timestamp anomaly.",
+    "Integer-second proximity is audited without timestamp wrapping, correction, or row deletion.",
+    "Receiver 134 involvement is an association audit, not proof that receiver 134 caused the conflict.",
+    "Position offsets are controlled synthetic perturbations; sensitivity is not operational detection accuracy.",
+    "Bootstrap intervals resample aircraft and retain within-aircraft dependence."
+  ]
+}

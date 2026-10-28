@@ -1,0 +1,496 @@
+{
+  "schema": "sam.phase34.joint-branch-replay.v1",
+  "scope": "real LocaRDS physical evidence with deterministic controlled cryptographic and trust branch states",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "numpy": "2.5.3"
+  },
+  "configuration": {
+    "seed": 1103,
+    "physical_threshold_ns": 306.64062122826,
+    "scenario_count": 6,
+    "assignment": "SHA-256 observation-bound deterministic draws, independent of row order",
+    "fusion_policy": "conflict dominates; full VERIFIED requires crypto VERIFIED, trust VALID, and physical CONSISTENT"
+  },
+  "inputs": {
+    "sha256": {
+      "selected": "b4782ef1f7f33c3155bbcad6b4d170b0b03917e54f04ee447ea94d935ce458ec",
+      "sensors": "998a63f5fc89fa41fd1a37468431da96f355812054e7bca8b2a4f4db0ba47d1b",
+      "calibration": "eaf4447d1bd61c9028a77474cb186f01888bb5a82db62e135adba6a07ceca654"
+    },
+    "decision_model_sha256": "2d5b18c15d093b0b2665722b7b918a8b64a6526fc2dcd1be93ddad5819eb73f2"
+  },
+  "population": {
+    "rows_read": 270934,
+    "test_rows": 180183,
+    "eligible_rows": 82986
+  },
+  "scenarios": [
+    {
+      "name": "S0_all_valid_reference",
+      "controlled_rates": {
+        "crypto_conflict_rate": 0.0,
+        "crypto_pending_rate": 0.0,
+        "trust_revoked_rate": 0.0,
+        "trust_stale_rate": 0.0
+      },
+      "evidence_counts": {
+        "cryptographic": {
+          "VERIFIED": 82986
+        },
+        "trust": {
+          "VALID": 82986
+        },
+        "physical": {
+          "PHYSICALLY_CONFLICTING": 1049,
+          "PHYSICALLY_CONSISTENT": 77309,
+          "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628
+        }
+      },
+      "policy_outputs": {
+        "full_sam": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED": 77309
+        },
+        "physical_only": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED": 77309
+        },
+        "cryptographic_only": {
+          "VERIFIED": 82986
+        }
+      },
+      "decision_transitions": {
+        "physical_only_to_full_sam": {
+          "CONFLICTING->CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED->VERIFIED": 77309
+        },
+        "cryptographic_only_to_full_sam": {
+          "VERIFIED->CONFLICTING": 1049,
+          "VERIFIED->INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED->VERIFIED": 77309
+        }
+      },
+      "full_sam_reason_counts": {
+        "ALL_REQUIRED_EVIDENCE_SUPPORTS": 77309,
+        "PHYSICAL_CONFLICT": 1049,
+        "PHYSICAL_UNAVAILABLE": 4628
+      },
+      "evidence_combination_counts": {
+        "VERIFIED|VALID|PHYSICALLY_CONFLICTING": 1049,
+        "VERIFIED|VALID|PHYSICALLY_CONSISTENT": 77309,
+        "VERIFIED|VALID|PHYSICAL_EVIDENCE_UNAVAILABLE": 4628
+      },
+      "full_differs_from_physical_only": 0,
+      "full_differs_from_cryptographic_only": 5677
+    },
+    {
+      "name": "S1_crypto_conflict_1pct",
+      "controlled_rates": {
+        "crypto_conflict_rate": 0.01,
+        "crypto_pending_rate": 0.0,
+        "trust_revoked_rate": 0.0,
+        "trust_stale_rate": 0.0
+      },
+      "evidence_counts": {
+        "cryptographic": {
+          "CONFLICTING": 836,
+          "VERIFIED": 82150
+        },
+        "trust": {
+          "VALID": 82986
+        },
+        "physical": {
+          "PHYSICALLY_CONFLICTING": 1049,
+          "PHYSICALLY_CONSISTENT": 77309,
+          "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628
+        }
+      },
+      "policy_outputs": {
+        "full_sam": {
+          "CONFLICTING": 1877,
+          "INSUFFICIENT_EVIDENCE": 4580,
+          "VERIFIED": 76529
+        },
+        "physical_only": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED": 77309
+        },
+        "cryptographic_only": {
+          "CONFLICTING": 836,
+          "VERIFIED": 82150
+        }
+      },
+      "decision_transitions": {
+        "physical_only_to_full_sam": {
+          "CONFLICTING->CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE->CONFLICTING": 48,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 4580,
+          "VERIFIED->CONFLICTING": 780,
+          "VERIFIED->VERIFIED": 76529
+        },
+        "cryptographic_only_to_full_sam": {
+          "CONFLICTING->CONFLICTING": 836,
+          "VERIFIED->CONFLICTING": 1041,
+          "VERIFIED->INSUFFICIENT_EVIDENCE": 4580,
+          "VERIFIED->VERIFIED": 76529
+        }
+      },
+      "full_sam_reason_counts": {
+        "ALL_REQUIRED_EVIDENCE_SUPPORTS": 76529,
+        "CRYPTOGRAPHIC_CONFLICT": 828,
+        "CRYPTOGRAPHIC_CONFLICT+PHYSICAL_CONFLICT": 8,
+        "PHYSICAL_CONFLICT": 1041,
+        "PHYSICAL_UNAVAILABLE": 4580
+      },
+      "evidence_combination_counts": {
+        "CONFLICTING|VALID|PHYSICALLY_CONFLICTING": 8,
+        "CONFLICTING|VALID|PHYSICALLY_CONSISTENT": 780,
+        "CONFLICTING|VALID|PHYSICAL_EVIDENCE_UNAVAILABLE": 48,
+        "VERIFIED|VALID|PHYSICALLY_CONFLICTING": 1041,
+        "VERIFIED|VALID|PHYSICALLY_CONSISTENT": 76529,
+        "VERIFIED|VALID|PHYSICAL_EVIDENCE_UNAVAILABLE": 4580
+      },
+      "full_differs_from_physical_only": 828,
+      "full_differs_from_cryptographic_only": 5621
+    },
+    {
+      "name": "S2_crypto_pending_10pct",
+      "controlled_rates": {
+        "crypto_conflict_rate": 0.0,
+        "crypto_pending_rate": 0.1,
+        "trust_revoked_rate": 0.0,
+        "trust_stale_rate": 0.0
+      },
+      "evidence_counts": {
+        "cryptographic": {
+          "PENDING": 8241,
+          "VERIFIED": 74745
+        },
+        "trust": {
+          "VALID": 82986
+        },
+        "physical": {
+          "PHYSICALLY_CONFLICTING": 1049,
+          "PHYSICALLY_CONSISTENT": 77309,
+          "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628
+        }
+      },
+      "policy_outputs": {
+        "full_sam": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 12295,
+          "VERIFIED": 69642
+        },
+        "physical_only": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED": 77309
+        },
+        "cryptographic_only": {
+          "INSUFFICIENT_EVIDENCE": 8241,
+          "VERIFIED": 74745
+        }
+      },
+      "decision_transitions": {
+        "physical_only_to_full_sam": {
+          "CONFLICTING->CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED->INSUFFICIENT_EVIDENCE": 7667,
+          "VERIFIED->VERIFIED": 69642
+        },
+        "cryptographic_only_to_full_sam": {
+          "INSUFFICIENT_EVIDENCE->CONFLICTING": 104,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 8137,
+          "VERIFIED->CONFLICTING": 945,
+          "VERIFIED->INSUFFICIENT_EVIDENCE": 4158,
+          "VERIFIED->VERIFIED": 69642
+        }
+      },
+      "full_sam_reason_counts": {
+        "ALL_REQUIRED_EVIDENCE_SUPPORTS": 69642,
+        "CRYPTO_PENDING": 7667,
+        "CRYPTO_PENDING+PHYSICAL_UNAVAILABLE": 470,
+        "PHYSICAL_CONFLICT": 1049,
+        "PHYSICAL_UNAVAILABLE": 4158
+      },
+      "evidence_combination_counts": {
+        "PENDING|VALID|PHYSICALLY_CONFLICTING": 104,
+        "PENDING|VALID|PHYSICALLY_CONSISTENT": 7667,
+        "PENDING|VALID|PHYSICAL_EVIDENCE_UNAVAILABLE": 470,
+        "VERIFIED|VALID|PHYSICALLY_CONFLICTING": 945,
+        "VERIFIED|VALID|PHYSICALLY_CONSISTENT": 69642,
+        "VERIFIED|VALID|PHYSICAL_EVIDENCE_UNAVAILABLE": 4158
+      },
+      "full_differs_from_physical_only": 7667,
+      "full_differs_from_cryptographic_only": 5207
+    },
+    {
+      "name": "S3_trust_revoked_1pct",
+      "controlled_rates": {
+        "crypto_conflict_rate": 0.0,
+        "crypto_pending_rate": 0.0,
+        "trust_revoked_rate": 0.01,
+        "trust_stale_rate": 0.0
+      },
+      "evidence_counts": {
+        "cryptographic": {
+          "VERIFIED": 82986
+        },
+        "trust": {
+          "REVOKED": 817,
+          "VALID": 82169
+        },
+        "physical": {
+          "PHYSICALLY_CONFLICTING": 1049,
+          "PHYSICALLY_CONSISTENT": 77309,
+          "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628
+        }
+      },
+      "policy_outputs": {
+        "full_sam": {
+          "CONFLICTING": 1858,
+          "INSUFFICIENT_EVIDENCE": 4584,
+          "VERIFIED": 76544
+        },
+        "physical_only": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED": 77309
+        },
+        "cryptographic_only": {
+          "VERIFIED": 82986
+        }
+      },
+      "decision_transitions": {
+        "physical_only_to_full_sam": {
+          "CONFLICTING->CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE->CONFLICTING": 44,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 4584,
+          "VERIFIED->CONFLICTING": 765,
+          "VERIFIED->VERIFIED": 76544
+        },
+        "cryptographic_only_to_full_sam": {
+          "VERIFIED->CONFLICTING": 1858,
+          "VERIFIED->INSUFFICIENT_EVIDENCE": 4584,
+          "VERIFIED->VERIFIED": 76544
+        }
+      },
+      "full_sam_reason_counts": {
+        "ALL_REQUIRED_EVIDENCE_SUPPORTS": 76544,
+        "PHYSICAL_CONFLICT": 1041,
+        "PHYSICAL_UNAVAILABLE": 4584,
+        "REVOKED_CREDENTIAL": 809,
+        "REVOKED_CREDENTIAL+PHYSICAL_CONFLICT": 8
+      },
+      "evidence_combination_counts": {
+        "VERIFIED|REVOKED|PHYSICALLY_CONFLICTING": 8,
+        "VERIFIED|REVOKED|PHYSICALLY_CONSISTENT": 765,
+        "VERIFIED|REVOKED|PHYSICAL_EVIDENCE_UNAVAILABLE": 44,
+        "VERIFIED|VALID|PHYSICALLY_CONFLICTING": 1041,
+        "VERIFIED|VALID|PHYSICALLY_CONSISTENT": 76544,
+        "VERIFIED|VALID|PHYSICAL_EVIDENCE_UNAVAILABLE": 4584
+      },
+      "full_differs_from_physical_only": 809,
+      "full_differs_from_cryptographic_only": 6442
+    },
+    {
+      "name": "S4_trust_stale_10pct",
+      "controlled_rates": {
+        "crypto_conflict_rate": 0.0,
+        "crypto_pending_rate": 0.0,
+        "trust_revoked_rate": 0.0,
+        "trust_stale_rate": 0.1
+      },
+      "evidence_counts": {
+        "cryptographic": {
+          "VERIFIED": 82986
+        },
+        "trust": {
+          "STALE": 8284,
+          "VALID": 74702
+        },
+        "physical": {
+          "PHYSICALLY_CONFLICTING": 1049,
+          "PHYSICALLY_CONSISTENT": 77309,
+          "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628
+        }
+      },
+      "policy_outputs": {
+        "full_sam": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 12375,
+          "VERIFIED": 69562
+        },
+        "physical_only": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED": 77309
+        },
+        "cryptographic_only": {
+          "VERIFIED": 82986
+        }
+      },
+      "decision_transitions": {
+        "physical_only_to_full_sam": {
+          "CONFLICTING->CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED->INSUFFICIENT_EVIDENCE": 7747,
+          "VERIFIED->VERIFIED": 69562
+        },
+        "cryptographic_only_to_full_sam": {
+          "VERIFIED->CONFLICTING": 1049,
+          "VERIFIED->INSUFFICIENT_EVIDENCE": 12375,
+          "VERIFIED->VERIFIED": 69562
+        }
+      },
+      "full_sam_reason_counts": {
+        "ALL_REQUIRED_EVIDENCE_SUPPORTS": 69562,
+        "PHYSICAL_CONFLICT": 1049,
+        "PHYSICAL_UNAVAILABLE": 4189,
+        "TRUST_STALE": 7747,
+        "TRUST_STALE+PHYSICAL_UNAVAILABLE": 439
+      },
+      "evidence_combination_counts": {
+        "VERIFIED|STALE|PHYSICALLY_CONFLICTING": 98,
+        "VERIFIED|STALE|PHYSICALLY_CONSISTENT": 7747,
+        "VERIFIED|STALE|PHYSICAL_EVIDENCE_UNAVAILABLE": 439,
+        "VERIFIED|VALID|PHYSICALLY_CONFLICTING": 951,
+        "VERIFIED|VALID|PHYSICALLY_CONSISTENT": 69562,
+        "VERIFIED|VALID|PHYSICAL_EVIDENCE_UNAVAILABLE": 4189
+      },
+      "full_differs_from_physical_only": 7747,
+      "full_differs_from_cryptographic_only": 13424
+    },
+    {
+      "name": "S5_joint_controlled_interaction",
+      "controlled_rates": {
+        "crypto_conflict_rate": 0.01,
+        "crypto_pending_rate": 0.1,
+        "trust_revoked_rate": 0.01,
+        "trust_stale_rate": 0.1
+      },
+      "evidence_counts": {
+        "cryptographic": {
+          "CONFLICTING": 811,
+          "PENDING": 8253,
+          "VERIFIED": 73922
+        },
+        "trust": {
+          "REVOKED": 825,
+          "STALE": 8407,
+          "VALID": 73754
+        },
+        "physical": {
+          "PHYSICALLY_CONFLICTING": 1049,
+          "PHYSICALLY_CONSISTENT": 77309,
+          "PHYSICAL_EVIDENCE_UNAVAILABLE": 4628
+        }
+      },
+      "policy_outputs": {
+        "full_sam": {
+          "CONFLICTING": 2659,
+          "INSUFFICIENT_EVIDENCE": 19109,
+          "VERIFIED": 61218
+        },
+        "physical_only": {
+          "CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE": 4628,
+          "VERIFIED": 77309
+        },
+        "cryptographic_only": {
+          "CONFLICTING": 811,
+          "INSUFFICIENT_EVIDENCE": 8253,
+          "VERIFIED": 73922
+        }
+      },
+      "decision_transitions": {
+        "physical_only_to_full_sam": {
+          "CONFLICTING->CONFLICTING": 1049,
+          "INSUFFICIENT_EVIDENCE->CONFLICTING": 97,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 4531,
+          "VERIFIED->CONFLICTING": 1513,
+          "VERIFIED->INSUFFICIENT_EVIDENCE": 14578,
+          "VERIFIED->VERIFIED": 61218
+        },
+        "cryptographic_only_to_full_sam": {
+          "CONFLICTING->CONFLICTING": 811,
+          "INSUFFICIENT_EVIDENCE->CONFLICTING": 198,
+          "INSUFFICIENT_EVIDENCE->INSUFFICIENT_EVIDENCE": 8055,
+          "VERIFIED->CONFLICTING": 1650,
+          "VERIFIED->INSUFFICIENT_EVIDENCE": 11054,
+          "VERIFIED->VERIFIED": 61218
+        }
+      },
+      "full_sam_reason_counts": {
+        "ALL_REQUIRED_EVIDENCE_SUPPORTS": 61218,
+        "CRYPTOGRAPHIC_CONFLICT": 795,
+        "CRYPTOGRAPHIC_CONFLICT+PHYSICAL_CONFLICT": 7,
+        "CRYPTOGRAPHIC_CONFLICT+REVOKED_CREDENTIAL": 9,
+        "CRYPTO_PENDING": 6846,
+        "CRYPTO_PENDING+PHYSICAL_UNAVAILABLE": 401,
+        "CRYPTO_PENDING+TRUST_STALE": 749,
+        "CRYPTO_PENDING+TRUST_STALE+PHYSICAL_UNAVAILABLE": 59,
+        "PHYSICAL_CONFLICT": 1032,
+        "PHYSICAL_UNAVAILABLE": 3655,
+        "REVOKED_CREDENTIAL": 806,
+        "REVOKED_CREDENTIAL+PHYSICAL_CONFLICT": 10,
+        "TRUST_STALE": 6983,
+        "TRUST_STALE+PHYSICAL_UNAVAILABLE": 416
+      },
+      "evidence_combination_counts": {
+        "CONFLICTING|REVOKED|PHYSICALLY_CONSISTENT": 8,
+        "CONFLICTING|REVOKED|PHYSICAL_EVIDENCE_UNAVAILABLE": 1,
+        "CONFLICTING|STALE|PHYSICALLY_CONFLICTING": 1,
+        "CONFLICTING|STALE|PHYSICALLY_CONSISTENT": 79,
+        "CONFLICTING|STALE|PHYSICAL_EVIDENCE_UNAVAILABLE": 5,
+        "CONFLICTING|VALID|PHYSICALLY_CONFLICTING": 6,
+        "CONFLICTING|VALID|PHYSICALLY_CONSISTENT": 678,
+        "CONFLICTING|VALID|PHYSICAL_EVIDENCE_UNAVAILABLE": 33,
+        "PENDING|REVOKED|PHYSICALLY_CONFLICTING": 1,
+        "PENDING|REVOKED|PHYSICALLY_CONSISTENT": 93,
+        "PENDING|REVOKED|PHYSICAL_EVIDENCE_UNAVAILABLE": 8,
+        "PENDING|STALE|PHYSICALLY_CONFLICTING": 6,
+        "PENDING|STALE|PHYSICALLY_CONSISTENT": 749,
+        "PENDING|STALE|PHYSICAL_EVIDENCE_UNAVAILABLE": 59,
+        "PENDING|VALID|PHYSICALLY_CONFLICTING": 90,
+        "PENDING|VALID|PHYSICALLY_CONSISTENT": 6846,
+        "PENDING|VALID|PHYSICAL_EVIDENCE_UNAVAILABLE": 401,
+        "VERIFIED|REVOKED|PHYSICALLY_CONFLICTING": 9,
+        "VERIFIED|REVOKED|PHYSICALLY_CONSISTENT": 655,
+        "VERIFIED|REVOKED|PHYSICAL_EVIDENCE_UNAVAILABLE": 50,
+        "VERIFIED|STALE|PHYSICALLY_CONFLICTING": 109,
+        "VERIFIED|STALE|PHYSICALLY_CONSISTENT": 6983,
+        "VERIFIED|STALE|PHYSICAL_EVIDENCE_UNAVAILABLE": 416,
+        "VERIFIED|VALID|PHYSICALLY_CONFLICTING": 827,
+        "VERIFIED|VALID|PHYSICALLY_CONSISTENT": 61218,
+        "VERIFIED|VALID|PHYSICAL_EVIDENCE_UNAVAILABLE": 3655
+      },
+      "full_differs_from_physical_only": 16188,
+      "full_differs_from_cryptographic_only": 12902
+    }
+  ],
+  "cross_scenario_checks": {
+    "reference_full_equals_physical_only": true,
+    "joint_full_differs_from_physical_only": true,
+    "joint_full_differs_from_crypto_only": true,
+    "every_scenario_preserves_population": true
+  },
+  "runtime": {
+    "wall_seconds": 4.9271703340054955
+  },
+  "interpretation_limits": [
+    "The physical branch uses real decoded LocaRDS observations; cryptographic and trust perturbations are controlled synthetic states.",
+    "Scenario rates exercise branch interactions and are not estimates of operational event prevalence.",
+    "This experiment evaluates assurance-state composition, not attack-class detection accuracy.",
+    "LocaRDS does not contain SAM authenticators co-captured with the original RF broadcasts.",
+    "The two LocaRDS partitions share the published receiver infrastructure."
+  ]
+}

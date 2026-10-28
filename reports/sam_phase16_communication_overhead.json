@@ -1,0 +1,679 @@
+{
+  "schema": "sam.phase16.communication-overhead.v1",
+  "scope": {
+    "implemented": "deterministic logical-byte and aggregate-bit-rate accounting over a scheduling sensitivity matrix",
+    "not_implemented": [
+      "DO-260C/ED-102B bit-level mapping",
+      "Phase Overlay RF framing or modulation",
+      "FEC, BER or RF channel occupancy",
+      "operational aircraft-density trace",
+      "certificate traffic beyond the compact prototype",
+      "ledger consensus or ledger writes"
+    ],
+    "security_label": "No attack/anomaly dataset or classifier is used."
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed_recorded_for_cross_phase_reproducibility": 1103,
+    "duration_seconds": 3600,
+    "message_rates_per_second": [
+      2.0,
+      6.2,
+      10.0
+    ],
+    "aircraft_counts": [
+      1,
+      50,
+      200
+    ],
+    "b2_period_seconds": 60,
+    "logical_object_bytes": {
+      "surveillance_message_comparator": 14,
+      "type_a": 17,
+      "b1": 16,
+      "b2": 80,
+      "compact_ca_record": 97
+    },
+    "policies": [
+      {
+        "name": "P1_1s_single",
+        "interval_seconds": 1,
+        "b1_repetitions": 1,
+        "b2_repetitions": 1
+      },
+      {
+        "name": "P2_1s_double",
+        "interval_seconds": 1,
+        "b1_repetitions": 2,
+        "b2_repetitions": 2
+      },
+      {
+        "name": "P3_2s_double",
+        "interval_seconds": 2,
+        "b1_repetitions": 2,
+        "b2_repetitions": 2
+      },
+      {
+        "name": "P4_5s_triple",
+        "interval_seconds": 5,
+        "b1_repetitions": 3,
+        "b2_repetitions": 3
+      }
+    ]
+  },
+  "correctness": {
+    "scenario_count": 36,
+    "all_breakdowns_sum": true,
+    "aircraft_scaling_does_not_change_per_aircraft_cost": true,
+    "scenario_sha256": "db12e08f1df505a9cf351cfdbe4fd1e727c85d0c5321311ddf2956b6eea4cd1f"
+  },
+  "canonical_configuration": {
+    "policy": "P1_1s_single",
+    "message_rate_per_second": 6.2,
+    "aircraft_count": 1,
+    "messages_per_aircraft": 22320,
+    "logical_security_bytes_per_aircraft": 441840,
+    "logical_security_bytes_per_message": 19.795698924731184,
+    "logical_security_to_14byte_message_percent": 141.3978494623656,
+    "aggregate_logical_security_kbit_per_second": 0.9818666666666667,
+    "breakdown_bytes_per_aircraft": {
+      "type_a": 379440,
+      "b1": 57600,
+      "b2": 4800
+    },
+    "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+  },
+  "scenarios": [
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 184800,
+      "logical_security_bytes_per_message": 25.666666666666668,
+      "logical_security_to_14byte_message_percent": 183.33333333333334,
+      "aggregate_logical_security_kbit_per_second": 0.4106666666666667,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 57600,
+        "b2": 4800
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 184800,
+      "logical_security_bytes_per_message": 25.666666666666668,
+      "logical_security_to_14byte_message_percent": 183.33333333333334,
+      "aggregate_logical_security_kbit_per_second": 20.53333333333333,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 57600,
+        "b2": 4800
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 184800,
+      "logical_security_bytes_per_message": 25.666666666666668,
+      "logical_security_to_14byte_message_percent": 183.33333333333334,
+      "aggregate_logical_security_kbit_per_second": 82.13333333333333,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 57600,
+        "b2": 4800
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 441840,
+      "logical_security_bytes_per_message": 19.795698924731184,
+      "logical_security_to_14byte_message_percent": 141.3978494623656,
+      "aggregate_logical_security_kbit_per_second": 0.9818666666666667,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 57600,
+        "b2": 4800
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 441840,
+      "logical_security_bytes_per_message": 19.795698924731184,
+      "logical_security_to_14byte_message_percent": 141.3978494623656,
+      "aggregate_logical_security_kbit_per_second": 49.093333333333334,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 57600,
+        "b2": 4800
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 441840,
+      "logical_security_bytes_per_message": 19.795698924731184,
+      "logical_security_to_14byte_message_percent": 141.3978494623656,
+      "aggregate_logical_security_kbit_per_second": 196.37333333333333,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 57600,
+        "b2": 4800
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 674400,
+      "logical_security_bytes_per_message": 18.733333333333334,
+      "logical_security_to_14byte_message_percent": 133.8095238095238,
+      "aggregate_logical_security_kbit_per_second": 1.4986666666666668,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 57600,
+        "b2": 4800
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 674400,
+      "logical_security_bytes_per_message": 18.733333333333334,
+      "logical_security_to_14byte_message_percent": 133.8095238095238,
+      "aggregate_logical_security_kbit_per_second": 74.93333333333332,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 57600,
+        "b2": 4800
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 674400,
+      "logical_security_bytes_per_message": 18.733333333333334,
+      "logical_security_to_14byte_message_percent": 133.8095238095238,
+      "aggregate_logical_security_kbit_per_second": 299.7333333333333,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 57600,
+        "b2": 4800
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 247200,
+      "logical_security_bytes_per_message": 34.333333333333336,
+      "logical_security_to_14byte_message_percent": 245.23809523809524,
+      "aggregate_logical_security_kbit_per_second": 0.5493333333333333,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 115200,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 247200,
+      "logical_security_bytes_per_message": 34.333333333333336,
+      "logical_security_to_14byte_message_percent": 245.23809523809524,
+      "aggregate_logical_security_kbit_per_second": 27.46666666666667,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 115200,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 247200,
+      "logical_security_bytes_per_message": 34.333333333333336,
+      "logical_security_to_14byte_message_percent": 245.23809523809524,
+      "aggregate_logical_security_kbit_per_second": 109.86666666666667,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 115200,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 504240,
+      "logical_security_bytes_per_message": 22.591397849462364,
+      "logical_security_to_14byte_message_percent": 161.36712749615975,
+      "aggregate_logical_security_kbit_per_second": 1.1205333333333334,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 115200,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 504240,
+      "logical_security_bytes_per_message": 22.591397849462364,
+      "logical_security_to_14byte_message_percent": 161.36712749615975,
+      "aggregate_logical_security_kbit_per_second": 56.026666666666664,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 115200,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 504240,
+      "logical_security_bytes_per_message": 22.591397849462364,
+      "logical_security_to_14byte_message_percent": 161.36712749615975,
+      "aggregate_logical_security_kbit_per_second": 224.10666666666665,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 115200,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 736800,
+      "logical_security_bytes_per_message": 20.466666666666665,
+      "logical_security_to_14byte_message_percent": 146.1904761904762,
+      "aggregate_logical_security_kbit_per_second": 1.6373333333333333,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 115200,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 736800,
+      "logical_security_bytes_per_message": 20.466666666666665,
+      "logical_security_to_14byte_message_percent": 146.1904761904762,
+      "aggregate_logical_security_kbit_per_second": 81.86666666666667,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 115200,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 736800,
+      "logical_security_bytes_per_message": 20.466666666666665,
+      "logical_security_to_14byte_message_percent": 146.1904761904762,
+      "aggregate_logical_security_kbit_per_second": 327.4666666666667,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 115200,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 189600,
+      "logical_security_bytes_per_message": 26.333333333333332,
+      "logical_security_to_14byte_message_percent": 188.0952380952381,
+      "aggregate_logical_security_kbit_per_second": 0.42133333333333334,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 57600,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 189600,
+      "logical_security_bytes_per_message": 26.333333333333332,
+      "logical_security_to_14byte_message_percent": 188.0952380952381,
+      "aggregate_logical_security_kbit_per_second": 21.066666666666666,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 57600,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 189600,
+      "logical_security_bytes_per_message": 26.333333333333332,
+      "logical_security_to_14byte_message_percent": 188.0952380952381,
+      "aggregate_logical_security_kbit_per_second": 84.26666666666667,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 57600,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 446640,
+      "logical_security_bytes_per_message": 20.010752688172044,
+      "logical_security_to_14byte_message_percent": 142.93394777265746,
+      "aggregate_logical_security_kbit_per_second": 0.9925333333333333,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 57600,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 446640,
+      "logical_security_bytes_per_message": 20.010752688172044,
+      "logical_security_to_14byte_message_percent": 142.93394777265746,
+      "aggregate_logical_security_kbit_per_second": 49.626666666666665,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 57600,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 446640,
+      "logical_security_bytes_per_message": 20.010752688172044,
+      "logical_security_to_14byte_message_percent": 142.93394777265746,
+      "aggregate_logical_security_kbit_per_second": 198.50666666666666,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 57600,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 679200,
+      "logical_security_bytes_per_message": 18.866666666666667,
+      "logical_security_to_14byte_message_percent": 134.76190476190476,
+      "aggregate_logical_security_kbit_per_second": 1.5093333333333332,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 57600,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 679200,
+      "logical_security_bytes_per_message": 18.866666666666667,
+      "logical_security_to_14byte_message_percent": 134.76190476190476,
+      "aggregate_logical_security_kbit_per_second": 75.46666666666667,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 57600,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 679200,
+      "logical_security_bytes_per_message": 18.866666666666667,
+      "logical_security_to_14byte_message_percent": 134.76190476190476,
+      "aggregate_logical_security_kbit_per_second": 301.8666666666667,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 57600,
+        "b2": 9600
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 171360,
+      "logical_security_bytes_per_message": 23.8,
+      "logical_security_to_14byte_message_percent": 170.0,
+      "aggregate_logical_security_kbit_per_second": 0.3808,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 34560,
+        "b2": 14400
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 171360,
+      "logical_security_bytes_per_message": 23.8,
+      "logical_security_to_14byte_message_percent": 170.0,
+      "aggregate_logical_security_kbit_per_second": 19.04,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 34560,
+        "b2": 14400
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 7200,
+      "logical_security_bytes_per_aircraft": 171360,
+      "logical_security_bytes_per_message": 23.8,
+      "logical_security_to_14byte_message_percent": 170.0,
+      "aggregate_logical_security_kbit_per_second": 76.16,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 122400,
+        "b1": 34560,
+        "b2": 14400
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 428400,
+      "logical_security_bytes_per_message": 19.193548387096776,
+      "logical_security_to_14byte_message_percent": 137.09677419354838,
+      "aggregate_logical_security_kbit_per_second": 0.952,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 34560,
+        "b2": 14400
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 428400,
+      "logical_security_bytes_per_message": 19.193548387096776,
+      "logical_security_to_14byte_message_percent": 137.09677419354838,
+      "aggregate_logical_security_kbit_per_second": 47.6,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 34560,
+        "b2": 14400
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 22320,
+      "logical_security_bytes_per_aircraft": 428400,
+      "logical_security_bytes_per_message": 19.193548387096776,
+      "logical_security_to_14byte_message_percent": 137.09677419354838,
+      "aggregate_logical_security_kbit_per_second": 190.4,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 379440,
+        "b1": 34560,
+        "b2": 14400
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 1,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 660960,
+      "logical_security_bytes_per_message": 18.36,
+      "logical_security_to_14byte_message_percent": 131.14285714285714,
+      "aggregate_logical_security_kbit_per_second": 1.4687999999999999,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 34560,
+        "b2": 14400
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 50,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 660960,
+      "logical_security_bytes_per_message": 18.36,
+      "logical_security_to_14byte_message_percent": 131.14285714285714,
+      "aggregate_logical_security_kbit_per_second": 73.44,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 34560,
+        "b2": 14400
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 200,
+      "messages_per_aircraft": 36000,
+      "logical_security_bytes_per_aircraft": 660960,
+      "logical_security_bytes_per_message": 18.36,
+      "logical_security_to_14byte_message_percent": 131.14285714285714,
+      "aggregate_logical_security_kbit_per_second": 293.76,
+      "breakdown_bytes_per_aircraft": {
+        "type_a": 612000,
+        "b1": 34560,
+        "b2": 14400
+      },
+      "trust_lookup_bytes_per_aircraft_excluded_from_broadcast_stream": 97
+    }
+  ],
+  "peak_rss_mib": 19.71875,
+  "interpretation_limits": [
+    "Results are exact logical-byte accounting, not measured RF traffic or channel occupancy.",
+    "The 14-byte message is only a comparison denominator; security objects are not asserted to fit inside that message.",
+    "Aggregate rates scale a constant per-aircraft schedule and are not derived from an operational density trace.",
+    "The compact CA record is reported separately because trust lookup traffic is not part of the broadcast security stream.",
+    "No precision, recall, F1, false-positive or false-negative result is produced."
+  ]
+}

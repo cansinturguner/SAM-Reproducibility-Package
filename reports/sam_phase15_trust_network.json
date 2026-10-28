@@ -1,0 +1,490 @@
+{
+  "schema": "sam.phase15.trust-network-cache.v1",
+  "scope": {
+    "implemented": "TCP signed-record lookup with controlled added RTT, concurrency, signature verification, cache and outage policy states",
+    "not_implemented": [
+      "operational WAN measurement",
+      "TLS",
+      "X.509 parsing or global aviation PKI",
+      "permissioned blockchain consensus or ledger writes",
+      "certified airborne hardware",
+      "attack/anomaly classifier"
+    ]
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "cryptography": "45.0.7",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "emulated_rtt_ms": [
+      0.0,
+      10.0,
+      50.0,
+      100.0,
+      250.0
+    ],
+    "concurrency": [
+      1,
+      8,
+      32
+    ],
+    "requests_per_scenario": 64,
+    "repetitions": 5,
+    "persistent_tcp_connection_per_worker": true,
+    "signature": "ECDSA P-256/SHA-256",
+    "cache_ttl_seconds": 900
+  },
+  "correctness": {
+    "record_signature_verified_before_test": true,
+    "all_online_responses_verified": true
+  },
+  "online_scenarios": [
+    {
+      "emulated_rtt_ms": 0.0,
+      "concurrency": 1,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 0.134458,
+        "mean_of_repetition_means": 0.132092290625,
+        "median_of_repetition_q95": 0.1419956,
+        "median_of_repetition_q99": 0.14917228999999999
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 7464.248986771449,
+        "median": 7216.485431294885,
+        "q05": 6228.275245329928,
+        "q95": 8646.975562863407,
+        "q99": 8676.635302998404,
+        "minimum": 6073.114608102617,
+        "maximum": 8684.050238032152,
+        "sample_stdev": 1110.543812446943
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 0.0,
+      "concurrency": 8,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 0.542083,
+        "mean_of_repetition_means": 0.516592746875,
+        "median_of_repetition_q95": 0.5469232,
+        "median_of_repetition_q99": 0.551118
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 12965.277400464467,
+        "median": 12924.290309808874,
+        "q05": 12888.169686049228,
+        "q95": 13126.447950311394,
+        "q99": 13166.05342366998,
+        "minimum": 12881.04237108692,
+        "maximum": 13175.954792009627,
+        "sample_stdev": 119.24835410238884
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 0.0,
+      "concurrency": 32,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 1.960771,
+        "mean_of_repetition_means": 1.651719534375,
+        "median_of_repetition_q95": 2.0933143999999997,
+        "median_of_repetition_q99": 2.1010872899999997
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 10130.165193464674,
+        "median": 10217.72535801838,
+        "q05": 9905.255988806475,
+        "q95": 10235.347828132597,
+        "q99": 10236.66771838983,
+        "minimum": 9852.975134175987,
+        "maximum": 10236.997690954138,
+        "sample_stdev": 162.6976713067798
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 10.0,
+      "concurrency": 1,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 11.7275205,
+        "mean_of_repetition_means": 11.671373428125,
+        "median_of_repetition_q95": 11.9221375,
+        "median_of_repetition_q99": 11.98868821
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 85.53639357947338,
+        "median": 85.59544083907474,
+        "q05": 85.0213059427253,
+        "q95": 86.13483685670447,
+        "q99": 86.23931633314112,
+        "minimum": 84.96595944403526,
+        "maximum": 86.26543620225029,
+        "sample_stdev": 0.4879622065859556
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 10.0,
+      "concurrency": 8,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 13.8956665,
+        "mean_of_repetition_means": 13.72320858125,
+        "median_of_repetition_q95": 14.44543925,
+        "median_of_repetition_q99": 14.475025539999999
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 562.9965093856124,
+        "median": 565.0555121094121,
+        "q05": 544.3870993096161,
+        "q95": 582.189142337255,
+        "q99": 585.428100101272,
+        "minimum": 541.4135515962922,
+        "maximum": 586.2378395422762,
+        "sample_stdev": 16.311837919508697
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 10.0,
+      "concurrency": 32,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 15.0386875,
+        "mean_of_repetition_means": 14.581940631250001,
+        "median_of_repetition_q95": 15.163840050000001,
+        "median_of_repetition_q99": 15.16498908
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 1782.1467253239516,
+        "median": 1823.5003780980066,
+        "q05": 1605.031383048606,
+        "q95": 1911.7363991951759,
+        "q99": 1920.0502704728822,
+        "minimum": 1576.7398159400768,
+        "maximum": 1922.1287382923088,
+        "sample_stdev": 137.23533374278185
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 50.0,
+      "concurrency": 1,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 51.9372085,
+        "mean_of_repetition_means": 51.906315381249996,
+        "median_of_repetition_q95": 52.1145856,
+        "median_of_repetition_q99": 52.265540830000006
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 19.258293400804085,
+        "median": 19.267928600591343,
+        "q05": 19.22664438936357,
+        "q95": 19.27482879485573,
+        "q99": 19.27498490519409,
+        "minimum": 19.219585239777118,
+        "maximum": 19.27502393277868,
+        "sample_stdev": 0.02308099394575271
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 50.0,
+      "concurrency": 8,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 54.1995625,
+        "mean_of_repetition_means": 54.15573564374999,
+        "median_of_repetition_q95": 54.82850005,
+        "median_of_repetition_q99": 54.91822425000001
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 146.27801311652914,
+        "median": 146.2647775274652,
+        "q05": 145.94274811280525,
+        "q95": 146.63442409859067,
+        "q99": 146.68608514752003,
+        "minimum": 145.887857257514,
+        "maximum": 146.6990004097524,
+        "sample_stdev": 0.2969169362454184
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 50.0,
+      "concurrency": 32,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 58.435792000000006,
+        "mean_of_repetition_means": 57.34700245625,
+        "median_of_repetition_q95": 59.55652325,
+        "median_of_repetition_q99": 59.630257670000006
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 520.2240521980756,
+        "median": 514.9914162168384,
+        "q05": 504.0186409583412,
+        "q95": 548.5511935110027,
+        "q99": 554.3277173047057,
+        "minimum": 503.1349276045951,
+        "maximum": 555.7718482531316,
+        "sample_stdev": 20.88011047666943
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 100.0,
+      "concurrency": 1,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 102.12770850000001,
+        "mean_of_repetition_means": 102.05577553125,
+        "median_of_repetition_q95": 102.23948135,
+        "median_of_repetition_q99": 102.34718654
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 9.796085642797122,
+        "median": 9.798071068046985,
+        "q05": 9.789227582821132,
+        "q95": 9.801360496328927,
+        "q99": 9.80180047747193,
+        "minimum": 9.788283943846206,
+        "maximum": 9.801910472757683,
+        "sample_stdev": 0.005424489963982033
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 100.0,
+      "concurrency": 8,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 104.36337499999999,
+        "mean_of_repetition_means": 104.438390803125,
+        "median_of_repetition_q95": 105.13009565,
+        "median_of_repetition_q99": 105.18758029
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 76.208780461746,
+        "median": 76.28021896012454,
+        "q05": 75.93694599828623,
+        "q95": 76.44683401734558,
+        "q99": 76.46461566919179,
+        "minimum": 75.91601116103116,
+        "maximum": 76.46906108215335,
+        "sample_stdev": 0.23247979232404892
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 100.0,
+      "concurrency": 32,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 109.6757915,
+        "mean_of_repetition_means": 108.558362103125,
+        "median_of_repetition_q95": 110.75279565,
+        "median_of_repetition_q99": 111.02982425
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 283.2440353042589,
+        "median": 282.9357155206045,
+        "q05": 279.99800422788036,
+        "q95": 286.9672383723847,
+        "q99": 287.71957057152326,
+        "minimum": 279.27293037890394,
+        "maximum": 287.9076536213079,
+        "sample_stdev": 3.0714444239327627
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 250.0,
+      "concurrency": 1,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 252.28777100000002,
+        "mean_of_repetition_means": 252.207154059375,
+        "median_of_repetition_q95": 252.3806874,
+        "median_of_repetition_q99": 252.42777212
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 3.9646464306118974,
+        "median": 3.9650239866486454,
+        "q05": 3.963997869251895,
+        "q95": 3.9651131916443028,
+        "q99": 3.9651303693958075,
+        "minimum": 3.9639810488563647,
+        "maximum": 3.965134663833684,
+        "sample_stdev": 0.0005715336801718955
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 250.0,
+      "concurrency": 8,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 254.71408300000002,
+        "mean_of_repetition_means": 254.524570065625,
+        "median_of_repetition_q95": 255.22447045,
+        "median_of_repetition_q99": 255.33127912999998
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 31.37299981321911,
+        "median": 31.362797480318648,
+        "q05": 31.33768841709181,
+        "q95": 31.409056087609645,
+        "q99": 31.41154386728465,
+        "minimum": 31.331674500373396,
+        "maximum": 31.4121658122034,
+        "sample_stdev": 0.03174238666883219
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    },
+    {
+      "emulated_rtt_ms": 250.0,
+      "concurrency": 32,
+      "requests_per_repetition": 64,
+      "repetitions": 5,
+      "latency_ms_across_all_requests": {
+        "median_of_repetition_medians": 259.6010415,
+        "mean_of_repetition_means": 258.520304675,
+        "median_of_repetition_q95": 260.69280884999995,
+        "median_of_repetition_q99": 260.75089316
+      },
+      "throughput_requests_per_second": {
+        "n": 5,
+        "mean": 121.5510745725895,
+        "median": 121.54089162574505,
+        "q05": 121.05691178518826,
+        "q95": 122.07917150473654,
+        "q99": 122.1499816722539,
+        "minimum": 120.98762752334058,
+        "maximum": 122.16768421413325,
+        "sample_stdev": 0.440220380780248
+      },
+      "verification_failures": 0,
+      "request_bytes": 25,
+      "response_bytes": 273
+    }
+  ],
+  "cache_fast_path": {
+    "iterations": 100000,
+    "lookup_microseconds": {
+      "n": 100000,
+      "mean": 0.11989502,
+      "median": 0.125,
+      "q05": 0.083,
+      "q95": 0.167,
+      "q99": 0.208,
+      "minimum": 0.041,
+      "maximum": 1.042,
+      "sample_stdev": 0.03498290835877389
+    },
+    "state": "VERIFIED"
+  },
+  "service_states": [
+    {
+      "name": "online_valid",
+      "state": "VERIFIED"
+    },
+    {
+      "name": "offline_valid_cache",
+      "cache_age_seconds": 450,
+      "state": "VERIFIED"
+    },
+    {
+      "name": "offline_cold_start",
+      "state": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "name": "offline_expired_cache",
+      "cache_age_seconds": 901,
+      "state": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "name": "online_revoked_record",
+      "state": "CONFLICTING"
+    }
+  ],
+  "prototype_wire_bytes": {
+    "request_json_line": 25,
+    "signed_response_json_line": 273,
+    "note": "Prototype TCP JSON-line sizes; not ADS-B, Phase Overlay, TLS, FEC, or ledger traffic."
+  },
+  "peak_rss_mib": 39.03125,
+  "interpretation_limits": [
+    "Added RTT is controlled application delay over loopback, not a field-network measurement.",
+    "Online latency includes TCP exchange, added RTT, JSON/base64 processing, and ECDSA verification.",
+    "Cache lookup is a local policy-state benchmark and does not include disk or network access.",
+    "No precision, recall, F1, false-positive or false-negative result is produced."
+  ]
+}

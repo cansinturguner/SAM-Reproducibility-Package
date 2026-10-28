@@ -14,7 +14,7 @@ It does not modify Phase 1–9 results.
 Run from the existing project root:
 
 ```bash
-cd ~/Downloads/sam_phase1
+cd SAM_Reproducibility_Package
 source .venv/bin/activate
 python --version
 ```
@@ -28,7 +28,7 @@ python -m pip install "cryptography>=42.0,<47.0"
 Run:
 
 ```bash
-python ~/Downloads/sam_phase10_identity_trust/scripts/run_identity_trust_experiment.py \
+python phases/phase10_identity_trust/scripts/run_identity_trust_experiment.py \
   --report reports/sam_phase10_identity_trust.json \
   --seed 1103 \
   --iterations 10000 \
@@ -39,7 +39,7 @@ python ~/Downloads/sam_phase10_identity_trust/scripts/run_identity_trust_experim
 Validate:
 
 ```bash
-python ~/Downloads/sam_phase10_identity_trust/scripts/validate_report.py \
+python phases/phase10_identity_trust/scripts/validate_report.py \
   reports/sam_phase10_identity_trust.json
 ```
 

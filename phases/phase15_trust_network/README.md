@@ -7,14 +7,14 @@ verification, cache use, and service-unavailable states.
 Run from the existing SAM project root:
 
 ```bash
-cd ~/Downloads/sam_phase1
+cd SAM_Reproducibility_Package
 source .venv/bin/activate
 ```
 
 Run:
 
 ```bash
-python ~/Downloads/sam_phase15_trust_network/scripts/run_trust_network.py \
+python phases/phase15_trust_network/scripts/run_trust_network.py \
   --report reports/sam_phase15_trust_network.json \
   --seed 1103 \
   --rtt-ms 0,10,50,100,250 \
@@ -30,7 +30,7 @@ wait. Keep the Mac connected to power and close heavy applications.
 Validate:
 
 ```bash
-python ~/Downloads/sam_phase15_trust_network/scripts/validate_report.py \
+python phases/phase15_trust_network/scripts/validate_report.py \
   reports/sam_phase15_trust_network.json
 ```
 

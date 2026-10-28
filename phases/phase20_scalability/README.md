@@ -10,10 +10,10 @@ performance.
 
 ## Run
 
-From the `sam_phase1` project directory with the frozen virtual environment active:
+From the package root with the frozen virtual environment active:
 
 ```bash
-python ~/Downloads/sam_phase20_concurrent_scalability/scripts/run_phase20.py \
+python phases/phase20_scalability/scripts/run_phase20.py \
   --selected data/processed/locards_subset_1/trusted_good_ge3.csv.gz \
   --sensors data/raw/locards/subset_1/set_1_sensors.csv \
   --calibration data/processed/locards_subset_1/receiver_clock_calibration.json \
@@ -27,7 +27,7 @@ python ~/Downloads/sam_phase20_concurrent_scalability/scripts/run_phase20.py \
 Validate:
 
 ```bash
-python ~/Downloads/sam_phase20_concurrent_scalability/scripts/validate_report.py \
+python phases/phase20_scalability/scripts/validate_report.py \
   reports/sam_phase20_concurrent_scalability.json
 ```
 

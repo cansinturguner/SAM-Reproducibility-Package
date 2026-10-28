@@ -17,7 +17,7 @@ The input SHA-256 is verified by default against the Phase 3 value:
 
 ```bash
 source .venv/bin/activate
-python ~/Downloads/sam_phase4_geometry/scripts/profile_receiver_geometry.py \
+python phases/phase04_geometry/scripts/profile_receiver_geometry.py \
   --input data/processed/locards_subset_1/trusted_good_ge3.csv.gz \
   --output reports/locards_subset_1_geometry_development.json
 ```

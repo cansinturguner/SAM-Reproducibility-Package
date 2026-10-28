@@ -1,0 +1,429 @@
+{
+  "schema": "sam.phase35.protocol-robustness.v1",
+  "scope": "controlled TESLA timing/loss edge cases and secure-to-legacy downgrade handling",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14"
+  },
+  "configuration": {
+    "seed": 1103,
+    "replicates": 200,
+    "duration_seconds": 600,
+    "message_rate_per_second": 6.2,
+    "tesla_interval_seconds": 1.0
+  },
+  "burst_loss": [
+    {
+      "name": "mild_burst",
+      "parameters": {
+        "p_good_to_bad": 0.01,
+        "p_bad_to_good": 0.5,
+        "loss_good": 0.01,
+        "loss_bad": 0.6
+      },
+      "authentication_availability_vs_received": {
+        "n": 200,
+        "mean": 0.9999615806357497,
+        "median": 1.0,
+        "q025": 1.0,
+        "q95": 1.0,
+        "q975": 1.0,
+        "minimum": 0.9980769230769231,
+        "maximum": 1.0
+      },
+      "authentication_availability_vs_transmitted": {
+        "n": 200,
+        "mean": 0.9779905913978495,
+        "median": 0.978225806451613,
+        "q025": 0.9722849462365591,
+        "q95": 0.9825268817204301,
+        "q975": 0.9836021505376344,
+        "minimum": 0.9693548387096774,
+        "maximum": 0.9862903225806452
+      },
+      "authentication_delay_q50_intervals": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "q025": 1.0,
+        "q95": 1.0,
+        "q975": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0
+      },
+      "authentication_delay_q95_intervals": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "q025": 1.0,
+        "q95": 1.0,
+        "q975": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0
+      },
+      "unresolved_received_messages": {
+        "n": 200,
+        "mean": 0.14,
+        "median": 0.0,
+        "q025": 0.0,
+        "q95": 0.0,
+        "q975": 0.0,
+        "minimum": 0.0,
+        "maximum": 7.0
+      }
+    },
+    {
+      "name": "moderate_burst",
+      "parameters": {
+        "p_good_to_bad": 0.02,
+        "p_bad_to_good": 0.2,
+        "loss_good": 0.02,
+        "loss_bad": 0.8
+      },
+      "authentication_availability_vs_received": {
+        "n": 200,
+        "mean": 0.9998588906880722,
+        "median": 1.0,
+        "q025": 0.9979548961466932,
+        "q95": 1.0,
+        "q975": 1.0,
+        "minimum": 0.9976296296296296,
+        "maximum": 1.0
+      },
+      "authentication_availability_vs_transmitted": {
+        "n": 200,
+        "mean": 0.907741935483871,
+        "median": 0.9086021505376344,
+        "q025": 0.8840456989247312,
+        "q95": 0.9255645161290322,
+        "q975": 0.926888440860215,
+        "minimum": 0.8717741935483871,
+        "maximum": 0.9330645161290323
+      },
+      "authentication_delay_q50_intervals": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "q025": 1.0,
+        "q95": 1.0,
+        "q975": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0
+      },
+      "authentication_delay_q95_intervals": {
+        "n": 200,
+        "mean": 1.95125,
+        "median": 2.0,
+        "q025": 1.0,
+        "q95": 2.0,
+        "q975": 2.0,
+        "minimum": 1.0,
+        "maximum": 2.0
+      },
+      "unresolved_received_messages": {
+        "n": 200,
+        "mean": 0.475,
+        "median": 0.0,
+        "q025": 0.0,
+        "q95": 6.0,
+        "q975": 7.0,
+        "minimum": 0.0,
+        "maximum": 8.0
+      }
+    },
+    {
+      "name": "severe_burst",
+      "parameters": {
+        "p_good_to_bad": 0.04,
+        "p_bad_to_good": 0.1,
+        "loss_good": 0.05,
+        "loss_bad": 0.95
+      },
+      "authentication_availability_vs_received": {
+        "n": 200,
+        "mean": 0.9993614267854682,
+        "median": 1.0,
+        "q025": 0.9964192778597212,
+        "q95": 1.0,
+        "q975": 1.0,
+        "minimum": 0.9939370973853733,
+        "maximum": 1.0
+      },
+      "authentication_availability_vs_transmitted": {
+        "n": 200,
+        "mean": 0.6935309139784946,
+        "median": 0.6922043010752688,
+        "q025": 0.6448454301075269,
+        "q95": 0.7341397849462366,
+        "q975": 0.7382661290322581,
+        "minimum": 0.635483870967742,
+        "maximum": 0.746505376344086
+      },
+      "authentication_delay_q50_intervals": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "q025": 1.0,
+        "q95": 1.0,
+        "q975": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0
+      },
+      "authentication_delay_q95_intervals": {
+        "n": 200,
+        "mean": 3.065749999999998,
+        "median": 3.0,
+        "q025": 3.0,
+        "q95": 4.0,
+        "q975": 4.0,
+        "minimum": 2.0,
+        "maximum": 4.0
+      },
+      "unresolved_received_messages": {
+        "n": 200,
+        "mean": 1.65,
+        "median": 0.0,
+        "q025": 0.0,
+        "q95": 7.0,
+        "q975": 9.050000000000011,
+        "minimum": 0.0,
+        "maximum": 16.0
+      }
+    }
+  ],
+  "late_packet_and_clock_uncertainty": [
+    {
+      "one_way_delay_seconds": 0.05,
+      "receiver_clock_uncertainty_bound_seconds": 0.0,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 6,
+      "rejected_as_late_or_unsafe": 0,
+      "safe_fraction": 1.0
+    },
+    {
+      "one_way_delay_seconds": 0.05,
+      "receiver_clock_uncertainty_bound_seconds": 0.05,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 5,
+      "rejected_as_late_or_unsafe": 1,
+      "safe_fraction": 0.8333333333333334
+    },
+    {
+      "one_way_delay_seconds": 0.05,
+      "receiver_clock_uncertainty_bound_seconds": 0.1,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 5,
+      "rejected_as_late_or_unsafe": 1,
+      "safe_fraction": 0.8333333333333334
+    },
+    {
+      "one_way_delay_seconds": 0.05,
+      "receiver_clock_uncertainty_bound_seconds": 0.25,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 4,
+      "rejected_as_late_or_unsafe": 2,
+      "safe_fraction": 0.6666666666666666
+    },
+    {
+      "one_way_delay_seconds": 0.25,
+      "receiver_clock_uncertainty_bound_seconds": 0.0,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 4,
+      "rejected_as_late_or_unsafe": 2,
+      "safe_fraction": 0.6666666666666666
+    },
+    {
+      "one_way_delay_seconds": 0.25,
+      "receiver_clock_uncertainty_bound_seconds": 0.05,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 4,
+      "rejected_as_late_or_unsafe": 2,
+      "safe_fraction": 0.6666666666666666
+    },
+    {
+      "one_way_delay_seconds": 0.25,
+      "receiver_clock_uncertainty_bound_seconds": 0.1,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 4,
+      "rejected_as_late_or_unsafe": 2,
+      "safe_fraction": 0.6666666666666666
+    },
+    {
+      "one_way_delay_seconds": 0.25,
+      "receiver_clock_uncertainty_bound_seconds": 0.25,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 3,
+      "rejected_as_late_or_unsafe": 3,
+      "safe_fraction": 0.5
+    },
+    {
+      "one_way_delay_seconds": 0.75,
+      "receiver_clock_uncertainty_bound_seconds": 0.0,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 1,
+      "rejected_as_late_or_unsafe": 5,
+      "safe_fraction": 0.16666666666666666
+    },
+    {
+      "one_way_delay_seconds": 0.75,
+      "receiver_clock_uncertainty_bound_seconds": 0.05,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 1,
+      "rejected_as_late_or_unsafe": 5,
+      "safe_fraction": 0.16666666666666666
+    },
+    {
+      "one_way_delay_seconds": 0.75,
+      "receiver_clock_uncertainty_bound_seconds": 0.1,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 1,
+      "rejected_as_late_or_unsafe": 5,
+      "safe_fraction": 0.16666666666666666
+    },
+    {
+      "one_way_delay_seconds": 0.75,
+      "receiver_clock_uncertainty_bound_seconds": 0.25,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 0,
+      "rejected_as_late_or_unsafe": 6,
+      "safe_fraction": 0.0
+    },
+    {
+      "one_way_delay_seconds": 1.1,
+      "receiver_clock_uncertainty_bound_seconds": 0.0,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 0,
+      "rejected_as_late_or_unsafe": 6,
+      "safe_fraction": 0.0
+    },
+    {
+      "one_way_delay_seconds": 1.1,
+      "receiver_clock_uncertainty_bound_seconds": 0.05,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 0,
+      "rejected_as_late_or_unsafe": 6,
+      "safe_fraction": 0.0
+    },
+    {
+      "one_way_delay_seconds": 1.1,
+      "receiver_clock_uncertainty_bound_seconds": 0.1,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 0,
+      "rejected_as_late_or_unsafe": 6,
+      "safe_fraction": 0.0
+    },
+    {
+      "one_way_delay_seconds": 1.1,
+      "receiver_clock_uncertainty_bound_seconds": 0.25,
+      "messages_in_interval": 6,
+      "accepted_for_delayed_verification": 0,
+      "rejected_as_late_or_unsafe": 6,
+      "safe_fraction": 0.0
+    }
+  ],
+  "sequence_boundary": {
+    "sequence_bits": 8,
+    "scope": "per TESLA interval",
+    "legitimate_boundary_messages_accepted": 512,
+    "expected_legitimate_messages": 512,
+    "sequence_256_rejected_before_encoding": true,
+    "old_interval_sequence_replay_rejected": true,
+    "sequence_zero_in_next_interval_accepted": true,
+    "authenticated_replay_key": "interval_id + sequence + payload tag"
+  },
+  "downgrade_routing": {
+    "input_sequence": [
+      "LEGACY",
+      "VALID_SECURE",
+      "LEGACY",
+      "INVALID_SECURE",
+      "VALID_SECURE"
+    ],
+    "policies": {
+      "permissive_fallback": [
+        {
+          "input": "LEGACY",
+          "secure_capability_after": false,
+          "state": "LEGACY_UNASSURED",
+          "reason": "LEGACY_PATH"
+        },
+        {
+          "input": "VALID_SECURE",
+          "secure_capability_after": true,
+          "state": "VERIFIED",
+          "reason": "SECURE_EVIDENCE_VALID"
+        },
+        {
+          "input": "LEGACY",
+          "secure_capability_after": true,
+          "state": "LEGACY_UNASSURED",
+          "reason": "LEGACY_PATH"
+        },
+        {
+          "input": "INVALID_SECURE",
+          "secure_capability_after": true,
+          "state": "CONFLICTING",
+          "reason": "SECURE_EVIDENCE_INVALID"
+        },
+        {
+          "input": "VALID_SECURE",
+          "secure_capability_after": true,
+          "state": "VERIFIED",
+          "reason": "SECURE_EVIDENCE_VALID"
+        }
+      ],
+      "capability_pin": [
+        {
+          "input": "LEGACY",
+          "secure_capability_after": false,
+          "state": "LEGACY_UNASSURED",
+          "reason": "LEGACY_PATH"
+        },
+        {
+          "input": "VALID_SECURE",
+          "secure_capability_after": true,
+          "state": "VERIFIED",
+          "reason": "SECURE_EVIDENCE_VALID"
+        },
+        {
+          "input": "LEGACY",
+          "secure_capability_after": true,
+          "state": "INSUFFICIENT_EVIDENCE",
+          "reason": "DOWNGRADE_BLOCKED"
+        },
+        {
+          "input": "INVALID_SECURE",
+          "secure_capability_after": true,
+          "state": "CONFLICTING",
+          "reason": "SECURE_EVIDENCE_INVALID"
+        },
+        {
+          "input": "VALID_SECURE",
+          "secure_capability_after": true,
+          "state": "VERIFIED",
+          "reason": "SECURE_EVIDENCE_VALID"
+        }
+      ]
+    },
+    "checks": {
+      "permissive_policy_downgrades_after_secure_establishment": true,
+      "capability_pin_blocks_downgrade": true,
+      "capability_pin_preserves_explicit_invalidity": true,
+      "valid_secure_frame_recovers_verified_state": true
+    }
+  },
+  "correctness": {
+    "burst_scenarios_have_bounded_availability": true,
+    "clock_uncertainty_never_increases_safe_fraction": true,
+    "sequence_boundary_checks_pass": true,
+    "downgrade_checks_pass": true
+  },
+  "interpretation_limits": [
+    "Gilbert-Elliott parameters are controlled sensitivity conditions and are not fitted to operational 1090 MHz traces.",
+    "Late-packet results use a conservative receiver clock-uncertainty bound and idealized fixed one-way delays.",
+    "Sequence and downgrade results are protocol-state conformance tests, not RF experiments.",
+    "Capability pinning prevents assurance downgrade but does not prevent channel jamming or message deletion."
+  ]
+}

@@ -2,9 +2,9 @@
 
 This package audits LocaRDS subset 1 without loading the 1.24 GB observation file into memory. It does not calculate final TDoA results and does not generate security or anomaly labels.
 
-Copy `scripts/audit_locards.py` into the existing `sam_phase1/scripts` folder, or run it directly from this package.
+Run `phases/phase02_dataset_audit/scripts/audit_locards.py` from the package root.
 
-From the `sam_phase1` folder with the virtual environment active:
+From the package root with the virtual environment active:
 
 ```bash
 source .venv/bin/activate

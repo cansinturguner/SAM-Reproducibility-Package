@@ -1,0 +1,228 @@
+{
+  "schema": "sam.phase11.evidence-fusion.v1",
+  "scope": {
+    "implemented": "deterministic evidence fusion and partial A0-A7 rule evaluation",
+    "not_implemented": [
+      "message-level joining of LocaRDS and cryptographic observations",
+      "channel-quality component for A4",
+      "overlap-recovery component for A5",
+      "attack/anomaly classifier",
+      "certified airborne implementation"
+    ]
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14"
+  },
+  "configuration": {
+    "iterations": 100000,
+    "repetitions": 5,
+    "full_policy": "VERIFIED requires crypto+trust and physical corroboration; any conflict dominates"
+  },
+  "input_reports": {
+    "phase5d": {
+      "path": "reports/locards_subset_1_frozen_test.json",
+      "size_bytes": 6298,
+      "sha256": "5569abf2df82f5d80918aa99e8dee7f032e5e86353e18004bba5ce774c42f94c"
+    },
+    "phase8": {
+      "path": "reports/sam_phase8_crypto.json",
+      "size_bytes": 3124,
+      "sha256": "3322d6974906f0ce15c991b1ffdd76662b7a38a75dddbc51aeb38ff54bd2c27a"
+    },
+    "phase9": {
+      "path": "reports/sam_phase9_tesla.json",
+      "size_bytes": 11874,
+      "sha256": "6f3a71db44308af0a741aa472e6a9e69514700b0bf7f509ada9792af1543c9b7"
+    },
+    "phase10": {
+      "path": "reports/sam_phase10_identity_trust.json",
+      "size_bytes": 4956,
+      "sha256": "d731dd00b3edb5203b1f118fb3f83827dfd049fd8d373df3c45ca8765b982799"
+    }
+  },
+  "source_evidence_summary": {
+    "phase5d_real_locards": {
+      "usable_test_rows": 78358,
+      "availability": 0.9442315571301183,
+      "pair_residual_absolute_q50_ns": 64.98799972087727,
+      "pair_residual_absolute_q95_ns": 227.07981870131601
+    },
+    "phase8_synthetic_crypto": {
+      "all_correctness_checks_passed": true,
+      "hmac_verification_median_us": 1.7849375,
+      "ecdsa_verification_median_us": 46.7685209
+    },
+    "phase9_synthetic_tesla": {
+      "messages_per_replicate": 3720,
+      "zero_loss_authenticated_vs_received": 1.0,
+      "highest_loss_authenticated_vs_received": 0.9984819682809082
+    },
+    "phase10_synthetic_identity_trust": {
+      "all_correctness_checks_passed": true,
+      "trust_states": {
+        "online_valid": "VERIFIED",
+        "offline_valid_cache": "VERIFIED",
+        "offline_cold_start": "INSUFFICIENT_EVIDENCE",
+        "offline_expired_cache": "INSUFFICIENT_EVIDENCE",
+        "online_revoked_record": "CONFLICTING"
+      }
+    }
+  },
+  "fusion_truth_table": [
+    {
+      "case": "all_evidence_valid",
+      "crypto": "VERIFIED",
+      "physical": "VERIFIED",
+      "trust": "VERIFIED",
+      "expected": "VERIFIED",
+      "actual": "VERIFIED",
+      "passed": true
+    },
+    {
+      "case": "physical_missing",
+      "crypto": "VERIFIED",
+      "physical": "INSUFFICIENT_EVIDENCE",
+      "trust": "VERIFIED",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "passed": true
+    },
+    {
+      "case": "crypto_missing",
+      "crypto": "INSUFFICIENT_EVIDENCE",
+      "physical": "VERIFIED",
+      "trust": "VERIFIED",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "passed": true
+    },
+    {
+      "case": "trust_missing",
+      "crypto": "VERIFIED",
+      "physical": "VERIFIED",
+      "trust": "INSUFFICIENT_EVIDENCE",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "passed": true
+    },
+    {
+      "case": "physical_conflict",
+      "crypto": "VERIFIED",
+      "physical": "CONFLICTING",
+      "trust": "VERIFIED",
+      "expected": "CONFLICTING",
+      "actual": "CONFLICTING",
+      "passed": true
+    },
+    {
+      "case": "crypto_conflict",
+      "crypto": "CONFLICTING",
+      "physical": "VERIFIED",
+      "trust": "VERIFIED",
+      "expected": "CONFLICTING",
+      "actual": "CONFLICTING",
+      "passed": true
+    },
+    {
+      "case": "trust_conflict",
+      "crypto": "VERIFIED",
+      "physical": "VERIFIED",
+      "trust": "CONFLICTING",
+      "expected": "CONFLICTING",
+      "actual": "CONFLICTING",
+      "passed": true
+    },
+    {
+      "case": "all_evidence_missing",
+      "crypto": "INSUFFICIENT_EVIDENCE",
+      "physical": "INSUFFICIENT_EVIDENCE",
+      "trust": "INSUFFICIENT_EVIDENCE",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "passed": true
+    }
+  ],
+  "fusion_truth_table_pass_fraction": 1.0,
+  "component_wise_A0_A7": [
+    {
+      "id": "A0",
+      "name": "Legacy baseline",
+      "evaluation_status": "EVALUATED_RULE",
+      "output_for_valid_input": "LEGACY_UNASSURED",
+      "interpretation": "No authentication or independent assurance claim."
+    },
+    {
+      "id": "A1",
+      "name": "Full implemented SAM branches",
+      "evaluation_status": "EVALUATED_RULE",
+      "output_for_valid_input": "VERIFIED",
+      "interpretation": "Cryptographic, trust and physical evidence are jointly required."
+    },
+    {
+      "id": "A2",
+      "name": "No cryptographic branch",
+      "evaluation_status": "EVALUATED_RULE",
+      "output_for_valid_input": "INSUFFICIENT_EVIDENCE",
+      "interpretation": "Physical corroboration alone cannot establish sender identity."
+    },
+    {
+      "id": "A3",
+      "name": "No physical branch",
+      "evaluation_status": "EVALUATED_RULE",
+      "output_for_valid_input": "INSUFFICIENT_EVIDENCE",
+      "interpretation": "A valid signature alone does not independently corroborate reported state."
+    },
+    {
+      "id": "A4",
+      "name": "No channel-quality assessment",
+      "evaluation_status": "NOT_EVALUATED",
+      "output_for_valid_input": "NOT_EVALUATED",
+      "interpretation": "Channel-quality component is not implemented; no result is claimed."
+    },
+    {
+      "id": "A5",
+      "name": "No overlap recovery",
+      "evaluation_status": "NOT_EVALUATED",
+      "output_for_valid_input": "NOT_EVALUATED",
+      "interpretation": "Overlap-recovery component is not implemented; no result is claimed."
+    },
+    {
+      "id": "A6",
+      "name": "Trust service unavailable",
+      "evaluation_status": "EVALUATED_RULE",
+      "valid_cache_output": "VERIFIED",
+      "cold_or_expired_cache_output": "INSUFFICIENT_EVIDENCE",
+      "interpretation": "Valid cache is fail-operational; missing/stale trust evidence degrades safely."
+    },
+    {
+      "id": "A7",
+      "name": "Single-source decision",
+      "evaluation_status": "EVALUATED_POLICY_VARIANT",
+      "crypto_only_output": "VERIFIED",
+      "physical_only_output": "VERIFIED",
+      "interpretation": "This relaxed policy verifies with one family and is not the full-SAM policy."
+    }
+  ],
+  "decision_time_microseconds": {
+    "n": 5,
+    "mean": 0.15553691399999997,
+    "median": 0.15483416,
+    "q05": 0.153880162,
+    "q95": 0.157963414,
+    "minimum": 0.15387790999999998,
+    "maximum": 0.15824458,
+    "sample_stdev": 0.0019356813971131764
+  },
+  "peak_rss_mib": 21.109375,
+  "interpretation_limits": [
+    "Phase 5D is real LocaRDS evidence; Phases 8-10 are synthetic protocol workloads.",
+    "Fusion validates decision rules across evidence summaries, not co-observed per-message evidence.",
+    "A4 and A5 are deliberately NOT_EVALUATED until their components are implemented.",
+    "A0-A3/A6-A7 outputs are controlled rule outcomes, not detection-accuracy measurements.",
+    "No precision, recall, F1, false-positive or false-negative result is produced."
+  ]
+}

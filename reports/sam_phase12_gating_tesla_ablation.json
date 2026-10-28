@@ -1,0 +1,617 @@
+{
+  "schema": "sam.phase12.gating-tesla-ablation.v1",
+  "scope": {
+    "implemented": "A4 receiver/geometry gating summary and paired A5 TESLA recovery ablation",
+    "not_implemented": [
+      "raw-IQ overlap recovery",
+      "channel anomaly/change detection",
+      "physical residuals for unsupported receiver geometries",
+      "certified airborne buffering policy"
+    ]
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14"
+  },
+  "inputs": {
+    "phase5d": {
+      "path": "reports/locards_subset_1_frozen_test.json",
+      "size_bytes": 6298,
+      "sha256": "5569abf2df82f5d80918aa99e8dee7f032e5e86353e18004bba5ce774c42f94c"
+    },
+    "phase9": {
+      "path": "reports/sam_phase9_tesla.json",
+      "size_bytes": 11874,
+      "sha256": "6f3a71db44308af0a741aa472e6a9e69514700b0bf7f509ada9792af1543c9b7"
+    }
+  },
+  "A4_receiver_geometry_gating": {
+    "real_locards_test_original_ge4_rows": 82986,
+    "rows_supported_by_frozen_modeled_receiver_and_rank_rule": 78358,
+    "rows_without_sufficient_frozen_physical_support": 4628,
+    "supported_fraction": 0.9442315571301183,
+    "unsupported_fraction": 0.05576844286988167,
+    "without_gate_nominal_admission_fraction": 1.0,
+    "interpretation": "Removing the gate would admit unsupported rows; no physical-verification result is assigned to them."
+  },
+  "A5_tesla_chain_recovery": {
+    "paired_design": "Identical Type-A and B1 loss draws for direct-only and chain-recovery modes",
+    "replicates_per_loss_probability": 200,
+    "no_timeout_policy": true,
+    "scenarios": [
+      {
+        "independent_type_a_and_b1_loss_probability": 0.0,
+        "direct_b1_only": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 7.0,
+            "median": 7.0,
+            "simulation_interval_95_low": 7.0,
+            "simulation_interval_95_high": 7.0
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 0.0,
+            "median": 0.0,
+            "simulation_interval_95_low": 0.0,
+            "simulation_interval_95_high": 0.0
+          }
+        },
+        "tesla_chain_recovery": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 7.0,
+            "median": 7.0,
+            "simulation_interval_95_low": 7.0,
+            "simulation_interval_95_high": 7.0
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 0.0,
+            "median": 0.0,
+            "simulation_interval_95_low": 0.0,
+            "simulation_interval_95_high": 0.0
+          }
+        },
+        "paired_chain_minus_direct_availability": {
+          "n": 200,
+          "mean": 0.0,
+          "median": 0.0,
+          "simulation_interval_95_low": 0.0,
+          "simulation_interval_95_high": 0.0
+        },
+        "paired_unresolved_message_reduction": {
+          "n": 200,
+          "mean": 0.0,
+          "median": 0.0,
+          "simulation_interval_95_low": 0.0,
+          "simulation_interval_95_high": 0.0
+        },
+        "phase9_chain_availability_reference": 1.0,
+        "phase9_reproduction_absolute_error": 0.0
+      },
+      {
+        "independent_type_a_and_b1_loss_probability": 0.1,
+        "direct_b1_only": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 0.9007808363749114,
+            "median": 0.9011775014574357,
+            "simulation_interval_95_low": 0.876265786457518,
+            "simulation_interval_95_high": 0.9238591331660236
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 338.11,
+            "median": 336.5,
+            "simulation_interval_95_low": 258.90000000000003,
+            "simulation_interval_95_high": 420.0
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 332.1,
+            "median": 331.0,
+            "simulation_interval_95_low": 252.875,
+            "simulation_interval_95_high": 413.02500000000003
+          }
+        },
+        "tesla_chain_recovery": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 0.9997971341325101,
+            "median": 1.0,
+            "simulation_interval_95_low": 0.9979054458408139,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 2.0,
+            "median": 2.0,
+            "simulation_interval_95_low": 2.0,
+            "simulation_interval_95_high": 2.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 20.095,
+            "median": 19.0,
+            "simulation_interval_95_low": 17.0,
+            "simulation_interval_95_high": 27.0
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 0.68,
+            "median": 0.0,
+            "simulation_interval_95_low": 0.0,
+            "simulation_interval_95_high": 7.0
+          }
+        },
+        "paired_chain_minus_direct_availability": {
+          "n": 200,
+          "mean": 0.09901629775759886,
+          "median": 0.09882249854256425,
+          "simulation_interval_95_low": 0.07614086683397638,
+          "simulation_interval_95_high": 0.12373421354248201
+        },
+        "paired_unresolved_message_reduction": {
+          "n": 200,
+          "mean": 331.42,
+          "median": 330.0,
+          "simulation_interval_95_low": 252.875,
+          "simulation_interval_95_high": 413.02500000000003
+        },
+        "phase9_chain_availability_reference": 0.9997971341325101,
+        "phase9_reproduction_absolute_error": 0.0
+      },
+      {
+        "independent_type_a_and_b1_loss_probability": 0.2,
+        "direct_b1_only": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 0.800834888619118,
+            "median": 0.799432073084352,
+            "simulation_interval_95_low": 0.7685075684057657,
+            "simulation_interval_95_high": 0.8333473436449227
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 597.455,
+            "median": 602.0,
+            "simulation_interval_95_low": 499.925,
+            "simulation_interval_95_high": 696.125
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 592.595,
+            "median": 596.0,
+            "simulation_interval_95_low": 493.95,
+            "simulation_interval_95_high": 689.1500000000001
+          }
+        },
+        "tesla_chain_recovery": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 0.999547172429892,
+            "median": 1.0,
+            "simulation_interval_95_low": 0.9966485401130962,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 2.1207500000000006,
+            "median": 2.0,
+            "simulation_interval_95_low": 2.0,
+            "simulation_interval_95_high": 3.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 24.385,
+            "median": 24.0,
+            "simulation_interval_95_low": 19.0,
+            "simulation_interval_95_high": 33.025000000000006
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 1.35,
+            "median": 0.0,
+            "simulation_interval_95_low": 0.0,
+            "simulation_interval_95_high": 10.0
+          }
+        },
+        "paired_chain_minus_direct_availability": {
+          "n": 200,
+          "mean": 0.19871228381077402,
+          "median": 0.20013428762280422,
+          "simulation_interval_95_low": 0.1661047645710462,
+          "simulation_interval_95_high": 0.23149243159423438
+        },
+        "paired_unresolved_message_reduction": {
+          "n": 200,
+          "mean": 591.245,
+          "median": 596.0,
+          "simulation_interval_95_low": 493.925,
+          "simulation_interval_95_high": 689.1500000000001
+        },
+        "phase9_chain_availability_reference": 0.999547172429892,
+        "phase9_reproduction_absolute_error": 0.0
+      },
+      {
+        "independent_type_a_and_b1_loss_probability": 0.3,
+        "direct_b1_only": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 0.7003765338582069,
+            "median": 0.701136147439871,
+            "simulation_interval_95_low": 0.6582574776084056,
+            "simulation_interval_95_high": 0.7370114132272945
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 783.62,
+            "median": 778.0,
+            "simulation_interval_95_low": 691.9250000000001,
+            "simulation_interval_95_high": 880.3750000000001
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 779.67,
+            "median": 776.0,
+            "simulation_interval_95_low": 686.9,
+            "simulation_interval_95_high": 878.4250000000001
+          }
+        },
+        "tesla_chain_recovery": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 0.9992340703503534,
+            "median": 1.0,
+            "simulation_interval_95_low": 0.9953559022050876,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 3.000999999999999,
+            "median": 3.0,
+            "simulation_interval_95_low": 3.0,
+            "simulation_interval_95_high": 3.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 26.77,
+            "median": 26.0,
+            "simulation_interval_95_low": 20.0,
+            "simulation_interval_95_high": 40.0
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 1.99,
+            "median": 0.0,
+            "simulation_interval_95_low": 0.0,
+            "simulation_interval_95_high": 12.0
+          }
+        },
+        "paired_chain_minus_direct_availability": {
+          "n": 200,
+          "mean": 0.2988575364921464,
+          "median": 0.29836700018042406,
+          "simulation_interval_95_low": 0.2629885867727055,
+          "simulation_interval_95_high": 0.3382673962200173
+        },
+        "paired_unresolved_message_reduction": {
+          "n": 200,
+          "mean": 777.68,
+          "median": 773.5,
+          "simulation_interval_95_low": 686.9,
+          "simulation_interval_95_high": 877.2
+        },
+        "phase9_chain_availability_reference": 0.9992340703503534,
+        "phase9_reproduction_absolute_error": 0.0
+      },
+      {
+        "independent_type_a_and_b1_loss_probability": 0.4,
+        "direct_b1_only": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 0.6003590830350596,
+            "median": 0.6020361238668295,
+            "simulation_interval_95_low": 0.5567491112912446,
+            "simulation_interval_95_high": 0.6388038190178111
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 894.8,
+            "median": 893.5,
+            "simulation_interval_95_low": 808.0,
+            "simulation_interval_95_high": 996.05
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 892.06,
+            "median": 889.5,
+            "simulation_interval_95_low": 804.0,
+            "simulation_interval_95_high": 993.075
+          }
+        },
+        "tesla_chain_recovery": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 0.9988284225876098,
+            "median": 1.0,
+            "simulation_interval_95_low": 0.9946489220454362,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 3.8009999999999993,
+            "median": 4.0,
+            "simulation_interval_95_low": 3.0,
+            "simulation_interval_95_high": 4.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 29.095,
+            "median": 28.0,
+            "simulation_interval_95_low": 21.0,
+            "simulation_interval_95_high": 44.0
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 2.61,
+            "median": 0.0,
+            "simulation_interval_95_low": 0.0,
+            "simulation_interval_95_high": 12.0
+          }
+        },
+        "paired_chain_minus_direct_availability": {
+          "n": 200,
+          "mean": 0.3984693395525503,
+          "median": 0.3971351911195796,
+          "simulation_interval_95_low": 0.3594380033827798,
+          "simulation_interval_95_high": 0.4396707946965423
+        },
+        "paired_unresolved_message_reduction": {
+          "n": 200,
+          "mean": 889.45,
+          "median": 886.5,
+          "simulation_interval_95_low": 803.975,
+          "simulation_interval_95_high": 991.05
+        },
+        "phase9_chain_availability_reference": 0.9988284225876098,
+        "phase9_reproduction_absolute_error": 0.0
+      },
+      {
+        "independent_type_a_and_b1_loss_probability": 0.5,
+        "direct_b1_only": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 0.5028731769120207,
+            "median": 0.5025435297753966,
+            "simulation_interval_95_low": 0.4610131102269565,
+            "simulation_interval_95_high": 0.5465400361425723
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 1.0,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 1.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 926.135,
+            "median": 930.0,
+            "simulation_interval_95_low": 840.9,
+            "simulation_interval_95_high": 1002.0500000000001
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 924.105,
+            "median": 929.0,
+            "simulation_interval_95_low": 838.85,
+            "simulation_interval_95_high": 999.0
+          }
+        },
+        "tesla_chain_recovery": {
+          "authentication_availability_vs_received": {
+            "n": 200,
+            "mean": 0.9984819682809082,
+            "median": 1.0,
+            "simulation_interval_95_low": 0.9930480087767417,
+            "simulation_interval_95_high": 1.0
+          },
+          "authentication_delay_q50_seconds": {
+            "n": 200,
+            "mean": 1.455,
+            "median": 1.0,
+            "simulation_interval_95_low": 1.0,
+            "simulation_interval_95_high": 2.0
+          },
+          "authentication_delay_q95_seconds": {
+            "n": 200,
+            "mean": 4.814249999999999,
+            "median": 5.0,
+            "simulation_interval_95_low": 4.0,
+            "simulation_interval_95_high": 6.0
+          },
+          "maximum_buffered_messages": {
+            "n": 200,
+            "mean": 31.155,
+            "median": 30.0,
+            "simulation_interval_95_low": 23.0,
+            "simulation_interval_95_high": 45.025000000000006
+          },
+          "unresolved_received_messages": {
+            "n": 200,
+            "mean": 2.82,
+            "median": 0.0,
+            "simulation_interval_95_low": 0.0,
+            "simulation_interval_95_high": 13.025000000000006
+          }
+        },
+        "paired_chain_minus_direct_availability": {
+          "n": 200,
+          "mean": 0.4956087913688876,
+          "median": 0.4961469253085426,
+          "simulation_interval_95_low": 0.4533572417208073,
+          "simulation_interval_95_high": 0.5370148882646281
+        },
+        "paired_unresolved_message_reduction": {
+          "n": 200,
+          "mean": 921.285,
+          "median": 925.5,
+          "simulation_interval_95_low": 834.95,
+          "simulation_interval_95_high": 999.0
+        },
+        "phase9_chain_availability_reference": 0.9984819682809082,
+        "phase9_reproduction_absolute_error": 0.0
+      }
+    ],
+    "maximum_phase9_reproduction_absolute_error": 0.0
+  },
+  "benchmark": {
+    "wall_seconds": 0.7890227079988108,
+    "peak_rss_mib": 21.46875
+  },
+  "interpretation_limits": [
+    "A4 uses real frozen LocaRDS counts and does not classify unsupported rows.",
+    "A5 uses the Phase 9 deterministic synthetic loss workload.",
+    "Simulation intervals summarize replicates and are not global traffic confidence intervals.",
+    "Direct-only unresolved messages remain buffered because no arbitrary timeout is modeled.",
+    "No attack/anomaly labels or detection metrics are produced."
+  ]
+}

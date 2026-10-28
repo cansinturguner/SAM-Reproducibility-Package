@@ -74,11 +74,48 @@ def episode_lengths(outputs):
     return lengths
 
 
+def activation_delays(track, policy):
+    """Return empirical delay from the earliest triggering conflict vote."""
+    history=[]; active=False; clean_run=0; available_index=0; events=[]
+    for row in track:
+        state=row["state"]
+        if state=="PHYSICAL_EVIDENCE_UNAVAILABLE":
+            continue
+        available_index+=1
+        conflict=state=="PHYSICALLY_CONFLICTING"
+        history.append({"conflict":conflict,"time":row["time"],"available_index":available_index})
+        history=history[-policy["n"]:]
+        clean_run=0 if conflict else clean_run+1
+        if not active and len(history)>=policy["k"] and sum(x["conflict"] for x in history)>=policy["k"]:
+            trigger_votes=[x for x in history if x["conflict"]]
+            first=trigger_votes[-policy["k"]]
+            events.append({
+                "seconds":max(0.0,row["time"]-first["time"]),
+                "available_observations":available_index-first["available_index"]+1,
+            })
+            active=True
+        if active and clean_run>=policy["clear_consistent"]:
+            active=False
+    return events
+
+
+def delay_summary(values):
+    if not values:
+        return {"n":0,"median":None,"q95":None,"maximum":None}
+    ordered=sorted(values)
+    return {
+        "n":len(values),
+        "median":statistics.median(values),
+        "q95":ordered[math.ceil(.95*len(ordered))-1],
+        "maximum":max(values),
+    }
+
+
 def summarize(rows,gap_seconds,policy):
-    tracks=group_tracks(rows,gap_seconds); alerts=[]; lengths=[]; alert_aircraft=set(); available=conflicts=0
+    tracks=group_tracks(rows,gap_seconds); alerts=[]; lengths=[]; activation_events=[]; alert_aircraft=set(); available=conflicts=0
     available_alert_rows=unavailable_alert_hold_rows=0
     for track in tracks:
-        out=apply_policy(track,policy); alerts.extend(out); lengths.extend(episode_lengths(out))
+        out=apply_policy(track,policy); alerts.extend(out); lengths.extend(episode_lengths(out)); activation_events.extend(activation_delays(track,policy))
         available+=sum(x["state"]!="PHYSICAL_EVIDENCE_UNAVAILABLE" for x in track)
         conflicts+=sum(x["state"]=="PHYSICALLY_CONFLICTING" for x in track)
         available_alert_rows+=sum(bool(alert) and row["state"]!="PHYSICAL_EVIDENCE_UNAVAILABLE" for row,alert in zip(track,out))
@@ -99,6 +136,8 @@ def summarize(rows,gap_seconds,policy):
         "alert_episodes_per_1000_available":1000*len(lengths)/available if available else None,
         "aircraft_with_alert":len(alert_aircraft),
         "episode_length_observations":{"median":statistics.median(lengths) if lengths else None,"q95":sorted(lengths)[math.ceil(.95*len(lengths))-1] if lengths else None,"maximum":max(lengths) if lengths else None},
+        "time_to_alert_seconds":delay_summary([x["seconds"] for x in activation_events]),
+        "available_observations_to_alert":delay_summary([x["available_observations"] for x in activation_events]),
     }
 
 
@@ -135,7 +174,7 @@ def main():
     results={name:{policy:summarize(rows,a.gap_seconds,spec) for policy,spec in POLICIES.items()} for name,rows in datasets.items()}
     selected=choose_policy(results["development_validation"])
     report={
-        "schema":"sam.phase32.track-persistence-nuisance.v2",
+        "schema":"sam.phase32.track-persistence-nuisance.v3",
         "scope":"development-selected temporal persistence and nuisance-alert analysis over Phase 31 physical decisions",
         "platform":{"system":platform.system(),"release":platform.release(),"machine":platform.machine(),"python":platform.python_version()},
         "configuration":{"track_gap_seconds":a.gap_seconds,"unavailable_handling":"does not add a vote; an already active alert is held and counted separately","candidate_policies":POLICIES,"selection_rule":"select the strongest candidate that activates within two available observations and does not exceed the raw development-validation episode rate","test_used_for_selection":False},

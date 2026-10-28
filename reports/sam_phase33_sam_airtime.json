@@ -1,0 +1,1172 @@
+{
+  "schema": "sam.phase33.reference-transport-airtime.v1",
+  "scope": "analytical airtime under one explicit SAM reference transport",
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.14"
+  },
+  "reference_transport": {
+    "carrier": "legacy-readable 1090ES-length carrier with modeled PPM/D8PSK phase overlay",
+    "carrier_airtime_microseconds": 120.0,
+    "usable_overlay_bits_per_frame": 204,
+    "object_bytes": {
+      "type_a": 17,
+      "b1": 16,
+      "b2": 80
+    },
+    "frames_per_object": {
+      "type_a": 1,
+      "b1": 1,
+      "b2": 4
+    },
+    "mapping": {
+      "type_a": "overlaid on its existing surveillance frame",
+      "b1": "fragmented into additional security-bearing carrier frames",
+      "b2": "fragmented into additional security-bearing carrier frames"
+    }
+  },
+  "configuration": {
+    "duration_seconds": 3600,
+    "message_rates_per_second": [
+      2.0,
+      6.2,
+      10.0
+    ],
+    "aircraft_counts": [
+      1,
+      50,
+      200
+    ],
+    "b2_period_seconds": 60,
+    "policies": [
+      {
+        "name": "P1_1s_single",
+        "interval_seconds": 1,
+        "b1_repetitions": 1,
+        "b2_repetitions": 1
+      },
+      {
+        "name": "P2_1s_double",
+        "interval_seconds": 1,
+        "b1_repetitions": 2,
+        "b2_repetitions": 2
+      },
+      {
+        "name": "P3_2s_double",
+        "interval_seconds": 2,
+        "b1_repetitions": 2,
+        "b2_repetitions": 2
+      },
+      {
+        "name": "P4_5s_triple",
+        "interval_seconds": 5,
+        "b1_repetitions": 3,
+        "b2_repetitions": 3
+      }
+    ],
+    "scenario_count": 36
+  },
+  "canonical_configuration": {
+    "policy": "P1_1s_single",
+    "message_rate_per_second": 6.2,
+    "aircraft_count": 200,
+    "duration_seconds": 3600,
+    "per_aircraft": {
+      "surveillance_frames": 22320,
+      "type_a_objects_overlaid_on_surveillance_frames": 22320,
+      "b1_objects": 3600,
+      "b2_objects": 60,
+      "b1_additional_frames": 3600,
+      "b2_additional_frames": 240,
+      "total_additional_frames": 3840,
+      "additional_packet_fraction_vs_surveillance": 0.17204301075268819,
+      "baseline_surveillance_airtime_microseconds": 2678400.0,
+      "added_airtime_microseconds": 460800.0,
+      "analytical_added_airtime_fraction_vs_surveillance": 0.17204301075268819,
+      "analytical_added_airtime_percent_vs_surveillance": 17.204301075268816,
+      "security_bits": 3534720,
+      "overlay_capacity_bits_after_fragmentation": 5336640,
+      "overlay_payload_utilization_fraction": 0.6623493434070876
+    },
+    "aggregate": {
+      "additional_frames": 768000,
+      "added_airtime_seconds_over_horizon": 92.16,
+      "mean_added_channel_occupancy_fraction": 0.0256,
+      "mean_added_channel_occupancy_percent": 2.56
+    }
+  },
+  "cabba_scenario4_comparator": {
+    "name": "CABBA_Scenario_4_recomputed",
+    "message_rate_per_second": 6.2,
+    "duration_seconds": 3600,
+    "type_a_messages": 22320,
+    "type_b1_packets": 479,
+    "type_b2_packets": 241,
+    "type_c_packets": 121,
+    "analytical_added_airtime_fraction_vs_legacy_A": 0.052370071684587814,
+    "analytical_added_airtime_percent_vs_legacy_A": 5.237007168458781,
+    "boundary": "Phase 23 equations and packet durations; functions and schedules differ from SAM"
+  },
+  "correctness": {
+    "scenario_sha256": "c7454fead6931f5292f5a2f60f808d696b2c7d88c8723eeb73a59ffe0cd6eb0f",
+    "type_a_fits_one_overlay_frame": true,
+    "b1_fits_one_overlay_frame": true,
+    "b2_requires_four_overlay_frames": true,
+    "airtime_fraction_equals_added_frame_fraction": true
+  },
+  "scenarios": [
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 3600,
+        "b2_objects": 60,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 240,
+        "total_additional_frames": 3840,
+        "additional_packet_fraction_vs_surveillance": 0.5333333333333333,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 460800.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.5333333333333333,
+        "analytical_added_airtime_percent_vs_surveillance": 53.333333333333336,
+        "security_bits": 1478400,
+        "overlay_capacity_bits_after_fragmentation": 2252160,
+        "overlay_payload_utilization_fraction": 0.6564364876385337
+      },
+      "aggregate": {
+        "additional_frames": 3840,
+        "added_airtime_seconds_over_horizon": 0.4608,
+        "mean_added_channel_occupancy_fraction": 0.000128,
+        "mean_added_channel_occupancy_percent": 0.0128
+      }
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 3600,
+        "b2_objects": 60,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 240,
+        "total_additional_frames": 3840,
+        "additional_packet_fraction_vs_surveillance": 0.5333333333333333,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 460800.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.5333333333333333,
+        "analytical_added_airtime_percent_vs_surveillance": 53.333333333333336,
+        "security_bits": 1478400,
+        "overlay_capacity_bits_after_fragmentation": 2252160,
+        "overlay_payload_utilization_fraction": 0.6564364876385337
+      },
+      "aggregate": {
+        "additional_frames": 192000,
+        "added_airtime_seconds_over_horizon": 23.04,
+        "mean_added_channel_occupancy_fraction": 0.0064,
+        "mean_added_channel_occupancy_percent": 0.64
+      }
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 3600,
+        "b2_objects": 60,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 240,
+        "total_additional_frames": 3840,
+        "additional_packet_fraction_vs_surveillance": 0.5333333333333333,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 460800.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.5333333333333333,
+        "analytical_added_airtime_percent_vs_surveillance": 53.333333333333336,
+        "security_bits": 1478400,
+        "overlay_capacity_bits_after_fragmentation": 2252160,
+        "overlay_payload_utilization_fraction": 0.6564364876385337
+      },
+      "aggregate": {
+        "additional_frames": 768000,
+        "added_airtime_seconds_over_horizon": 92.16,
+        "mean_added_channel_occupancy_fraction": 0.0256,
+        "mean_added_channel_occupancy_percent": 2.56
+      }
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 3600,
+        "b2_objects": 60,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 240,
+        "total_additional_frames": 3840,
+        "additional_packet_fraction_vs_surveillance": 0.17204301075268819,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 460800.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.17204301075268819,
+        "analytical_added_airtime_percent_vs_surveillance": 17.204301075268816,
+        "security_bits": 3534720,
+        "overlay_capacity_bits_after_fragmentation": 5336640,
+        "overlay_payload_utilization_fraction": 0.6623493434070876
+      },
+      "aggregate": {
+        "additional_frames": 3840,
+        "added_airtime_seconds_over_horizon": 0.4608,
+        "mean_added_channel_occupancy_fraction": 0.000128,
+        "mean_added_channel_occupancy_percent": 0.0128
+      }
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 3600,
+        "b2_objects": 60,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 240,
+        "total_additional_frames": 3840,
+        "additional_packet_fraction_vs_surveillance": 0.17204301075268819,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 460800.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.17204301075268819,
+        "analytical_added_airtime_percent_vs_surveillance": 17.204301075268816,
+        "security_bits": 3534720,
+        "overlay_capacity_bits_after_fragmentation": 5336640,
+        "overlay_payload_utilization_fraction": 0.6623493434070876
+      },
+      "aggregate": {
+        "additional_frames": 192000,
+        "added_airtime_seconds_over_horizon": 23.04,
+        "mean_added_channel_occupancy_fraction": 0.0064,
+        "mean_added_channel_occupancy_percent": 0.64
+      }
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 3600,
+        "b2_objects": 60,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 240,
+        "total_additional_frames": 3840,
+        "additional_packet_fraction_vs_surveillance": 0.17204301075268819,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 460800.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.17204301075268819,
+        "analytical_added_airtime_percent_vs_surveillance": 17.204301075268816,
+        "security_bits": 3534720,
+        "overlay_capacity_bits_after_fragmentation": 5336640,
+        "overlay_payload_utilization_fraction": 0.6623493434070876
+      },
+      "aggregate": {
+        "additional_frames": 768000,
+        "added_airtime_seconds_over_horizon": 92.16,
+        "mean_added_channel_occupancy_fraction": 0.0256,
+        "mean_added_channel_occupancy_percent": 2.56
+      }
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 3600,
+        "b2_objects": 60,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 240,
+        "total_additional_frames": 3840,
+        "additional_packet_fraction_vs_surveillance": 0.10666666666666667,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 460800.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.10666666666666667,
+        "analytical_added_airtime_percent_vs_surveillance": 10.666666666666666,
+        "security_bits": 5395200,
+        "overlay_capacity_bits_after_fragmentation": 8127360,
+        "overlay_payload_utilization_fraction": 0.6638317977793528
+      },
+      "aggregate": {
+        "additional_frames": 3840,
+        "added_airtime_seconds_over_horizon": 0.4608,
+        "mean_added_channel_occupancy_fraction": 0.000128,
+        "mean_added_channel_occupancy_percent": 0.0128
+      }
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 3600,
+        "b2_objects": 60,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 240,
+        "total_additional_frames": 3840,
+        "additional_packet_fraction_vs_surveillance": 0.10666666666666667,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 460800.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.10666666666666667,
+        "analytical_added_airtime_percent_vs_surveillance": 10.666666666666666,
+        "security_bits": 5395200,
+        "overlay_capacity_bits_after_fragmentation": 8127360,
+        "overlay_payload_utilization_fraction": 0.6638317977793528
+      },
+      "aggregate": {
+        "additional_frames": 192000,
+        "added_airtime_seconds_over_horizon": 23.04,
+        "mean_added_channel_occupancy_fraction": 0.0064,
+        "mean_added_channel_occupancy_percent": 0.64
+      }
+    },
+    {
+      "policy": "P1_1s_single",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 3600,
+        "b2_objects": 60,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 240,
+        "total_additional_frames": 3840,
+        "additional_packet_fraction_vs_surveillance": 0.10666666666666667,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 460800.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.10666666666666667,
+        "analytical_added_airtime_percent_vs_surveillance": 10.666666666666666,
+        "security_bits": 5395200,
+        "overlay_capacity_bits_after_fragmentation": 8127360,
+        "overlay_payload_utilization_fraction": 0.6638317977793528
+      },
+      "aggregate": {
+        "additional_frames": 768000,
+        "added_airtime_seconds_over_horizon": 92.16,
+        "mean_added_channel_occupancy_fraction": 0.0256,
+        "mean_added_channel_occupancy_percent": 2.56
+      }
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 7200,
+        "b2_objects": 120,
+        "b1_additional_frames": 7200,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 7680,
+        "additional_packet_fraction_vs_surveillance": 1.0666666666666667,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 921600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 1.0666666666666667,
+        "analytical_added_airtime_percent_vs_surveillance": 106.66666666666667,
+        "security_bits": 1977600,
+        "overlay_capacity_bits_after_fragmentation": 3035520,
+        "overlay_payload_utilization_fraction": 0.6514864010120177
+      },
+      "aggregate": {
+        "additional_frames": 7680,
+        "added_airtime_seconds_over_horizon": 0.9216,
+        "mean_added_channel_occupancy_fraction": 0.000256,
+        "mean_added_channel_occupancy_percent": 0.0256
+      }
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 7200,
+        "b2_objects": 120,
+        "b1_additional_frames": 7200,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 7680,
+        "additional_packet_fraction_vs_surveillance": 1.0666666666666667,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 921600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 1.0666666666666667,
+        "analytical_added_airtime_percent_vs_surveillance": 106.66666666666667,
+        "security_bits": 1977600,
+        "overlay_capacity_bits_after_fragmentation": 3035520,
+        "overlay_payload_utilization_fraction": 0.6514864010120177
+      },
+      "aggregate": {
+        "additional_frames": 384000,
+        "added_airtime_seconds_over_horizon": 46.08,
+        "mean_added_channel_occupancy_fraction": 0.0128,
+        "mean_added_channel_occupancy_percent": 1.28
+      }
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 7200,
+        "b2_objects": 120,
+        "b1_additional_frames": 7200,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 7680,
+        "additional_packet_fraction_vs_surveillance": 1.0666666666666667,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 921600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 1.0666666666666667,
+        "analytical_added_airtime_percent_vs_surveillance": 106.66666666666667,
+        "security_bits": 1977600,
+        "overlay_capacity_bits_after_fragmentation": 3035520,
+        "overlay_payload_utilization_fraction": 0.6514864010120177
+      },
+      "aggregate": {
+        "additional_frames": 1536000,
+        "added_airtime_seconds_over_horizon": 184.32,
+        "mean_added_channel_occupancy_fraction": 0.0512,
+        "mean_added_channel_occupancy_percent": 5.12
+      }
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 7200,
+        "b2_objects": 120,
+        "b1_additional_frames": 7200,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 7680,
+        "additional_packet_fraction_vs_surveillance": 0.34408602150537637,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 921600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.34408602150537637,
+        "analytical_added_airtime_percent_vs_surveillance": 34.40860215053763,
+        "security_bits": 4033920,
+        "overlay_capacity_bits_after_fragmentation": 6120000,
+        "overlay_payload_utilization_fraction": 0.6591372549019607
+      },
+      "aggregate": {
+        "additional_frames": 7680,
+        "added_airtime_seconds_over_horizon": 0.9216,
+        "mean_added_channel_occupancy_fraction": 0.000256,
+        "mean_added_channel_occupancy_percent": 0.0256
+      }
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 7200,
+        "b2_objects": 120,
+        "b1_additional_frames": 7200,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 7680,
+        "additional_packet_fraction_vs_surveillance": 0.34408602150537637,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 921600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.34408602150537637,
+        "analytical_added_airtime_percent_vs_surveillance": 34.40860215053763,
+        "security_bits": 4033920,
+        "overlay_capacity_bits_after_fragmentation": 6120000,
+        "overlay_payload_utilization_fraction": 0.6591372549019607
+      },
+      "aggregate": {
+        "additional_frames": 384000,
+        "added_airtime_seconds_over_horizon": 46.08,
+        "mean_added_channel_occupancy_fraction": 0.0128,
+        "mean_added_channel_occupancy_percent": 1.28
+      }
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 7200,
+        "b2_objects": 120,
+        "b1_additional_frames": 7200,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 7680,
+        "additional_packet_fraction_vs_surveillance": 0.34408602150537637,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 921600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.34408602150537637,
+        "analytical_added_airtime_percent_vs_surveillance": 34.40860215053763,
+        "security_bits": 4033920,
+        "overlay_capacity_bits_after_fragmentation": 6120000,
+        "overlay_payload_utilization_fraction": 0.6591372549019607
+      },
+      "aggregate": {
+        "additional_frames": 1536000,
+        "added_airtime_seconds_over_horizon": 184.32,
+        "mean_added_channel_occupancy_fraction": 0.0512,
+        "mean_added_channel_occupancy_percent": 5.12
+      }
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 7200,
+        "b2_objects": 120,
+        "b1_additional_frames": 7200,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 7680,
+        "additional_packet_fraction_vs_surveillance": 0.21333333333333335,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 921600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.21333333333333335,
+        "analytical_added_airtime_percent_vs_surveillance": 21.333333333333332,
+        "security_bits": 5894400,
+        "overlay_capacity_bits_after_fragmentation": 8910720,
+        "overlay_payload_utilization_fraction": 0.6614953673777203
+      },
+      "aggregate": {
+        "additional_frames": 7680,
+        "added_airtime_seconds_over_horizon": 0.9216,
+        "mean_added_channel_occupancy_fraction": 0.000256,
+        "mean_added_channel_occupancy_percent": 0.0256
+      }
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 7200,
+        "b2_objects": 120,
+        "b1_additional_frames": 7200,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 7680,
+        "additional_packet_fraction_vs_surveillance": 0.21333333333333335,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 921600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.21333333333333335,
+        "analytical_added_airtime_percent_vs_surveillance": 21.333333333333332,
+        "security_bits": 5894400,
+        "overlay_capacity_bits_after_fragmentation": 8910720,
+        "overlay_payload_utilization_fraction": 0.6614953673777203
+      },
+      "aggregate": {
+        "additional_frames": 384000,
+        "added_airtime_seconds_over_horizon": 46.08,
+        "mean_added_channel_occupancy_fraction": 0.0128,
+        "mean_added_channel_occupancy_percent": 1.28
+      }
+    },
+    {
+      "policy": "P2_1s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 7200,
+        "b2_objects": 120,
+        "b1_additional_frames": 7200,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 7680,
+        "additional_packet_fraction_vs_surveillance": 0.21333333333333335,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 921600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.21333333333333335,
+        "analytical_added_airtime_percent_vs_surveillance": 21.333333333333332,
+        "security_bits": 5894400,
+        "overlay_capacity_bits_after_fragmentation": 8910720,
+        "overlay_payload_utilization_fraction": 0.6614953673777203
+      },
+      "aggregate": {
+        "additional_frames": 1536000,
+        "added_airtime_seconds_over_horizon": 184.32,
+        "mean_added_channel_occupancy_fraction": 0.0512,
+        "mean_added_channel_occupancy_percent": 5.12
+      }
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 3600,
+        "b2_objects": 120,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 4080,
+        "additional_packet_fraction_vs_surveillance": 0.5666666666666667,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 489600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.5666666666666667,
+        "analytical_added_airtime_percent_vs_surveillance": 56.666666666666664,
+        "security_bits": 1516800,
+        "overlay_capacity_bits_after_fragmentation": 2301120,
+        "overlay_payload_utilization_fraction": 0.6591572799332499
+      },
+      "aggregate": {
+        "additional_frames": 4080,
+        "added_airtime_seconds_over_horizon": 0.4896,
+        "mean_added_channel_occupancy_fraction": 0.000136,
+        "mean_added_channel_occupancy_percent": 0.0136
+      }
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 3600,
+        "b2_objects": 120,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 4080,
+        "additional_packet_fraction_vs_surveillance": 0.5666666666666667,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 489600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.5666666666666667,
+        "analytical_added_airtime_percent_vs_surveillance": 56.666666666666664,
+        "security_bits": 1516800,
+        "overlay_capacity_bits_after_fragmentation": 2301120,
+        "overlay_payload_utilization_fraction": 0.6591572799332499
+      },
+      "aggregate": {
+        "additional_frames": 204000,
+        "added_airtime_seconds_over_horizon": 24.48,
+        "mean_added_channel_occupancy_fraction": 0.0068,
+        "mean_added_channel_occupancy_percent": 0.68
+      }
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 3600,
+        "b2_objects": 120,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 4080,
+        "additional_packet_fraction_vs_surveillance": 0.5666666666666667,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 489600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.5666666666666667,
+        "analytical_added_airtime_percent_vs_surveillance": 56.666666666666664,
+        "security_bits": 1516800,
+        "overlay_capacity_bits_after_fragmentation": 2301120,
+        "overlay_payload_utilization_fraction": 0.6591572799332499
+      },
+      "aggregate": {
+        "additional_frames": 816000,
+        "added_airtime_seconds_over_horizon": 97.92,
+        "mean_added_channel_occupancy_fraction": 0.0272,
+        "mean_added_channel_occupancy_percent": 2.72
+      }
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 3600,
+        "b2_objects": 120,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 4080,
+        "additional_packet_fraction_vs_surveillance": 0.1827956989247312,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 489600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.1827956989247312,
+        "analytical_added_airtime_percent_vs_surveillance": 18.27956989247312,
+        "security_bits": 3573120,
+        "overlay_capacity_bits_after_fragmentation": 5385600,
+        "overlay_payload_utilization_fraction": 0.663458110516934
+      },
+      "aggregate": {
+        "additional_frames": 4080,
+        "added_airtime_seconds_over_horizon": 0.4896,
+        "mean_added_channel_occupancy_fraction": 0.000136,
+        "mean_added_channel_occupancy_percent": 0.0136
+      }
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 3600,
+        "b2_objects": 120,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 4080,
+        "additional_packet_fraction_vs_surveillance": 0.1827956989247312,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 489600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.1827956989247312,
+        "analytical_added_airtime_percent_vs_surveillance": 18.27956989247312,
+        "security_bits": 3573120,
+        "overlay_capacity_bits_after_fragmentation": 5385600,
+        "overlay_payload_utilization_fraction": 0.663458110516934
+      },
+      "aggregate": {
+        "additional_frames": 204000,
+        "added_airtime_seconds_over_horizon": 24.48,
+        "mean_added_channel_occupancy_fraction": 0.0068,
+        "mean_added_channel_occupancy_percent": 0.68
+      }
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 3600,
+        "b2_objects": 120,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 4080,
+        "additional_packet_fraction_vs_surveillance": 0.1827956989247312,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 489600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.1827956989247312,
+        "analytical_added_airtime_percent_vs_surveillance": 18.27956989247312,
+        "security_bits": 3573120,
+        "overlay_capacity_bits_after_fragmentation": 5385600,
+        "overlay_payload_utilization_fraction": 0.663458110516934
+      },
+      "aggregate": {
+        "additional_frames": 816000,
+        "added_airtime_seconds_over_horizon": 97.92,
+        "mean_added_channel_occupancy_fraction": 0.0272,
+        "mean_added_channel_occupancy_percent": 2.72
+      }
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 3600,
+        "b2_objects": 120,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 4080,
+        "additional_packet_fraction_vs_surveillance": 0.11333333333333333,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 489600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.11333333333333333,
+        "analytical_added_airtime_percent_vs_surveillance": 11.333333333333334,
+        "security_bits": 5433600,
+        "overlay_capacity_bits_after_fragmentation": 8176320,
+        "overlay_payload_utilization_fraction": 0.66455324644828
+      },
+      "aggregate": {
+        "additional_frames": 4080,
+        "added_airtime_seconds_over_horizon": 0.4896,
+        "mean_added_channel_occupancy_fraction": 0.000136,
+        "mean_added_channel_occupancy_percent": 0.0136
+      }
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 3600,
+        "b2_objects": 120,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 4080,
+        "additional_packet_fraction_vs_surveillance": 0.11333333333333333,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 489600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.11333333333333333,
+        "analytical_added_airtime_percent_vs_surveillance": 11.333333333333334,
+        "security_bits": 5433600,
+        "overlay_capacity_bits_after_fragmentation": 8176320,
+        "overlay_payload_utilization_fraction": 0.66455324644828
+      },
+      "aggregate": {
+        "additional_frames": 204000,
+        "added_airtime_seconds_over_horizon": 24.48,
+        "mean_added_channel_occupancy_fraction": 0.0068,
+        "mean_added_channel_occupancy_percent": 0.68
+      }
+    },
+    {
+      "policy": "P3_2s_double",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 3600,
+        "b2_objects": 120,
+        "b1_additional_frames": 3600,
+        "b2_additional_frames": 480,
+        "total_additional_frames": 4080,
+        "additional_packet_fraction_vs_surveillance": 0.11333333333333333,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 489600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.11333333333333333,
+        "analytical_added_airtime_percent_vs_surveillance": 11.333333333333334,
+        "security_bits": 5433600,
+        "overlay_capacity_bits_after_fragmentation": 8176320,
+        "overlay_payload_utilization_fraction": 0.66455324644828
+      },
+      "aggregate": {
+        "additional_frames": 816000,
+        "added_airtime_seconds_over_horizon": 97.92,
+        "mean_added_channel_occupancy_fraction": 0.0272,
+        "mean_added_channel_occupancy_percent": 2.72
+      }
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 2160,
+        "b2_objects": 180,
+        "b1_additional_frames": 2160,
+        "b2_additional_frames": 720,
+        "total_additional_frames": 2880,
+        "additional_packet_fraction_vs_surveillance": 0.4,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 345600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.4,
+        "analytical_added_airtime_percent_vs_surveillance": 40.0,
+        "security_bits": 1370880,
+        "overlay_capacity_bits_after_fragmentation": 2056320,
+        "overlay_payload_utilization_fraction": 0.6666666666666666
+      },
+      "aggregate": {
+        "additional_frames": 2880,
+        "added_airtime_seconds_over_horizon": 0.3456,
+        "mean_added_channel_occupancy_fraction": 9.6e-05,
+        "mean_added_channel_occupancy_percent": 0.0096
+      }
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 2160,
+        "b2_objects": 180,
+        "b1_additional_frames": 2160,
+        "b2_additional_frames": 720,
+        "total_additional_frames": 2880,
+        "additional_packet_fraction_vs_surveillance": 0.4,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 345600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.4,
+        "analytical_added_airtime_percent_vs_surveillance": 40.0,
+        "security_bits": 1370880,
+        "overlay_capacity_bits_after_fragmentation": 2056320,
+        "overlay_payload_utilization_fraction": 0.6666666666666666
+      },
+      "aggregate": {
+        "additional_frames": 144000,
+        "added_airtime_seconds_over_horizon": 17.28,
+        "mean_added_channel_occupancy_fraction": 0.0048,
+        "mean_added_channel_occupancy_percent": 0.48
+      }
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 2.0,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 7200,
+        "type_a_objects_overlaid_on_surveillance_frames": 7200,
+        "b1_objects": 2160,
+        "b2_objects": 180,
+        "b1_additional_frames": 2160,
+        "b2_additional_frames": 720,
+        "total_additional_frames": 2880,
+        "additional_packet_fraction_vs_surveillance": 0.4,
+        "baseline_surveillance_airtime_microseconds": 864000.0,
+        "added_airtime_microseconds": 345600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.4,
+        "analytical_added_airtime_percent_vs_surveillance": 40.0,
+        "security_bits": 1370880,
+        "overlay_capacity_bits_after_fragmentation": 2056320,
+        "overlay_payload_utilization_fraction": 0.6666666666666666
+      },
+      "aggregate": {
+        "additional_frames": 576000,
+        "added_airtime_seconds_over_horizon": 69.12,
+        "mean_added_channel_occupancy_fraction": 0.0192,
+        "mean_added_channel_occupancy_percent": 1.92
+      }
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 2160,
+        "b2_objects": 180,
+        "b1_additional_frames": 2160,
+        "b2_additional_frames": 720,
+        "total_additional_frames": 2880,
+        "additional_packet_fraction_vs_surveillance": 0.12903225806451613,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 345600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.12903225806451613,
+        "analytical_added_airtime_percent_vs_surveillance": 12.903225806451612,
+        "security_bits": 3427200,
+        "overlay_capacity_bits_after_fragmentation": 5140800,
+        "overlay_payload_utilization_fraction": 0.6666666666666666
+      },
+      "aggregate": {
+        "additional_frames": 2880,
+        "added_airtime_seconds_over_horizon": 0.3456,
+        "mean_added_channel_occupancy_fraction": 9.6e-05,
+        "mean_added_channel_occupancy_percent": 0.0096
+      }
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 2160,
+        "b2_objects": 180,
+        "b1_additional_frames": 2160,
+        "b2_additional_frames": 720,
+        "total_additional_frames": 2880,
+        "additional_packet_fraction_vs_surveillance": 0.12903225806451613,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 345600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.12903225806451613,
+        "analytical_added_airtime_percent_vs_surveillance": 12.903225806451612,
+        "security_bits": 3427200,
+        "overlay_capacity_bits_after_fragmentation": 5140800,
+        "overlay_payload_utilization_fraction": 0.6666666666666666
+      },
+      "aggregate": {
+        "additional_frames": 144000,
+        "added_airtime_seconds_over_horizon": 17.28,
+        "mean_added_channel_occupancy_fraction": 0.0048,
+        "mean_added_channel_occupancy_percent": 0.48
+      }
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 6.2,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 22320,
+        "type_a_objects_overlaid_on_surveillance_frames": 22320,
+        "b1_objects": 2160,
+        "b2_objects": 180,
+        "b1_additional_frames": 2160,
+        "b2_additional_frames": 720,
+        "total_additional_frames": 2880,
+        "additional_packet_fraction_vs_surveillance": 0.12903225806451613,
+        "baseline_surveillance_airtime_microseconds": 2678400.0,
+        "added_airtime_microseconds": 345600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.12903225806451613,
+        "analytical_added_airtime_percent_vs_surveillance": 12.903225806451612,
+        "security_bits": 3427200,
+        "overlay_capacity_bits_after_fragmentation": 5140800,
+        "overlay_payload_utilization_fraction": 0.6666666666666666
+      },
+      "aggregate": {
+        "additional_frames": 576000,
+        "added_airtime_seconds_over_horizon": 69.12,
+        "mean_added_channel_occupancy_fraction": 0.0192,
+        "mean_added_channel_occupancy_percent": 1.92
+      }
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 1,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 2160,
+        "b2_objects": 180,
+        "b1_additional_frames": 2160,
+        "b2_additional_frames": 720,
+        "total_additional_frames": 2880,
+        "additional_packet_fraction_vs_surveillance": 0.08,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 345600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.08,
+        "analytical_added_airtime_percent_vs_surveillance": 8.0,
+        "security_bits": 5287680,
+        "overlay_capacity_bits_after_fragmentation": 7931520,
+        "overlay_payload_utilization_fraction": 0.6666666666666666
+      },
+      "aggregate": {
+        "additional_frames": 2880,
+        "added_airtime_seconds_over_horizon": 0.3456,
+        "mean_added_channel_occupancy_fraction": 9.6e-05,
+        "mean_added_channel_occupancy_percent": 0.0096
+      }
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 50,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 2160,
+        "b2_objects": 180,
+        "b1_additional_frames": 2160,
+        "b2_additional_frames": 720,
+        "total_additional_frames": 2880,
+        "additional_packet_fraction_vs_surveillance": 0.08,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 345600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.08,
+        "analytical_added_airtime_percent_vs_surveillance": 8.0,
+        "security_bits": 5287680,
+        "overlay_capacity_bits_after_fragmentation": 7931520,
+        "overlay_payload_utilization_fraction": 0.6666666666666666
+      },
+      "aggregate": {
+        "additional_frames": 144000,
+        "added_airtime_seconds_over_horizon": 17.28,
+        "mean_added_channel_occupancy_fraction": 0.0048,
+        "mean_added_channel_occupancy_percent": 0.48
+      }
+    },
+    {
+      "policy": "P4_5s_triple",
+      "message_rate_per_second": 10.0,
+      "aircraft_count": 200,
+      "duration_seconds": 3600,
+      "per_aircraft": {
+        "surveillance_frames": 36000,
+        "type_a_objects_overlaid_on_surveillance_frames": 36000,
+        "b1_objects": 2160,
+        "b2_objects": 180,
+        "b1_additional_frames": 2160,
+        "b2_additional_frames": 720,
+        "total_additional_frames": 2880,
+        "additional_packet_fraction_vs_surveillance": 0.08,
+        "baseline_surveillance_airtime_microseconds": 4320000.0,
+        "added_airtime_microseconds": 345600.0,
+        "analytical_added_airtime_fraction_vs_surveillance": 0.08,
+        "analytical_added_airtime_percent_vs_surveillance": 8.0,
+        "security_bits": 5287680,
+        "overlay_capacity_bits_after_fragmentation": 7931520,
+        "overlay_payload_utilization_fraction": 0.6666666666666666
+      },
+      "aggregate": {
+        "additional_frames": 576000,
+        "added_airtime_seconds_over_horizon": 69.12,
+        "mean_added_channel_occupancy_fraction": 0.0192,
+        "mean_added_channel_occupancy_percent": 1.92
+      }
+    }
+  ],
+  "interpretation_limits": [
+    "This is an analytical reference transport, not a standards allocation or certified implementation.",
+    "The calculation assumes 204 usable security bits after the modeled Phase 24 coding layout.",
+    "Fragment and object identifiers are not specified; the result is a lower bound under the stated usable-payload assumption.",
+    "Phase-overlay compatibility, synchronization, interference, receiver sensitivity, and legacy-receiver behavior remain unmeasured.",
+    "The CABBA comparator uses different objects, schedules, and assurance functions and is not a performance-equivalence claim."
+  ]
+}

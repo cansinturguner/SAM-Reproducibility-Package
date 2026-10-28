@@ -5,10 +5,10 @@ message-bound HMAC verification, signed trust-record refresh over TCP, the
 900-second cache policy, and SAM evidence fusion over the real LocaRDS test
 timeline.
 
-Run from `sam_phase1` with the existing virtual environment active:
+Run from the package root with the existing virtual environment active:
 
 ```bash
-python ~/Downloads/sam_phase17_v2_integrated_trust_refresh/scripts/run_phase17.py \
+python phases/phase17_trust_refresh/scripts/run_phase17.py \
   --selected data/processed/locards_subset_1/trusted_good_ge3.csv.gz \
   --sensors data/raw/locards/subset_1/set_1_sensors.csv \
   --calibration data/processed/locards_subset_1/receiver_clock_calibration.json \
@@ -21,7 +21,7 @@ python ~/Downloads/sam_phase17_v2_integrated_trust_refresh/scripts/run_phase17.p
 Then validate:
 
 ```bash
-python ~/Downloads/sam_phase17_v2_integrated_trust_refresh/scripts/validate_report.py \
+python phases/phase17_trust_refresh/scripts/validate_report.py \
   reports/sam_phase17_integrated_trust_refresh.json
 ```
 

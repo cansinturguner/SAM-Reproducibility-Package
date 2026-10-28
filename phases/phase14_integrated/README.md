@@ -8,7 +8,7 @@ pipeline rather than adding separately measured component times.
 Run from the existing project root:
 
 ```bash
-cd ~/Downloads/sam_phase1
+cd SAM_Reproducibility_Package
 source .venv/bin/activate
 python --version
 ```
@@ -17,13 +17,13 @@ Python must be 3.11 or 3.12. Phase 8 should already have installed the required
 packages. If necessary:
 
 ```bash
-python -m pip install -r ~/Downloads/sam_phase14_integrated_pipeline/requirements.txt
+python -m pip install -r phases/phase14_integrated/requirements.txt
 ```
 
 Run one warm-up and 30 measured fresh-process repetitions:
 
 ```bash
-python ~/Downloads/sam_phase14_integrated_pipeline/scripts/run_integrated_pipeline.py \
+python phases/phase14_integrated/scripts/run_integrated_pipeline.py \
   --selected data/processed/locards_subset_1/trusted_good_ge3.csv.gz \
   --sensors data/raw/locards/subset_1/set_1_sensors.csv \
   --calibration data/processed/locards_subset_1/receiver_clock_calibration.json \
@@ -39,7 +39,7 @@ The run may take several minutes.
 Validate:
 
 ```bash
-python ~/Downloads/sam_phase14_integrated_pipeline/scripts/validate_report.py \
+python phases/phase14_integrated/scripts/validate_report.py \
   reports/sam_phase14_integrated_pipeline.json
 ```
 

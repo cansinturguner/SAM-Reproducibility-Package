@@ -4,7 +4,7 @@ This package creates the frozen candidate pool for physical verification. It doe
 
 ## Run
 
-From the existing `sam_phase1` folder:
+From the package root:
 
 ```bash
 source .venv/bin/activate

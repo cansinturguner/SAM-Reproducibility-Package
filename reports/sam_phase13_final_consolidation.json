@@ -1,0 +1,201 @@
+{
+  "schema": "sam.phase13.final-consolidation.v1",
+  "scope": {
+    "implemented": "traceable consolidation of frozen Phase 5D-12 results and final A0-A7 definitions",
+    "not_implemented": [
+      "message-level joining of LocaRDS and cryptographic observations",
+      "Phase Overlay RF waveform, DO-260C/ED-102B bit-level framing or FEC",
+      "raw-IQ overlap recovery",
+      "X.509 or global aviation PKI",
+      "permissioned-blockchain consensus or ledger writes",
+      "certified airborne hardware",
+      "attack/anomaly classification"
+    ],
+    "security_label": "No attack/anomaly dataset, classifier or detection metric is used."
+  },
+  "input_reports": {
+    "phase5d": {
+      "path": "reports/locards_subset_1_frozen_test.json",
+      "size_bytes": 6298,
+      "sha256": "5569abf2df82f5d80918aa99e8dee7f032e5e86353e18004bba5ce774c42f94c"
+    },
+    "phase6": {
+      "path": "reports/locards_subset_1_receiver_loss.json",
+      "size_bytes": 91937,
+      "sha256": "efa0629f0c75615f7c9053f62fe69e8b3f3ca133a9d565d8c8222848e3eb0c37"
+    },
+    "phase7": {
+      "path": "reports/locards_subset_1_phase7_benchmark.json",
+      "size_bytes": 8025,
+      "sha256": "a0c22882e181a3250e596f866d442fc2881ef4395c00245a70521c4fa134b86f"
+    },
+    "phase8": {
+      "path": "reports/sam_phase8_crypto.json",
+      "size_bytes": 3124,
+      "sha256": "3322d6974906f0ce15c991b1ffdd76662b7a38a75dddbc51aeb38ff54bd2c27a"
+    },
+    "phase9": {
+      "path": "reports/sam_phase9_tesla.json",
+      "size_bytes": 11874,
+      "sha256": "6f3a71db44308af0a741aa472e6a9e69514700b0bf7f509ada9792af1543c9b7"
+    },
+    "phase10": {
+      "path": "reports/sam_phase10_identity_trust.json",
+      "size_bytes": 4956,
+      "sha256": "d731dd00b3edb5203b1f118fb3f83827dfd049fd8d373df3c45ca8765b982799"
+    },
+    "phase11": {
+      "path": "reports/sam_phase11_evidence_fusion.json",
+      "size_bytes": 7482,
+      "sha256": "f61a4c8da048c4b42e29d7debfe76fd01b966d6c2166c1c5e2b64a4798e9211a"
+    },
+    "phase12": {
+      "path": "reports/sam_phase12_gating_tesla_ablation.json",
+      "size_bytes": 21354,
+      "sha256": "5e6f0f1ad7a0cb2ec979ec55d1e11a8030ca285ef8c59ca684ad23afe3d8ee74"
+    }
+  },
+  "evidence_provenance": {
+    "real_locards": [
+      "phase5d",
+      "phase6",
+      "phase7"
+    ],
+    "synthetic_protocol_or_state": [
+      "phase8",
+      "phase9",
+      "phase10",
+      "phase12_A5"
+    ],
+    "mixed_summary_or_rule_evaluation": [
+      "phase11",
+      "phase12_A4",
+      "phase13"
+    ],
+    "message_level_join_performed": false
+  },
+  "frozen_results": {
+    "physical_cross_sensor": {
+      "original_test_ge4_rows": 82986,
+      "usable_test_rows": 78358,
+      "availability": 0.9442315571301183,
+      "pair_residual_absolute_q50_ns": 64.98799972087727,
+      "pair_residual_absolute_q95_ns": 227.07981870131601,
+      "receiver_loss_50pct_availability_mean": 0.17330232408679375
+    },
+    "cryptographic_primitives": {
+      "hmac_verification_median_us": 1.7849375,
+      "ecdsa_verification_median_us": 46.7685209,
+      "negative_protocol_checks_passed": true
+    },
+    "tesla_delayed_authentication": {
+      "messages_per_replicate": 3720,
+      "loss50_direct_authentication_availability_vs_received_mean": 0.5028731769120207,
+      "loss50_chain_recovery_authentication_availability_vs_received_mean": 0.9984819682809082,
+      "loss50_chain_minus_direct_availability": 0.49560879136888747
+    },
+    "identity_and_trust": {
+      "ca_record_verification_median_us": 46.3685459,
+      "b2_signature_verification_median_us": 46.654304100000004,
+      "message_hmac_verification_median_us": 2.0927583,
+      "scenario_states": {
+        "online_valid": "VERIFIED",
+        "offline_valid_cache": "VERIFIED",
+        "offline_cold_start": "INSUFFICIENT_EVIDENCE",
+        "offline_expired_cache": "INSUFFICIENT_EVIDENCE",
+        "online_revoked_record": "CONFLICTING"
+      }
+    },
+    "fusion": {
+      "truth_table_pass_fraction": 1.0,
+      "decision_median_us": 0.15483416
+    }
+  },
+  "latency_accounting": {
+    "physical_processing_median_us_per_usable_row": 33.16408130631495,
+    "message_hmac_verification_median_us": 2.0927583,
+    "fusion_decision_median_us": 0.15483416,
+    "illustrative_sequential_fast_path_sum_us": 35.41167376631495,
+    "fast_path_sum_limitation": "Sum combines separately benchmarked prototype operations; it is not a co-executed end-to-end measurement.",
+    "tesla_authentication_delay_unit": "seconds",
+    "tesla_delay_limitation": "Disclosure-schedule delay is protocol latency and is not added to microsecond compute cost."
+  },
+  "logical_communication_sizes_bytes": {
+    "type_a_sequence_plus_hmac": 17,
+    "b1_disclosed_interval_key": 16,
+    "b2_signed_content": 80,
+    "compact_ca_record": 97,
+    "excludes": [
+      "RF framing",
+      "FEC",
+      "repetition",
+      "certificates beyond compact prototype",
+      "scheduling"
+    ]
+  },
+  "final_A0_A7": [
+    {
+      "id": "A0",
+      "variant": "Legacy baseline",
+      "evidence": "none",
+      "status": "EVALUATED_RULE",
+      "result": "LEGACY_UNASSURED"
+    },
+    {
+      "id": "A1",
+      "variant": "Full implemented SAM branches",
+      "evidence": "crypto + trust + physical",
+      "status": "EVALUATED_RULE",
+      "result": "VERIFIED for the all-valid truth-table case"
+    },
+    {
+      "id": "A2",
+      "variant": "No cryptographic branch",
+      "evidence": "trust + physical",
+      "status": "EVALUATED_RULE",
+      "result": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "A3",
+      "variant": "No physical branch",
+      "evidence": "crypto + trust",
+      "status": "EVALUATED_RULE",
+      "result": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "A4",
+      "variant": "No receiver/geometry gating",
+      "evidence": "real LocaRDS counts",
+      "status": "EVALUATED_AVAILABILITY_ABLATION",
+      "result": "would admit 4628 physically unsupported rows; no verification result assigned"
+    },
+    {
+      "id": "A5",
+      "variant": "No TESLA key-chain recovery",
+      "evidence": "paired synthetic loss workload",
+      "status": "EVALUATED_PROTOCOL_ABLATION",
+      "result": "at 50% loss, direct=0.502873177, recovery=0.998481968"
+    },
+    {
+      "id": "A6",
+      "variant": "Trust service unavailable",
+      "evidence": "deterministic trust-state tests",
+      "status": "EVALUATED_RULE",
+      "result": "valid cache VERIFIED; cold/expired cache INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "A7",
+      "variant": "Single-source decision",
+      "evidence": "policy variant",
+      "status": "EVALUATED_POLICY_VARIANT",
+      "result": "relaxed policy can verify from one family; not full-SAM policy"
+    }
+  ],
+  "claim_boundaries": [
+    "A0-A3, A6 and A7 are controlled decision-rule outcomes, not detection-accuracy measurements.",
+    "A4 quantifies support availability and does not label unsupported rows as malicious.",
+    "A5 quantifies protocol recovery under synthetic independent loss and is not an attack experiment.",
+    "No precision, recall, F1, false-positive or false-negative result is produced.",
+    "Results characterize the recorded Python/Mac prototype, not certified avionics hardware."
+  ]
+}

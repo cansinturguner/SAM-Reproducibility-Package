@@ -26,7 +26,7 @@ The script checks the known Phase 3 SHA-256 by default.
 ```bash
 source .venv/bin/activate
 
-python ~/Downloads/sam_phase5a_timestamp_audit/scripts/audit_timestamp_semantics.py \
+python phases/phase05a_timestamp/scripts/audit_timestamp_semantics.py \
   --selected data/processed/locards_subset_1/trusted_good_ge3.csv.gz \
   --sensors data/raw/locards/subset_1/set_1_sensors.csv \
   --output reports/locards_subset_1_timestamp_audit.json \

@@ -1,0 +1,309 @@
+{
+  "schema": "sam.phase18.protocol-conformance.v1",
+  "scope": {
+    "implemented": "integrated cryptographic, freshness, trust, physical-state and fusion conformance vectors",
+    "not_implemented": [
+      "attack/anomaly classifier",
+      "RF waveform or framing",
+      "operational PKI",
+      "certified hardware"
+    ],
+    "security_label": "Controlled protocol vectors; no attack/anomaly dataset."
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "iterations_per_repetition": 10000,
+    "repetitions": 5,
+    "hmac": "HMAC-SHA3-256/128",
+    "signature": "ECDSA P-256/SHA-256 fixed-width r||s",
+    "cache_ttl_seconds": 900,
+    "fusion_rule": "conflict dominates; VERIFIED requires all three branches"
+  },
+  "cases": [
+    {
+      "case": "valid_all_evidence",
+      "expected": "VERIFIED",
+      "actual": "VERIFIED",
+      "branches": {
+        "crypto": "VERIFIED",
+        "physical": "VERIFIED",
+        "trust": "VERIFIED"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 126.8029325,
+        "median": 126.7431167,
+        "q05": 126.40799412000001,
+        "q95": 127.14130497999999,
+        "minimum": 126.33375410000001,
+        "maximum": 127.15789579999999,
+        "sample_stdev": 0.32912535509232926
+      }
+    },
+    {
+      "case": "modified_message",
+      "expected": "CONFLICTING",
+      "actual": "CONFLICTING",
+      "branches": {
+        "crypto": "CONFLICTING",
+        "physical": "VERIFIED",
+        "trust": "VERIFIED"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 126.78279916000001,
+        "median": 126.78435830000001,
+        "q05": 126.3773658,
+        "q95": 127.21411422,
+        "minimum": 126.2967708,
+        "maximum": 127.31248339999999,
+        "sample_stdev": 0.3623261625688372
+      }
+    },
+    {
+      "case": "wrong_interval_key",
+      "expected": "CONFLICTING",
+      "actual": "CONFLICTING",
+      "branches": {
+        "crypto": "CONFLICTING",
+        "physical": "VERIFIED",
+        "trust": "VERIFIED"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 127.13528002000001,
+        "median": 127.2326667,
+        "q05": 126.72923248000001,
+        "q95": 127.59247422000001,
+        "minimum": 126.70599580000001,
+        "maximum": 127.6822709,
+        "sample_stdev": 0.38749378040370824
+      }
+    },
+    {
+      "case": "stale_sequence_replay",
+      "expected": "CONFLICTING",
+      "actual": "CONFLICTING",
+      "branches": {
+        "crypto": "CONFLICTING",
+        "physical": "VERIFIED",
+        "trust": "VERIFIED"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 127.17250752,
+        "median": 127.4770167,
+        "q05": 126.47835496,
+        "q95": 127.61668922,
+        "minimum": 126.3856666,
+        "maximum": 127.64423339999999,
+        "sample_stdev": 0.5363105670770599
+      }
+    },
+    {
+      "case": "invalid_b2_signature",
+      "expected": "CONFLICTING",
+      "actual": "CONFLICTING",
+      "branches": {
+        "crypto": "CONFLICTING",
+        "physical": "VERIFIED",
+        "trust": "VERIFIED"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 128.4434725,
+        "median": 128.2238333,
+        "q05": 127.98215,
+        "q95": 129.16997332,
+        "minimum": 127.9601375,
+        "maximum": 129.2955583,
+        "sample_stdev": 0.5471482384391724
+      }
+    },
+    {
+      "case": "invalid_ca_record_signature",
+      "expected": "CONFLICTING",
+      "actual": "CONFLICTING",
+      "branches": {
+        "crypto": "CONFLICTING",
+        "physical": "VERIFIED",
+        "trust": "CONFLICTING"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 128.30643502,
+        "median": 128.3625834,
+        "q05": 128.05816670000002,
+        "q95": 128.47443416,
+        "minimum": 127.9985792,
+        "maximum": 128.499225,
+        "sample_stdev": 0.18703780403486073
+      }
+    },
+    {
+      "case": "revoked_record",
+      "expected": "CONFLICTING",
+      "actual": "CONFLICTING",
+      "branches": {
+        "crypto": "VERIFIED",
+        "physical": "VERIFIED",
+        "trust": "CONFLICTING"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 127.24244914,
+        "median": 127.05596249999999,
+        "q05": 126.86831082,
+        "q95": 127.70166328,
+        "minimum": 126.8565375,
+        "maximum": 127.7079916,
+        "sample_stdev": 0.4170321502432907
+      }
+    },
+    {
+      "case": "expired_cache",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "branches": {
+        "crypto": "VERIFIED",
+        "physical": "VERIFIED",
+        "trust": "INSUFFICIENT_EVIDENCE"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 127.25935833999999,
+        "median": 127.23527920000001,
+        "q05": 127.1048317,
+        "q95": 127.5078958,
+        "minimum": 127.0929417,
+        "maximum": 127.57443330000001,
+        "sample_stdev": 0.18661363636480285
+      }
+    },
+    {
+      "case": "cold_cache",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "branches": {
+        "crypto": "VERIFIED",
+        "physical": "VERIFIED",
+        "trust": "INSUFFICIENT_EVIDENCE"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 127.4372425,
+        "median": 127.331175,
+        "q05": 127.26693336,
+        "q95": 127.77526162000001,
+        "minimum": 127.25251669999999,
+        "maximum": 127.86612910000001,
+        "sample_stdev": 0.24629947595780208
+      }
+    },
+    {
+      "case": "missing_disclosure",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "branches": {
+        "crypto": "INSUFFICIENT_EVIDENCE",
+        "physical": "VERIFIED",
+        "trust": "VERIFIED"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 127.89481163999999,
+        "median": 127.70822079999999,
+        "q05": 127.3075283,
+        "q95": 128.59182416,
+        "minimum": 127.2871583,
+        "maximum": 128.62314999999998,
+        "sample_stdev": 0.6158782087831163
+      }
+    },
+    {
+      "case": "missing_physical_evidence",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "branches": {
+        "crypto": "VERIFIED",
+        "physical": "INSUFFICIENT_EVIDENCE",
+        "trust": "VERIFIED"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 127.39414002000001,
+        "median": 127.42447920000001,
+        "q05": 127.13155422000003,
+        "q95": 127.62480252,
+        "minimum": 127.07100840000001,
+        "maximum": 127.6741792,
+        "sample_stdev": 0.21521618235609083
+      }
+    },
+    {
+      "case": "physical_conflict",
+      "expected": "CONFLICTING",
+      "actual": "CONFLICTING",
+      "branches": {
+        "crypto": "VERIFIED",
+        "physical": "CONFLICTING",
+        "trust": "VERIFIED"
+      },
+      "passed": true,
+      "unexpected_verified": false,
+      "microseconds_per_case": {
+        "n": 5,
+        "mean": 127.42638582,
+        "median": 127.4331458,
+        "q05": 127.34886834,
+        "q95": 127.49384078,
+        "minimum": 127.33765,
+        "maximum": 127.5006041,
+        "sample_stdev": 0.06349415422743761
+      }
+    }
+  ],
+  "summary": {
+    "case_count": 12,
+    "passed_count": 12,
+    "pass_fraction": 1.0,
+    "unexpected_verified_count": 0
+  },
+  "peak_rss_mib": 30.1875,
+  "interpretation_limits": [
+    "Cases establish deterministic protocol conformance, not real-world attack prevalence or detection accuracy.",
+    "Physical evidence is a controlled branch state; no new LocaRDS claim is made.",
+    "Timings include Python cryptographic and rule evaluation on the recorded platform.",
+    "No precision, recall, F1, false-positive or false-negative result is produced."
+  ]
+}

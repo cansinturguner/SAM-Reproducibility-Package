@@ -2,11 +2,11 @@ cff-version: 1.2.0
 message: "If you use this software, please cite the SAM manuscript, this software package, and the LocaRDS dataset."
 title: "SAM ADS-B Security Assurance Model Reproducibility Package"
 type: software
-version: 1.1.2
-date-released: 2026-10-11
+version: 1.2.0
+date-released: 2026-10-28
 license: MIT
 repository-code: "https://github.com/cansinturguner/SAM-Reproducibility-Package"
-doi: "10.5281/zenodo.23285009"
+doi: "10.5281/zenodo.23727987"
 url: "https://doi.org/10.5281/zenodo.23023229"
 authors:
   - family-names: "Turguner"
@@ -26,7 +26,7 @@ keywords:
   - reproducibility
 references:
   - type: article
-    title: "A Layered Security Assurance Model for ADS-B Using Cryptographic, Physical, and Trust Evidence"
+    title: "Layered Security Assurance for ADS-B Broadcast Networks: Fusing Authentication, Trust, and Time-Difference-of-Arrival Evidence"
     authors:
       - family-names: "Turguner"
         given-names: "Cansin"

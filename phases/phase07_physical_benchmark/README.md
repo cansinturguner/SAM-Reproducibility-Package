@@ -4,10 +4,10 @@ This phase measures the actual end-to-end computational cost of the frozen physi
 
 ## Run
 
-From the `sam_phase1` directory with the Python 3.12 virtual environment active:
+From the package root with the Python 3.12 virtual environment active:
 
 ```bash
-python ~/Downloads/sam_phase7_benchmark/scripts/benchmark_physical_verification.py \
+python phases/phase07_physical_benchmark/scripts/benchmark_physical_verification.py \
   --selected data/processed/locards_subset_1/trusted_good_ge3.csv.gz \
   --sensors data/raw/locards/subset_1/set_1_sensors.csv \
   --calibration data/processed/locards_subset_1/receiver_clock_calibration.json \

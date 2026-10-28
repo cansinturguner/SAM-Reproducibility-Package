@@ -1,0 +1,370 @@
+{
+  "schema": "sam.phase9.tesla-delayed-auth.v1",
+  "scope": {
+    "implemented": "TESLA key chain, one-interval delayed B1 disclosure, buffering and loss simulation",
+    "not_implemented": [
+      "Phase Overlay RF waveform, RS FEC or BER",
+      "B2 signed-key and Type-C certificate scheduling",
+      "trust-service or PKI availability",
+      "complete SAM evidence fusion",
+      "certified airborne hardware"
+    ],
+    "security_label": "No attack/anomaly dataset or classifier is used; loss is an availability stress variable."
+  },
+  "platform": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.12.14",
+    "logical_cpu_count": 8
+  },
+  "configuration": {
+    "seed": 1103,
+    "duration_seconds": 600,
+    "interval_seconds": 1.0,
+    "interval_count": 600,
+    "message_rate_per_second": 6.2,
+    "transmitted_messages_per_replicate": 3720,
+    "replicates_per_loss_probability": 200,
+    "key_bits": 128,
+    "hmac_algorithm": "HMAC-SHA3-256",
+    "transmitted_tag_bits": 128,
+    "sequence_bits": 8,
+    "disclosure_delay_intervals": 1,
+    "type_a_security_data_bytes_excluding_fec": 17,
+    "b1_interval_key_bytes_excluding_framing_and_fec": 16
+  },
+  "correctness": {
+    "key_chain_consistent": true,
+    "sequence_field_sufficient_for_configured_interval": true,
+    "sample_hmac_verified": true,
+    "zero_loss_all_messages_authenticated": true
+  },
+  "scenarios": [
+    {
+      "independent_type_a_and_b1_loss_probability": 0.0,
+      "received_fraction": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "simulation_interval_95_low": 1.0,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_availability_vs_transmitted": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "simulation_interval_95_low": 1.0,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_availability_vs_received": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "simulation_interval_95_low": 1.0,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q50_seconds": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "simulation_interval_95_low": 1.0,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q95_seconds": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "simulation_interval_95_low": 1.0,
+        "simulation_interval_95_high": 1.0
+      },
+      "maximum_buffered_messages": {
+        "n": 200,
+        "mean": 7.0,
+        "median": 7.0,
+        "simulation_interval_95_low": 7.0,
+        "simulation_interval_95_high": 7.0
+      },
+      "unresolved_received_messages": {
+        "n": 200,
+        "mean": 0.0,
+        "median": 0.0,
+        "simulation_interval_95_low": 0.0,
+        "simulation_interval_95_high": 0.0
+      }
+    },
+    {
+      "independent_type_a_and_b1_loss_probability": 0.1,
+      "received_fraction": {
+        "n": 200,
+        "mean": 0.8997499999999999,
+        "median": 0.8998655913978495,
+        "simulation_interval_95_low": 0.8908602150537634,
+        "simulation_interval_95_high": 0.9088709677419354
+      },
+      "authentication_availability_vs_transmitted": {
+        "n": 200,
+        "mean": 0.8995672043010753,
+        "median": 0.899731182795699,
+        "simulation_interval_95_low": 0.8908602150537634,
+        "simulation_interval_95_high": 0.9083467741935484
+      },
+      "authentication_availability_vs_received": {
+        "n": 200,
+        "mean": 0.9997971341325101,
+        "median": 1.0,
+        "simulation_interval_95_low": 0.9979054458408139,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q50_seconds": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "simulation_interval_95_low": 1.0,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q95_seconds": {
+        "n": 200,
+        "mean": 2.0,
+        "median": 2.0,
+        "simulation_interval_95_low": 2.0,
+        "simulation_interval_95_high": 2.0
+      },
+      "maximum_buffered_messages": {
+        "n": 200,
+        "mean": 20.095,
+        "median": 19.0,
+        "simulation_interval_95_low": 17.0,
+        "simulation_interval_95_high": 27.0
+      },
+      "unresolved_received_messages": {
+        "n": 200,
+        "mean": 0.68,
+        "median": 0.0,
+        "simulation_interval_95_low": 0.0,
+        "simulation_interval_95_high": 7.0
+      }
+    },
+    {
+      "independent_type_a_and_b1_loss_probability": 0.2,
+      "received_fraction": {
+        "n": 200,
+        "mean": 0.7997822580645162,
+        "median": 0.7994623655913978,
+        "simulation_interval_95_low": 0.7887096774193548,
+        "simulation_interval_95_high": 0.8113104838709677
+      },
+      "authentication_availability_vs_transmitted": {
+        "n": 200,
+        "mean": 0.7994193548387096,
+        "median": 0.7994623655913978,
+        "simulation_interval_95_low": 0.7878965053763441,
+        "simulation_interval_95_high": 0.8110349462365591
+      },
+      "authentication_availability_vs_received": {
+        "n": 200,
+        "mean": 0.999547172429892,
+        "median": 1.0,
+        "simulation_interval_95_low": 0.9966485401130962,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q50_seconds": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "simulation_interval_95_low": 1.0,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q95_seconds": {
+        "n": 200,
+        "mean": 2.1207500000000006,
+        "median": 2.0,
+        "simulation_interval_95_low": 2.0,
+        "simulation_interval_95_high": 3.0
+      },
+      "maximum_buffered_messages": {
+        "n": 200,
+        "mean": 24.385,
+        "median": 24.0,
+        "simulation_interval_95_low": 19.0,
+        "simulation_interval_95_high": 33.025000000000006
+      },
+      "unresolved_received_messages": {
+        "n": 200,
+        "mean": 1.35,
+        "median": 0.0,
+        "simulation_interval_95_low": 0.0,
+        "simulation_interval_95_high": 10.0
+      }
+    },
+    {
+      "independent_type_a_and_b1_loss_probability": 0.3,
+      "received_fraction": {
+        "n": 200,
+        "mean": 0.6994771505376345,
+        "median": 0.6994623655913978,
+        "simulation_interval_95_low": 0.6846706989247312,
+        "simulation_interval_95_high": 0.7158736559139784
+      },
+      "authentication_availability_vs_transmitted": {
+        "n": 200,
+        "mean": 0.6989422043010752,
+        "median": 0.6987903225806451,
+        "simulation_interval_95_low": 0.6836021505376344,
+        "simulation_interval_95_high": 0.7148118279569893
+      },
+      "authentication_availability_vs_received": {
+        "n": 200,
+        "mean": 0.9992340703503534,
+        "median": 1.0,
+        "simulation_interval_95_low": 0.9953559022050876,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q50_seconds": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "simulation_interval_95_low": 1.0,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q95_seconds": {
+        "n": 200,
+        "mean": 3.000999999999999,
+        "median": 3.0,
+        "simulation_interval_95_low": 3.0,
+        "simulation_interval_95_high": 3.0
+      },
+      "maximum_buffered_messages": {
+        "n": 200,
+        "mean": 26.77,
+        "median": 26.0,
+        "simulation_interval_95_low": 20.0,
+        "simulation_interval_95_high": 40.0
+      },
+      "unresolved_received_messages": {
+        "n": 200,
+        "mean": 1.99,
+        "median": 0.0,
+        "simulation_interval_95_low": 0.0,
+        "simulation_interval_95_high": 12.0
+      }
+    },
+    {
+      "independent_type_a_and_b1_loss_probability": 0.4,
+      "received_fraction": {
+        "n": 200,
+        "mean": 0.6000430107526882,
+        "median": 0.5995967741935484,
+        "simulation_interval_95_low": 0.5838508064516129,
+        "simulation_interval_95_high": 0.613991935483871
+      },
+      "authentication_availability_vs_transmitted": {
+        "n": 200,
+        "mean": 0.5993413978494624,
+        "median": 0.5991935483870968,
+        "simulation_interval_95_low": 0.5830577956989247,
+        "simulation_interval_95_high": 0.6137298387096775
+      },
+      "authentication_availability_vs_received": {
+        "n": 200,
+        "mean": 0.9988284225876098,
+        "median": 1.0,
+        "simulation_interval_95_low": 0.9946489220454362,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q50_seconds": {
+        "n": 200,
+        "mean": 1.0,
+        "median": 1.0,
+        "simulation_interval_95_low": 1.0,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q95_seconds": {
+        "n": 200,
+        "mean": 3.8009999999999993,
+        "median": 4.0,
+        "simulation_interval_95_low": 3.0,
+        "simulation_interval_95_high": 4.0
+      },
+      "maximum_buffered_messages": {
+        "n": 200,
+        "mean": 29.095,
+        "median": 28.0,
+        "simulation_interval_95_low": 21.0,
+        "simulation_interval_95_high": 44.0
+      },
+      "unresolved_received_messages": {
+        "n": 200,
+        "mean": 2.61,
+        "median": 0.0,
+        "simulation_interval_95_low": 0.0,
+        "simulation_interval_95_high": 12.0
+      }
+    },
+    {
+      "independent_type_a_and_b1_loss_probability": 0.5,
+      "received_fraction": {
+        "n": 200,
+        "mean": 0.49971908602150533,
+        "median": 0.49973118279569895,
+        "simulation_interval_95_low": 0.4827755376344086,
+        "simulation_interval_95_high": 0.5174798387096775
+      },
+      "authentication_availability_vs_transmitted": {
+        "n": 200,
+        "mean": 0.49896102150537636,
+        "median": 0.4991935483870968,
+        "simulation_interval_95_low": 0.4822513440860215,
+        "simulation_interval_95_high": 0.5174798387096775
+      },
+      "authentication_availability_vs_received": {
+        "n": 200,
+        "mean": 0.9984819682809082,
+        "median": 1.0,
+        "simulation_interval_95_low": 0.9930480087767417,
+        "simulation_interval_95_high": 1.0
+      },
+      "authentication_delay_q50_seconds": {
+        "n": 200,
+        "mean": 1.455,
+        "median": 1.0,
+        "simulation_interval_95_low": 1.0,
+        "simulation_interval_95_high": 2.0
+      },
+      "authentication_delay_q95_seconds": {
+        "n": 200,
+        "mean": 4.814249999999999,
+        "median": 5.0,
+        "simulation_interval_95_low": 4.0,
+        "simulation_interval_95_high": 6.0
+      },
+      "maximum_buffered_messages": {
+        "n": 200,
+        "mean": 31.155,
+        "median": 30.0,
+        "simulation_interval_95_low": 23.0,
+        "simulation_interval_95_high": 45.025000000000006
+      },
+      "unresolved_received_messages": {
+        "n": 200,
+        "mean": 2.82,
+        "median": 0.0,
+        "simulation_interval_95_low": 0.0,
+        "simulation_interval_95_high": 13.025000000000006
+      }
+    }
+  ],
+  "benchmark": {
+    "total_wall_seconds": 10.573318874998222,
+    "simulated_message_instances": 4464000,
+    "peak_rss_mib": 22.390625
+  },
+  "interpretation_limits": [
+    "One-second intervals and HMAC-SHA3-256/128 are explicit experimental choices.",
+    "Simulation intervals summarize Monte Carlo loss replicates; they are not confidence intervals for global ADS-B traffic.",
+    "Loss is independent and conditional on the synthetic workload; burst loss and RF propagation are not modeled.",
+    "Authentication delay is protocol buffering delay, not RF reception or certified avionics latency.",
+    "Logical authenticator/key sizes exclude Phase Overlay framing, FEC, certificates and scheduling overhead."
+  ]
+}

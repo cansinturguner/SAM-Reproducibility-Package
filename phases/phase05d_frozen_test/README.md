@@ -20,7 +20,7 @@ aircraft-clustered bootstrap confidence intervals.
 ```bash
 source .venv/bin/activate
 
-python ~/Downloads/sam_phase5d_frozen_test/scripts/run_frozen_test.py \
+python phases/phase05d_frozen_test/scripts/run_frozen_test.py \
   --selected data/processed/locards_subset_1/trusted_good_ge3.csv.gz \
   --sensors data/raw/locards/subset_1/set_1_sensors.csv \
   --calibration data/processed/locards_subset_1/receiver_clock_calibration.json \

@@ -18,7 +18,7 @@ does not automatically declare a final rule.
 ```bash
 source .venv/bin/activate
 
-python ~/Downloads/sam_phase5c_geometry_validation/scripts/validate_geometry_rules.py \
+python phases/phase05c_geometry_validation/scripts/validate_geometry_rules.py \
   --selected data/processed/locards_subset_1/trusted_good_ge3.csv.gz \
   --sensors data/raw/locards/subset_1/set_1_sensors.csv \
   --calibration data/processed/locards_subset_1/receiver_clock_calibration.json \
@@ -48,6 +48,6 @@ print(json.dumps({
 PY
 ```
 
-Send those four sections for review.
+These four sections document the development-validation geometry selection.
 
 No attack/anomaly labels or synthetic attacks are created.
